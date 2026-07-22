@@ -3,21 +3,28 @@ import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
-import { getGuests, getEpisodes, episodesForGuest } from '@/lib/content';
+import { getGuests, getEpisodes, episodesForGuest, getScripts } from '@/lib/content';
 import { site } from '@/data/site';
 
 export async function getStaticPaths() {
   const guests = await getGuests();
   const episodes = await getEpisodes();
+  const scripts = await getScripts();
+  const scriptEpisodeIds = scripts.map((s) => s.data.episode.id);
   return Promise.all(
     guests.map(async (guest) => ({
       params: { slug: guest.id },
-      props: { guest, episodes: await episodesForGuest(guest.id, episodes) },
+      props: {
+        guest,
+        episodes: await episodesForGuest(guest.id, episodes),
+        scriptEpisodeIds,
+      },
     }))
   );
 }
 
-const { guest, episodes } = Astro.props;
+const { guest, episodes, scriptEpisodeIds } = Astro.props;
+const manusEpisodes = episodes.filter((e) => scriptEpisodeIds.includes(e.id));
 const d = guest.data;
 const { Content } = await render(guest);
 
@@ -64,6 +71,21 @@ const jsonLd = {
               <ul class="themes">
                 {d.themes.map((t) => (
                   <li>{t}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          manusEpisodes.length > 0 && (
+            <section class="card panel">
+              <h2>Manus og spørsmål</h2>
+              <ul class="manus-list">
+                {manusEpisodes.map((ep) => (
+                  <li>
+                    <a href={`/episoder/${ep.id}/manus`}>{ep.data.title}</a>
+                  </li>
                 ))}
               </ul>
             </section>
@@ -159,6 +181,23 @@ const jsonLd = {
     border-radius: 999px;
     font-size: 0.84rem;
     color: var(--ink-soft);
+  }
+  .manus-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .manus-list a {
+    color: var(--accent-strong);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .manus-list a:hover {
+    text-decoration: underline;
   }
   .guest-episodes {
     border-top: 1px solid var(--line);

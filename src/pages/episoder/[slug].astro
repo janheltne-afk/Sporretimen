@@ -5,7 +5,7 @@ import Cover from '@/components/Cover.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
-import { getEpisodes } from '@/lib/content';
+import { getEpisodes, scriptForEpisode } from '@/lib/content';
 import { formatById, site } from '@/data/site';
 import { formatDate } from '@/lib/utils';
 
@@ -22,6 +22,7 @@ const d = episode.data;
 const { Content } = await render(episode);
 const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
+const script = await scriptForEpisode(episode.id);
 
 // Relaterte episoder
 const related = (
@@ -83,6 +84,38 @@ const jsonLd = {
         <Content />
 
         {
+          script && (
+            <a class="manus-panel" href={`/episoder/${episode.id}/manus`}>
+              <span class="manus-panel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path
+                    d="M6 3.5h9L19 7.5v13H6zM15 3.5V8h4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M9 12h7M9 15.5h7M9 8.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="manus-panel__text">
+                <strong>
+                  {script.data.kind === 'transkribert'
+                    ? 'Les manus og transkripsjon'
+                    : 'Se manus og spørsmål'}
+                </strong>
+                <span>
+                  {script.data.kind === 'transkribert'
+                    ? 'Hele samtalen skrevet ut, med spørsmål og svar.'
+                    : 'Spørsmålene og disposisjonen for episoden. Svar legges inn etter hvert.'}
+                </span>
+              </span>
+              <span class="manus-panel__arrow" aria-hidden="true">→</span>
+            </a>
+          )
+        }
+
+        {
           d.sources.length > 0 && (
             <section class="sources" aria-labelledby="sources-heading">
               <h2 id="sources-heading">Kilder og referanser</h2>
@@ -114,9 +147,18 @@ const jsonLd = {
             <h2>{guest.data.name}</h2>
             <p class="episode__guest-role">{guest.data.role}</p>
             <p class="episode__guest-intro">{guest.data.intro}</p>
-            <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
-              Om gjesten
-            </a>
+            <div class="episode__guest-actions">
+              <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                Om gjesten
+              </a>
+              {
+                script && (
+                  <a class="btn btn-ghost btn-sm" href={`/episoder/${episode.id}/manus`}>
+                    Se manus →
+                  </a>
+                )
+              }
+            </div>
           </aside>
         )
       }
@@ -199,9 +241,59 @@ const jsonLd = {
     margin: 0;
     padding-left: 1.1rem;
   }
+  .manus-panel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.2rem;
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .manus-panel:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .manus-panel__icon {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .manus-panel__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .manus-panel__text strong {
+    font-size: 1.02rem;
+  }
+  .manus-panel__text span {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  .manus-panel__arrow {
+    margin-left: auto;
+    color: var(--accent-strong);
+    font-size: 1.2rem;
+  }
   .episode__guest {
     padding: 1.5rem;
     align-self: start;
+  }
+  .episode__guest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .episode__guest-label {
     font-size: 0.74rem;

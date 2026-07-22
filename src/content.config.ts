@@ -83,4 +83,29 @@ const guests = defineCollection({
     }),
 });
 
-export const collections = { episodes, guests };
+/**
+ * Manus / spørsmål til en episode.
+ *
+ * Legg en .md-fil i `src/content/scripts/`. Bruk samme filnavn som episoden
+ * (f.eks. `john-erik-legeyrket.md`) for oversiktens skyld, og pek på episoden
+ * med `episode:`-feltet. Selve manuset skrives som vanlig Markdown i brødteksten.
+ *
+ * Når du senere transkriberer og legger inn svar, skriv svaret rett under
+ * spørsmålet – gjerne som et sitat (linje som begynner med `>`), så vises det
+ * tydelig atskilt fra spørsmålet. Endre da `kind` til `transkribert`.
+ */
+const scripts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/scripts' }),
+  schema: () =>
+    z.object({
+      episode: reference('episodes'),
+      // 'sporsmal' = kun spørsmål, 'transkribert' = svar er lagt inn.
+      kind: z.enum(['sporsmal', 'transkribert']).default('sporsmal'),
+      // Valgfri arbeidstittel vist øverst på manus-siden.
+      worktitle: z.string().optional(),
+      updated: z.coerce.date().optional(),
+      draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { episodes, guests, scripts };

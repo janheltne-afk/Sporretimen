@@ -1,0 +1,220 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Avatar from '@/components/Avatar.astro';
+import { getScripts } from '@/lib/content';
+import { formatById } from '@/data/site';
+import { formatDate } from '@/lib/utils';
+
+export async function getStaticPaths() {
+  const scripts = await getScripts();
+  return Promise.all(
+    scripts.map(async (script) => {
+      const episode = await getEntry(script.data.episode);
+      return { params: { slug: episode!.id }, props: { script, episode } };
+    })
+  );
+}
+
+const { script, episode } = Astro.props;
+const d = episode.data;
+const { Content, headings } = await render(script);
+const format = formatById(d.format);
+const guest = d.guest ? await getEntry(d.guest) : undefined;
+
+// Innholdsfortegnelse fra nivå-2-overskrifter
+const toc = headings.filter((h) => h.depth === 2);
+const transkribert = script.data.kind === 'transkribert';
+---
+
+<BaseLayout
+  title={`Manus: ${d.title}`}
+  description={`Manus og spørsmål til episoden «${d.title}» i Spørretimen.`}
+  noindex
+>
+  <article class="manus">
+    <div class="container">
+      <a class="back-link" href={`/episoder/${episode.id}`}>← Tilbake til episoden</a>
+    </div>
+
+    <header class="manus-hero">
+      <div class="container">
+        <div class="manus-hero__meta">
+          <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+          <span class="tag">Manus</span>
+          <span class:list={['tag', transkribert ? 'tag-samtale' : 'tag-status']}>
+            {transkribert ? 'Transkribert' : 'Spørsmål'}
+          </span>
+        </div>
+        <p class="eyebrow">Manus og spørsmål</p>
+        <h1>{script.data.worktitle ?? d.title}</h1>
+        {
+          !transkribert && (
+            <p class="lead">
+              Dette er spørsmålene og disposisjonen for episoden. Svar og
+              transkripsjon legges inn etter hvert.
+            </p>
+          )
+        }
+        {script.data.updated && <p class="muted">Sist oppdatert {formatDate(script.data.updated)}</p>}
+      </div>
+    </header>
+
+    <div class="container manus-layout">
+      <div class="prose manus-content">
+        <Content />
+      </div>
+
+      <aside class="manus-aside">
+        {
+          guest && (
+            <div class="card guest-card-mini">
+              <p class="mini-label">Gjest</p>
+              <div class="mini-portrait">
+                <Avatar name={guest.data.name} src={guest.data.image} alt={guest.data.imageAlt} />
+              </div>
+              <h2>{guest.data.name}</h2>
+              <p class="mini-role">{guest.data.role}</p>
+              <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                Om gjesten
+              </a>
+            </div>
+          )
+        }
+
+        {
+          toc.length > 0 && (
+            <nav class="toc card" aria-label="Innhold i manuset">
+              <p class="mini-label">Innhold</p>
+              <ol>
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .manus {
+    padding-top: clamp(1.2rem, 4vw, 2rem);
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--accent-strong);
+  }
+  .manus-hero {
+    padding-block: clamp(1.2rem, 4vw, 2.2rem) clamp(1rem, 3vw, 1.8rem);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .manus-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .manus-hero h1 {
+    margin: 0.2rem 0 0;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+  }
+  .manus-hero .lead {
+    margin-top: 0.7rem;
+  }
+  .manus-hero .muted {
+    margin: 0.6rem 0 0;
+    font-size: 0.85rem;
+  }
+  .manus-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .manus-content {
+    max-width: none;
+  }
+  /* Fremhev de fete «hovedspørsmålene» og eventuelle svar-sitater */
+  .manus-content :global(h2) {
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 90px;
+  }
+  .manus-content :global(ol > li),
+  .manus-content :global(ul > li) {
+    margin-bottom: 0.55rem;
+  }
+  .manus-aside {
+    position: sticky;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .mini-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink-faint);
+    margin: 0 0 0.7rem;
+  }
+  .guest-card-mini {
+    padding: 1.25rem;
+  }
+  .mini-portrait {
+    width: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0.7rem;
+  }
+  .guest-card-mini h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.1rem;
+  }
+  .mini-role {
+    color: var(--accent-strong);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin: 0 0 0.9rem;
+  }
+  .toc {
+    padding: 1.25rem;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+  .toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .toc a:hover {
+    color: var(--accent-strong);
+  }
+  @media (max-width: 860px) {
+    .manus-layout {
+      grid-template-columns: 1fr;
+    }
+    .manus-aside {
+      position: static;
+      order: -1;
+    }
+  }
+</style>

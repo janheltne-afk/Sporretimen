@@ -25,6 +25,20 @@ export async function getGuests(): Promise<CollectionEntry<'guests'>[]> {
   );
 }
 
+/** Alle manus som ikke er draft. */
+export async function getScripts(): Promise<CollectionEntry<'scripts'>[]> {
+  return getCollection('scripts', ({ data }) => !data.draft);
+}
+
+/** Manuset som hører til en gitt episode, hvis det finnes. */
+export async function scriptForEpisode(
+  episodeId: string,
+  scripts?: CollectionEntry<'scripts'>[]
+): Promise<CollectionEntry<'scripts'> | undefined> {
+  const list = scripts ?? (await getScripts());
+  return list.find((s) => s.data.episode.id === episodeId);
+}
+
 /** Episodene en gitt gjest deltar i. */
 export async function episodesForGuest(
   guestId: string,

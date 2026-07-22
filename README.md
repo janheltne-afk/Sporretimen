@@ -89,6 +89,50 @@ Lengre tekst om gjesten i Markdown.
 Episoder kobles automatisk til gjesten via `guest:`-feltet, og vises på gjestens
 side.
 
+### Manus og spørsmål til en episode
+
+Hver episode kan ha et **manus** (spørsmål/disposisjon) som vises på en egen,
+ryddig side: `/episoder/<slug>/manus`. Manuset lenkes automatisk fra episodesiden
+(et eget panel), fra gjestens infokort på episodesiden, og fra gjestens egen side.
+
+Lag en fil i `src/content/scripts/` med **samme filnavn som episoden**, f.eks.
+`john-erik-legeyrket.md`:
+
+```markdown
+---
+episode: john-erik-legeyrket   # peker på episoden (filnavn uten .md)
+kind: sporsmal                 # sporsmal | transkribert
+worktitle: "Valgfri arbeidstittel vist øverst på manus-siden"
+updated: 2026-08-01            # valgfritt
+---
+
+## Introduksjon
+Programlederens introtekst …
+
+## Del 1: Oppvekst og bakgrunn
+1. Første spørsmål?
+2. Neste spørsmål?
+```
+
+- `##`-overskrifter blir automatisk til en innholdsfortegnelse på siden.
+- Nummererte lister blir spørsmålene.
+
+**Slik legger du inn svar / transkripsjon senere:** skriv svaret rett under
+spørsmålet som et sitat (en linje som begynner med `>`), så vises det tydelig
+atskilt fra spørsmålet:
+
+```markdown
+1. Hvordan var det å vokse opp i Alta?
+   > Svar: John Erik forteller at …
+```
+
+Når svarene er lagt inn, endre `kind: sporsmal` til `kind: transkribert` – da
+oppdateres merkelappene og teksten på siden automatisk.
+
+> Manus-sidene er satt til `noindex` (holdes utenfor søkemotorer) fordi de er
+> arbeidsdokumenter. Vil du at de skal kunne dukke opp i søk, fjern `noindex` i
+> `src/pages/episoder/[slug]/manus.astro`.
+
 ### Bilder
 
 Legg bildefiler i `public/images/` og referer til dem med absolutt sti, f.eks.
