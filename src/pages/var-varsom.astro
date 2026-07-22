@@ -1,0 +1,192 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+
+// Hvordan Spørretimen anvender de presseetiske prinsippene i praksis.
+const principles = [
+  {
+    title: 'Omtanke for menneskene vi omtaler',
+    body: 'Vi viser hensyn til hvordan innhold kan oppleves for gjester, pårørende og andre som blir omtalt. Vi tenker gjennom konsekvensene før vi publiserer, og strekker oss ekstra langt overfor mennesker i en sårbar situasjon.',
+    vvp: 'Vær Varsom-plakaten punkt 4.1 og 4.3',
+  },
+  {
+    title: 'Helse og taushetsplikt',
+    body: 'Erfaringer fra helsevesenet omtales alltid på et generelt nivå. Vi deler ikke identifiserbare pasienthistorier eller taushetsbelagte opplysninger. Innholdet er aldri individuell medisinsk rådgivning og erstatter ikke vurdering fra helsepersonell.',
+    vvp: 'God presseskikk og lovpålagt taushetsplikt',
+  },
+  {
+    title: 'Skille mellom erfaring, forklaring og fakta',
+    body: 'Vi skiller tydelig mellom personlige erfaringer, faglige forklaringer og dokumenterte fakta. Programlederen fremstilles ikke som ekspert på alle temaer, og gjestenes synspunkter er deres egne.',
+    vvp: 'Vær Varsom-plakaten punkt 4.2',
+  },
+  {
+    title: 'Kilder og kildekritikk',
+    body: 'Masterclass- og forklaringsepisoder er kildebaserte, og vi oppgir kilder der det er naturlig. Vi etterstreber å kontrollere at opplysninger er korrekte, og er åpne om usikkerhet.',
+    vvp: 'Vær Varsom-plakaten kapittel 3',
+  },
+  {
+    title: 'Samtykke og medvirkning',
+    body: 'Gjester vet hva de er med på. En episode kan klippes dersom samtalen kommer inn på opplysninger eller temaer som ikke bør publiseres, og medvirkende kan ta kontakt hvis noe oppleves feil eller ubehagelig.',
+    vvp: 'Vær Varsom-plakaten punkt 3.3 og 3.9',
+  },
+  {
+    title: 'Samtidig imøtegåelse og tilsvar',
+    body: 'Blir noen utsatt for sterke påstander, skal de få mulighet til å svare. Mener du at noe er feil eller urimelig, kan du be om retting eller tilsvar – se kontaktinformasjonen nederst.',
+    vvp: 'Vær Varsom-plakaten punkt 4.14 og 4.15',
+  },
+  {
+    title: 'Retting og beklagelse',
+    body: 'Feilaktige opplysninger rettes så snart som mulig, og vi beklager når det er grunn til det. Retting skjer på en tydelig måte.',
+    vvp: 'Vær Varsom-plakaten punkt 4.13',
+  },
+  {
+    title: 'Skille mellom redaksjonelt innhold og reklame',
+    body: 'Spørretimen er ikke en kommersiell podcast i dag. Skulle et samarbeid en gang innebære en motytelse, vil det alltid være tydelig merket, og vi holder et klart skille mellom redaksjonelt innhold og eventuell annonsering.',
+    vvp: 'Vær Varsom-plakaten kapittel 2',
+  },
+];
+---
+
+<BaseLayout
+  title="Vær Varsom-plakaten og redaksjonelle prinsipper"
+  description="Slik forholder Spørretimen seg til presseetikk og Vær Varsom-plakaten: ansvarlig behandling av helseopplysninger, kildekritikk, samtykke, retting og tilsvar."
+>
+  <PageHeader
+    eyebrow="Redaksjonelle prinsipper"
+    title="Vær Varsom-plakaten og innholdet"
+    lead="Spørretimen er en podcast bygget på nysgjerrighet og respekt. Vi lar oss veilede av de presseetiske prinsippene og Vær Varsom-plakaten der de er relevante."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p>
+        Selv om Spørretimen er et personlig prosjekt og ikke en tradisjonell
+        nyhetsredaksjon, tar vi ansvaret som følger med å publisere om mennesker,
+        yrker og fagtemaer på alvor. Vær Varsom-plakaten er de norske medienes felles
+        kjøreregler for god presseskikk. Vi bruker den som rettesnor for hvordan vi
+        behandler gjester, kilder og temaer – særlig når det gjelder helse og
+        sensitive historier.
+      </p>
+      <p>
+        Under forklarer vi hva dette betyr i praksis, slik at det er tydelig hvilke
+        hensyn som ligger til grunn for det vi publiserer.
+      </p>
+    </div>
+  </section>
+
+  <section class="section principles">
+    <div class="container">
+      <div class="section-head">
+        <h2>Slik anvender vi prinsippene</h2>
+      </div>
+      <div class="grid grid-2">
+        {
+          principles.map((p) => (
+            <article class="card principle">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+              <p class="principle__ref">{p.vvp}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section sensitive">
+    <div class="container container-narrow">
+      <div class="card sensitive__card">
+        <h2>Særlig om helse og sårbare temaer</h2>
+        <p>
+          Flere av gjestene våre arbeider i helsevesenet eller deler personlige
+          erfaringer. Vi omtaler alltid akuttmedisin, psykisk helse og annet
+          helsestoff på et generelt nivå, og vi deler aldri identifiserbare
+          pasienthistorier. Kommer en samtale inn på noe som ikke bør publiseres,
+          klipper vi det bort. Formålet er å gi innsikt og forståelse – aldri å
+          eksponere enkeltmennesker.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-block">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">Har du en innvending?</p>
+      <h2>Ta kontakt – vi ønsker å gjøre ting riktig</h2>
+      <p class="lead mx-auto">
+        Mener du at noe i en episode er feil, urimelig eller går for langt? Ønsker du
+        retting eller tilsvar? Kontakt ansvarlig for innholdet, Jan Sindre Heltne, så
+        tar vi det på alvor.
+      </p>
+      <div class="contact-block__actions">
+        <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent('Presseetikk / retting – Spørretimen')}`}>
+          {site.email}
+        </a>
+        <a class="btn btn-secondary" href="/kontakt">Til kontaktsiden</a>
+      </div>
+      <p class="muted external">
+        Les hele plakaten hos Norsk Presseforbund:
+        <a href="https://presse.no/pfu/etiske-regler/vaer-varsom-plakaten/" target="_blank" rel="noopener">
+          Vær Varsom-plakaten (presse.no)
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .principles {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .principle {
+    padding: 1.4rem 1.5rem;
+  }
+  .principle h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .principle p {
+    color: var(--ink-soft);
+    margin: 0;
+    font-size: 0.96rem;
+  }
+  .principle__ref {
+    margin-top: 0.8rem !important;
+    font-size: 0.8rem !important;
+    color: var(--ink-faint) !important;
+    font-weight: 600;
+  }
+  .sensitive__card {
+    padding: 1.8rem;
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+  }
+  .sensitive__card h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .sensitive__card p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .contact-block {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .contact-block__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .external {
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+  }
+  .external a {
+    color: var(--accent-strong);
+  }
+</style>

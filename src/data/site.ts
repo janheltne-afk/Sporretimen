@@ -39,6 +39,7 @@ export const nav: { label: string; href: string }[] = [
   { label: 'Episoder', href: '/episoder' },
   { label: 'Gjester', href: '/gjester' },
   { label: 'Om Spørretimen', href: '/om' },
+  { label: 'Vær Varsom', href: '/var-varsom' },
   { label: 'Foreslå en gjest', href: '/foresla-gjest' },
   { label: 'Bli gjest', href: '/bli-gjest' },
   { label: 'Samarbeid', href: '/samarbeid' },
