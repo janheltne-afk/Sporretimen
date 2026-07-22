@@ -4,36 +4,49 @@ import PageHeader from '@/components/PageHeader.astro';
 import { site } from '@/data/site';
 
 const areas = [
-  'Sponsing av episoder',
-  'Langsiktige partnerskap',
-  'Relevante produkter og tjenester',
+  'Fremme en god sak eller et veldedig formål',
+  'Kryssfremming med andre podkaster og skapere',
   'Festivaler og arrangementer',
-  'Reiseliv',
-  'Utdanning',
-  'Karriere',
-  'Økonomi',
-  'Friluftsliv',
-  'Teknologi',
+  'Reiseliv og friluftsliv',
+  'Utdanning og karriere',
+  'Lokale artister og kulturmiljø',
 ];
 ---
 
 <BaseLayout
-  title="Samarbeid og sponsorer"
-  description="Muligheter for samarbeid med Spørretimen – sponsing, partnerskap og relevante produkter og tjenester som passer podcastens profil."
+  title="Samarbeid"
+  description="Spørretimen er ikke en kommersiell podcast i dag. Samarbeid skjer på gøy, for å fremme podcasten eller en god sak. Betalte samarbeid kan bli aktuelt på sikt."
 >
   <PageHeader
     eyebrow="Samarbeid"
-    title="Samarbeid og sponsorer"
-    lead="Spørretimen samarbeider gjerne med partnere som passer naturlig med podcastens profil. Alt sponsorinnhold merkes tydelig."
+    title="Samarbeid"
+    lead="Spørretimen samarbeider gjerne med folk og miljøer som passer naturlig med podcastens profil – på ikke-kommersielt grunnlag."
   />
+
+  <section class="section-tight">
+    <div class="container container-narrow">
+      <div class="card notice">
+        <h2>Ikke en kommersiell podcast i dag</h2>
+        <p>
+          Spørretimen er et personlig prosjekt, ikke en kommersiell podcast. I dag
+          inngår vi ikke betalte samarbeid eller sponsoravtaler. Samarbeid vi sier ja
+          til, skjer på gøy, for å fremme podcasten, eller for å løfte en god sak.
+        </p>
+        <p class="notice__future">
+          På sikt kan det åpne seg for betalte samarbeid – men det er altså ikke
+          aktuelt nå.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>Mulige samarbeid</h2>
+        <h2>Slik kan et samarbeid se ut i dag</h2>
         <p class="lead">
-          Vi er åpne for ulike former for samarbeid – så lenge de føles ekte for
-          lytterne og passer inn i det redaksjonelle innholdet.
+          Vi er åpne for uformelle, ikke-kommersielle samarbeid – så lenge de føles
+          ekte for lytterne og passer inn i det redaksjonelle innholdet.
         </p>
       </div>
       <ul class="areas">
@@ -47,10 +60,10 @@ const areas = [
       <div class="card note-card">
         <h2>Redaksjonelle prinsipper</h2>
         <p>
-          Sponsorinnhold må passe naturlig med podcastens profil og skal alltid være
-          tydelig merket. Det redaksjonelle innholdet styres av nysgjerrighet og
-          gjestenes historier – ikke av kommersielle interesser. Vi skiller tydelig
-          mellom redaksjonelt innhold og annonsering.
+          Det redaksjonelle innholdet styres av nysgjerrighet og gjestenes historier
+          – ikke av kommersielle interesser. Skulle et samarbeid en gang innebære en
+          motytelse, vil det alltid være tydelig merket, og vi skiller alltid klart
+          mellom redaksjonelt innhold og eventuell annonsering.
         </p>
       </div>
     </div>
@@ -60,10 +73,10 @@ const areas = [
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">På sikt</p>
-        <h2>Spørretimen skal kunne vokse</h2>
+        <h2>Muligheter hvis podcasten vokser</h2>
         <p class="lead">
-          Podcasten bygges for å kunne utvikles til mer enn bare episoder. Aktuelle
-          samarbeid kan derfor også knyttes til:
+          Podcasten bygges for å kunne utvikles til mer enn bare episoder. Dersom det
+          en gang åpner seg for betalte samarbeid, kan de for eksempel knyttes til:
         </p>
       </div>
       <div class="grid grid-3">
@@ -88,8 +101,9 @@ const areas = [
         <a class="btn btn-secondary" href="/kontakt">Til kontaktsiden</a>
       </div>
       <p class="muted disclaimer">
-        Det finnes foreløpig ingen inngåtte sponsoravtaler. Denne siden beskriver
-        mulige former for samarbeid.
+        Spørretimen er ikke en kommersiell podcast i dag, og det finnes ingen
+        inngåtte sponsor- eller betalingsavtaler. Denne siden beskriver hvordan
+        ikke-kommersielle samarbeid kan se ut, og hva som kan bli mulig på sikt.
       </p>
     </div>
   </section>
@@ -108,6 +122,24 @@ const areas = [
     padding: 1rem 1.2rem;
     font-weight: 600;
     color: var(--ink-soft);
+  }
+  .notice {
+    padding: 1.6rem 1.8rem;
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+  }
+  .notice h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+  .notice p {
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+  }
+  .notice__future {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--ink);
   }
   .principles-block {
     background: var(--surface);
