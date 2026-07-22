@@ -1,0 +1,185 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import { getEpisodes } from '@/lib/content';
+import { formats, categories } from '@/data/site';
+
+const episodes = await getEpisodes();
+
+// Bygg filterknapper: formater + kategorier faktisk i bruk
+const usedCategories = categories.filter((c) =>
+  episodes.some((e) => e.data.categories.includes(c))
+);
+---
+
+<BaseLayout
+  title="Episoder"
+  description="Alle episoder av Spørretimen – samtaler, Masterclass og Kort forklart. Filtrer på format og tema."
+>
+  <PageHeader
+    eyebrow="Episoder"
+    title="Alle episoder"
+    lead="Filtrer på format eller tema for å finne det du er nysgjerrig på. Nye episoder legges til fortløpende."
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="filters" role="group" aria-label="Filtrer episoder">
+        <div class="filters__group" data-filter-group="format">
+          <span class="filters__label">Format</span>
+          <button class="chip is-active" data-value="alle" aria-pressed="true">Alle</button>
+          {
+            formats.map((f) => (
+              <button class="chip" data-value={f.id} aria-pressed="false">
+                {f.label}
+              </button>
+            ))
+          }
+        </div>
+        <div class="filters__group" data-filter-group="category">
+          <span class="filters__label">Tema</span>
+          <button class="chip is-active" data-value="alle" aria-pressed="true">Alle</button>
+          {
+            usedCategories.map((c) => (
+              <button class="chip" data-value={c} aria-pressed="false">
+                {c}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <p class="results-count muted" id="results-count" aria-live="polite"></p>
+
+      <div class="grid grid-3" id="episode-grid">
+        {
+          episodes.map((ep) => (
+            <div
+              class="episode-item"
+              data-format={ep.data.format}
+              data-categories={ep.data.categories.join('|')}
+            >
+              <EpisodeCard episode={ep} />
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="no-results" id="no-results" hidden>
+        Ingen episoder passer valgene dine ennå. Prøv et annet filter.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 1.4rem;
+  }
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .filters__label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+    min-width: 3.5rem;
+  }
+  .chip {
+    padding: 0.42rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+  .chip.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .results-count {
+    margin: 0 0 1.2rem;
+    font-size: 0.9rem;
+  }
+  .no-results {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+</style>
+
+<script>
+  const grid = document.getElementById('episode-grid');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.episode-item'));
+  const countEl = document.getElementById('results-count');
+  const noResults = document.getElementById('no-results');
+  const state = { format: 'alle', category: 'alle' };
+
+  function apply() {
+    let visible = 0;
+    items.forEach((item) => {
+      const f = item.dataset.format ?? '';
+      const cats = (item.dataset.categories ?? '').split('|');
+      const okFormat = state.format === 'alle' || f === state.format;
+      const okCat = state.category === 'alle' || cats.includes(state.category);
+      const show = okFormat && okCat;
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    if (countEl) {
+      countEl.textContent =
+        visible === 1 ? '1 episode' : `${visible} episoder`;
+    }
+    if (noResults) noResults.hidden = visible !== 0;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+    const key = group.dataset.filterGroup as 'format' | 'category';
+    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach((c) => {
+          c.classList.remove('is-active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-pressed', 'true');
+        state[key] = chip.dataset.value ?? 'alle';
+        apply();
+      });
+    });
+  });
+
+  // Forhåndsvelg format fra ?format=-parameter (fra forsiden)
+  const params = new URLSearchParams(window.location.search);
+  const preset = params.get('format');
+  if (preset) {
+    const btn = document.querySelector<HTMLButtonElement>(
+      `[data-filter-group="format"] .chip[data-value="${preset}"]`
+    );
+    btn?.click();
+  } else {
+    apply();
+  }
+</script>

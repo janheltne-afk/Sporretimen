@@ -1,0 +1,248 @@
+---
+import Logo from './Logo.astro';
+import { nav } from '@/data/site';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="Spørretimen – til forsiden">
+      <Logo />
+    </a>
+
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button
+        type="button"
+        class="theme-toggle"
+        id="theme-toggle"
+        aria-label="Bytt mellom lyst og mørkt tema"
+        title="Bytt tema"
+      >
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"></path>
+          </g>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M20 14.5A8 8 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Åpne meny"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobilmeny -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Meny" hidden>
+    <ul>
+      {
+        nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 68px;
+  }
+  .site-header__brand {
+    text-decoration: none;
+    flex: none;
+  }
+  .site-nav {
+    margin-left: auto;
+  }
+  .site-nav ul {
+    display: flex;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav a {
+    display: inline-block;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .site-nav a:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+  }
+  .site-nav a[aria-current='page'] {
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .theme-toggle:hover {
+    background: var(--surface-2);
+    color: var(--ink);
+  }
+  .theme-toggle .icon-moon {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .theme-toggle .icon-sun {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .theme-toggle .icon-moon {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 42px;
+    height: 40px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .menu-toggle[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .mobile-nav[hidden] {
+    display: none;
+  }
+  .mobile-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem var(--gutter) 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-nav a {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-nav a[aria-current='page'] {
+    color: var(--accent-strong);
+  }
+
+  @media (max-width: 900px) {
+    .site-nav {
+      display: none;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  // Mobilmeny
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuToggle?.addEventListener('click', () => {
+    const open = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!open));
+    menuToggle.setAttribute('aria-label', open ? 'Åpne meny' : 'Lukk meny');
+    if (mobileNav) mobileNav.hidden = open;
+  });
+
+  // Temaveksling (lyst/mørkt), lagres i localStorage
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current =
+      root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('sporretimen-theme', next);
+    } catch (e) {
+      /* ignore */
+    }
+  });
+</script>

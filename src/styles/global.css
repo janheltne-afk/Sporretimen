@@ -1,0 +1,457 @@
+/* =========================================================================
+   Spørretimen – globalt designsystem
+   Ett tydelig aksentfarge, varm redaksjonell tone, lys og mørk bakgrunn.
+   ========================================================================= */
+
+:root {
+  /* Farger – lys modus (standard) */
+  --paper: #faf7f1;         /* varm off-white bakgrunn */
+  --surface: #ffffff;       /* kort/flater */
+  --surface-2: #f2ece1;     /* nedtonet flate */
+  --ink: #1a1613;           /* varm nær-svart tekst */
+  --ink-soft: #4b443c;      /* dempet tekst */
+  --ink-faint: #8a8177;     /* svak tekst / metadata */
+  --line: #e6ddcf;          /* hårfine linjer */
+  --line-strong: #d8cdb9;
+
+  /* Aksentfarge (hentes normalt fra logoen) */
+  --accent: #d97a2b;        /* varm rav/oransje */
+  --accent-strong: #bd6320;
+  --accent-soft: #f7e6d3;
+  --on-accent: #ffffff;
+
+  /* Formatfarger – diskrete, én familie */
+  --tag-samtale: #2f6f5e;
+  --tag-samtale-bg: #e3efe9;
+  --tag-masterclass: #7a4bb0;
+  --tag-masterclass-bg: #ece2f6;
+  --tag-kort: #b5561f;
+  --tag-kort-bg: #f8e5d6;
+
+  /* Typografi */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, "Times New Roman", serif;
+
+  /* Struktur */
+  --radius: 14px;
+  --radius-sm: 9px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 2px rgba(26, 22, 19, 0.05), 0 1px 3px rgba(26, 22, 19, 0.06);
+  --shadow-md: 0 4px 14px rgba(26, 22, 19, 0.08), 0 2px 6px rgba(26, 22, 19, 0.05);
+  --shadow-lg: 0 18px 50px rgba(26, 22, 19, 0.14);
+
+  --container: 1140px;
+  --container-narrow: 780px;
+  --gutter: clamp(1.1rem, 4vw, 2.25rem);
+
+  --focus: 0 0 0 3px var(--paper), 0 0 0 5.5px var(--accent);
+}
+
+:root[data-theme="dark"] {
+  --paper: #14120f;
+  --surface: #1e1a16;
+  --surface-2: #26211b;
+  --ink: #f3ece0;
+  --ink-soft: #cbc2b4;
+  --ink-faint: #948a7c;
+  --line: #2e2822;
+  --line-strong: #3a332b;
+
+  --accent: #eb9350;
+  --accent-strong: #f2a869;
+  --accent-soft: #33261b;
+  --on-accent: #1a1310;
+
+  --tag-samtale: #7fc9b3;
+  --tag-samtale-bg: #1c2b27;
+  --tag-masterclass: #c3a2ea;
+  --tag-masterclass-bg: #241c30;
+  --tag-kort: #eaa06f;
+  --tag-kort-bg: #2e2118;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.55);
+  --focus: 0 0 0 3px var(--paper), 0 0 0 5.5px var(--accent);
+}
+
+/* Følg systemets valg når brukeren ikke har valgt tema manuelt */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14120f;
+    --surface: #1e1a16;
+    --surface-2: #26211b;
+    --ink: #f3ece0;
+    --ink-soft: #cbc2b4;
+    --ink-faint: #948a7c;
+    --line: #2e2822;
+    --line-strong: #3a332b;
+    --accent: #eb9350;
+    --accent-strong: #f2a869;
+    --accent-soft: #33261b;
+    --on-accent: #1a1310;
+    --tag-samtale: #7fc9b3;
+    --tag-samtale-bg: #1c2b27;
+    --tag-masterclass: #c3a2ea;
+    --tag-masterclass-bg: #241c30;
+    --tag-kort: #eaa06f;
+    --tag-kort-bg: #2e2118;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* ------------------------------------------------------------------ Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 6px;
+}
+
+/* -------------------------------------------------------------- Typografi */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--ink);
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 6vw, 4rem);
+}
+h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+}
+
+p {
+  margin: 0 0 1.1rem;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+  margin: 0 0 0.9rem;
+}
+
+.lead {
+  font-size: clamp(1.1rem, 2vw, 1.32rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ----------------------------------------------------------------- Layout */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.section-tight {
+  padding-block: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+.section-head {
+  max-width: 46rem;
+  margin-bottom: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.stack > * + * {
+  margin-top: 1rem;
+}
+
+main {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+.grid-2 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.grid-3 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+.grid-4 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+}
+
+/* ---------------------------------------------------------------- Knapper */
+.btn {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--on-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.4rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+.btn:hover {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+.btn-secondary:hover {
+  --btn-bg: var(--surface-2);
+  background: var(--surface-2);
+  border-color: var(--ink-faint);
+}
+
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  box-shadow: none;
+  padding-inline: 0.75rem;
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+}
+
+.btn-sm {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.86rem;
+}
+
+/* ------------------------------------------------------------------- Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.tag-samtale {
+  background: var(--tag-samtale-bg);
+  color: var(--tag-samtale);
+}
+.tag-masterclass {
+  background: var(--tag-masterclass-bg);
+  color: var(--tag-masterclass);
+}
+.tag-kort-forklart {
+  background: var(--tag-kort-bg);
+  color: var(--tag-kort);
+}
+.tag-status {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* ------------------------------------------------------------------ Kort */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-strong);
+}
+
+/* ------------------------------------------------------------ Hjelpeklasser */
+.muted {
+  color: var(--ink-faint);
+}
+.text-center {
+  text-align: center;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.divider {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin-block: clamp(2rem, 5vw, 3.5rem);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* ------------------------------------------------------ Prosa (artikkeltekst) */
+.prose {
+  max-width: 42rem;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+}
+.prose h2,
+.prose h3 {
+  color: var(--ink);
+  margin-top: 2em;
+}
+.prose a {
+  color: var(--accent-strong);
+  text-decoration-color: var(--accent);
+}
+.prose blockquote {
+  margin: 1.6rem 0;
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  color: var(--ink);
+  font-style: italic;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.3rem;
+}
+.prose li {
+  margin-bottom: 0.4rem;
+}
+.prose code {
+  background: var(--surface-2);
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+/* Diskret innfelling ved scroll.
+   Skjulttilstanden gjelder bare når JavaScript kjører (html.js), slik at
+   innholdet alltid er synlig hvis JS er av eller feiler. Respekterer også
+   prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  html.js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

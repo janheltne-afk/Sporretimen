@@ -1,0 +1,200 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Avatar from '@/components/Avatar.astro';
+import { site, formats } from '@/data/site';
+---
+
+<BaseLayout
+  title="Om Spørretimen"
+  description="Hvorfor Spørretimen ble startet, hva konseptet er, og hvem Jan Sindre Heltne er."
+>
+  <PageHeader
+    eyebrow="Om Spørretimen"
+    title="Menneskene, yrkene og historiene du vil forstå bedre"
+    lead="En podcast for deg som er nysgjerrig på hvordan ting egentlig fungerer."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p>
+        Spørretimen ble startet med en enkel idé: Mange mennesker sitter på
+        historier, erfaringer og kunnskap som flere burde få høre.
+      </p>
+      <p>
+        Gjennom personlige samtaler møter Jan Sindre mennesker fra ulike yrker,
+        miljøer og bakgrunner. Noen episoder handler om karriere og arbeidsliv.
+        Andre handler om ekspedisjoner, helse, økonomi, musikk, teknologi eller
+        opplevelser som har formet gjestene.
+      </p>
+      <p>
+        I tillegg til intervjuene lager Spørretimen Masterclass-episoder og korte
+        forklaringer som gjør kompliserte temaer lettere å forstå.
+      </p>
+
+      <h2>Et sentralt spørsmål</h2>
+      <p>
+        Et spørsmål går igjen i mange av intervjuene:
+        <em>Hvordan er det egentlig å jobbe med dette?</em> Gjennom gjestenes
+        historier fungerer podcasten også som en slags karrierepodcast, der du får
+        innsikt i ulike yrker, utdanningsvalg, arbeidsdager, utfordringer,
+        muligheter og veier inn i forskjellige bransjer.
+      </p>
+    </div>
+  </section>
+
+  <section class="section why">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Tre formater</p>
+        <h2>Derfor kombinerer vi samtaler og forklaringer</h2>
+        <p class="lead">
+          Intervjuene gir de personlige historiene. Masterclass og Kort forklart
+          gjør fagstoffet rundt gjestene lettere å forstå.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {
+          formats.map((f) => (
+            <div class="card format-card">
+              <h3>{f.singular}</h3>
+              <p>{f.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section host">
+    <div class="container host__inner">
+      <div class="host__portrait">
+        <Avatar name={site.host} ratio="4 / 5" />
+      </div>
+      <div class="host__text">
+        <p class="eyebrow">Programleder</p>
+        <h2>{site.host}</h2>
+        <p class="lead">
+          Jan Sindre har bakgrunn innen logistikk, økonomi, ERP-systemer, Business
+          Intelligence og konsulentarbeid. Han er nysgjerrig, relasjonsorientert og
+          liker å møte mennesker med andre erfaringer og fagområder enn ham selv.
+        </p>
+        <p>
+          Programlederrollen er undrende og jordnær. Jan Sindre stiller spørsmålene
+          mange lyttere selv ville ha stilt, uten å late som han allerede kjenner
+          alle svarene. Nettsiden fremstiller ham ikke som ekspert på alle temaer –
+          faglige forklaringer er alltid kildebaserte, og det skilles tydelig mellom
+          personlige erfaringer, faglige forklaringer og dokumenterte fakta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section principles">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Slik jobber vi</p>
+        <h2>Viktige prinsipper</h2>
+      </div>
+      <ul class="principles__list">
+        <li>Podcasten skal være nysgjerrig, ikke belærende.</li>
+        <li>Gjestenes historier skal være i sentrum.</li>
+        <li>Faglig innhold skal forklares forståelig.</li>
+        <li>Helseopplysninger og sensitive historier behandles ansvarlig.</li>
+        <li>Identifiserbare pasienthistorier publiseres ikke.</li>
+        <li>Vi følger presseetiske prinsipper og Vær Varsom-plakaten der det er relevant.</li>
+        <li>Programlederen fremstilles ikke som ekspert på alle temaer.</li>
+        <li>Det er tydelig forskjell på personlige erfaringer, faglige forklaringer og dokumenterte fakta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section geo">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">Geografisk profil</p>
+      <h2>Forankret på Sunnmøre og i Trøndelag – åpen for hele landet</h2>
+      <p class="lead mx-auto">
+        Spørretimen har en naturlig tilknytning til Sunnmøre, Volda, Ålesund,
+        Sandsøya, Romsdal, Molde, Trondheim og Trøndelag. Podcasten begrenses likevel
+        ikke geografisk – målet er å invitere gjester fra hele Norge, og på sikt også
+        internasjonale gjester.
+      </p>
+      <div class="geo__actions">
+        <a class="btn" href="/episoder">Se episodene</a>
+        <a class="btn btn-secondary" href="/bli-gjest">Bli gjest</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .why {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .format-card {
+    padding: 1.5rem;
+  }
+  .format-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  .format-card p {
+    color: var(--ink-soft);
+    margin: 0;
+    font-size: 0.96rem;
+  }
+  .host__inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+  .host__portrait {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    max-width: 280px;
+  }
+  .principles {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .principles__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 0.8rem;
+  }
+  .principles__list li {
+    position: relative;
+    padding: 1rem 1.1rem 1rem 2.6rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+  }
+  .principles__list li::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 1.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .geo__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 760px) {
+    .host__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

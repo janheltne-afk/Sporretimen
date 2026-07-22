@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import GuestCard from '@/components/GuestCard.astro';
+import { getGuests } from '@/lib/content';
+
+const guests = await getGuests();
+---
+
+<BaseLayout
+  title="Gjester"
+  description="Menneskene i Spørretimen – planlagte og aktuelle gjester fra ulike yrker, miljøer og bakgrunner."
+>
+  <PageHeader
+    eyebrow="Gjester"
+    title="Menneskene i Spørretimen"
+    lead="Podcasten starter med gjester Jan Sindre kjenner eller har en naturlig relasjon til – og inviterer gjester fra hele landet etter hvert."
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-3">
+        {guests.map((g) => <GuestCard guest={g} />)}
+      </div>
+      <p class="muted note">
+        Oversikten viser planlagte og aktuelle gjester. Endelig program annonseres
+        fortløpende, og listen oppdateres etter hvert som nye gjester bekreftes.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .note {
+    margin-top: 1.6rem;
+    font-size: 0.9rem;
+  }
+</style>

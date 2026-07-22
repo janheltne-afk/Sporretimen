@@ -1,0 +1,179 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Avatar from '@/components/Avatar.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import { getGuests, getEpisodes, episodesForGuest } from '@/lib/content';
+import { site } from '@/data/site';
+
+export async function getStaticPaths() {
+  const guests = await getGuests();
+  const episodes = await getEpisodes();
+  return Promise.all(
+    guests.map(async (guest) => ({
+      params: { slug: guest.id },
+      props: { guest, episodes: await episodesForGuest(guest.id, episodes) },
+    }))
+  );
+}
+
+const { guest, episodes } = Astro.props;
+const d = guest.data;
+const { Content } = await render(guest);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: d.name,
+  jobTitle: d.role,
+  description: d.intro,
+  url: new URL(`/gjester/${guest.id}`, site.url).href,
+};
+---
+
+<BaseLayout title={d.name} description={`${d.name} – ${d.role}. ${d.intro}`} jsonLd={jsonLd}>
+  <article class="guest-page">
+    <div class="container">
+      <a class="back-link" href="/gjester">← Alle gjester</a>
+    </div>
+
+    <header class="guest-hero">
+      <div class="container guest-hero__inner">
+        <div class="guest-hero__portrait">
+          <Avatar name={d.name} src={d.image} alt={d.imageAlt} ratio="1 / 1" />
+        </div>
+        <div class="guest-hero__text">
+          {d.status === 'planlagt' && <span class="tag tag-status">Planlagt gjest</span>}
+          <h1>{d.name}</h1>
+          <p class="guest-hero__role">{d.role}{d.region && ` · ${d.region}`}</p>
+          <p class="lead">{d.intro}</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container guest-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <aside class="guest-aside">
+        {
+          d.themes.length > 0 && (
+            <section class="card panel">
+              <h2>Temaer</h2>
+              <ul class="themes">
+                {d.themes.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </aside>
+    </div>
+
+    <section class="section guest-episodes">
+      <div class="container">
+        <h2 class="guest-episodes__heading">Episoder med {d.name}</h2>
+        {
+          episodes.length > 0 ? (
+            <div class="grid grid-3">
+              {episodes.map((ep) => (
+                <EpisodeCard episode={ep} />
+              ))}
+            </div>
+          ) : (
+            <p class="muted">
+              Episoder med {d.name} er under planlegging og legges ut her når de er
+              klare.
+            </p>
+          )
+        }
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .guest-page {
+    padding-top: clamp(1.2rem, 4vw, 2rem);
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--accent-strong);
+  }
+  .guest-hero {
+    padding-block: clamp(1.5rem, 5vw, 3rem);
+  }
+  .guest-hero__inner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+  }
+  .guest-hero__portrait {
+    width: 100%;
+    max-width: 200px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .guest-hero__text h1 {
+    margin: 0.5rem 0 0.3rem;
+  }
+  .guest-hero__role {
+    color: var(--accent-strong);
+    font-weight: 600;
+    margin: 0 0 0.9rem;
+  }
+  .guest-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .panel {
+    padding: 1.4rem 1.5rem;
+    align-self: start;
+  }
+  .panel h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.9rem;
+  }
+  .themes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .themes li {
+    padding: 0.32rem 0.7rem;
+    background: var(--surface-2);
+    border-radius: 999px;
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+  }
+  .guest-episodes {
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .guest-episodes__heading {
+    margin-bottom: 1.6rem;
+  }
+  @media (max-width: 780px) {
+    .guest-hero__inner {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+    .guest-body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+---
+
+<BaseLayout
+  title="Foreslå en gjest"
+  description="Kjenner du noen med en interessant jobb, erfaring eller historie? Foreslå en gjest til Spørretimen."
+>
+  <PageHeader
+    eyebrow="Foreslå en gjest"
+    title="Kjenner du noen vi bør snakke med?"
+    lead="Spørretimen skal også være en plattform for interessante mennesker som ikke nødvendigvis allerede er landskjente. Tips oss gjerne!"
+  />
+
+  <section class="section">
+    <div class="container container-narrow">
+      <Form
+        formName="foresla-gjest"
+        subject="Gjesteforslag – Spørretimen"
+        submitLabel="Send forslag"
+        successMessage="Takk for tipset! Vi ser på alle forslag og tar kontakt hvis det er aktuelt."
+      >
+        <div class="field">
+          <label for="guest-name">Navn på gjest <span class="req">*</span></label>
+          <input id="guest-name" name="Navn på gjest" type="text" required autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="guest-topic">Aktuelt tema</label>
+          <input id="guest-topic" name="Aktuelt tema" type="text" placeholder="F.eks. yrke, fagområde eller historie" />
+        </div>
+
+        <div class="field">
+          <label for="guest-why">Hvorfor passer personen i Spørretimen? <span class="req">*</span></label>
+          <textarea id="guest-why" name="Begrunnelse" required placeholder="Fortell kort hva som gjør denne personen interessant."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="guest-contact">Kontaktinformasjon til gjesten <span class="field__hint">(hvis du har det)</span></label>
+          <input id="guest-contact" name="Kontaktinfo til gjest" type="text" placeholder="E-post, telefon eller lenke" />
+        </div>
+
+        <hr class="divider" style="margin:0.4rem 0" />
+
+        <div class="field--row">
+          <div class="field">
+            <label for="your-name">Ditt navn <span class="req">*</span></label>
+            <input id="your-name" name="Ditt navn" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="your-email">Din e-post <span class="req">*</span></label>
+            <input id="your-email" name="Din e-post" type="email" required autocomplete="email" />
+          </div>
+        </div>
+      </Form>
+
+      <p class="privacy muted">
+        Vi bruker kontaktinformasjonen kun for å følge opp forslaget ditt.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .req {
+    color: var(--accent-strong);
+  }
+  .privacy {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+  }
+</style>

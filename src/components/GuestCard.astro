@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Avatar from './Avatar.astro';
+
+interface Props {
+  guest: CollectionEntry<'guests'>;
+}
+const { guest } = Astro.props;
+const d = guest.data;
+---
+
+<article class="card guest">
+  <a class="guest__link" href={`/gjester/${guest.id}`}>
+    <Avatar name={d.name} src={d.image} alt={d.imageAlt} ratio="4 / 3" />
+    <div class="guest__body">
+      <span class="guest__role">{d.role}</span>
+      <h3 class="guest__name">{d.name}</h3>
+      <p class="guest__intro">{d.intro}</p>
+    </div>
+  </a>
+</article>
+
+<style>
+  .guest {
+    overflow: hidden;
+  }
+  .guest__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .guest__body {
+    padding: 1rem 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .guest__role {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .guest__name {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+  .guest__intro {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .guest__link:hover .guest__name {
+    color: var(--accent-strong);
+  }
+</style>

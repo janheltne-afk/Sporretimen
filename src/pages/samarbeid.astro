@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+
+const areas = [
+  'Sponsing av episoder',
+  'Langsiktige partnerskap',
+  'Relevante produkter og tjenester',
+  'Festivaler og arrangementer',
+  'Reiseliv',
+  'Utdanning',
+  'Karriere',
+  'Økonomi',
+  'Friluftsliv',
+  'Teknologi',
+];
+---
+
+<BaseLayout
+  title="Samarbeid og sponsorer"
+  description="Muligheter for samarbeid med Spørretimen – sponsing, partnerskap og relevante produkter og tjenester som passer podcastens profil."
+>
+  <PageHeader
+    eyebrow="Samarbeid"
+    title="Samarbeid og sponsorer"
+    lead="Spørretimen samarbeider gjerne med partnere som passer naturlig med podcastens profil. Alt sponsorinnhold merkes tydelig."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Mulige samarbeid</h2>
+        <p class="lead">
+          Vi er åpne for ulike former for samarbeid – så lenge de føles ekte for
+          lytterne og passer inn i det redaksjonelle innholdet.
+        </p>
+      </div>
+      <ul class="areas">
+        {areas.map((a) => <li class="card area">{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section principles-block">
+    <div class="container container-narrow">
+      <div class="card note-card">
+        <h2>Redaksjonelle prinsipper</h2>
+        <p>
+          Sponsorinnhold må passe naturlig med podcastens profil og skal alltid være
+          tydelig merket. Det redaksjonelle innholdet styres av nysgjerrighet og
+          gjestenes historier – ikke av kommersielle interesser. Vi skiller tydelig
+          mellom redaksjonelt innhold og annonsering.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section future">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">På sikt</p>
+        <h2>Spørretimen skal kunne vokse</h2>
+        <p class="lead">
+          Podcasten bygges for å kunne utvikles til mer enn bare episoder. Aktuelle
+          samarbeid kan derfor også knyttes til:
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card future__card"><h3>Masterclass-arkiv</h3><p>Et betalingsbasert arkiv med lengre forklaringsepisoder.</p></div>
+        <div class="card future__card"><h3>Nyhetsbrev og artikler</h3><p>Guider og fordypning knyttet til temaene i podcasten.</p></div>
+        <div class="card future__card"><h3>Liveshow og arrangementer</h3><p>Liveopptak, festivalintervjuer og publikumsspørsmål.</p></div>
+        <div class="card future__card"><h3>Temaserier</h3><p>Sammenhengende serier rundt yrker, bransjer eller fagfelt.</p></div>
+        <div class="card future__card"><h3>Kurs og foredrag</h3><p>Samarbeid med utdanningsinstitusjoner og bedrifter.</p></div>
+        <div class="card future__card"><h3>Medlemsinnhold</h3><p>Ekstra innhold for lyttere som ønsker å støtte podcasten.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-block">
+    <div class="container container-narrow text-center">
+      <h2>Vil du samarbeide med Spørretimen?</h2>
+      <p class="lead mx-auto">
+        Ta kontakt for en uforpliktende prat om hvordan et samarbeid kan se ut.
+      </p>
+      <div class="cta-block__actions">
+        <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent('Samarbeid – Spørretimen')}`}>Ta kontakt om samarbeid</a>
+        <a class="btn btn-secondary" href="/kontakt">Til kontaktsiden</a>
+      </div>
+      <p class="muted disclaimer">
+        Det finnes foreløpig ingen inngåtte sponsoravtaler. Denne siden beskriver
+        mulige former for samarbeid.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .areas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+    gap: 0.8rem;
+  }
+  .area {
+    padding: 1rem 1.2rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .principles-block {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .note-card {
+    padding: 1.8rem;
+    border-left: 4px solid var(--accent);
+  }
+  .note-card h2 {
+    margin-top: 0;
+  }
+  .note-card p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .future__card {
+    padding: 1.4rem 1.5rem;
+  }
+  .future__card h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.15rem;
+  }
+  .future__card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+  }
+  .cta-block {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .cta-block__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .disclaimer {
+    margin-top: 1.6rem;
+    font-size: 0.85rem;
+  }
+</style>

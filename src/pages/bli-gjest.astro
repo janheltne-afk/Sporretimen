@@ -1,0 +1,71 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+---
+
+<BaseLayout
+  title="Bli gjest"
+  description="Har du en interessant jobb, erfaring eller kunnskap du vil dele? Meld din interesse for å bli gjest i Spørretimen."
+>
+  <PageHeader
+    eyebrow="Bli gjest"
+    title="Har du noe ekte å fortelle?"
+    lead="Spørretimen ønsker å høre fra både kjente og ukjente mennesker med en interessant jobb, erfaring, historie eller kunnskap som flere kan ha nytte av."
+  />
+
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="intro prose">
+        <p>
+          Du trenger ikke være ekspert eller kjendis. Har du en arbeidsdag, et
+          fagfelt eller en opplevelse du tror flere er nysgjerrige på, vil vi gjerne
+          høre fra deg. Fortell litt om deg selv nedenfor, så tar vi kontakt hvis det
+          er aktuelt.
+        </p>
+      </div>
+
+      <Form
+        formName="bli-gjest"
+        subject="Vil bli gjest – Spørretimen"
+        submitLabel="Meld interesse"
+        successMessage="Takk! Vi har mottatt henvendelsen din og tar kontakt hvis det er aktuelt."
+      >
+        <div class="field--row">
+          <div class="field">
+            <label for="name">Navn <span class="req">*</span></label>
+            <input id="name" name="Navn" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">E-post <span class="req">*</span></label>
+            <input id="email" name="E-post" type="email" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="role">Yrke eller rolle</label>
+          <input id="role" name="Yrke eller rolle" type="text" />
+        </div>
+
+        <div class="field">
+          <label for="topic">Hva vil du snakke om? <span class="req">*</span></label>
+          <textarea id="topic" name="Tema" required placeholder="Beskriv kort jobben, erfaringen, historien eller kunnskapen du vil dele."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="links">Lenker <span class="field__hint">(nettside, sosiale medier – valgfritt)</span></label>
+          <input id="links" name="Lenker" type="text" />
+        </div>
+      </Form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .req {
+    color: var(--accent-strong);
+  }
+  .intro {
+    margin-bottom: 1.8rem;
+  }
+</style>

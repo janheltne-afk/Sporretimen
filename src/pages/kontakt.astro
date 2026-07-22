@@ -1,0 +1,147 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+import { site, socials } from '@/data/site';
+
+const activeSocials = socials.filter((s) => s.url);
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Ta kontakt med Spørretimen – for henvendelser, samarbeid, tilbakemeldinger eller spørsmål."
+>
+  <PageHeader
+    eyebrow="Kontakt"
+    title="Ta kontakt"
+    lead="Har du en tilbakemelding, et spørsmål eller et forslag? Vi hører gjerne fra deg."
+  />
+
+  <section class="section">
+    <div class="container contact">
+      <div class="contact__info">
+        <h2>Direkte</h2>
+        <p class="muted">Enkleste vei til oss:</p>
+        <a class="contact__mail" href={`mailto:${site.email}`}>{site.email}</a>
+        <p class="contact__web">
+          Nettside: <a href={`https://${site.url.replace(/^https?:\/\//, '')}`}>sporretimen.no</a>
+        </p>
+
+        <h2 class="contact__social-head">Følg oss</h2>
+        {
+          activeSocials.length > 0 ? (
+            <ul class="contact__social">
+              {activeSocials.map((s) => (
+                <li>
+                  <a href={s.url!} target="_blank" rel="noopener">
+                    {s.label}
+                    {s.handle && <span class="muted"> · {s.handle}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="muted">
+              Lenker til YouTube, Spotify, Apple Podcasts, Instagram, TikTok, Facebook
+              og LinkedIn legges ut så snart kanalene er klare.
+            </p>
+          )
+        }
+
+        <div class="contact__links">
+          <a class="btn btn-secondary btn-sm" href="/foresla-gjest">Foreslå en gjest</a>
+          <a class="btn btn-secondary btn-sm" href="/bli-gjest">Bli gjest</a>
+          <a class="btn btn-secondary btn-sm" href="/samarbeid">Samarbeid</a>
+        </div>
+      </div>
+
+      <div class="contact__form">
+        <h2>Send en melding</h2>
+        <Form
+          formName="kontakt"
+          subject="Henvendelse – Spørretimen"
+          submitLabel="Send melding"
+          successMessage="Takk for meldingen! Vi svarer så snart vi kan."
+        >
+          <div class="field--row">
+            <div class="field">
+              <label for="c-name">Navn <span class="req">*</span></label>
+              <input id="c-name" name="Navn" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="c-email">E-post <span class="req">*</span></label>
+              <input id="c-email" name="E-post" type="email" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="c-subject">Emne</label>
+            <input id="c-subject" name="Emne" type="text" />
+          </div>
+          <div class="field">
+            <label for="c-message">Melding <span class="req">*</span></label>
+            <textarea id="c-message" name="Melding" required></textarea>
+          </div>
+        </Form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .contact h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .contact__mail {
+    display: inline-block;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+  }
+  .contact__web {
+    font-size: 0.95rem;
+  }
+  .contact__web a {
+    color: var(--accent-strong);
+  }
+  .contact__social-head {
+    margin-top: 2rem;
+  }
+  .contact__social {
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contact__social a {
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .contact__social a:hover {
+    color: var(--accent-strong);
+  }
+  .contact__links {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .req {
+    color: var(--accent-strong);
+  }
+  @media (max-width: 800px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

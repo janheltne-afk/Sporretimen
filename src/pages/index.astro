@@ -1,0 +1,370 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import GuestCard from '@/components/GuestCard.astro';
+import Avatar from '@/components/Avatar.astro';
+import { getEpisodes, getGuests } from '@/lib/content';
+import { site, formats } from '@/data/site';
+
+const episodes = await getEpisodes();
+const guests = await getGuests();
+
+const featuredEpisode = episodes.find((e) => e.data.featured) ?? episodes[0];
+const latest = episodes.slice(0, 3);
+const featuredGuests = guests.filter((g) => g.data.featured).slice(0, 4);
+const guestsShown = featuredGuests.length ? featuredGuests : guests.slice(0, 4);
+
+const formatIcons: Record<string, string> = {
+  chat: 'M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H9l-4 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z',
+  book: 'M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM19 18v3H6.5A1.5 1.5 0 0 1 5 19.5',
+  bolt: 'M13 3 5 13h5l-1 8 8-11h-5z',
+};
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow">Norsk podcast · {site.host}</p>
+        <h1 class="hero__title">Gode spørsmål.<br />Interessante mennesker.<br /><span class="hero__accent">Nye perspektiver.</span></h1>
+        <p class="lead hero__lead">
+          Spørretimen er en norsk podcast med personlige samtaler, lærerike
+          Masterclass-episoder og korte forklaringer om yrker, erfaringer og temaer
+          du alltid har ønsket å forstå bedre.
+        </p>
+        <div class="hero__actions">
+          <a class="btn" href={`/episoder/${featuredEpisode.id}`}>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5v14l11-7z" fill="currentColor"></path></svg>
+            Hør siste episode
+          </a>
+          <a class="btn btn-secondary" href="/episoder">Se alle episoder</a>
+          <a class="btn btn-ghost" href="/foresla-gjest">Foreslå en gjest →</a>
+        </div>
+      </div>
+
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__card">
+          <div class="hero__portrait">
+            <Avatar name={site.host} ratio="4 / 5" />
+          </div>
+          <div class="hero__caption">
+            <strong>{site.host}</strong>
+            <span>Programleder</span>
+          </div>
+        </div>
+        <div class="hero__badge">?</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Siste / kommende episoder -->
+  <section class="section" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">Episoder</p>
+          <h2 id="latest-heading">Siste og kommende</h2>
+        </div>
+        <a class="btn btn-secondary btn-sm" href="/episoder">Alle episoder</a>
+      </div>
+      <div class="grid grid-3">
+        {latest.map((ep) => <EpisodeCard episode={ep} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- De tre formatene -->
+  <section class="section formats" aria-labelledby="formats-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Tre formater</p>
+        <h2 id="formats-heading">Én rød tråd, tre måter å lære på</h2>
+        <p class="lead">
+          Rundt enkelte gjester deles innholdet i tre: en lengre samtale, en
+          Masterclass som forklarer et fagtema, og en kort oppsummering.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {
+          formats.map((f) => (
+            <article class="card format reveal">
+              <span class:list={['format__icon', `tag-${f.id}`]}>
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <path d={formatIcons[f.icon]} fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+                </svg>
+              </span>
+              <h3>{f.label}</h3>
+              <p class="format__tagline">{f.tagline}</p>
+              <p class="format__desc">{f.description}</p>
+              <a class="format__link" href={`/episoder?format=${f.id}`}>
+                Se {f.label.toLowerCase()} →
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Utvalgte gjester -->
+  <section class="section" aria-labelledby="guests-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">Gjester</p>
+          <h2 id="guests-heading">Menneskene i Spørretimen</h2>
+        </div>
+        <a class="btn btn-secondary btn-sm" href="/gjester">Alle gjester</a>
+      </div>
+      <div class="grid grid-4">
+        {guestsShown.map((g) => <GuestCard guest={g} />)}
+      </div>
+      <p class="muted note">
+        Gjestene over er planlagte og aktuelle for podcasten. Endelig program
+        annonseres fortløpende.
+      </p>
+    </div>
+  </section>
+
+  <!-- Om-teaser -->
+  <section class="section about-teaser">
+    <div class="container about-teaser__inner">
+      <div>
+        <p class="eyebrow">Om Spørretimen</p>
+        <h2>Menneskene, yrkene og historiene du vil forstå bedre</h2>
+        <p class="lead">
+          Mange mennesker sitter på historier, erfaringer og kunnskap som flere
+          burde få høre. Gjennom personlige samtaler møter Jan Sindre mennesker fra
+          ulike yrker, miljøer og bakgrunner – og i tillegg lages Masterclass og
+          korte forklaringer som gjør kompliserte temaer lettere å forstå.
+        </p>
+        <a class="btn btn-secondary" href="/om">Les mer om podcasten</a>
+      </div>
+      <ul class="about-teaser__points">
+        <li><strong>Nysgjerrig, ikke belærende.</strong> Vi stiller spørsmålene du selv har tenkt på.</li>
+        <li><strong>Gjestene i sentrum.</strong> Historiene og erfaringene er det viktigste.</li>
+        <li><strong>Forståelig fagstoff.</strong> Vi skiller tydelig mellom erfaring, forklaring og fakta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Kontakt / CTA -->
+  <section class="section cta">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">Bli med</p>
+      <h2>Har du en historie, en jobb eller en kunnskap flere bør høre om?</h2>
+      <p class="lead mx-auto">
+        Spørretimen ønsker å høre fra både kjente og ukjente mennesker med noe ekte
+        å fortelle.
+      </p>
+      <div class="cta__actions">
+        <a class="btn" href="/bli-gjest">Bli gjest</a>
+        <a class="btn btn-secondary" href="/foresla-gjest">Foreslå en gjest</a>
+        <a class="btn btn-ghost" href="/kontakt">Kontakt oss →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(2.5rem, 7vw, 5.5rem);
+    background:
+      radial-gradient(120% 90% at 90% 0%, var(--accent-soft), transparent 55%),
+      linear-gradient(180deg, var(--surface-2), transparent 70%);
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .hero__title {
+    margin: 0 0 1.1rem;
+  }
+  .hero__accent {
+    color: var(--accent-strong);
+  }
+  .hero__lead {
+    max-width: 34rem;
+    margin-bottom: 1.8rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  .hero__media {
+    position: relative;
+    justify-self: center;
+  }
+  .hero__card {
+    position: relative;
+    width: min(320px, 70vw);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: rotate(-1.5deg);
+  }
+  .hero__portrait {
+    border-radius: 0;
+  }
+  .hero__caption {
+    display: flex;
+    flex-direction: column;
+    padding: 0.9rem 1.1rem 1.1rem;
+  }
+  .hero__caption strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+  .hero__caption span {
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+  .hero__badge {
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    transform: rotate(6deg);
+  }
+
+  .row-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+  }
+  .row-head h2 {
+    margin: 0;
+  }
+  .row-head .eyebrow {
+    margin-bottom: 0.4rem;
+  }
+
+  .note {
+    margin-top: 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Formater */
+  .formats {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .format {
+    padding: 1.6rem 1.5rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .format__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .format h3 {
+    margin: 0;
+  }
+  .format__tagline {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  .format__desc {
+    margin: 0.3rem 0 0.9rem;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+  .format__link {
+    margin-top: auto;
+    color: var(--accent-strong);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .format__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Om-teaser */
+  .about-teaser {
+    background:
+      radial-gradient(100% 100% at 0% 0%, var(--accent-soft), transparent 45%),
+      var(--paper);
+  }
+  .about-teaser__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .about-teaser__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .about-teaser__points li {
+    padding: 1.1rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+  }
+  .about-teaser__points strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+
+  @media (max-width: 880px) {
+    .hero__inner,
+    .about-teaser__inner {
+      grid-template-columns: 1fr;
+    }
+    .hero__media {
+      order: -1;
+    }
+    .hero__card {
+      transform: none;
+    }
+  }
+</style>

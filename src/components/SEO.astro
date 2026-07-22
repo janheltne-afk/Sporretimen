@@ -1,0 +1,61 @@
+---
+import { site } from '@/data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Sti til delingsbilde (valgfritt). */
+  image?: string;
+  /** 'website' | 'article' */
+  type?: string;
+  noindex?: boolean;
+  /** Ekstra JSON-LD-objekt(er) som legges inn i <head>. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+const {
+  title,
+  description = site.description,
+  image,
+  type = 'website',
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, site.url).href.replace(/\/$/, '') || site.url;
+const ogImage = image ? new URL(image, site.url).href : undefined;
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastSeries',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  inLanguage: 'nb-NO',
+  author: { '@type': 'Person', name: site.host },
+};
+
+const structured = jsonLd ? [org, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [org];
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title ?? `${site.name} – ${site.tagline}`} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={site.locale} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title ?? site.name} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{structured.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}

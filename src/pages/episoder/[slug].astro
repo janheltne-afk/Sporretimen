@@ -1,0 +1,250 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Cover from '@/components/Cover.astro';
+import Avatar from '@/components/Avatar.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import PlatformLinks from '@/components/PlatformLinks.astro';
+import { getEpisodes } from '@/lib/content';
+import { formatById, site } from '@/data/site';
+import { formatDate } from '@/lib/utils';
+
+export async function getStaticPaths() {
+  const episodes = await getEpisodes();
+  return episodes.map((episode) => ({
+    params: { slug: episode.id },
+    props: { episode },
+  }));
+}
+
+const { episode } = Astro.props;
+const d = episode.data;
+const { Content } = await render(episode);
+const format = formatById(d.format);
+const guest = d.guest ? await getEntry(d.guest) : undefined;
+
+// Relaterte episoder
+const related = (
+  await Promise.all(d.related.map((ref) => getEntry(ref)))
+).filter(Boolean);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastEpisode',
+  name: d.title,
+  description: d.description,
+  url: new URL(`/episoder/${episode.id}`, site.url).href,
+  ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
+  partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: site.url },
+  ...(guest ? { actor: { '@type': 'Person', name: guest.data.name } } : {}),
+};
+---
+
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  type="article"
+  image={d.image}
+  jsonLd={jsonLd}
+>
+  <article class="episode">
+    <div class="container container-narrow">
+      <a class="back-link" href="/episoder">← Alle episoder</a>
+
+      <div class="episode__meta">
+        <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+        {d.status === 'kommende' && <span class="tag tag-status">Kommende</span>}
+        {d.categories.map((c) => <span class="tag">{c}</span>)}
+      </div>
+
+      <h1 class="episode__title">{d.title}</h1>
+
+      <p class="episode__facts muted">
+        {d.duration && <span>{d.duration}</span>}
+        {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
+        <span>{d.status === 'kommende' ? 'Publiseres senere' : formatDate(d.publishDate)}</span>
+      </p>
+
+      <p class="lead">{d.description}</p>
+
+      <div class="episode__platforms">
+        <PlatformLinks links={d.links} />
+      </div>
+    </div>
+
+    <div class="container container-narrow">
+      <div class="episode__cover">
+        <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} ratio="16 / 8" />
+      </div>
+    </div>
+
+    <div class="container container-narrow episode__layout">
+      <div class="prose episode__content">
+        <Content />
+
+        {
+          d.sources.length > 0 && (
+            <section class="sources" aria-labelledby="sources-heading">
+              <h2 id="sources-heading">Kilder og referanser</h2>
+              <ul>
+                {d.sources.map((s) => (
+                  <li>
+                    {s.url ? (
+                      <a href={s.url} target="_blank" rel="noopener">
+                        {s.title}
+                      </a>
+                    ) : (
+                      s.title
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </div>
+
+      {
+        guest && (
+          <aside class="episode__guest card">
+            <p class="episode__guest-label">Gjest</p>
+            <div class="episode__guest-portrait">
+              <Avatar name={guest.data.name} src={guest.data.image} alt={guest.data.imageAlt} />
+            </div>
+            <h2>{guest.data.name}</h2>
+            <p class="episode__guest-role">{guest.data.role}</p>
+            <p class="episode__guest-intro">{guest.data.intro}</p>
+            <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+              Om gjesten
+            </a>
+          </aside>
+        )
+      }
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="section related">
+          <div class="container">
+            <h2 class="related__heading">Relaterte episoder</h2>
+            <div class="grid grid-3">
+              {related.map((ep) => (
+                <EpisodeCard episode={ep} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .episode {
+    padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--accent-strong);
+  }
+  .episode__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .episode__title {
+    margin-bottom: 0.6rem;
+  }
+  .episode__facts {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    margin-bottom: 1.2rem;
+  }
+  .episode__platforms {
+    margin: 1.5rem 0 0;
+  }
+  .episode__cover {
+    margin-block: clamp(1.8rem, 5vw, 3rem);
+  }
+  .episode__cover :global(.cover) {
+    border-radius: var(--radius-lg);
+  }
+  .episode__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .episode__content {
+    max-width: none;
+  }
+  .sources {
+    margin-top: 2.5rem;
+    padding: 1.4rem 1.5rem;
+    background: var(--surface-2);
+    border-radius: var(--radius);
+  }
+  .sources h2 {
+    font-size: 1.15rem;
+    margin: 0 0 0.7rem;
+  }
+  .sources ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+  .episode__guest {
+    padding: 1.5rem;
+    align-self: start;
+  }
+  .episode__guest-label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+  .episode__guest-portrait {
+    width: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+  }
+  .episode__guest h2 {
+    font-size: 1.4rem;
+    margin: 0 0 0.15rem;
+  }
+  .episode__guest-role {
+    color: var(--accent-strong);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0 0 0.7rem;
+  }
+  .episode__guest-intro {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 1.1rem;
+  }
+  .related {
+    margin-top: clamp(2rem, 6vw, 4rem);
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .related__heading {
+    margin-bottom: 1.6rem;
+  }
+
+  /* På brede skjermer: innhold + gjestekort side om side */
+  @media (min-width: 900px) {
+    .episode__layout:has(.episode__guest) {
+      grid-template-columns: 1fr 300px;
+    }
+  }
+</style>

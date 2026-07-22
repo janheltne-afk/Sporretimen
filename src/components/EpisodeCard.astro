@@ -1,0 +1,96 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import Cover from './Cover.astro';
+import { formatById } from '@/data/site';
+import { formatDate } from '@/lib/utils';
+
+interface Props {
+  episode: CollectionEntry<'episodes'>;
+}
+const { episode } = Astro.props;
+const d = episode.data;
+const format = formatById(d.format);
+const guest = d.guest ? await getEntry(d.guest) : undefined;
+const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDate);
+---
+
+<article class="card ep">
+  <a class="ep__cover-link" href={`/episoder/${episode.id}`} tabindex="-1" aria-hidden="true">
+    <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} />
+  </a>
+  <div class="ep__body">
+    <div class="ep__meta">
+      <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+      {d.status === 'kommende' && <span class="tag tag-status">Kommende</span>}
+    </div>
+    <h3 class="ep__title">
+      <a href={`/episoder/${episode.id}`}>{d.title}</a>
+    </h3>
+    {guest && <p class="ep__guest">Med {guest.data.name} · {guest.data.role}</p>}
+    <p class="ep__desc">{d.description}</p>
+    <div class="ep__foot">
+      {d.duration && <span>{d.duration}</span>}
+      {d.duration && dateLabel && <span aria-hidden="true">·</span>}
+      {dateLabel && <span>{dateLabel}</span>}
+    </div>
+  </div>
+</article>
+
+<style>
+  .ep {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .ep__cover-link {
+    display: block;
+  }
+  .ep__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 1.1rem 1.2rem 1.25rem;
+    flex: 1;
+  }
+  .ep__meta {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .ep__title {
+    font-size: 1.28rem;
+    margin: 0.1rem 0 0;
+    line-height: 1.2;
+  }
+  .ep__title a {
+    text-decoration: none;
+  }
+  .ep__title a:hover {
+    color: var(--accent-strong);
+  }
+  .ep__guest {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .ep__desc {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ep__foot {
+    margin-top: auto;
+    padding-top: 0.4rem;
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+    color: var(--ink-faint);
+    font-size: 0.84rem;
+  }
+</style>

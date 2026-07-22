@@ -1,0 +1,50 @@
+---
+/**
+ * Lenker til lyd-/videoplattformer for en episode.
+ * Viser bare de plattformene som faktisk har en adresse.
+ */
+interface Props {
+  links?: {
+    youtube?: string;
+    spotify?: string;
+    apple?: string;
+    annet?: string;
+  };
+}
+const { links = {} } = Astro.props;
+
+const items = [
+  { key: 'youtube', label: 'YouTube', url: links.youtube },
+  { key: 'spotify', label: 'Spotify', url: links.spotify },
+  { key: 'apple', label: 'Apple Podcasts', url: links.apple },
+  { key: 'annet', label: 'Annen plattform', url: links.annet },
+].filter((i) => i.url);
+---
+
+{
+  items.length > 0 ? (
+    <div class="platforms">
+      {items.map((i) => (
+        <a class="btn btn-secondary btn-sm" href={i.url} target="_blank" rel="noopener">
+          {i.label}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="platforms__pending muted">
+      Lenker til lyd og video legges ut når episoden publiseres.
+    </p>
+  )
+}
+
+<style>
+  .platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .platforms__pending {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+</style>

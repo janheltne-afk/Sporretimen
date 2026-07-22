@@ -1,0 +1,224 @@
+---
+import { forms } from '@/data/site';
+
+/**
+ * Tilgjengelig skjema med innebygd innsending.
+ *
+ * - Er `forms.endpoint` satt, sendes data dit via fetch (POST, JSON).
+ * - Ellers åpnes en ferdig utfylt e-post til `forms.recipient`.
+ *
+ * Feltene legges inn via <slot />. Bruk vanlige <input>/<textarea> med `name`
+ * og `required` der det trengs.
+ */
+interface Props {
+  formName: string;
+  subject: string;
+  submitLabel?: string;
+  successMessage?: string;
+}
+const {
+  formName,
+  subject,
+  submitLabel = 'Send inn',
+  successMessage = 'Takk! Meldingen din er sendt. Vi tar kontakt hvis det er aktuelt.',
+} = Astro.props;
+---
+
+<form
+  class="st-form"
+  data-endpoint={forms.endpoint ?? ''}
+  data-recipient={forms.recipient}
+  data-subject={subject}
+  data-success={successMessage}
+  name={formName}
+  novalidate
+>
+  <div class="st-form__fields">
+    <slot />
+  </div>
+
+  <!-- Enkel spam-felle: skjult felt som mennesker ikke fyller ut -->
+  <div class="st-form__hp" aria-hidden="true">
+    <label>La dette feltet stå tomt
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+
+  <div class="st-form__foot">
+    <button type="submit" class="btn">{submitLabel}</button>
+    <p class="st-form__status" role="status" aria-live="polite"></p>
+  </div>
+</form>
+
+<style>
+  .st-form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 4vw, 2.2rem);
+    box-shadow: var(--shadow-sm);
+  }
+  .st-form__fields {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .st-form :global(.field) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .st-form :global(.field--row) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+  }
+  .st-form :global(label) {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .st-form :global(.field__hint) {
+    font-weight: 400;
+    color: var(--ink-faint);
+    font-size: 0.82rem;
+  }
+  .st-form :global(input),
+  .st-form :global(textarea),
+  .st-form :global(select) {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .st-form :global(textarea) {
+    min-height: 130px;
+    resize: vertical;
+  }
+  .st-form :global(input:focus),
+  .st-form :global(textarea:focus),
+  .st-form :global(select:focus) {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .st-form :global(input[aria-invalid='true']),
+  .st-form :global(textarea[aria-invalid='true']) {
+    border-color: #c0392b;
+  }
+  .st-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .st-form__foot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.4rem;
+  }
+  .st-form__status {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .st-form__status.is-error {
+    color: #c0392b;
+  }
+  .st-form__status.is-success {
+    color: var(--tag-samtale);
+    font-weight: 600;
+  }
+  @media (max-width: 560px) {
+    .st-form :global(.field--row) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function serialize(form: HTMLFormElement) {
+    const data: Record<string, string> = {};
+    new FormData(form).forEach((value, key) => {
+      if (key === '_gotcha') return;
+      data[key] = String(value);
+    });
+    return data;
+  }
+
+  function validate(form: HTMLFormElement): boolean {
+    let valid = true;
+    form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((el) => {
+      const ok = el.value.trim().length > 0 && (el.type !== 'email' || /.+@.+\..+/.test(el.value));
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (!ok && valid) {
+        el.focus();
+        valid = false;
+      }
+    });
+    return valid;
+  }
+
+  document.querySelectorAll<HTMLFormElement>('.st-form').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('.st-form__status');
+    const setStatus = (msg: string, kind: '' | 'error' | 'success' = '') => {
+      if (!status) return;
+      status.textContent = msg;
+      status.className = 'st-form__status' + (kind ? ` is-${kind}` : '');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Spam-felle
+      const hp = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
+      if (hp && hp.value) return;
+
+      if (!validate(form)) {
+        setStatus('Fyll ut de påkrevde feltene før du sender.', 'error');
+        return;
+      }
+
+      const data = serialize(form);
+      const endpoint = form.dataset.endpoint;
+      const subject = form.dataset.subject ?? 'Henvendelse fra sporretimen.no';
+
+      if (endpoint) {
+        try {
+          setStatus('Sender …');
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ ...data, _subject: subject }),
+          });
+          if (!res.ok) throw new Error('Nettverksfeil');
+          form.reset();
+          setStatus(form.dataset.success ?? 'Takk! Meldingen er sendt.', 'success');
+        } catch (err) {
+          setStatus(
+            'Noe gikk galt. Prøv igjen, eller send oss en e-post direkte.',
+            'error'
+          );
+        }
+      } else {
+        // Fallback uten backend: åpne e-postklient
+        const recipient = form.dataset.recipient ?? '';
+        const body = Object.entries(data)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join('\n');
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+        setStatus(
+          'Vi åpner e-postprogrammet ditt med forslaget klart til å sendes.',
+          'success'
+        );
+      }
+    });
+  });
+</script>
