@@ -11,6 +11,8 @@ duration: "Cirka 60 min"
 description: >-
   En samtale om veien inn i legeyrket: medisinstudier i utlandet, fastlegearbeid,
   psykiatri, og hvordan det er å bære ansvar i helsevesenet.
+image: /images/gjester/john-erik.jpg
+imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
 featured: true
 related:
   - sovn-masterclass
