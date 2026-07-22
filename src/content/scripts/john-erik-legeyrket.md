@@ -16,7 +16,7 @@ yrke med reiselyst og eventyr?
 > fra helsevesenet omtales på generelt nivå. Episoden kan klippes noe dersom vi
 > kommer innom tema eller lignende som ikke kan publiseres. Vi forholder oss til
 > Vær Varsom-plakaten, og eventuelle henvendelser kan rettes til Jan Sindre Heltne
-> eller kontakt@sporretimen.no.
+> eller post@sporretimen.no.
 
 ## Introduksjon
 
