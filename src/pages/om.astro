@@ -69,7 +69,12 @@ import { site, formats } from '@/data/site';
   <section class="section host">
     <div class="container host__inner">
       <div class="host__portrait">
-        <Avatar name={site.host} ratio="4 / 5" />
+        <Avatar
+          name={site.host}
+          src={site.hostImage}
+          alt={`${site.host}, programleder i Spørretimen`}
+          ratio="1 / 1"
+        />
       </div>
       <div class="host__text">
         <p class="eyebrow">Programleder</p>

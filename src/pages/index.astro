@@ -46,7 +46,12 @@ const formatIcons: Record<string, string> = {
       <div class="hero__media" aria-hidden="true">
         <div class="hero__card">
           <div class="hero__portrait">
-            <Avatar name={site.host} ratio="4 / 5" />
+            <Avatar
+              name={site.host}
+              src={site.hostImage}
+              alt={`${site.host}, programleder i Spørretimen`}
+              ratio="1 / 1"
+            />
           </div>
           <div class="hero__caption">
             <strong>{site.host}</strong>

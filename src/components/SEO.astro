@@ -23,7 +23,7 @@ const {
 
 const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${site.tagline}`;
 const canonical = new URL(Astro.url.pathname, site.url).href.replace(/\/$/, '') || site.url;
-const ogImage = image ? new URL(image, site.url).href : undefined;
+const ogImage = new URL(image ?? site.ogImage, site.url).href;
 
 const org = {
   '@context': 'https://schema.org',

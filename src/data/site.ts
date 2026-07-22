@@ -17,6 +17,10 @@ export const site = {
   lang: 'no',
   // Standard e-post for henvendelser. Endre til ønsket adresse.
   email: 'post@sporretimen.no',
+  // Portrett av programlederen, brukt på forsiden og Om-siden.
+  hostImage: '/images/jan-sindre-heltne.jpg',
+  // Standard delingsbilde for sosiale medier (Open Graph).
+  ogImage: '/images/jan-sindre-heltne.jpg',
 } as const;
 
 /**
