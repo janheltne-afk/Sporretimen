@@ -1,7 +1,8 @@
 ---
 title: "Hvordan er det egentlig å være lege?"
 format: samtale
-status: kommende
+status: publisert
+publishDate: 2026-07-23
 guest: john-erik
 categories:
   - Karriere
@@ -13,6 +14,9 @@ description: >-
   fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger.
 image: /images/gjester/john-erik.jpg
 imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
+links:
+  youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk
+  spotify: https://open.spotify.com/episode/73OXh7269Een3JioMSk1Ns
 featured: true
 related:
   - sovn-masterclass

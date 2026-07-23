@@ -1,0 +1,100 @@
+---
+/**
+ * Innebygde spillere for en episode (YouTube og/eller Spotify).
+ * Henter ut ID-er fra lenkene som er lagt inn på episoden.
+ */
+interface Props {
+  youtube?: string;
+  spotify?: string;
+  title?: string;
+}
+const { youtube, spotify, title = 'episoden' } = Astro.props;
+
+function youtubeId(url?: string): string | undefined {
+  if (!url) return undefined;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1) || undefined;
+    if (u.searchParams.get('v')) return u.searchParams.get('v') ?? undefined;
+    const m = u.pathname.match(/\/embed\/([^/?]+)/);
+    if (m) return m[1];
+  } catch {
+    /* ugyldig url */
+  }
+  return undefined;
+}
+
+function spotifyEpisodeId(url?: string): string | undefined {
+  if (!url) return undefined;
+  try {
+    const u = new URL(url);
+    const m = u.pathname.match(/\/episode\/([^/?]+)/);
+    if (m) return m[1];
+  } catch {
+    /* ugyldig url */
+  }
+  return undefined;
+}
+
+const yt = youtubeId(youtube);
+const sp = spotifyEpisodeId(spotify);
+const hasAny = Boolean(yt || sp);
+---
+
+{
+  hasAny && (
+    <div class="players">
+      {yt && (
+        <div class="players__video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${yt}`}
+            title={`Se ${title} på YouTube`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          />
+        </div>
+      )}
+      {sp && (
+        <iframe
+          class="players__spotify"
+          src={`https://open.spotify.com/embed/episode/${sp}`}
+          title={`Hør ${title} på Spotify`}
+          width="100%"
+          height="152"
+          loading="lazy"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        />
+      )}
+    </div>
+  )
+}
+
+<style>
+  .players {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .players__video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #000;
+    box-shadow: var(--shadow-md);
+  }
+  .players__video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .players__spotify {
+    border-radius: 12px;
+    display: block;
+  }
+</style>

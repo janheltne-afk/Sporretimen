@@ -2,6 +2,7 @@
 import { render, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Cover from '@/components/Cover.astro';
+import EpisodePlayers from '@/components/EpisodePlayers.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
@@ -23,6 +24,7 @@ const { Content } = await render(episode);
 const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 const script = await scriptForEpisode(episode.id);
+const hasEmbed = Boolean(d.links?.youtube || d.links?.spotify);
 
 // Relaterte episoder
 const related = (
@@ -75,7 +77,13 @@ const jsonLd = {
 
     <div class="container container-narrow">
       <div class="episode__cover">
-        <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} ratio="16 / 8" />
+        {
+          hasEmbed ? (
+            <EpisodePlayers youtube={d.links?.youtube} spotify={d.links?.spotify} title={d.title} />
+          ) : (
+            <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} ratio="16 / 8" />
+          )
+        }
       </div>
     </div>
 
