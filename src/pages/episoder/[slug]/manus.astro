@@ -25,12 +25,23 @@ const guest = d.guest ? await getEntry(d.guest) : undefined;
 // Innholdsfortegnelse fra nivå-2-overskrifter
 const toc = headings.filter((h) => h.depth === 2);
 const transkribert = script.data.kind === 'transkribert';
+const heading = script.data.worktitle ?? d.title;
+const pageTitle = transkribert ? heading : `Manus: ${heading}`;
+const pageDesc =
+  script.data.description ??
+  (transkribert
+    ? `${heading} – transkripsjon og oppsummering fra Spørretimen.`
+    : `Manus og spørsmål til episoden «${d.title}» i Spørretimen.`);
+const kindLabel = transkribert ? 'Transkripsjon' : 'Manus';
+const eyebrow = transkribert ? 'Transkripsjon og oppsummering' : 'Manus og spørsmål';
 ---
 
 <BaseLayout
-  title={`Manus: ${d.title}`}
-  description={`Manus og spørsmål til episoden «${d.title}» i Spørretimen.`}
-  noindex
+  title={pageTitle}
+  description={pageDesc}
+  type="article"
+  image={d.image}
+  noindex={!transkribert}
 >
   <article class="manus">
     <div class="container">
@@ -41,15 +52,15 @@ const transkribert = script.data.kind === 'transkribert';
       <div class="container">
         <div class="manus-hero__meta">
           <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
-          <span class="tag">Manus</span>
           <span class:list={['tag', transkribert ? 'tag-samtale' : 'tag-status']}>
-            {transkribert ? 'Transkribert' : 'Spørsmål'}
+            {kindLabel}
           </span>
         </div>
-        <p class="eyebrow">Manus og spørsmål</p>
-        <h1>{script.data.worktitle ?? d.title}</h1>
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{heading}</h1>
+        {script.data.subtitle && <p class="lead">{script.data.subtitle}</p>}
         {
-          !transkribert && (
+          !transkribert && !script.data.subtitle && (
             <p class="lead">
               Dette er spørsmålene og disposisjonen for episoden. Svar og
               transkripsjon legges inn etter hvert.

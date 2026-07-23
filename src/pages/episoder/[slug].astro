@@ -101,12 +101,12 @@ const jsonLd = {
               <span class="manus-panel__text">
                 <strong>
                   {script.data.kind === 'transkribert'
-                    ? 'Les manus og transkripsjon'
+                    ? 'Les episoden i tekst'
                     : 'Se manus og spørsmål'}
                 </strong>
                 <span>
                   {script.data.kind === 'transkribert'
-                    ? 'Hele samtalen skrevet ut, med spørsmål og svar.'
+                    ? 'Hele samtalen oppsummert og faktasjekket, spørsmål for spørsmål.'
                     : 'Spørsmålene og disposisjonen for episoden. Svar legges inn etter hvert.'}
                 </span>
               </span>
@@ -154,7 +154,7 @@ const jsonLd = {
               {
                 script && (
                   <a class="btn btn-ghost btn-sm" href={`/episoder/${episode.id}/manus`}>
-                    Se manus →
+                    {script.data.kind === 'transkribert' ? 'Les i tekst →' : 'Se manus →'}
                   </a>
                 )
               }

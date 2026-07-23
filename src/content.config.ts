@@ -103,6 +103,10 @@ const scripts = defineCollection({
       kind: z.enum(['sporsmal', 'transkribert']).default('sporsmal'),
       // Valgfri arbeidstittel vist øverst på manus-siden.
       worktitle: z.string().optional(),
+      // Undertittel vist under tittelen (typisk for transkriberte episoder).
+      subtitle: z.string().optional(),
+      // Metabeskrivelse for søk/deling. Faller tilbake til episodens beskrivelse.
+      description: z.string().optional(),
       updated: z.coerce.date().optional(),
       draft: z.boolean().default(false),
     }),
