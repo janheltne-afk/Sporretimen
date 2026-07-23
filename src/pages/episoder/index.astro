@@ -8,9 +8,12 @@ import { formats, categories } from '@/data/site';
 const episodes = await getEpisodes();
 
 // Bygg filterknapper: formater + kategorier faktisk i bruk
+const usedFormats = formats.filter((f) => episodes.some((e) => e.data.format === f.id));
 const usedCategories = categories.filter((c) =>
   episodes.some((e) => e.data.categories.includes(c))
 );
+// Skjul filterpanelet når det ikke er noe meningsfylt å filtrere på.
+const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
 ---
 
 <BaseLayout
@@ -25,30 +28,38 @@ const usedCategories = categories.filter((c) =>
 
   <section class="section-tight">
     <div class="container">
-      <div class="filters" role="group" aria-label="Filtrer episoder">
-        <div class="filters__group" data-filter-group="format">
-          <span class="filters__label">Format</span>
-          <button class="chip is-active" data-value="alle" aria-pressed="true">Alle</button>
-          {
-            formats.map((f) => (
-              <button class="chip" data-value={f.id} aria-pressed="false">
-                {f.label}
-              </button>
-            ))
-          }
-        </div>
-        <div class="filters__group" data-filter-group="category">
-          <span class="filters__label">Tema</span>
-          <button class="chip is-active" data-value="alle" aria-pressed="true">Alle</button>
-          {
-            usedCategories.map((c) => (
-              <button class="chip" data-value={c} aria-pressed="false">
-                {c}
-              </button>
-            ))
-          }
-        </div>
-      </div>
+      {
+        showFilters && (
+          <div class="filters" role="group" aria-label="Filtrer episoder">
+            {usedFormats.length > 1 && (
+              <div class="filters__group" data-filter-group="format">
+                <span class="filters__label">Format</span>
+                <button class="chip is-active" data-value="alle" aria-pressed="true">
+                  Alle
+                </button>
+                {usedFormats.map((f) => (
+                  <button class="chip" data-value={f.id} aria-pressed="false">
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            )}
+            {usedCategories.length > 1 && (
+              <div class="filters__group" data-filter-group="category">
+                <span class="filters__label">Tema</span>
+                <button class="chip is-active" data-value="alle" aria-pressed="true">
+                  Alle
+                </button>
+                {usedCategories.map((c) => (
+                  <button class="chip" data-value={c} aria-pressed="false">
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      }
 
       <p class="results-count muted" id="results-count" aria-live="polite"></p>
 
@@ -174,11 +185,13 @@ const usedCategories = categories.filter((c) =>
   // Forhåndsvelg format fra ?format=-parameter (fra forsiden)
   const params = new URLSearchParams(window.location.search);
   const preset = params.get('format');
-  if (preset) {
-    const btn = document.querySelector<HTMLButtonElement>(
-      `[data-filter-group="format"] .chip[data-value="${preset}"]`
-    );
-    btn?.click();
+  const presetBtn = preset
+    ? document.querySelector<HTMLButtonElement>(
+        `[data-filter-group="format"] .chip[data-value="${preset}"]`
+      )
+    : null;
+  if (presetBtn) {
+    presetBtn.click();
   } else {
     apply();
   }
