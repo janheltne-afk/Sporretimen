@@ -10,6 +10,7 @@ themes:
   - Canada-ekspedisjonen
 status: planlagt
 order: 50
+draft: true
 ---
 
 Torgeir er elektroingeniør og forteller om ingeniøryrket, om utdannings- og

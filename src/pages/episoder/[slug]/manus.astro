@@ -86,9 +86,11 @@ const eyebrow = transkribert ? 'Transkripsjon og oppsummering' : 'Manus og spør
               </div>
               <h2>{guest.data.name}</h2>
               <p class="mini-role">{guest.data.role}</p>
-              <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
-                Om gjesten
-              </a>
+              {!guest.data.draft && (
+                <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                  Om gjesten
+                </a>
+              )}
             </div>
           )
         }

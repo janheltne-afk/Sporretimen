@@ -156,9 +156,13 @@ const jsonLd = {
             <p class="episode__guest-role">{guest.data.role}</p>
             <p class="episode__guest-intro">{guest.data.intro}</p>
             <div class="episode__guest-actions">
-              <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
-                Om gjesten
-              </a>
+              {
+                !guest.data.draft && (
+                  <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                    Om gjesten
+                  </a>
+                )
+              }
               {
                 script && (
                   <a class="btn btn-ghost btn-sm" href={`/episoder/${episode.id}/manus`}>

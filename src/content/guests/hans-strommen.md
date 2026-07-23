@@ -9,6 +9,7 @@ themes:
   - Opplevelser og utfordringer på tur
 status: planlagt
 order: 40
+draft: true
 ---
 
 Hans deler erfaringer fra jakt og friluftsliv, og forteller om opplevelser og

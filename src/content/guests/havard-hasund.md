@@ -13,6 +13,7 @@ themes:
 status: planlagt
 featured: true
 order: 30
+draft: true
 ---
 
 Håvard arbeider innen ambulansetjenesten og har erfaring fra ekspedisjoner og
