@@ -9,7 +9,6 @@ description: >-
   Det viktigste om sikkerhet på tur, oppsummert kort og enkelt.
 related:
   - ekspedisjon-masterclass
-  - havard-ambulanse
 ---
 
 De viktigste prinsippene for sikkerhet på tur, forklart på rundt fem minutter.

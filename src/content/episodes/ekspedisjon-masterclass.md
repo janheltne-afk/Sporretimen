@@ -11,7 +11,6 @@ description: >-
 sources:
   - title: "Kilder og referanser oppgis i episoden når den publiseres."
 related:
-  - havard-ambulanse
   - ekspedisjonssikkerhet-kort-forklart
 ---
 

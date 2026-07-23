@@ -10,8 +10,7 @@ description: >-
   gjeld og gode vaner over tid.
 sources:
   - title: "Kilder og referanser oppgis i episoden når den publiseres."
-related:
-  - emil-revisor
+related: []
 ---
 
 Hvordan fungerer egentlig personlig økonomi i praksis? I denne Masterclass-episoden
