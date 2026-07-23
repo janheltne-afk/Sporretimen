@@ -56,8 +56,8 @@ export const nav: { label: string; href: string }[] = [
  * `url: null` skjuler lenken automatisk i grensesnittet.
  */
 export const socials: { label: string; url: string | null; handle?: string }[] = [
-  { label: 'YouTube', url: null, handle: '@sporretimen' },
-  { label: 'Spotify', url: null },
+  { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
+  { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
   { label: 'Apple Podcasts', url: null },
   { label: 'Instagram', url: null, handle: '@sporretimen' },
   { label: 'TikTok', url: null, handle: '@sporretimen' },

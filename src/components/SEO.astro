@@ -1,5 +1,5 @@
 ---
-import { site } from '@/data/site';
+import { site, socials } from '@/data/site';
 
 interface Props {
   title?: string;
@@ -25,6 +25,7 @@ const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${site.
 const canonical = new URL(Astro.url.pathname, site.url).href.replace(/\/$/, '') || site.url;
 const ogImage = new URL(image ?? site.ogImage, site.url).href;
 
+const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
 const org = {
   '@context': 'https://schema.org',
   '@type': 'PodcastSeries',
@@ -33,6 +34,7 @@ const org = {
   description: site.description,
   inLanguage: 'nb-NO',
   author: { '@type': 'Person', name: site.host },
+  ...(sameAs.length ? { sameAs } : {}),
 };
 
 const structured = jsonLd ? [org, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [org];
