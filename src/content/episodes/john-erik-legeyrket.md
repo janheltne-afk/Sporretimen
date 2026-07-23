@@ -1,5 +1,5 @@
 ---
-title: "John Erik – Livet som lege, fra Polen til Nord-Norge"
+title: "Hvordan er det egentlig å være lege?"
 format: samtale
 status: kommende
 guest: john-erik
@@ -9,8 +9,8 @@ categories:
   - Utdanning
 duration: "Cirka 60 min"
 description: >-
-  En samtale om veien inn i legeyrket: medisinstudier i utlandet, fastlegearbeid,
-  psykiatri, og hvordan det er å bære ansvar i helsevesenet.
+  Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,
+  fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger.
 image: /images/gjester/john-erik.jpg
 imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
 featured: true
