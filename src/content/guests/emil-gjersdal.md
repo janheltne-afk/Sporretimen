@@ -12,6 +12,7 @@ themes:
 status: planlagt
 featured: true
 order: 20
+draft: true
 ---
 
 Emil jobber som revisor i PwC og har økonomisk utdanning. I Spørretimen snakker
