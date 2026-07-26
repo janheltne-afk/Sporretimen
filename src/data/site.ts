@@ -112,6 +112,7 @@ export const categories = [
   'Teknologi',
   'Arbeidsliv',
   'Utdanning',
+  'Frivillighet',
 ] as const;
 
 export type Category = (typeof categories)[number];
