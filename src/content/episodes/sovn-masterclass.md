@@ -7,6 +7,8 @@ categories:
 description: >-
   En kommende Masterclass om søvn: hvorfor vi sover, hva som påvirker
   søvnkvaliteten, og hva som faktisk hjelper – forklart forståelig og kildebasert.
+image: /images/episoder/masterclass-brand.jpg
+imageAlt: Spørretimen Masterclass – Jan Sindre i studio
 related:
   - john-erik-legeyrket
   - sovn-kort-forklart
