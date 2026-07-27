@@ -13,8 +13,8 @@ duration: "Cirka 1 t 20 min"
 description: >-
   Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,
   fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger.
-image: /images/gjester/john-erik.jpg
-imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
+image: /images/episoder/lege-episoden.jpg
+imageAlt: "Spørretimen: Hvordan er det egentlig å være lege? – med fastlege John Erik"
 links:
   youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk
   spotify: https://open.spotify.com/episode/73OXh7269Een3JioMSk1Ns
