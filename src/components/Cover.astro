@@ -1,10 +1,9 @@
 ---
-import { placeholderColor } from '@/lib/utils';
-import { formatById } from '@/data/site';
+import { formatById, site } from '@/data/site';
 
 /**
- * Episodeomslag. Viser et bilde hvis `src` er satt, ellers en pen
- * plassholder med formatnavn og aksentfarge utledet av tittelen.
+ * Episodeomslag. Viser episodens eget bilde hvis `src` er satt, ellers den
+ * generelle Spørretimen-plassholderen med formatnavnet lagt oppå.
  */
 interface Props {
   src?: string;
@@ -15,31 +14,14 @@ interface Props {
   class?: string;
 }
 const { src, alt, title, format, ratio = '16 / 10', class: className = '' } = Astro.props;
-const [bg, fg] = placeholderColor(title);
 const label = formatById(format)?.singular ?? 'Episode';
+const isPlaceholder = !src;
+const image = src ?? site.placeholderImage;
 ---
 
-<div class:list={['cover', className]} style={`--ratio:${ratio}`}>
-  {
-    src ? (
-      <img src={src} alt={alt ?? title} loading="lazy" decoding="async" />
-    ) : (
-      <div class="cover__ph" style={`--ph-bg:${bg}; --ph-fg:${fg}`} aria-hidden="true">
-        <span class="cover__label">{label}</span>
-        <svg viewBox="0 0 120 120" class="cover__deco" aria-hidden="true">
-          <circle cx="60" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5" />
-          <path
-            d="M48 44c0-7 5.5-11.5 12.5-11.5S73 37 73 43.5c0 5-3 7.7-7 10.2-3.4 2.1-4.8 3.8-4.8 7v1.4"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3.2"
-            stroke-linecap="round"
-          />
-          <circle cx="61" cy="71" r="3.4" fill="currentColor" />
-        </svg>
-      </div>
-    )
-  }
+<div class:list={['cover', { 'cover--placeholder': isPlaceholder }, className]} style={`--ratio:${ratio}`}>
+  <img src={image} alt={alt ?? title} loading="lazy" decoding="async" />
+  {isPlaceholder && <span class="cover__label">{label}</span>}
 </div>
 
 <style>
@@ -55,21 +37,8 @@ const label = formatById(format)?.singular ?? 'Episode';
     height: 100%;
     object-fit: cover;
   }
-  .cover__ph {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, var(--ph-bg), color-mix(in srgb, var(--ph-bg) 60%, #fff));
-    color: var(--ph-fg);
-  }
-  .cover__deco {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 46%;
-    height: auto;
-    opacity: 0.85;
+  .cover--placeholder {
+    background: #1a1613;
   }
   .cover__label {
     position: absolute;
@@ -81,8 +50,8 @@ const label = formatById(format)?.singular ?? 'Episode';
     font-size: 0.78rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--ph-fg);
-    background: color-mix(in srgb, var(--ph-bg) 45%, #fff);
+    color: #1a1613;
+    background: rgba(255, 255, 255, 0.9);
     padding: 0.24rem 0.6rem;
     border-radius: 999px;
   }

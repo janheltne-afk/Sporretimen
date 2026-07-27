@@ -21,6 +21,8 @@ export const site = {
   hostImage: '/images/jan-sindre-heltne.jpg',
   // Standard delingsbilde for sosiale medier (Open Graph).
   ogImage: '/images/jan-sindre-heltne.jpg',
+  // Standard plassholderomslag for episoder uten eget bilde.
+  placeholderImage: '/images/placeholder.jpg',
 } as const;
 
 /**
