@@ -7,6 +7,8 @@ categories:
 description: >-
   Det viktigste om søvn, oppsummert enkelt og oversiktlig – for deg med begrenset
   tid. Kommer snart.
+image: /images/episoder/kort-forklart-brand.jpg
+imageAlt: Spørretimen Kort forklart – Jan Sindre i studio
 related:
   - sovn-masterclass
   - john-erik-legeyrket
