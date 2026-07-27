@@ -37,6 +37,7 @@ const jsonLd = {
 
       <div class="resource-head">
         <span class:list={['tag', `rtype-${d.type}`]}>{type?.label}</span>
+        {d.language && <span class="tag tag-lang">{d.language}</span>}
         {d.categories.map((c) => <span class="tag">{c}</span>)}
       </div>
 
@@ -139,5 +140,17 @@ const jsonLd = {
   .rtype-artikkel {
     background: var(--surface-2);
     color: var(--ink-soft);
+  }
+  .rtype-podkast {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .tag-lang {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 </style>

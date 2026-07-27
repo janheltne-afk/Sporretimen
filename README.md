@@ -101,8 +101,9 @@ verktøy nevnt i episodene. Lag en fil i `src/content/resources/`:
 ```markdown
 ---
 title: Boktittel eller ressursnavn
-type: bok            # bok | husketeknikk | tips | verktoy | artikkel
+type: bok            # bok | husketeknikk | tips | verktoy | artikkel | podkast
 author: Forfatter    # mest aktuelt for bøker (valgfritt)
+language: Engelsk    # valgfritt – vis at ressursen er på et annet språk
 summary: Kort oppsummering vist på kort og øverst på ressurssiden.
 url: https://...     # ekstern lenke (kjøp/les/verktøy) – valgfritt
 episodes:            # episoder ressursen er nevnt i (kobles begge veier)

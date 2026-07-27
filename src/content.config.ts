@@ -128,7 +128,9 @@ const resources = defineCollection({
     z.object({
       title: z.string(),
       // Type styrer merkelapp og filter. Se `resourceTypes` i src/data/site.ts.
-      type: z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel']),
+      type: z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel', 'podkast']),
+      // Angi at ressursen er på et annet språk enn norsk (f.eks. «Engelsk»).
+      language: z.string().optional(),
       // Forfatter (mest aktuelt for bøker).
       author: z.string().optional(),
       // Kort oppsummering vist på kort og øverst på ressurssiden.

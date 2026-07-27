@@ -110,6 +110,7 @@ export const resourceTypes = [
   { id: 'tips', label: 'Tips & triks', plural: 'Tips & triks', icon: 'bulb' },
   { id: 'verktoy', label: 'Verktøy', plural: 'Verktøy', icon: 'tool' },
   { id: 'artikkel', label: 'Artikkel', plural: 'Artikler', icon: 'doc' },
+  { id: 'podkast', label: 'Podkast', plural: 'Podkaster', icon: 'mic' },
 ] as const;
 
 export type ResourceTypeId = (typeof resourceTypes)[number]['id'];
