@@ -183,7 +183,7 @@ const jsonLd = {
     {
       resources.length > 0 && (
         <section class="container container-narrow resources-block">
-          <h2>Ressurser nevnt i episoden</h2>
+          <h2>{d.status === 'kommende' ? 'Ressurser til episoden' : 'Ressurser nevnt i episoden'}</h2>
           <div class="grid grid-2">
             {resources.map((r) => (
               <ResourceCard resource={r} />
