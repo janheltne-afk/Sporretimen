@@ -18,7 +18,9 @@ links:
   youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk
   spotify: https://open.spotify.com/episode/73OXh7269Een3JioMSk1Ns
 featured: true
-related: []
+related:
+  - sovn-masterclass
+  - sovn-kort-forklart
 ---
 
 En personlig samtale med lege John Erik om hvordan det egentlig er å bli – og være
