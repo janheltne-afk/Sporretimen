@@ -5,7 +5,7 @@ author: Matthew Walker
 summary: >-
   Søvnforskeren Matthew Walkers bestselger om hvorfor søvn er så avgjørende for
   hjerne og kropp – og hva som skjer når vi ikke får nok av den.
-url: https://fpress.no/boker/hvorfor-vi-sover
+url: https://www.ark.no/produkt/boker/fagboker/hvorfor-vi-sover-9788232803125
 episodes:
   - sovn-masterclass
 categories:
@@ -42,4 +42,4 @@ påstandene har blitt diskutert og kritisert av andre forskere, så les den som 
 inspirerende inngang til temaet – ikke som en fasit. Innholdet er generell kunnskap
 og erstatter ikke individuelle råd fra helsepersonell ved søvnproblemer.
 
-Se boken hos [Forlaget Press](https://fpress.no/boker/hvorfor-vi-sover).
+Se boken hos [ARK Bokhandel](https://www.ark.no/produkt/boker/fagboker/hvorfor-vi-sover-9788232803125).
