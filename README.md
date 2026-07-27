@@ -40,6 +40,10 @@ guest: john-erik           # filnavn på en gjest (valgfritt)
 categories:
   - Karriere
   - Helse
+yrke: Lege                 # valgfritt – yrket episoden handler om (karriere-episoder).
+                           # Vises som «Karriere · <yrke>» på episodekortet, og
+                           # samles under Karriere-filteret. Knyttes til episoden,
+                           # ikke gjesten (én gjest kan dekke flere yrker).
 publishDate: 2026-09-01    # valgfritt – utelat for kommende episoder
 duration: "Cirka 55 min"
 description: >-

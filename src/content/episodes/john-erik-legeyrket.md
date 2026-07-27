@@ -8,6 +8,7 @@ categories:
   - Karriere
   - Helse
   - Utdanning
+yrke: Lege
 duration: "Cirka 1 t 20 min"
 description: >-
   Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,

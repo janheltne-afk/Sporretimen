@@ -34,6 +34,9 @@ const episodes = defineCollection({
       // Referanse til en gjest (valgfritt – Masterclass/Kort forklart kan stå alene).
       guest: reference('guests').optional(),
       categories: z.array(z.string()).default([]),
+      // Yrket episoden handler om (for karriere-episoder), f.eks. «Lege».
+      // Knyttes til episoden, ikke gjesten – én gjest kan dekke flere yrker.
+      yrke: z.string().optional(),
       // Publiseringsdato. Kan utelates for kommende episoder.
       publishDate: z.coerce.date().optional(),
       // Varighet som lesbar tekst, f.eks. "58 min" eller "7 min".

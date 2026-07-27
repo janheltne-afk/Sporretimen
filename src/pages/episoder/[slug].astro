@@ -60,6 +60,8 @@ const jsonLd = {
         {d.categories.map((c) => <span class="tag">{c}</span>)}
       </div>
 
+      {d.yrke && <p class="episode__career">Karriere · {d.yrke}</p>}
+
       <h1 class="episode__title">{d.title}</h1>
 
       <p class="episode__facts muted">
@@ -212,6 +214,14 @@ const jsonLd = {
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 1rem;
+  }
+  .episode__career {
+    margin: 0 0 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
   }
   .episode__title {
     margin-bottom: 0.6rem;

@@ -24,10 +24,18 @@ const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDat
       <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
       {d.status === 'kommende' && <span class="tag tag-status">Kommende</span>}
     </div>
+    {d.yrke && <p class="ep__career">Karriere · {d.yrke}</p>}
     <h3 class="ep__title">
       <a href={`/episoder/${episode.id}`}>{d.title}</a>
     </h3>
-    {guest && <p class="ep__guest">Med {guest.data.name} · {guest.data.role}</p>}
+    {
+      guest && (
+        <p class="ep__guest">
+          Med {guest.data.name}
+          {!d.yrke && ` · ${guest.data.role}`}
+        </p>
+      )
+    }
     <p class="ep__desc">{d.description}</p>
     <div class="ep__foot">
       {d.duration && <span>{d.duration}</span>}
@@ -57,6 +65,14 @@ const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDat
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
+  }
+  .ep__career {
+    margin: 0.1rem 0 -0.15rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
   }
   .ep__title {
     font-size: 1.28rem;
