@@ -42,7 +42,8 @@ export const forms = {
 export const nav: { label: string; href: string }[] = [
   { label: 'Episoder', href: '/episoder' },
   { label: 'Gjester', href: '/gjester' },
-  { label: 'Om Spørretimen', href: '/om' },
+  { label: 'Ressurser', href: '/ressurser' },
+  { label: 'Om', href: '/om' },
   { label: 'Vær Varsom', href: '/var-varsom' },
   { label: 'Foreslå en gjest', href: '/foresla-gjest' },
   { label: 'Bli gjest', href: '/bli-gjest' },
@@ -99,6 +100,23 @@ export const formats = [
 ] as const;
 
 export type FormatId = (typeof formats)[number]['id'];
+
+/**
+ * Typer i ressursarkivet.
+ */
+export const resourceTypes = [
+  { id: 'bok', label: 'Bok', plural: 'Bøker', icon: 'book' },
+  { id: 'husketeknikk', label: 'Husketeknikk', plural: 'Husketeknikker', icon: 'brain' },
+  { id: 'tips', label: 'Tips & triks', plural: 'Tips & triks', icon: 'bulb' },
+  { id: 'verktoy', label: 'Verktøy', plural: 'Verktøy', icon: 'tool' },
+  { id: 'artikkel', label: 'Artikkel', plural: 'Artikler', icon: 'doc' },
+] as const;
+
+export type ResourceTypeId = (typeof resourceTypes)[number]['id'];
+
+export function resourceTypeById(id: string) {
+  return resourceTypes.find((t) => t.id === id);
+}
 
 /**
  * Emnekategorier brukt til filtrering av episoder.

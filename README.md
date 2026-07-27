@@ -93,6 +93,32 @@ Lengre tekst om gjesten i Markdown.
 Episoder kobles automatisk til gjesten via `guest:`-feltet, og vises på gjestens
 side.
 
+### Ny ressurs (ressursarkiv)
+
+Ressursarkivet (`/ressurser`) samler husketeknikker, bokanbefalinger, tips og
+verktøy nevnt i episodene. Lag en fil i `src/content/resources/`:
+
+```markdown
+---
+title: Boktittel eller ressursnavn
+type: bok            # bok | husketeknikk | tips | verktoy | artikkel
+author: Forfatter    # mest aktuelt for bøker (valgfritt)
+summary: Kort oppsummering vist på kort og øverst på ressurssiden.
+url: https://...     # ekstern lenke (kjøp/les/verktøy) – valgfritt
+episodes:            # episoder ressursen er nevnt i (kobles begge veier)
+  - john-erik-legeyrket
+categories:          # tema-tagger
+  - Utdanning
+featured: false
+---
+
+Brødteksten er stedet for lengre notater – f.eks. notater/hovedpoeng fra en bok
+eller hvordan en teknikk fungerer.
+```
+
+Ressursen dukker automatisk opp i arkivet, filtrerbart på type, og under
+«Ressurser nevnt i episoden» på hver koblet episode.
+
 ### Manus og spørsmål til en episode
 
 Hver episode kan ha et **manus** (spørsmål/disposisjon) som vises på en egen,

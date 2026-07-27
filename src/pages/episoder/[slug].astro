@@ -6,7 +6,8 @@ import EpisodePlayers from '@/components/EpisodePlayers.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
-import { getEpisodes, scriptForEpisode } from '@/lib/content';
+import ResourceCard from '@/components/ResourceCard.astro';
+import { getEpisodes, scriptForEpisode, resourcesForEpisode } from '@/lib/content';
 import { formatById, site } from '@/data/site';
 import { formatDate } from '@/lib/utils';
 
@@ -24,6 +25,7 @@ const { Content } = await render(episode);
 const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 const script = await scriptForEpisode(episode.id);
+const resources = await resourcesForEpisode(episode.id);
 const hasEmbed = Boolean(d.links?.youtube || d.links?.spotify);
 
 // Relaterte episoder
@@ -177,6 +179,19 @@ const jsonLd = {
         )
       }
     </div>
+
+    {
+      resources.length > 0 && (
+        <section class="container container-narrow resources-block">
+          <h2>Ressurser nevnt i episoden</h2>
+          <div class="grid grid-2">
+            {resources.map((r) => (
+              <ResourceCard resource={r} />
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     {
       related.length > 0 && (
@@ -345,6 +360,14 @@ const jsonLd = {
     color: var(--ink-soft);
     font-size: 0.95rem;
     margin-bottom: 1.1rem;
+  }
+  .resources-block {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+  }
+  .resources-block h2 {
+    margin-bottom: 1.3rem;
   }
   .related {
     margin-top: clamp(2rem, 6vw, 4rem);

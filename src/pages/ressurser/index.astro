@@ -1,0 +1,157 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import ResourceCard from '@/components/ResourceCard.astro';
+import { getResources } from '@/lib/content';
+import { resourceTypes } from '@/data/site';
+
+const resources = await getResources();
+const usedTypes = resourceTypes.filter((t) => resources.some((r) => r.data.type === t.id));
+const showFilters = usedTypes.length > 1;
+---
+
+<BaseLayout
+  title="Ressurser"
+  description="Ressursarkiv fra Spørretimen – husketeknikker, bokanbefalinger, tips og verktøy nevnt i podkasten."
+>
+  <PageHeader
+    eyebrow="Ressursarkiv"
+    title="Ressurser"
+    lead="Husketeknikker, bokanbefalinger, tips og verktøy som nevnes i episodene – samlet på ett sted. Arkivet vokser etter hvert som nye episoder legges ut."
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      {
+        resources.length === 0 ? (
+          <p class="empty muted">
+            Ressursarkivet fylles opp etter hvert som episodene publiseres. Kom
+            gjerne tilbake snart.
+          </p>
+        ) : (
+          <>
+            {showFilters && (
+              <div class="filters" role="group" aria-label="Filtrer ressurser">
+                <div class="filters__group" data-filter-group="type">
+                  <span class="filters__label">Type</span>
+                  <button class="chip is-active" data-value="alle" aria-pressed="true">
+                    Alle
+                  </button>
+                  {usedTypes.map((t) => (
+                    <button class="chip" data-value={t.id} aria-pressed="false">
+                      {t.plural}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <p class="results-count muted" id="results-count" aria-live="polite" />
+
+            <div class="grid grid-3" id="resource-grid">
+              {resources.map((r) => (
+                <div class="resource-item" data-type={r.data.type}>
+                  <ResourceCard resource={r} />
+                </div>
+              ))}
+            </div>
+
+            <p class="no-results" id="no-results" hidden>
+              Ingen ressurser i denne kategorien ennå.
+            </p>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 1.4rem;
+  }
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .filters__label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+  }
+  .chip {
+    padding: 0.42rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+  .chip.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .results-count {
+    margin: 0 0 1.2rem;
+    font-size: 0.9rem;
+  }
+  .no-results,
+  .empty {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+</style>
+
+<script>
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.resource-item'));
+  const countEl = document.getElementById('results-count');
+  const noResults = document.getElementById('no-results');
+  let active = 'alle';
+
+  function apply() {
+    let visible = 0;
+    items.forEach((item) => {
+      const show = active === 'alle' || item.dataset.type === active;
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = visible === 1 ? '1 ressurs' : `${visible} ressurser`;
+    if (noResults) noResults.hidden = visible !== 0;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-filter-group="type"] .chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter-group="type"] .chip').forEach((c) => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-pressed', 'true');
+      active = chip.dataset.value ?? 'alle';
+      apply();
+    });
+  });
+
+  apply();
+</script>

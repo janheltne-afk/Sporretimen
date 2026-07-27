@@ -115,4 +115,36 @@ const scripts = defineCollection({
     }),
 });
 
-export const collections = { episodes, guests, scripts };
+/**
+ * Ressursarkiv – husketeknikker, bokanbefalinger, tips og verktøy nevnt i
+ * podkasten (eller som utfyller den).
+ *
+ * Legg en .md-fil i `src/content/resources/`. Brødteksten er stedet for lengre
+ * notater (f.eks. notater fra en bok eller hvordan en teknikk fungerer).
+ */
+const resources = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      // Type styrer merkelapp og filter. Se `resourceTypes` i src/data/site.ts.
+      type: z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel']),
+      // Forfatter (mest aktuelt for bøker).
+      author: z.string().optional(),
+      // Kort oppsummering vist på kort og øverst på ressurssiden.
+      summary: z.string(),
+      // Ekstern lenke (kjøp/les/verktøy). Valgfritt.
+      url: z.string().url().optional(),
+      // Episoder ressursen er nevnt i (kobles begge veier).
+      episodes: z.array(reference('episodes')).default([]),
+      // Tema-tagger (Helse, Karriere, Friluftsliv ...).
+      categories: z.array(z.string()).default([]),
+      image: z.string().optional(),
+      imageAlt: z.string().optional(),
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      order: z.number().default(100),
+    }),
+});
+
+export const collections = { episodes, guests, scripts, resources };

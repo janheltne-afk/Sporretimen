@@ -25,6 +25,23 @@ export async function getGuests(): Promise<CollectionEntry<'guests'>[]> {
   );
 }
 
+/** Alle ressurser som ikke er draft, sortert etter order og tittel. */
+export async function getResources(): Promise<CollectionEntry<'resources'>[]> {
+  const all = await getCollection('resources', ({ data }) => !data.draft);
+  return all.sort(
+    (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'nb')
+  );
+}
+
+/** Ressurser som er knyttet til en gitt episode. */
+export async function resourcesForEpisode(
+  episodeId: string,
+  resources?: CollectionEntry<'resources'>[]
+): Promise<CollectionEntry<'resources'>[]> {
+  const list = resources ?? (await getResources());
+  return list.filter((r) => r.data.episodes.some((e) => e.id === episodeId));
+}
+
 /** Alle manus som ikke er draft. */
 export async function getScripts(): Promise<CollectionEntry<'scripts'>[]> {
   return getCollection('scripts', ({ data }) => !data.draft);

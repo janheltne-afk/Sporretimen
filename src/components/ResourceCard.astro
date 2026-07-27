@@ -1,0 +1,116 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import { resourceTypeById } from '@/data/site';
+
+interface Props {
+  resource: CollectionEntry<'resources'>;
+}
+const { resource } = Astro.props;
+const d = resource.data;
+const type = resourceTypeById(d.type);
+
+// Første episode ressursen er nevnt i (for en liten «Fra»-lenke).
+const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefined;
+---
+
+<article class="card resource">
+  <a class="resource__link" href={`/ressurser/${resource.id}`}>
+    <div class="resource__body">
+      <span class:list={['tag', `rtype-${d.type}`]}>{type?.label}</span>
+      <h3 class="resource__title">{d.title}</h3>
+      {d.author && <p class="resource__author">{d.author}</p>}
+      <p class="resource__summary">{d.summary}</p>
+      <div class="resource__foot">
+        {d.categories.slice(0, 2).map((c) => <span class="resource__cat">{c}</span>)}
+        {firstEpisode && <span class="resource__from">Fra episode</span>}
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .resource {
+    overflow: hidden;
+  }
+  .resource__link {
+    display: flex;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .resource__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.25rem 1.3rem 1.3rem;
+    width: 100%;
+  }
+  .resource__title {
+    margin: 0.15rem 0 0;
+    font-size: 1.28rem;
+    line-height: 1.2;
+  }
+  .resource__link:hover .resource__title {
+    color: var(--accent-strong);
+  }
+  .resource__author {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .resource__summary {
+    margin: 0.1rem 0 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .resource__foot {
+    margin-top: auto;
+    padding-top: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .resource__cat {
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+    background: var(--surface-2);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+  .resource__from {
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+
+  /* Typefarger */
+  .rtype-bok {
+    background: var(--tag-masterclass-bg);
+    color: var(--tag-masterclass);
+  }
+  .rtype-husketeknikk {
+    background: var(--tag-samtale-bg);
+    color: var(--tag-samtale);
+  }
+  .rtype-tips {
+    background: var(--tag-kort-bg);
+    color: var(--tag-kort);
+  }
+  .rtype-verktoy {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .rtype-artikkel {
+    background: var(--surface-2);
+    color: var(--ink-soft);
+  }
+</style>
