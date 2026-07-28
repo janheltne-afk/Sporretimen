@@ -9,6 +9,29 @@ categories:
   - Helse
   - Utdanning
 yrke: Lege
+topics:
+  - Veien inn i legeyrket
+  - Medisinstudiet i Polen (Warszawa)
+  - Fastlegehverdagen
+  - Pasientmøter og kommunikasjon
+  - Ansvar og usikkerhet i medisin
+  - Psykiatri
+  - Lønn og arbeidsvilkår for leger
+  - Studieteknikk og husketeknikk
+questions:
+  - Hvordan blir man lege i Norge, og hvilke fag trengs fra videregående?
+  - Hvordan er det å studere medisin i utlandet?
+  - Hvordan ser en vanlig arbeidsdag ut for en fastlege?
+  - Hva gjør en lege når hen ikke vet hva som feiler pasienten?
+  - Hvem passer legeyrket for – og hvem bør velge noe annet?
+  - Er status og høy lønn god nok grunn til å bli lege?
+  - Hva bør man vurdere før man søker på medisinstudiet?
+takeaways:
+  - Legeyrket handler like mye om menneskehåndtering som om ren medisin.
+  - Det finnes ofte ikke én fasit – en stor del av jobben er å håndtere usikkerhet.
+  - Å spørre kolleger om hjelp er en normal og viktig del av legearbeidet.
+  - Velg yrket fordi du selv ønsker det, ikke for status eller på grunn av press.
+  - Gode studieteknikker, som minnepalass, gjør et krevende studium mer overkommelig.
 duration: "Cirka 1 t 20 min"
 description: >-
   Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,

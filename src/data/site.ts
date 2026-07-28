@@ -41,6 +41,20 @@ export function absoluteUrl(path: string): string {
   return new URL(path, site.url).href;
 }
 
+/** Bygger BreadcrumbList-structured data fra en liste med navn + sti. */
+export function breadcrumbList(items: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: canonicalUrl(item.path),
+    })),
+  };
+}
+
 /**
  * Skjemaoppsett.
  *

@@ -8,7 +8,7 @@ import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
 import { getEpisodes, scriptForEpisode, resourcesForEpisode } from '@/lib/content';
-import { formatById, site, canonicalUrl } from '@/data/site';
+import { formatById, site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { formatDate } from '@/lib/utils';
 
 export async function getStaticPaths() {
@@ -33,16 +33,45 @@ const related = (
   await Promise.all(d.related.map((ref) => getEntry(ref)))
 ).filter(Boolean);
 
-const jsonLd = {
+const platformUrls = [d.links?.youtube, d.links?.spotify, d.links?.apple, d.links?.annet].filter(
+  (u): u is string => Boolean(u)
+);
+const keywords = [...d.topics, ...d.categories, ...(d.yrke ? [d.yrke] : [])];
+
+const episodeJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'PodcastEpisode',
   name: d.title,
   description: d.description,
   url: canonicalUrl(`/episoder/${episode.id}`),
+  inLanguage: 'nb-NO',
   ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
+  ...(d.image ? { image: absoluteUrl(d.image) } : {}),
+  ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
   partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: canonicalUrl('/') },
-  ...(guest ? { actor: { '@type': 'Person', name: guest.data.name } } : {}),
+  author: { '@type': 'Person', name: site.host, url: canonicalUrl('/om') },
+  ...(guest
+    ? {
+        actor: {
+          '@type': 'Person',
+          name: guest.data.name,
+          jobTitle: guest.data.role,
+          ...(guest.data.draft ? {} : { url: canonicalUrl(`/gjester/${guest.id}`) }),
+        },
+      }
+    : {}),
+  ...(platformUrls.length
+    ? { associatedMedia: platformUrls.map((u) => ({ '@type': 'MediaObject', contentUrl: u })) }
+    : {}),
 };
+
+const breadcrumb = breadcrumbList([
+  { name: 'Forsiden', path: '/' },
+  { name: 'Episoder', path: '/episoder' },
+  { name: d.title, path: `/episoder/${episode.id}` },
+]);
+
+const jsonLd = [episodeJsonLd, breadcrumb];
 ---
 
 <BaseLayout
@@ -50,6 +79,7 @@ const jsonLd = {
   description={d.description}
   type="article"
   image={d.image}
+  imageAlt={d.imageAlt}
   jsonLd={jsonLd}
 >
   <article class="episode">
@@ -70,6 +100,10 @@ const jsonLd = {
         {d.duration && <span>{d.duration}</span>}
         {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
         <span>{d.status === 'kommende' ? 'Publiseres senere' : formatDate(d.publishDate)}</span>
+        <span aria-hidden="true">·</span>
+        <span>Programleder <a href="/om" class="episode__host">{site.host}</a></span>
+        {guest && <span aria-hidden="true">·</span>}
+        {guest && <span>Gjest {guest.data.name}</span>}
       </p>
 
       <p class="lead">{d.description}</p>
@@ -94,6 +128,45 @@ const jsonLd = {
     <div class="container container-narrow episode__layout">
       <div class="prose episode__content">
         <Content />
+
+        {
+          d.topics.length > 0 && (
+            <section class="ep-section" aria-labelledby="temaer-heading">
+              <h2 id="temaer-heading">Hovedtemaer</h2>
+              <ul class="ep-pills">
+                {d.topics.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          d.questions.length > 0 && (
+            <section class="ep-section" aria-labelledby="sporsmal-heading">
+              <h2 id="sporsmal-heading">Spørsmål episoden besvarer</h2>
+              <ul class="ep-list">
+                {d.questions.map((q) => (
+                  <li>{q}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          d.takeaways.length > 0 && (
+            <section class="ep-section" aria-labelledby="hovedpunkter-heading">
+              <h2 id="hovedpunkter-heading">Hovedpunkter</h2>
+              <ul class="ep-list">
+                {d.takeaways.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
 
         {
           script && (
@@ -243,9 +316,47 @@ const jsonLd = {
   }
   .episode__facts {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
     font-size: 0.92rem;
     margin-bottom: 1.2rem;
+  }
+  .episode__host {
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+  .episode__host:hover {
+    text-decoration: underline;
+  }
+  .ep-section {
+    margin-top: 2rem;
+  }
+  .ep-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+  }
+  .ep-pills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .ep-pills li {
+    padding: 0.32rem 0.75rem;
+    background: var(--surface-2);
+    border-radius: 999px;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+  .ep-list {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .ep-list li {
+    margin-bottom: 0.5rem;
+    color: var(--ink-soft);
   }
   .episode__platforms {
     margin: 1.5rem 0 0;

@@ -37,6 +37,12 @@ const episodes = defineCollection({
       // Yrket episoden handler om (for karriere-episoder), f.eks. «Lege».
       // Knyttes til episoden, ikke gjesten – én gjest kan dekke flere yrker.
       yrke: z.string().optional(),
+      // Hovedtemaer episoden dekker (vises som synlig HTML + brukes i SEO).
+      topics: z.array(z.string()).default([]),
+      // Konkrete spørsmål episoden besvarer (godt for søk og AI-svar).
+      questions: z.array(z.string()).default([]),
+      // Hovedpunkter / viktigste poenger fra episoden.
+      takeaways: z.array(z.string()).default([]),
       // Publiseringsdato. Kan utelates for kommende episoder.
       publishDate: z.coerce.date().optional(),
       // Varighet som lesbar tekst, f.eks. "58 min" eller "7 min".

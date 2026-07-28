@@ -3,7 +3,7 @@ episode: john-erik-legeyrket
 kind: transkribert
 worktitle: "Hvordan er det egentlig å være lege?"
 subtitle: "John Erik om medisinstudiet i Polen, fastlegehverdagen, pasientmøter og ansvaret som følger med legeyrket"
-description: "Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen, fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger."
+description: "Full transkripsjon og oppsummering av samtalen med fastlege John Erik – spørsmål og svar om medisinstudiet i Polen, fastlegehverdagen, ansvar og veien inn i legeyrket."
 updated: 2026-07-23
 ---
 

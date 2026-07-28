@@ -4,7 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import { getGuests, getEpisodes, episodesForGuest, getScripts } from '@/lib/content';
-import { canonicalUrl } from '@/data/site';
+import { canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 
 export async function getStaticPaths() {
   const guests = await getGuests();
@@ -28,17 +28,38 @@ const manusEpisodes = episodes.filter((e) => scriptEpisodeIds.includes(e.id));
 const d = guest.data;
 const { Content } = await render(guest);
 
-const jsonLd = {
+const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: d.name,
   jobTitle: d.role,
   description: d.intro,
   url: canonicalUrl(`/gjester/${guest.id}`),
+  ...(d.image ? { image: absoluteUrl(d.image) } : {}),
+  ...(d.themes.length ? { knowsAbout: d.themes } : {}),
+  subjectOf: episodes.map((e) => ({
+    '@type': 'PodcastEpisode',
+    name: e.data.title,
+    url: canonicalUrl(`/episoder/${e.id}`),
+  })),
 };
+
+const breadcrumb = breadcrumbList([
+  { name: 'Forsiden', path: '/' },
+  { name: 'Gjester', path: '/gjester' },
+  { name: d.name, path: `/gjester/${guest.id}` },
+]);
+
+const jsonLd = [personJsonLd, breadcrumb];
 ---
 
-<BaseLayout title={d.name} description={`${d.name} – ${d.role}. ${d.intro}`} jsonLd={jsonLd}>
+<BaseLayout
+  title={d.name}
+  description={`${d.name} – ${d.role}. ${d.intro}`}
+  image={d.image}
+  imageAlt={d.imageAlt}
+  jsonLd={jsonLd}
+>
   <article class="guest-page">
     <div class="container">
       <a class="back-link" href="/gjester">← Alle gjester</a>

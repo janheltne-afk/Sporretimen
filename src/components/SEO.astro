@@ -6,6 +6,8 @@ interface Props {
   description?: string;
   /** Sti til delingsbilde (valgfritt). */
   image?: string;
+  /** Alt-tekst for delingsbildet. */
+  imageAlt?: string;
   /** 'website' | 'article' */
   type?: string;
   noindex?: boolean;
@@ -16,6 +18,7 @@ const {
   title,
   description = site.description,
   image,
+  imageAlt,
   type = 'website',
   noindex = false,
   jsonLd,
@@ -24,26 +27,61 @@ const {
 const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${site.tagline}`;
 const canonical = canonicalUrl(Astro.url.pathname);
 const ogImage = absoluteUrl(image ?? site.ogImage);
+const ogImageAlt = imageAlt ?? title ?? `${site.name} – ${site.tagline}`;
 
+// Lenker til offisielle profiler (sameAs).
 const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
-const org = {
+
+// Programlederen som Person – gjenbrukes som author/founder.
+const host = {
+  '@type': 'Person',
+  name: site.host,
+  jobTitle: 'Programleder',
+  url: canonicalUrl('/om'),
+};
+
+// Organisasjonen bak podkasten.
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: canonicalUrl('/'),
+  logo: absoluteUrl('/favicon.svg'),
+  description: site.description,
+  founder: host,
+  ...(sameAs.length ? { sameAs } : {}),
+};
+
+// Selve podkast-serien.
+const podcastSeries = {
   '@context': 'https://schema.org',
   '@type': 'PodcastSeries',
   name: site.name,
   url: canonicalUrl('/'),
   description: site.description,
   inLanguage: 'nb-NO',
-  author: { '@type': 'Person', name: site.host },
+  author: host,
   ...(sameAs.length ? { sameAs } : {}),
 };
 
-const structured = jsonLd ? [org, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : [org];
+const base = [organization, podcastSeries];
+const structured = jsonLd ? [...base, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : base;
 ---
 
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+{
+  noindex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+  )
+}
+<meta name="author" content={site.host} />
 
 <!-- Open Graph -->
 <meta property="og:site_name" content={site.name} />
@@ -52,12 +90,14 @@ const structured = jsonLd ? [org, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonical} />
 <meta property="og:locale" content={site.locale} />
-{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={ogImageAlt} />
 
 <!-- Twitter/X -->
-<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title ?? site.name} />
 <meta name="twitter:description" content={description} />
-{ogImage && <meta name="twitter:image" content={ogImage} />}
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
 
 {structured.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}

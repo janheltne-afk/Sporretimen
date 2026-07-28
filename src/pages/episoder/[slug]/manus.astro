@@ -3,7 +3,7 @@ import { render, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Avatar from '@/components/Avatar.astro';
 import { getScripts } from '@/lib/content';
-import { formatById } from '@/data/site';
+import { formatById, site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { formatDate } from '@/lib/utils';
 
 export async function getStaticPaths() {
@@ -26,7 +26,7 @@ const guest = d.guest ? await getEntry(d.guest) : undefined;
 const toc = headings.filter((h) => h.depth === 2);
 const transkribert = script.data.kind === 'transkribert';
 const heading = script.data.worktitle ?? d.title;
-const pageTitle = transkribert ? heading : `Manus: ${heading}`;
+const pageTitle = transkribert ? `${heading} – transkripsjon` : `Manus: ${heading}`;
 const pageDesc =
   script.data.description ??
   (transkribert
@@ -34,6 +34,34 @@ const pageDesc =
     : `Manus og spørsmål til episoden «${d.title}» i Spørretimen.`);
 const kindLabel = transkribert ? 'Transkripsjon' : 'Manus';
 const eyebrow = transkribert ? 'Transkripsjon og oppsummering' : 'Manus og spørsmål';
+
+// Structured data – transkripsjonen er en fyldig artikkel (kun når publisert/indekserbar).
+const articleJsonLd = transkribert
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: heading,
+      description: pageDesc,
+      url: canonicalUrl(`/episoder/${episode.id}/manus`),
+      inLanguage: 'nb-NO',
+      author: { '@type': 'Person', name: site.host, url: canonicalUrl('/om') },
+      publisher: { '@type': 'Organization', name: site.name, url: canonicalUrl('/') },
+      ...(script.data.updated ? { dateModified: script.data.updated.toISOString() } : {}),
+      ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
+      ...(d.image ? { image: absoluteUrl(d.image) } : {}),
+      isPartOf: { '@type': 'PodcastEpisode', name: d.title, url: canonicalUrl(`/episoder/${episode.id}`) },
+      ...(guest ? { about: { '@type': 'Person', name: guest.data.name, jobTitle: guest.data.role } } : {}),
+    }
+  : undefined;
+
+const breadcrumb = breadcrumbList([
+  { name: 'Forsiden', path: '/' },
+  { name: 'Episoder', path: '/episoder' },
+  { name: d.title, path: `/episoder/${episode.id}` },
+  { name: kindLabel, path: `/episoder/${episode.id}/manus` },
+]);
+
+const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : undefined;
 ---
 
 <BaseLayout
@@ -41,7 +69,9 @@ const eyebrow = transkribert ? 'Transkripsjon og oppsummering' : 'Manus og spør
   description={pageDesc}
   type="article"
   image={d.image}
+  imageAlt={d.imageAlt}
   noindex={!transkribert}
+  jsonLd={jsonLd}
 >
   <article class="manus">
     <div class="container">

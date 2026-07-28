@@ -3,7 +3,7 @@ import { render, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import { getResources } from '@/lib/content';
-import { resourceTypeById, canonicalUrl } from '@/data/site';
+import { resourceTypeById, canonicalUrl, breadcrumbList } from '@/data/site';
 
 export async function getStaticPaths() {
   const resources = await getResources();
@@ -20,14 +20,24 @@ const type = resourceTypeById(d.type);
 
 const episodes = (await Promise.all(d.episodes.map((ref) => getEntry(ref)))).filter(Boolean);
 
-const jsonLd = {
+const resourceJsonLd = {
   '@context': 'https://schema.org',
   '@type': d.type === 'bok' ? 'Book' : 'CreativeWork',
   name: d.title,
   ...(d.author ? { author: { '@type': 'Person', name: d.author } } : {}),
+  ...(d.language ? { inLanguage: d.language === 'Engelsk' ? 'en' : d.language } : {}),
   description: d.summary,
   url: canonicalUrl(`/ressurser/${resource.id}`),
+  ...(d.url ? { sameAs: d.url } : {}),
 };
+
+const breadcrumb = breadcrumbList([
+  { name: 'Forsiden', path: '/' },
+  { name: 'Ressurser', path: '/ressurser' },
+  { name: d.title, path: `/ressurser/${resource.id}` },
+]);
+
+const jsonLd = [resourceJsonLd, breadcrumb];
 ---
 
 <BaseLayout title={d.title} description={d.summary} type="article" jsonLd={jsonLd}>
