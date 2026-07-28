@@ -75,7 +75,6 @@ export const nav: { label: string; href: string }[] = [
   { label: 'Episoder', href: '/episoder' },
   { label: 'Gjester', href: '/gjester' },
   { label: 'Ressurser', href: '/ressurser' },
-  { label: 'Kurs', href: '/kurs' },
   { label: 'Om', href: '/om' },
   { label: 'Vær Varsom', href: '/var-varsom' },
   { label: 'Foreslå en gjest', href: '/foresla-gjest' },

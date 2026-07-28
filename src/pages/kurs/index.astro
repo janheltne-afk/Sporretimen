@@ -40,9 +40,20 @@ const courses = await getCourses();
                     <div class="course__body">
                       <span class:list={['tag', `cstatus-${c.data.status}`]}>{st.label}</span>
                       <h3 class="course__title">{c.data.title}</h3>
-                      {c.data.format && <p class="course__format">{c.data.format}</p>}
                       <p class="course__summary">{c.data.summary}</p>
-                      <span class="course__cta">Meld interesse →</span>
+                      {c.data.topics.length > 0 && (
+                        <ul class="course__topics">
+                          {c.data.topics.slice(0, 3).map((t) => (
+                            <li>{t}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <div class="course__foot">
+                        {c.data.curriculum.length > 0 && (
+                          <span class="course__parts">{c.data.curriculum.length} deler</span>
+                        )}
+                        <span class="course__cta">Meld interesse →</span>
+                      </div>
                     </div>
                   </a>
                 </article>
@@ -149,9 +160,39 @@ const courses = await getCourses();
     color: var(--ink-soft);
     font-size: 0.95rem;
   }
-  .course__cta {
+  .course__topics {
+    list-style: none;
+    margin: 0.7rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .course__topics li {
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    background: var(--surface-2);
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+  }
+  .course__foot {
     margin-top: auto;
-    padding-top: 0.8rem;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+  }
+  .course__parts {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .course__cta {
     color: var(--accent-strong);
     font-weight: 600;
     font-size: 0.95rem;

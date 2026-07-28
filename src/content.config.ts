@@ -178,6 +178,19 @@ const courses = defineCollection({
       topics: z.array(z.string()).default([]),
       // Antatt format/omfang, f.eks. «Digitalt, 4 samlinger» (valgfritt).
       format: z.string().optional(),
+      // Hvem kurset passer for (valgfritt).
+      audience: z.string().optional(),
+      // Læringsutbytte – hva du sitter igjen med.
+      outcomes: z.array(z.string()).default([]),
+      // Kursinnhold som moduler/deler, i rekkefølge.
+      curriculum: z
+        .array(
+          z.object({
+            title: z.string(),
+            description: z.string().optional(),
+          })
+        )
+        .default([]),
       image: z.string().optional(),
       imageAlt: z.string().optional(),
       featured: z.boolean().default(false),

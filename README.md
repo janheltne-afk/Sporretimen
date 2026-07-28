@@ -126,12 +126,18 @@ Kursene (`/kurs`) er egne tilbud, adskilt fra Masterclass-episodene (som kun er
 et episodearkiv). Besøkende melder interesse per kurs, og interessen brukes til å
 prioritere hvilke kurs som får fortgang.
 
-Kopier malen `src/content/courses/eksempel-kurs.md` til en ny fil (filnavnet blir
-adressen), fyll inn feltene og sett `draft: false`:
+Kursmodulen ligger bevisst litt «skjult»: den er **ikke** i hovedmenyen, men nås
+via et eget kurs-felt nederst på Ressurser-siden (og på `/kurs` direkte).
 
-- `status: vurderes` – idé; interesse avgjør prioritering
-- `status: planlagt` – besluttet og under utvikling
-- `status: apen` – påmelding/gjennomføring i gang
+Kopier malen `src/content/courses/eksempel-kurs.md` til en ny fil (filnavnet blir
+adressen), fyll inn feltene og sett `draft: false`. Nyttige felt:
+
+- `status:` – `vurderes` (idé; interesse avgjør prioritering), `planlagt`
+  (besluttet, under utvikling) eller `apen` (påmelding/gjennomføring i gang)
+- `outcomes:` – liste med læringsutbytte («Dette lærer du»)
+- `curriculum:` – liste med `{ title, description }` som blir nummerert kursinnhold
+- `audience:` – hvem kurset passer for
+- `topics:` – temaer (vises som piller på kortet)
 
 Interessemeldingene sendes via skjemaoppsettet (`forms` i `src/data/site.ts`) med
 kursnavnet i emnefeltet, så du kan telle interessen per kurs i innboksen eller

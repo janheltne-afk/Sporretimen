@@ -2,12 +2,13 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
-import { getResources } from '@/lib/content';
+import { getResources, getCourses } from '@/lib/content';
 import { resourceTypes } from '@/data/site';
 
 const resources = await getResources();
 const usedTypes = resourceTypes.filter((t) => resources.some((r) => r.data.type === t.id));
 const showFilters = usedTypes.length > 1;
+const courses = await getCourses();
 ---
 
 <BaseLayout
@@ -64,6 +65,36 @@ const showFilters = usedTypes.length > 1;
       }
     </div>
   </section>
+
+  {
+    courses.length > 0 && (
+      <section class="section courses-callout">
+        <div class="container">
+          <div class="callout card">
+            <div class="callout__text">
+              <p class="eyebrow">Kurs</p>
+              <h2>Vil du lære noe helt konkret?</h2>
+              <p>
+                Spørretimen setter også opp egne kurs – praktiske opplegg om alt fra
+                vannkraft til motorkunnskap og lafting. Du kan melde interesse for
+                kursene du vil ha, så prioriteres de flest ønsker seg.
+              </p>
+              <a class="btn" href="/kurs">
+                Se kursene ({courses.length}) →
+              </a>
+            </div>
+            <ul class="callout__list">
+              {courses.slice(0, 4).map((c) => (
+                <li>
+                  <a href={`/kurs/${c.id}`}>{c.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>
 
 <style>
@@ -120,6 +151,54 @@ const showFilters = usedTypes.length > 1;
     padding: 2.5rem 1rem;
     text-align: center;
     color: var(--ink-faint);
+  }
+  .courses-callout {
+    border-top: 1px solid var(--line);
+  }
+  .callout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: clamp(1.2rem, 4vw, 2.5rem);
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+    align-items: center;
+    background: linear-gradient(120deg, var(--accent-soft), var(--surface) 70%);
+  }
+  .callout h2 {
+    margin: 0 0 0.5rem;
+  }
+  .callout__text p:not(.eyebrow) {
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+  }
+  .callout__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 1px solid var(--line-strong);
+    padding-left: clamp(1rem, 3vw, 2rem);
+  }
+  .callout__list a {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+  .callout__list a:hover {
+    color: var(--accent-strong);
+  }
+  @media (max-width: 720px) {
+    .callout {
+      grid-template-columns: 1fr;
+    }
+    .callout__list {
+      border-left: 0;
+      border-top: 1px solid var(--line-strong);
+      padding-left: 0;
+      padding-top: 1rem;
+    }
   }
 </style>
 
