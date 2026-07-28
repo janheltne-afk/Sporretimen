@@ -157,12 +157,12 @@ export function resourceTypeById(id: string) {
  */
 export const courseStatuses = {
   vurderes: {
-    label: 'Under vurdering',
-    hint: 'Meld interesse – jo flere som vil ha kurset, desto raskere prioriteres det.',
+    label: 'Bygges ved interesse',
+    hint: 'Dette kurset finnes ikke ennå – det er et eksempel på hva som kan settes opp. Meld interesse: blir det mange nok, bygges kurset.',
   },
   planlagt: {
     label: 'Planlagt',
-    hint: 'Kurset er besluttet og under utvikling. Meld interesse for å få beskjed først.',
+    hint: 'Interessen var stor nok – kurset er besluttet og under utvikling. Meld interesse for å få beskjed først.',
   },
   apen: {
     label: 'Påmelding åpen',

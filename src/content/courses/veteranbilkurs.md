@@ -35,3 +35,6 @@ jobber sammen for å gjøre bensin og luft om til bevegelse. Deretter går vi ov
 enkel å forstå og oversiktlig å jobbe på.
 
 Målet er at du skal forstå motoren godt nok til å tørre å skru selv.
+
+*Dette kurset er foreløpig et eksempel på hva som kan settes opp. Blir interessen
+stor nok, bygges det – meld interesse under, så teller du med.*

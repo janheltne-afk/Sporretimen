@@ -73,15 +73,14 @@ const courses = await getCourses();
           <div class="callout card">
             <div class="callout__text">
               <p class="eyebrow">Kurs</p>
-              <h2>Vil du lære noe helt konkret?</h2>
+              <h2>Hva mangler det kurs om?</h2>
               <p>
-                Spørretimen setter også opp egne kurs – praktiske opplegg om alt fra
-                vannkraft til motorkunnskap og lafting. Du kan melde interesse for
-                kursene du vil ha, så prioriteres de flest ønsker seg.
+                Det finnes ufattelig mange temaer det mangler kurs og god kunnskap
+                om. Er interessen stor nok for et tema, kan det bygges et kurs.
+                Under ligger noen eksempler på hva som kan settes opp – meld
+                interesse for dem du ville tatt, eller foreslå ditt eget tema.
               </p>
-              <a class="btn" href="/kurs">
-                Se kursene ({courses.length}) →
-              </a>
+              <a class="btn" href="/kurs">Se eksempler og meld interesse →</a>
             </div>
             <ul class="callout__list">
               {courses.slice(0, 4).map((c) => (

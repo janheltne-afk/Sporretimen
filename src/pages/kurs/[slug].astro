@@ -115,10 +115,15 @@ const breadcrumb = breadcrumbList([
       }
 
       <section class="interest" id="meld-interesse" aria-labelledby="interesse-heading">
-        <h2 id="interesse-heading">Meld interesse for kurset</h2>
+        <h2 id="interesse-heading">
+          {d.status === 'vurderes' ? 'Vil du at dette kurset skal bli til?' : 'Meld interesse for kurset'}
+        </h2>
         <p class="muted interest-note">
-          Uforpliktende. Interessen brukes til å prioritere hvilke kurs som får
-          fortgang, og du får beskjed når kurset er klart.
+          {
+            d.status === 'vurderes'
+              ? 'Uforpliktende. Blir det mange nok interesserte, bygges kurset – og du får beskjed når det er klart.'
+              : 'Uforpliktende. Interessen brukes til å prioritere, og du får beskjed når kurset er klart.'
+          }
         </p>
         <Form
           formName={`kursinteresse-${course.id}`}

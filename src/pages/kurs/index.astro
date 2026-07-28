@@ -10,12 +10,12 @@ const courses = await getCourses();
 
 <BaseLayout
   title="Kurs"
-  description="Kommende kurs fra Spørretimen. Meld interesse for kursene du vil ha – jo flere som er interessert, desto raskere prioriteres de."
+  description="Det finnes utallige temaer det mangler kurs og god kunnskap om. Er interessen stor nok, bygger Spørretimen kurset. Se eksempler og meld interesse."
 >
   <PageHeader
     eyebrow="Kurs"
-    title="Kommende kurs"
-    lead="Kursene er egne, praktiske opplegg – noe annet enn Masterclass-episodene, som er et rent episodearkiv. Interessen din er med på å bestemme hva som lages først."
+    title="Kursene som ennå ikke finnes"
+    lead="Det finnes ufattelig mange temaer det mangler kurs og god kunnskap om. Er interessen stor nok for et tema eller område, kan det bygges et kurs. Din interesse bestemmer hva som blir til."
   />
 
   <section class="section-tight">
@@ -23,14 +23,22 @@ const courses = await getCourses();
       <div class="how card">
         <h2>Slik fungerer det</h2>
         <ol>
-          <li><strong>Kursidéene legges ut her</strong> med status «Under vurdering», «Planlagt» eller «Påmelding åpen».</li>
-          <li><strong>Du melder interesse</strong> for kursene du vil ha – helt uforpliktende.</li>
-          <li><strong>Interessen styrer prioriteringen:</strong> kursene flest vil ha, får fortgang og utvikles først. Du får beskjed når kurset er klart.</li>
+          <li><strong>Kunnskapen finnes – kursene mangler.</strong> Rundt oss finnes folk og miljøer med kompetanse det aldri er laget kurs om. Her samler vi ønskene.</li>
+          <li><strong>Du melder interesse</strong> – for et av eksemplene under, eller foreslå et helt eget tema. Helt uforpliktende.</li>
+          <li><strong>Blir interessen stor nok, bygges kurset.</strong> Temaene flest ønsker seg, blir til først – og du får beskjed når det er klart.</li>
         </ol>
       </div>
 
       {
         courses.length > 0 ? (
+          <>
+          <div class="grid-head">
+            <h2>Eksempler på kurs som kan settes opp</h2>
+            <p class="muted">
+              Dette er ikke ferdige kurs, men eksempler på hva som kan bygges om
+              mange nok er interessert. Meld interesse for dem du ville tatt.
+            </p>
+          </div>
           <div class="grid grid-3 course-grid">
             {courses.map((c) => {
               const st = courseStatuses[c.data.status];
@@ -60,10 +68,11 @@ const courses = await getCourses();
               );
             })}
           </div>
+          </>
         ) : (
           <p class="empty muted">
-            De første kursene er under planlegging og legges ut her. Har du ønsker
-            allerede nå? Bruk skjemaet under.
+            Eksempler på mulige kurs legges ut her. Har du ønsker allerede nå?
+            Bruk skjemaet under.
           </p>
         )
       }
@@ -73,10 +82,11 @@ const courses = await getCourses();
   <section class="section general">
     <div class="container container-narrow">
       <div class="section-head">
-        <h2>Ønsker du deg et kurs vi ikke har satt opp?</h2>
+        <h2>Hva mangler det kurs om?</h2>
         <p class="lead">
-          Fortell oss hva du vil lære, så teller det med når vi bestemmer hvilke
-          kurs som lages.
+          Temaene over er bare eksempler. Savner du kunnskap om noe helt annet?
+          Fortell oss hva du vil lære – er interessen stor nok, kan det bli et kurs
+          av det.
         </p>
       </div>
       <Form
@@ -121,6 +131,17 @@ const courses = await getCourses();
   }
   .how li {
     margin-bottom: 0.45rem;
+  }
+  .grid-head {
+    margin-bottom: 1.2rem;
+  }
+  .grid-head h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .grid-head p {
+    margin: 0;
+    font-size: 0.95rem;
   }
   .course {
     overflow: hidden;
