@@ -120,6 +120,23 @@ eller hvordan en teknikk fungerer.
 Ressursen dukker automatisk opp i arkivet, filtrerbart på type, og under
 «Ressurser nevnt i episoden» på hver koblet episode.
 
+### Nytt kurs (kursmodulen)
+
+Kursene (`/kurs`) er egne tilbud, adskilt fra Masterclass-episodene (som kun er
+et episodearkiv). Besøkende melder interesse per kurs, og interessen brukes til å
+prioritere hvilke kurs som får fortgang.
+
+Kopier malen `src/content/courses/eksempel-kurs.md` til en ny fil (filnavnet blir
+adressen), fyll inn feltene og sett `draft: false`:
+
+- `status: vurderes` – idé; interesse avgjør prioritering
+- `status: planlagt` – besluttet og under utvikling
+- `status: apen` – påmelding/gjennomføring i gang
+
+Interessemeldingene sendes via skjemaoppsettet (`forms` i `src/data/site.ts`) med
+kursnavnet i emnefeltet, så du kan telle interessen per kurs i innboksen eller
+skjematjenesten.
+
 ### Manus og spørsmål til en episode
 
 Hver episode kan ha et **manus** (spørsmål/disposisjon) som vises på en egen,

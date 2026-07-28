@@ -1,0 +1,182 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+import { getCourses } from '@/lib/content';
+import { courseStatuses } from '@/data/site';
+
+const courses = await getCourses();
+---
+
+<BaseLayout
+  title="Kurs"
+  description="Kommende kurs fra Spørretimen. Meld interesse for kursene du vil ha – jo flere som er interessert, desto raskere prioriteres de."
+>
+  <PageHeader
+    eyebrow="Kurs"
+    title="Kommende kurs"
+    lead="Kursene er egne, praktiske opplegg – noe annet enn Masterclass-episodene, som er et rent episodearkiv. Interessen din er med på å bestemme hva som lages først."
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="how card">
+        <h2>Slik fungerer det</h2>
+        <ol>
+          <li><strong>Kursidéene legges ut her</strong> med status «Under vurdering», «Planlagt» eller «Påmelding åpen».</li>
+          <li><strong>Du melder interesse</strong> for kursene du vil ha – helt uforpliktende.</li>
+          <li><strong>Interessen styrer prioriteringen:</strong> kursene flest vil ha, får fortgang og utvikles først. Du får beskjed når kurset er klart.</li>
+        </ol>
+      </div>
+
+      {
+        courses.length > 0 ? (
+          <div class="grid grid-3 course-grid">
+            {courses.map((c) => {
+              const st = courseStatuses[c.data.status];
+              return (
+                <article class="card course">
+                  <a class="course__link" href={`/kurs/${c.id}`}>
+                    <div class="course__body">
+                      <span class:list={['tag', `cstatus-${c.data.status}`]}>{st.label}</span>
+                      <h3 class="course__title">{c.data.title}</h3>
+                      {c.data.format && <p class="course__format">{c.data.format}</p>}
+                      <p class="course__summary">{c.data.summary}</p>
+                      <span class="course__cta">Meld interesse →</span>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <p class="empty muted">
+            De første kursene er under planlegging og legges ut her. Har du ønsker
+            allerede nå? Bruk skjemaet under.
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section general">
+    <div class="container container-narrow">
+      <div class="section-head">
+        <h2>Ønsker du deg et kurs vi ikke har satt opp?</h2>
+        <p class="lead">
+          Fortell oss hva du vil lære, så teller det med når vi bestemmer hvilke
+          kurs som lages.
+        </p>
+      </div>
+      <Form
+        formName="kursonske"
+        subject="Kursønske – Spørretimen"
+        submitLabel="Send kursønske"
+        successMessage="Takk! Ønsket ditt er registrert og teller med i prioriteringen."
+      >
+        <div class="field--row">
+          <div class="field">
+            <label for="ko-navn">Navn <span class="req">*</span></label>
+            <input id="ko-navn" name="Navn" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="ko-epost">E-post <span class="req">*</span></label>
+            <input id="ko-epost" name="E-post" type="email" required autocomplete="email" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="ko-tema">Hva vil du lære? <span class="req">*</span></label>
+          <textarea id="ko-tema" name="Kursønske" required placeholder="Beskriv kort temaet eller kurset du ønsker deg."></textarea>
+        </div>
+      </Form>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .how {
+    padding: 1.5rem 1.7rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2.2rem);
+    border-left: 4px solid var(--accent);
+  }
+  .how h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.7rem;
+  }
+  .how ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+  }
+  .how li {
+    margin-bottom: 0.45rem;
+  }
+  .course {
+    overflow: hidden;
+  }
+  .course__link {
+    display: flex;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .course__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.3rem 1.4rem 1.4rem;
+    width: 100%;
+  }
+  .course__body .tag {
+    align-self: flex-start;
+  }
+  .course__title {
+    margin: 0.2rem 0 0;
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  .course__link:hover .course__title {
+    color: var(--accent-strong);
+  }
+  .course__format {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .course__summary {
+    margin: 0.1rem 0 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .course__cta {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    color: var(--accent-strong);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .cstatus-vurderes {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .cstatus-planlagt {
+    background: var(--tag-masterclass-bg);
+    color: var(--tag-masterclass);
+  }
+  .cstatus-apen {
+    background: var(--tag-samtale-bg);
+    color: var(--tag-samtale);
+  }
+  .empty {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .general {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .req {
+    color: var(--accent-strong);
+  }
+</style>

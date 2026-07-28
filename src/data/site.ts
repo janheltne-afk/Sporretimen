@@ -75,6 +75,7 @@ export const nav: { label: string; href: string }[] = [
   { label: 'Episoder', href: '/episoder' },
   { label: 'Gjester', href: '/gjester' },
   { label: 'Ressurser', href: '/ressurser' },
+  { label: 'Kurs', href: '/kurs' },
   { label: 'Om', href: '/om' },
   { label: 'Vær Varsom', href: '/var-varsom' },
   { label: 'Foreslå en gjest', href: '/foresla-gjest' },
@@ -150,6 +151,27 @@ export type ResourceTypeId = (typeof resourceTypes)[number]['id'];
 export function resourceTypeById(id: string) {
   return resourceTypes.find((t) => t.id === id);
 }
+
+/**
+ * Statuser for kurs. Interesse fra besøkende brukes til å avgjøre hvilke
+ * kurs som prioriteres og får fortgang.
+ */
+export const courseStatuses = {
+  vurderes: {
+    label: 'Under vurdering',
+    hint: 'Meld interesse – jo flere som vil ha kurset, desto raskere prioriteres det.',
+  },
+  planlagt: {
+    label: 'Planlagt',
+    hint: 'Kurset er besluttet og under utvikling. Meld interesse for å få beskjed først.',
+  },
+  apen: {
+    label: 'Påmelding åpen',
+    hint: 'Kurset er i gang – meld interesse for å bli kontaktet om plass.',
+  },
+} as const;
+
+export type CourseStatusId = keyof typeof courseStatuses;
 
 /**
  * Emnekategorier brukt til filtrering av episoder.

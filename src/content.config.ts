@@ -155,4 +155,35 @@ const resources = defineCollection({
     }),
 });
 
-export const collections = { episodes, guests, scripts, resources };
+/**
+ * Kurs – egne kurstilbud, adskilt fra Masterclass-episodene (som kun er et
+ * episodearkiv). Kursene settes opp her, og besøkende kan melde interesse.
+ * Interessen brukes til å prioritere hvilke kurs som får fortgang.
+ *
+ * Legg en .md-fil i `src/content/courses/`. Brødteksten beskriver kurset.
+ */
+const courses = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/courses' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      // Kort oppsummering vist på kurskortet.
+      summary: z.string(),
+      // Status i prosessen:
+      //  'vurderes'  – idé; interesse avgjør om det prioriteres
+      //  'planlagt'  – besluttet, under utvikling
+      //  'apen'      – påmelding/gjennomføring er i gang
+      status: z.enum(['vurderes', 'planlagt', 'apen']).default('vurderes'),
+      // Temaer kurset dekker.
+      topics: z.array(z.string()).default([]),
+      // Antatt format/omfang, f.eks. «Digitalt, 4 samlinger» (valgfritt).
+      format: z.string().optional(),
+      image: z.string().optional(),
+      imageAlt: z.string().optional(),
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      order: z.number().default(100),
+    }),
+});
+
+export const collections = { episodes, guests, scripts, resources, courses };

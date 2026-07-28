@@ -1,0 +1,165 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Form from '@/components/Form.astro';
+import { getCourses } from '@/lib/content';
+import { courseStatuses, site, canonicalUrl, breadcrumbList } from '@/data/site';
+
+export async function getStaticPaths() {
+  const courses = await getCourses();
+  return courses.map((course) => ({
+    params: { slug: course.id },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const d = course.data;
+const { Content } = await render(course);
+const st = courseStatuses[d.status];
+
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: d.title,
+  description: d.summary,
+  url: canonicalUrl(`/kurs/${course.id}`),
+  inLanguage: 'nb-NO',
+  provider: { '@type': 'Organization', name: site.name, url: canonicalUrl('/') },
+};
+
+const breadcrumb = breadcrumbList([
+  { name: 'Forsiden', path: '/' },
+  { name: 'Kurs', path: '/kurs' },
+  { name: d.title, path: `/kurs/${course.id}` },
+]);
+---
+
+<BaseLayout
+  title={`Kurs: ${d.title}`}
+  description={d.summary}
+  image={d.image}
+  imageAlt={d.imageAlt}
+  jsonLd={[courseJsonLd, breadcrumb]}
+>
+  <article class="course-page">
+    <div class="container container-narrow">
+      <a class="back-link" href="/kurs">← Alle kurs</a>
+
+      <div class="course-head">
+        <span class:list={['tag', `cstatus-${d.status}`]}>{st.label}</span>
+        {d.topics.map((t) => <span class="tag">{t}</span>)}
+      </div>
+
+      <h1>{d.title}</h1>
+      {d.format && <p class="course-format">{d.format}</p>}
+      <p class="lead">{d.summary}</p>
+
+      <p class="status-hint">{st.hint}</p>
+    </div>
+
+    <div class="container container-narrow">
+      <div class="prose course-content">
+        <Content />
+      </div>
+
+      <section class="interest" id="meld-interesse" aria-labelledby="interesse-heading">
+        <h2 id="interesse-heading">Meld interesse for kurset</h2>
+        <p class="muted interest-note">
+          Uforpliktende. Interessen brukes til å prioritere hvilke kurs som får
+          fortgang, og du får beskjed når kurset er klart.
+        </p>
+        <Form
+          formName={`kursinteresse-${course.id}`}
+          subject={`Kursinteresse – ${d.title}`}
+          submitLabel="Meld interesse"
+          successMessage="Takk! Interessen din er registrert – du hører fra oss når kurset er klart."
+        >
+          <input type="hidden" name="Kurs" value={d.title} />
+          <div class="field--row">
+            <div class="field">
+              <label for="ki-navn">Navn <span class="req">*</span></label>
+              <input id="ki-navn" name="Navn" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="ki-epost">E-post <span class="req">*</span></label>
+              <input id="ki-epost" name="E-post" type="email" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="ki-melding">Melding <span class="field__hint">(valgfritt – hva håper du kurset dekker?)</span></label>
+            <textarea id="ki-melding" name="Melding"></textarea>
+          </div>
+        </Form>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .course-page {
+    padding-top: clamp(1.2rem, 4vw, 2rem);
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--accent-strong);
+  }
+  .course-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .course-format {
+    margin: 0 0 0.9rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+  }
+  .status-hint {
+    margin: 1.2rem 0 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .course-content {
+    margin-top: clamp(1.6rem, 4vw, 2.4rem);
+    max-width: none;
+  }
+  .interest {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .interest h2 {
+    margin-bottom: 0.4rem;
+  }
+  .interest-note {
+    margin-bottom: 1.3rem;
+    font-size: 0.93rem;
+  }
+  .cstatus-vurderes {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .cstatus-planlagt {
+    background: var(--tag-masterclass-bg);
+    color: var(--tag-masterclass);
+  }
+  .cstatus-apen {
+    background: var(--tag-samtale-bg);
+    color: var(--tag-samtale);
+  }
+  .req {
+    color: var(--accent-strong);
+  }
+</style>

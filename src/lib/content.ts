@@ -42,6 +42,14 @@ export async function resourcesForEpisode(
   return list.filter((r) => r.data.episodes.some((e) => e.id === episodeId));
 }
 
+/** Alle kurs som ikke er draft, sortert etter order og tittel. */
+export async function getCourses(): Promise<CollectionEntry<'courses'>[]> {
+  const all = await getCollection('courses', ({ data }) => !data.draft);
+  return all.sort(
+    (a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'nb')
+  );
+}
+
 /** Alle manus som ikke er draft. */
 export async function getScripts(): Promise<CollectionEntry<'scripts'>[]> {
   return getCollection('scripts', ({ data }) => !data.draft);
