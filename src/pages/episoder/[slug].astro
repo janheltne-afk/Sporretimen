@@ -8,7 +8,7 @@ import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
 import { getEpisodes, scriptForEpisode, resourcesForEpisode } from '@/lib/content';
-import { formatById, site } from '@/data/site';
+import { formatById, site, canonicalUrl } from '@/data/site';
 import { formatDate } from '@/lib/utils';
 
 export async function getStaticPaths() {
@@ -38,9 +38,9 @@ const jsonLd = {
   '@type': 'PodcastEpisode',
   name: d.title,
   description: d.description,
-  url: new URL(`/episoder/${episode.id}`, site.url).href,
+  url: canonicalUrl(`/episoder/${episode.id}`),
   ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
-  partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: site.url },
+  partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: canonicalUrl('/') },
   ...(guest ? { actor: { '@type': 'Person', name: guest.data.name } } : {}),
 };
 ---

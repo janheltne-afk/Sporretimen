@@ -3,7 +3,7 @@ import { render, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import { getResources } from '@/lib/content';
-import { resourceTypeById, site } from '@/data/site';
+import { resourceTypeById, canonicalUrl } from '@/data/site';
 
 export async function getStaticPaths() {
   const resources = await getResources();
@@ -26,7 +26,7 @@ const jsonLd = {
   name: d.title,
   ...(d.author ? { author: { '@type': 'Person', name: d.author } } : {}),
   description: d.summary,
-  url: new URL(`/ressurser/${resource.id}`, site.url).href,
+  url: canonicalUrl(`/ressurser/${resource.id}`),
 };
 ---
 

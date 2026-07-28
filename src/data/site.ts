@@ -11,7 +11,7 @@ export const site = {
   tagline: 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
   description:
     'Spørretimen er en norsk podcast med personlige samtaler, lærerike Masterclass-episoder og korte forklaringer om yrker, erfaringer og temaer du alltid har ønsket å forstå bedre.',
-  url: 'https://sporretimen.no',
+  url: 'https://www.sporretimen.no',
   host: 'Jan Sindre Heltne',
   locale: 'nb_NO',
   lang: 'no',
@@ -24,6 +24,22 @@ export const site = {
   // Standard plassholderomslag for episoder uten eget bilde.
   placeholderImage: '/images/placeholder.jpg',
 } as const;
+
+/**
+ * Bygger en absolutt, kanonisk URL for en sti på hoveddomenet.
+ * Legger alltid på trailing slash slik at canonical matcher sitemap-et
+ * (@astrojs/sitemap genererer directory-URL-er med skråstrek til slutt).
+ */
+export function canonicalUrl(pathname = '/'): string {
+  const clean = pathname.split(/[?#]/)[0];
+  const withSlash = clean.endsWith('/') ? clean : `${clean}/`;
+  return new URL(withSlash, site.url).href;
+}
+
+/** Absolutt URL for en ressurs/bilde (uten trailing slash). */
+export function absoluteUrl(path: string): string {
+  return new URL(path, site.url).href;
+}
 
 /**
  * Skjemaoppsett.

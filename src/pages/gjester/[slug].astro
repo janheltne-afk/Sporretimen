@@ -4,7 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import { getGuests, getEpisodes, episodesForGuest, getScripts } from '@/lib/content';
-import { site } from '@/data/site';
+import { canonicalUrl } from '@/data/site';
 
 export async function getStaticPaths() {
   const guests = await getGuests();
@@ -34,7 +34,7 @@ const jsonLd = {
   name: d.name,
   jobTitle: d.role,
   description: d.intro,
-  url: new URL(`/gjester/${guest.id}`, site.url).href,
+  url: canonicalUrl(`/gjester/${guest.id}`),
 };
 ---
 

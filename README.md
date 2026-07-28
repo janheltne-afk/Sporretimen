@@ -249,15 +249,17 @@ src/
 ## Publisering
 
 `npm run build` lager en helt statisk nettside i `dist/`. Den kan legges på hvilken
-som helst statisk vert. Anbefalte alternativer for `sporretimen.no`:
+som helst statisk vert. Anbefalte alternativer for `www.sporretimen.no`:
 
-- **Netlify**, **Vercel** eller **Cloudflare Pages** – koble til Git-repoet, sett
-  byggekommando `npm run build` og publiseringsmappe `dist/`. Legg til domenet
-  `sporretimen.no` under domeneinnstillinger.
+- **Vercel**, **Netlify** eller **Cloudflare Pages** – koble til Git-repoet, sett
+  byggekommando `npm run build` og publiseringsmappe `dist/`. Legg til både
+  `sporretimen.no` og `www.sporretimen.no` under domeneinnstillinger, og la
+  `sporretimen.no` videresende permanent til hoveddomenet `www.sporretimen.no`.
 - Eller last opp innholdet i `dist/` manuelt til en hvilken som helst webhotell/CDN.
 
-Husk å oppdatere domenet i `astro.config.mjs`, `src/data/site.ts` og
-`public/robots.txt` hvis det endres.
+Hoveddomenet (med `www`) er satt ett sted: `SITE` i `astro.config.mjs` og `url` i
+`src/data/site.ts` (pluss `Sitemap:`-linjen i `public/robots.txt`). Derfra utledes
+alle canonical-URL-er, sitemap, Open Graph og JSON-LD automatisk.
 
 ---
 

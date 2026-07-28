@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Kanonisk nettadresse. Endre denne når produksjonsdomenet er klart.
-const SITE = 'https://sporretimen.no';
+// Kanonisk nettadresse (hoveddomene med www). Alt av sitemap, canonical,
+// Open Graph og JSON-LD utledes herfra.
+const SITE = 'https://www.sporretimen.no';
 
 // https://astro.build/config
 export default defineConfig({
