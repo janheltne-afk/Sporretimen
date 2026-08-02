@@ -17,7 +17,7 @@ order: 20
 
 Håvard Hasund er paramedisiner og har jobbet flere år i ambulansetjenesten i Oslo
 før han flyttet hjem til Volda. Det gir ham et uvanlig godt sammenligningsgrunnlag:
-hvordan er egentlig forskjellen på å jobbe prehospitalt i storbyen og i distriktet?
+hvordan er egentlig forskjellen på å jobbe i ambulansen i storbyen og i distriktet?
 
 Håvard har også vært med på Canada-ekspedisjonen, og deler erfaringer om sikkerhet,
 risikovurdering og beredskap på tur – sett med øynene til en som jobber med akutt
