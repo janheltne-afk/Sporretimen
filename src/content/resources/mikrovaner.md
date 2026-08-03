@@ -1,10 +1,11 @@
 ---
-title: Mikrovaner
+title: "Mikrovaner (Atomic Habits)"
 type: bok
 author: James Clear
 summary: >-
-  En av verdens mest solgte bøker om vaner. Hovedpoenget: små, nesten umerkelige
-  endringer gir store resultater over tid – hvis du bygger systemene riktig.
+  En av verdens mest solgte bøker om vaner, kjent på engelsk som «Atomic Habits».
+  Hovedpoenget: små, nesten umerkelige endringer gir store resultater over tid –
+  hvis du bygger systemene riktig.
 url: https://www.ark.no/produkt/boker/hobbyboker-og-fritid/mikrovaner-9788284190327
 categories:
   - Arbeidsliv
