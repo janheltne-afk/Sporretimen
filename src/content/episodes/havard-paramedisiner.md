@@ -30,6 +30,8 @@ takeaways:
 description: >-
   Håvard Hasund har jobbet som paramedisiner i både Oslo og Volda. En samtale om
   yrket, arbeidshverdagen og de store forskjellene mellom by og bygd.
+image: /images/episoder/paramedisin.jpg
+imageAlt: "Spørretimen: Paramedisin – livet når det gjelder. Ambulanse med blålys i bygate"
 featured: true
 related: []
 ---
