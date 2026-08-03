@@ -11,6 +11,8 @@ yrke: Lyd- og lystekniker
 description: >-
   En karrieresamtale om lyd- og lysyrket: veien inn i faget, arbeidshverdagen på
   konserter og turneer, og hva som skal til for å jobbe bak scenen.
+image: /images/episoder/lyd-og-lys.jpg
+imageAlt: "Spørretimen: Yrket som lyd- og lystekniker – tekniker ved mikserpult foran opplyst konsertscene"
 featured: true
 related: []
 ---
