@@ -152,6 +152,14 @@ export function resourceTypeById(id: string) {
 }
 
 /**
+ * Alle typene en ressurs hører til (hovedtype først, så eventuelle
+ * tilleggstyper). Brukes til merkelapper og filtrering.
+ */
+export function allResourceTypes(data: { type: string; alsoTypes?: string[] }): string[] {
+  return [data.type, ...(data.alsoTypes ?? [])];
+}
+
+/**
  * Statuser for kurs. Interesse fra besøkende brukes til å avgjøre hvilke
  * kurs som prioriteres og får fortgang.
  */

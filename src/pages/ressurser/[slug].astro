@@ -3,7 +3,7 @@ import { render, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import { getResources } from '@/lib/content';
-import { resourceTypeById, canonicalUrl, breadcrumbList } from '@/data/site';
+import { resourceTypeById, allResourceTypes, canonicalUrl, breadcrumbList } from '@/data/site';
 
 export async function getStaticPaths() {
   const resources = await getResources();
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { resource } = Astro.props;
 const d = resource.data;
 const { Content } = await render(resource);
-const type = resourceTypeById(d.type);
+const types = allResourceTypes(d);
 
 const episodes = (await Promise.all(d.episodes.map((ref) => getEntry(ref)))).filter(Boolean);
 
@@ -46,7 +46,9 @@ const jsonLd = [resourceJsonLd, breadcrumb];
       <a class="back-link" href="/ressurser">← Alle ressurser</a>
 
       <div class="resource-head">
-        <span class:list={['tag', `rtype-${d.type}`]}>{type?.label}</span>
+        {types.map((t) => (
+          <span class:list={['tag', `rtype-${t}`]}>{resourceTypeById(t)?.label}</span>
+        ))}
         {d.language && <span class="tag tag-lang">{d.language}</span>}
         {d.categories.map((c) => <span class="tag">{c}</span>)}
       </div>

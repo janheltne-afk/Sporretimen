@@ -1,14 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
-import { resourceTypeById } from '@/data/site';
+import { resourceTypeById, allResourceTypes } from '@/data/site';
 
 interface Props {
   resource: CollectionEntry<'resources'>;
 }
 const { resource } = Astro.props;
 const d = resource.data;
-const type = resourceTypeById(d.type);
+const types = allResourceTypes(d);
 
 // Første episode ressursen er nevnt i (for en liten «Fra»-lenke).
 const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefined;
@@ -18,7 +18,9 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
   <a class="resource__link" href={`/ressurser/${resource.id}`}>
     <div class="resource__body">
       <div class="resource__meta">
-        <span class:list={['tag', `rtype-${d.type}`]}>{type?.label}</span>
+        {types.map((t) => (
+          <span class:list={['tag', `rtype-${t}`]}>{resourceTypeById(t)?.label}</span>
+        ))}
         {d.language && <span class="resource__lang">{d.language}</span>}
       </div>
       <h3 class="resource__title">{d.title}</h3>

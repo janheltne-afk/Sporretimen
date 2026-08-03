@@ -3,10 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
 import { getResources, getCourses } from '@/lib/content';
-import { resourceTypes } from '@/data/site';
+import { resourceTypes, allResourceTypes } from '@/data/site';
 
 const resources = await getResources();
-const usedTypes = resourceTypes.filter((t) => resources.some((r) => r.data.type === t.id));
+const usedTypes = resourceTypes.filter((t) =>
+  resources.some((r) => allResourceTypes(r.data).includes(t.id))
+);
 const showFilters = usedTypes.length > 1;
 const courses = await getCourses();
 ---
@@ -51,7 +53,7 @@ const courses = await getCourses();
 
             <div class="grid grid-3" id="resource-grid">
               {resources.map((r) => (
-                <div class="resource-item" data-type={r.data.type}>
+                <div class="resource-item" data-type={allResourceTypes(r.data).join('|')}>
                   <ResourceCard resource={r} />
                 </div>
               ))}
@@ -210,7 +212,8 @@ const courses = await getCourses();
   function apply() {
     let visible = 0;
     items.forEach((item) => {
-      const show = active === 'alle' || item.dataset.type === active;
+      const types = (item.dataset.type ?? '').split('|');
+      const show = active === 'alle' || types.includes(active);
       item.hidden = !show;
       if (show) visible++;
     });

@@ -1,6 +1,8 @@
 ---
 title: Oddbjørn By – Memo og husketeknikk
 type: husketeknikk
+alsoTypes:
+  - bok
 author: Oddbjørn By
 summary: >-
   Memo-bøkene til Oddbjørn By lærer bort praktiske husketeknikker – metoder for å

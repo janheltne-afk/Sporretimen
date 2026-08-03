@@ -133,8 +133,13 @@ const resources = defineCollection({
   schema: () =>
     z.object({
       title: z.string(),
-      // Type styrer merkelapp og filter. Se `resourceTypes` i src/data/site.ts.
+      // Hovedtype – styrer hovedmerkelappen. Se `resourceTypes` i src/data/site.ts.
       type: z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel', 'podkast']),
+      // Valgfrie tilleggstyper. Ressursen dukker da opp under flere filtre –
+      // f.eks. en husketeknikk-ressurs som også består av bøker.
+      alsoTypes: z
+        .array(z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel', 'podkast']))
+        .default([]),
       // Angi at ressursen er på et annet språk enn norsk (f.eks. «Engelsk»).
       language: z.string().optional(),
       // Forfatter (mest aktuelt for bøker).
