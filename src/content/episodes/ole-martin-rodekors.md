@@ -9,6 +9,8 @@ categories:
 description: >-
   Ole-Martin Iversen forteller om veien inn i frivilligheten og Røde Kors, hva det
   innebærer og hva de gjør – ut fra egne, personlige erfaringer.
+image: /images/episoder/rodekors-frivillighet.jpg
+imageAlt: "Spørretimen: Frivilligheten og veien inn i Røde Kors – frivillig i rød jakke ser utover fjell og fjord"
 featured: true
 related: []
 ---
