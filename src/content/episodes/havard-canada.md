@@ -27,6 +27,8 @@ takeaways:
 description: >-
   Håvard Hasund forteller om Canada-ekspedisjonen: turen, opplevelsene og hvordan
   det er å være på tur langt fra hjelp når du selv jobber med akutt helsehjelp.
+image: /images/episoder/kanada-ekspedisjon.jpg
+imageAlt: "Spørretimen: Kanada-ekspedisjon – fjell, innsjø og kanadisk flagg"
 featured: true
 related:
   - havard-paramedisiner
