@@ -1,0 +1,246 @@
+---
+import { supabase } from '@/data/supabase';
+
+/**
+ * Terningkast (1–6) for en episode.
+ * Leser gjennomsnitt fra Supabase og lar besøkende avgi sin egen stemme.
+ */
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+
+// Øyne-plassering for hver terningverdi (koordinater i et 100x100-rutenett)
+const pips: Record<number, [number, number][]> = {
+  1: [[50, 50]],
+  2: [
+    [30, 30],
+    [70, 70],
+  ],
+  3: [
+    [30, 30],
+    [50, 50],
+    [70, 70],
+  ],
+  4: [
+    [30, 30],
+    [70, 30],
+    [30, 70],
+    [70, 70],
+  ],
+  5: [
+    [30, 30],
+    [70, 30],
+    [50, 50],
+    [30, 70],
+    [70, 70],
+  ],
+  6: [
+    [30, 25],
+    [70, 25],
+    [30, 50],
+    [70, 50],
+    [30, 75],
+    [70, 75],
+  ],
+};
+const values = [1, 2, 3, 4, 5, 6];
+---
+
+<section
+  class="terning"
+  aria-labelledby="terning-heading"
+  data-slug={slug}
+  data-url={supabase.url}
+  data-key={supabase.key}
+>
+  <h2 id="terning-heading">Hva synes du om episoden?</h2>
+  <p class="terning__intro muted">Gi episoden et terningkast fra 1 til 6.</p>
+
+  <div class="terning__dice" role="group" aria-label="Gi terningkast">
+    {
+      values.map((v) => (
+        <button
+          type="button"
+          class="die"
+          data-value={v}
+          aria-label={`Gi terningkast ${v}`}
+          aria-pressed="false"
+        >
+          <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
+            <rect x="4" y="4" width="92" height="92" rx="18" class="die__face" />
+            {pips[v].map(([cx, cy]) => (
+              <circle cx={cx} cy={cy} r="8.5" class="die__pip" />
+            ))}
+          </svg>
+        </button>
+      ))
+    }
+  </div>
+
+  <p class="terning__result" data-role="result" aria-live="polite">Laster …</p>
+</section>
+
+<style>
+  .terning {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+  }
+  .terning h2 {
+    margin-bottom: 0.3rem;
+  }
+  .terning__intro {
+    margin: 0 0 1.2rem;
+    font-size: 0.95rem;
+  }
+  .terning__dice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .die {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.15s ease;
+  }
+  .die:hover:not(:disabled) {
+    transform: translateY(-3px);
+  }
+  .die:disabled {
+    cursor: default;
+  }
+  .die__face {
+    fill: var(--surface);
+    stroke: var(--line-strong);
+    stroke-width: 3;
+    transition: fill 0.15s ease, stroke 0.15s ease;
+  }
+  .die__pip {
+    fill: var(--ink-soft);
+    transition: fill 0.15s ease;
+  }
+  .die:hover:not(:disabled) .die__face {
+    stroke: var(--accent);
+  }
+  .die[aria-pressed='true'] .die__face {
+    fill: var(--accent);
+    stroke: var(--accent);
+  }
+  .die[aria-pressed='true'] .die__pip {
+    fill: var(--on-accent);
+  }
+  .terning__result {
+    margin: 1.1rem 0 0;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+  }
+  .terning__result strong {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.terning');
+  if (root) {
+    const slug = root.dataset.slug!;
+    const url = root.dataset.url!;
+    const key = root.dataset.key!;
+    const result = root.querySelector<HTMLElement>('[data-role="result"]')!;
+    const dice = Array.from(root.querySelectorAll<HTMLButtonElement>('.die'));
+    const storageKey = `sporretimen-terning-${slug}`;
+
+    const headers = { apikey: key, Authorization: `Bearer ${key}` };
+
+    /** Stabil, anonym nøkkel per nettleser – hindrer trivielle dobbeltstemmer. */
+    function voterKey(): string {
+      let k = '';
+      try {
+        k = localStorage.getItem('sporretimen-voter') ?? '';
+        if (!k) {
+          k = crypto.randomUUID().replace(/-/g, '');
+          localStorage.setItem('sporretimen-voter', k);
+        }
+      } catch {
+        k = crypto.randomUUID().replace(/-/g, '');
+      }
+      return k;
+    }
+
+    function myVote(): number | null {
+      try {
+        const v = Number(localStorage.getItem(storageKey));
+        return v >= 1 && v <= 6 ? v : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function markVoted(value: number) {
+      dice.forEach((d) => {
+        const isMine = Number(d.dataset.value) === value;
+        d.setAttribute('aria-pressed', String(isMine));
+        d.disabled = true;
+      });
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch(
+          `${url}/rest/v1/rating_stats?episode_slug=eq.${encodeURIComponent(slug)}&select=average,vote_count`,
+          { headers }
+        );
+        const rows = await res.json();
+        const stats = Array.isArray(rows) ? rows[0] : undefined;
+        const mine = myVote();
+        if (stats && stats.vote_count > 0) {
+          const label = stats.vote_count === 1 ? '1 terningkast' : `${stats.vote_count} terningkast`;
+          result.innerHTML = `Snitt: <strong>${stats.average}</strong> av 6 · ${label}`;
+        } else {
+          result.textContent = 'Ingen har kastet terning ennå – bli den første!';
+        }
+        if (mine) {
+          markVoted(mine);
+          result.innerHTML += ` · Du ga <strong>${mine}</strong>`;
+        }
+      } catch {
+        result.textContent = 'Klarte ikke å hente terningkast akkurat nå.';
+      }
+    }
+
+    async function vote(value: number) {
+      dice.forEach((d) => (d.disabled = true));
+      try {
+        const res = await fetch(`${url}/rest/v1/ratings`, {
+          method: 'POST',
+          headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ episode_slug: slug, rating: value, voter_key: voterKey() }),
+        });
+        if (!res.ok && res.status !== 409) throw new Error('feil');
+        try {
+          localStorage.setItem(storageKey, String(value));
+        } catch {
+          /* ignorer */
+        }
+        markVoted(value);
+        await loadStats();
+      } catch {
+        result.textContent = 'Klarte ikke å registrere terningkastet. Prøv igjen senere.';
+        dice.forEach((d) => (d.disabled = false));
+      }
+    }
+
+    dice.forEach((d) =>
+      d.addEventListener('click', () => vote(Number(d.dataset.value)))
+    );
+
+    loadStats();
+  }
+</script>

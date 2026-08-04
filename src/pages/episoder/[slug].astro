@@ -7,6 +7,8 @@ import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
+import Terningkast from '@/components/Terningkast.astro';
+import Comments from '@/components/Comments.astro';
 import { getEpisodes, scriptForEpisode, resourcesForEpisode } from '@/lib/content';
 import { formatById, site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { formatDate } from '@/lib/utils';
@@ -263,6 +265,15 @@ const jsonLd = [episodeJsonLd, breadcrumb];
             ))}
           </div>
         </section>
+      )
+    }
+
+    {
+      d.status === 'publisert' && (
+        <div class="container container-narrow">
+          <Terningkast slug={episode.id} />
+          <Comments slug={episode.id} />
+        </div>
       )
     }
 

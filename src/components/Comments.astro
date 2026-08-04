@@ -1,0 +1,296 @@
+---
+import { supabase } from '@/data/supabase';
+
+/**
+ * Kommentarfelt for en episode. Navn er påkrevd.
+ * Kommentarer vises umiddelbart, men kan skjules eller slettes av redaksjonen
+ * i Supabase-dashboardet (feltet `is_hidden`).
+ */
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+
+<section
+  class="kommentarer"
+  aria-labelledby="kommentar-heading"
+  data-slug={slug}
+  data-url={supabase.url}
+  data-key={supabase.key}
+>
+  <h2 id="kommentar-heading">Kommentarer</h2>
+  <p class="kommentarer__intro muted">
+    Har du tanker om episoden? Skriv gjerne en kommentar. Vi ber om at du bruker
+    navnet ditt og holder en god tone.
+  </p>
+
+  <form class="kommentarer__form card" novalidate>
+    <div class="field--row">
+      <div class="field">
+        <label for="k-navn">Navn <span class="req">*</span></label>
+        <input id="k-navn" name="navn" type="text" required maxlength="60" autocomplete="name" />
+      </div>
+    </div>
+    <div class="field">
+      <label for="k-tekst">Kommentar <span class="req">*</span></label>
+      <textarea id="k-tekst" name="tekst" required maxlength="2000" rows="4"></textarea>
+    </div>
+    <!-- Enkel spam-felle -->
+    <div class="kommentarer__hp" aria-hidden="true">
+      <label>La stå tomt<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+    </div>
+    <div class="kommentarer__foot">
+      <button type="submit" class="btn">Send kommentar</button>
+      <p class="kommentarer__status" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <div class="kommentarer__list" data-role="list">
+    <p class="muted">Laster kommentarer …</p>
+  </div>
+
+  <p class="kommentarer__note muted">
+    Spørretimen forbeholder seg retten til å fjerne kommentarer som er
+    sjikanerende, krenkende eller på annen måte i strid med god skikk.
+  </p>
+</section>
+
+<style>
+  .kommentarer {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    padding-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .kommentarer h2 {
+    margin-bottom: 0.3rem;
+  }
+  .kommentarer__intro {
+    margin: 0 0 1.3rem;
+    font-size: 0.95rem;
+  }
+  .kommentarer__form {
+    padding: clamp(1.2rem, 3vw, 1.7rem);
+    display: grid;
+    gap: 1rem;
+  }
+  .kommentarer .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .kommentarer label {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .kommentarer input[type='text'],
+  .kommentarer textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+  }
+  .kommentarer textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+  .kommentarer input:focus,
+  .kommentarer textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .kommentarer input[aria-invalid='true'],
+  .kommentarer textarea[aria-invalid='true'] {
+    border-color: #c0392b;
+  }
+  .req {
+    color: var(--accent-strong);
+  }
+  .kommentarer__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .kommentarer__foot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .kommentarer__status {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .kommentarer__status.is-error {
+    color: #c0392b;
+  }
+  .kommentarer__status.is-success {
+    color: var(--tag-samtale);
+    font-weight: 600;
+  }
+  .kommentarer__list {
+    margin-top: 1.8rem;
+    display: grid;
+    gap: 1rem;
+  }
+  .kommentar {
+    padding: 1.1rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .kommentar__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+  }
+  .kommentar__name {
+    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+  .kommentar__date {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+  .kommentar__body {
+    margin: 0;
+    color: var(--ink-soft);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .kommentarer__note {
+    margin-top: 1.6rem;
+    font-size: 0.85rem;
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.kommentarer');
+  if (root) {
+    const slug = root.dataset.slug!;
+    const url = root.dataset.url!;
+    const key = root.dataset.key!;
+    const form = root.querySelector<HTMLFormElement>('form')!;
+    const list = root.querySelector<HTMLElement>('[data-role="list"]')!;
+    const status = root.querySelector<HTMLElement>('.kommentarer__status')!;
+    const headers = { apikey: key, Authorization: `Bearer ${key}` };
+
+    const setStatus = (msg: string, kind: '' | 'error' | 'success' = '') => {
+      status.textContent = msg;
+      status.className = 'kommentarer__status' + (kind ? ` is-${kind}` : '');
+    };
+
+    const dateFmt = new Intl.DateTimeFormat('nb-NO', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
+    /** Setter tekst trygt (unngår HTML-injeksjon fra kommentarer). */
+    function render(rows: { author_name: string; body: string; created_at: string }[]) {
+      list.textContent = '';
+      if (!rows.length) {
+        const p = document.createElement('p');
+        p.className = 'muted';
+        p.textContent = 'Ingen kommentarer ennå. Bli den første til å si noe!';
+        list.append(p);
+        return;
+      }
+      for (const row of rows) {
+        const art = document.createElement('article');
+        art.className = 'kommentar';
+
+        const head = document.createElement('div');
+        head.className = 'kommentar__head';
+
+        const name = document.createElement('span');
+        name.className = 'kommentar__name';
+        name.textContent = row.author_name;
+
+        const date = document.createElement('span');
+        date.className = 'kommentar__date';
+        date.textContent = dateFmt.format(new Date(row.created_at));
+
+        head.append(name, date);
+
+        const body = document.createElement('p');
+        body.className = 'kommentar__body';
+        body.textContent = row.body;
+
+        art.append(head, body);
+        list.append(art);
+      }
+    }
+
+    async function load() {
+      try {
+        const res = await fetch(
+          `${url}/rest/v1/comments?episode_slug=eq.${encodeURIComponent(slug)}` +
+            `&select=author_name,body,created_at&order=created_at.desc&limit=200`,
+          { headers }
+        );
+        render(await res.json());
+      } catch {
+        list.textContent = '';
+        const p = document.createElement('p');
+        p.className = 'muted';
+        p.textContent = 'Klarte ikke å laste kommentarer akkurat nå.';
+        list.append(p);
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const hp = form.querySelector<HTMLInputElement>('[name="_gotcha"]');
+      if (hp?.value) return;
+
+      const navn = form.querySelector<HTMLInputElement>('#k-navn')!;
+      const tekst = form.querySelector<HTMLTextAreaElement>('#k-tekst')!;
+      let ok = true;
+      for (const el of [navn, tekst]) {
+        const valid = el.value.trim().length >= 2;
+        el.setAttribute('aria-invalid', valid ? 'false' : 'true');
+        if (!valid && ok) {
+          el.focus();
+          ok = false;
+        }
+      }
+      if (!ok) {
+        setStatus('Fyll inn navn og kommentar (minst to tegn).', 'error');
+        return;
+      }
+
+      setStatus('Sender …');
+      try {
+        const res = await fetch(`${url}/rest/v1/comments`, {
+          method: 'POST',
+          headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({
+            episode_slug: slug,
+            author_name: navn.value.trim(),
+            body: tekst.value.trim(),
+          }),
+        });
+        if (!res.ok) throw new Error('feil');
+        tekst.value = '';
+        setStatus('Takk for kommentaren!', 'success');
+        await load();
+      } catch {
+        setStatus('Klarte ikke å sende kommentaren. Prøv igjen senere.', 'error');
+      }
+    });
+
+    load();
+  }
+</script>

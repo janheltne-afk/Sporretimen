@@ -143,6 +143,35 @@ Interessemeldingene sendes via skjemaoppsettet (`forms` i `src/data/site.ts`) me
 kursnavnet i emnefeltet, så du kan telle interessen per kurs i innboksen eller
 skjematjenesten.
 
+### Terningkast og kommentarer (moderering)
+
+Publiserte episoder har terningkast (1–6) og kommentarfelt. Dataene ligger i
+Supabase-prosjektet **Sporretimen** (region eu-north-1).
+
+**Slik modererer du:**
+
+1. Logg inn på [supabase.com](https://supabase.com) → prosjektet **Sporretimen**
+2. Gå til **Table Editor** → tabellen `comments`
+3. For å fjerne en kommentar:
+   - **Skjul den:** sett `is_hidden` til `true` (kommentaren forsvinner fra
+     nettsiden, men beholdes i databasen – anbefalt, siden du da har historikk)
+   - **Slett den:** slett raden helt
+
+Kommentarer vises umiddelbart når de sendes inn. Publikum kan **kun lese og
+skrive** – de kan ikke endre eller slette noe. Det er sikret med Row Level
+Security i databasen, så nøkkelen som ligger i nettleseren kan ikke misbrukes.
+
+Tabellene:
+
+| Tabell | Innhold |
+| --- | --- |
+| `comments` | `episode_slug`, `author_name`, `body`, `is_hidden`, `created_at` |
+| `ratings` | `episode_slug`, `rating` (1–6), `voter_key`, `created_at` |
+| `rating_stats` | Visning: snitt og antall terningkast per episode |
+
+Tilkoblingen settes i `src/data/supabase.ts`, og kan overstyres med
+miljøvariablene `PUBLIC_SUPABASE_URL` og `PUBLIC_SUPABASE_KEY` i Vercel.
+
 ### Manus og spørsmål til en episode
 
 Hver episode kan ha et **manus** (spørsmål/disposisjon) som vises på en egen,
