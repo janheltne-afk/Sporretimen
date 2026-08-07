@@ -9,6 +9,7 @@ summary: >-
   huske navn, tall, fagstoff og språk. Anbefalt av Jan Sindre i podkasten.
 url: https://oby.no
 episodes:
+  - memoreringsteknikker-kortstokk
   - john-erik-legeyrket
 categories:
   - Utdanning

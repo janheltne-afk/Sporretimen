@@ -6,6 +6,7 @@ summary: >-
   godt, slik at kunnskapen blir lettere å hente frem. John Erik brukte den under
   medisinstudiet.
 episodes:
+  - memoreringsteknikker-kortstokk
   - john-erik-legeyrket
 categories:
   - Utdanning
