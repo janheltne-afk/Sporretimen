@@ -36,4 +36,4 @@ bedre enn tall og symboler, hva et **minnepalass** er, og hvordan det gjør det 
 å huske noe så krevende som en hel kortstokk.
 
 Vil du ha hele gjennomgangen med systemene og øvelsene, finner du den i
-Masterclass-episoden om samme tema.
+Lær noe nytt-episoden om samme tema.

@@ -23,8 +23,8 @@
   /* Formatfarger – diskrete, én familie */
   --tag-samtale: #2f6f5e;
   --tag-samtale-bg: #e3efe9;
-  --tag-masterclass: #7a4bb0;
-  --tag-masterclass-bg: #ece2f6;
+  --tag-laer: #7a4bb0;
+  --tag-laer-bg: #ece2f6;
   --tag-kort: #b5561f;
   --tag-kort-bg: #f8e5d6;
 
@@ -66,8 +66,8 @@
 
   --tag-samtale: #7fc9b3;
   --tag-samtale-bg: #1c2b27;
-  --tag-masterclass: #c3a2ea;
-  --tag-masterclass-bg: #241c30;
+  --tag-laer: #c3a2ea;
+  --tag-laer-bg: #241c30;
   --tag-kort: #eaa06f;
   --tag-kort-bg: #2e2118;
 
@@ -94,8 +94,8 @@
     --on-accent: #1a1310;
     --tag-samtale: #7fc9b3;
     --tag-samtale-bg: #1c2b27;
-    --tag-masterclass: #c3a2ea;
-    --tag-masterclass-bg: #241c30;
+    --tag-laer: #c3a2ea;
+    --tag-laer-bg: #241c30;
     --tag-kort: #eaa06f;
     --tag-kort-bg: #2e2118;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -333,9 +333,9 @@ main {
   background: var(--tag-samtale-bg);
   color: var(--tag-samtale);
 }
-.tag-masterclass {
-  background: var(--tag-masterclass-bg);
-  color: var(--tag-masterclass);
+.tag-laer-noe-nytt {
+  background: var(--tag-laer-bg);
+  color: var(--tag-laer);
 }
 .tag-kort-forklart {
   background: var(--tag-kort-bg);

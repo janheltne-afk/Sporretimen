@@ -28,10 +28,10 @@ const episodes = defineCollection({
     z.object({
       title: z.string(),
       // Format avgjør hvilken «type» episoden er.
-      format: z.enum(['samtale', 'masterclass', 'kort-forklart']),
+      format: z.enum(['samtale', 'laer-noe-nytt', 'kort-forklart']),
       // status: bruk 'kommende' for planlagte episoder som ikke er publisert ennå.
       status: z.enum(['publisert', 'kommende']).default('kommende'),
-      // Referanse til en gjest (valgfritt – Masterclass/Kort forklart kan stå alene).
+      // Referanse til en gjest (valgfritt – Lær noe nytt / Kort forklart kan stå alene).
       guest: reference('guests').optional(),
       categories: z.array(z.string()).default([]),
       // Yrket episoden handler om (for karriere-episoder), f.eks. «Lege».
@@ -161,7 +161,7 @@ const resources = defineCollection({
 });
 
 /**
- * Kurs – egne kurstilbud, adskilt fra Masterclass-episodene (som kun er et
+ * Kurs – egne kurstilbud, adskilt fra Lær noe nytt-episodene (som kun er et
  * episodearkiv). Kursene settes opp her, og besøkende kan melde interesse.
  * Interessen brukes til å prioritere hvilke kurs som får fortgang.
  *

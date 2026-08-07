@@ -1,6 +1,6 @@
 ---
-title: "Masterclass: Memoreringsteknikker – lær å memorere en kortstokk"
-format: masterclass
+title: "Lær noe nytt: Memoreringsteknikker – lær å memorere en kortstokk"
+format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-07
 categories:
@@ -26,11 +26,11 @@ takeaways:
   - De samme teknikkene fungerer på navn, tall, fagstoff og presentasjoner.
 duration: "Cirka 45 min"
 description: >-
-  Hvordan klarer noen å memorere en hel kortstokk? En praktisk Masterclass om
+  Hvordan klarer noen å memorere en hel kortstokk? En praktisk gjennomgang av
   husketeknikk: minnepalass, bildekoding og systemene som gjør det mulig – og
   hvordan du kan bruke dem selv.
-image: /images/episoder/memorering-masterclass.jpg
-imageAlt: "Spørretimen Masterclass: Memoreringsteknikker – lær å memorere en kortstokk"
+image: /images/episoder/memorering-laer-noe-nytt.jpg
+imageAlt: "Spørretimen Lær noe nytt: Memoreringsteknikker – lær å memorere en kortstokk"
 links:
   youtube: https://youtu.be/JMAWf7hJT-o
   spotify: https://open.spotify.com/episode/6NKXd3VkGM9MKhIySnpAtC
@@ -42,7 +42,7 @@ related:
 Hvordan er det mulig å huske 52 kort i riktig rekkefølge? Svaret er verken talent
 eller fotografisk hukommelse – det er et **system**, og det kan læres.
 
-I denne Masterclass-episoden går Jan Sindre gjennom memoreringsteknikkene som ligger
+I denne Lær noe nytt-episoden går Jan Sindre gjennom memoreringsteknikkene som ligger
 bak: hvordan du bygger et **minnepalass**, hvordan hvert kort gjøres om til et
 tydelig bilde, og hvordan disse bildene plasseres langs en rute du allerede kjenner.
 Vi ser også på **PAO-systemet**, der hvert kort får en person, en handling og et

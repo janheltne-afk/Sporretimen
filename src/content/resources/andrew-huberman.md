@@ -8,7 +8,7 @@ summary: >-
   motivasjon og helse – med podkast, gratis nyhetsbrev og praktiske protokoller.
 url: https://www.hubermanlab.com/
 episodes:
-  - sovn-masterclass
+  - sovn-laer-noe-nytt
 categories:
   - Helse
 featured: true

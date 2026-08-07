@@ -7,7 +7,7 @@ description: "Hvordan memorere en kortstokk? Jan Sindre forklarer minnepalass-te
 updated: 2026-08-05
 ---
 
-Dette er en Masterclass om **memoreringsteknikker** – nærmere bestemt hvordan du kan
+Dette er en Lær noe nytt-episode om **memoreringsteknikker** – nærmere bestemt hvordan du kan
 lære deg å huske en hel kortstokk i riktig rekkefølge. Metoden er den samme som
 kalles **minnepalass** (også kjent som loci-metoden), og den ble så vidt nevnt i
 episoden med lege John Erik.

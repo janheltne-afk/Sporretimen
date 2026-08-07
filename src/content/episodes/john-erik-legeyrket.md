@@ -43,7 +43,7 @@ links:
   spotify: https://open.spotify.com/episode/73OXh7269Een3JioMSk1Ns
 featured: true
 related:
-  - sovn-masterclass
+  - sovn-laer-noe-nytt
   - sovn-kort-forklart
 ---
 
@@ -54,7 +54,7 @@ fastlegeyrket og psykiatri, og om presset og ansvaret som følger med.
 Vi kommer også innom livet utenfor jobben: reising, klatring og turen til
 Kilimanjaro.
 
-> Denne episoden inngår i en tematisk tredeling sammen med en Masterclass om søvn
+> Denne episoden inngår i en tematisk tredeling sammen med en Lær noe nytt-episode om søvn
 > og en Kort forklart-episode om samme tema.
 
 *Helseopplysninger omtales på et generelt nivå. Identifiserbare pasienthistorier

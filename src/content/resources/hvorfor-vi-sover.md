@@ -7,7 +7,7 @@ summary: >-
   hjerne og kropp – og hva som skjer når vi ikke får nok av den.
 url: https://www.ark.no/produkt/boker/fagboker/hvorfor-vi-sover-9788232803125
 episodes:
-  - sovn-masterclass
+  - sovn-laer-noe-nytt
 categories:
   - Helse
 featured: true

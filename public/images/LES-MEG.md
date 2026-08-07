@@ -3,7 +3,7 @@
 Legg bildefiler for episoder og gjester her, f.eks.:
 
 - `gjester/john-erik.jpg`
-- `episoder/sovn-masterclass.jpg`
+- `episoder/sovn-laer-noe-nytt.jpg`
 
 Referer til dem i Markdown-filene med absolutt sti, f.eks. `/images/gjester/john-erik.jpg`.
 

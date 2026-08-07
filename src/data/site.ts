@@ -10,7 +10,7 @@ export const site = {
   name: 'Spørretimen',
   tagline: 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
   description:
-    'Spørretimen er en norsk podcast med personlige samtaler, lærerike Masterclass-episoder og korte forklaringer om yrker, erfaringer og temaer du alltid har ønsket å forstå bedre.',
+    'Spørretimen er en norsk podcast med personlige samtaler, lærerike Lær noe nytt-episoder og korte forklaringer om yrker, erfaringer og temaer du alltid har ønsket å forstå bedre.',
   url: 'https://www.sporretimen.no',
   host: 'Jan Sindre Heltne',
   locale: 'nb_NO',
@@ -112,9 +112,9 @@ export const formats = [
     icon: 'chat',
   },
   {
-    id: 'masterclass',
-    label: 'Masterclass',
-    singular: 'Masterclass',
+    id: 'laer-noe-nytt',
+    label: 'Lær noe nytt',
+    singular: 'Lær noe nytt',
     tagline: 'Grundige forklaringer',
     description:
       'Lengre forklaringsepisoder der Jan Sindre går i dybden på et tema. Lærerike, praktiske og kildebaserte – forklart så vanlige lyttere kan henge med.',

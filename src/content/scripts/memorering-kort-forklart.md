@@ -7,7 +7,7 @@ description: "Hvordan memorere en kortstokk, kort forklart: del kortene i fire k
 updated: 2026-08-07
 ---
 
-Dette er kortversjonen av Masterclass-episoden om memoreringsteknikker. Her er hele
+Dette er kortversjonen av Lær noe nytt-episoden om memoreringsteknikker. Her er hele
 metoden for å memorere en kortstokk, forklart så raskt som mulig.
 
 ## Fire kategorier
@@ -54,4 +54,4 @@ bord, stå på hendene, slå kråke. Jo rarere, desto bedre sitter det.
 3. Plasser personene langs huskeruta di, i rekkefølge.
 
 Det var kort forklart. Vil du ha hele gjennomgangen med detaljene, finner du den i
-[Masterclass-episoden om memoreringsteknikker](/episoder/memoreringsteknikker-kortstokk).
+[Lær noe nytt-episoden om memoreringsteknikker](/episoder/memoreringsteknikker-kortstokk).

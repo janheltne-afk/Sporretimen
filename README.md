@@ -34,7 +34,7 @@ adressen (`/episoder/min-nye-episode`).
 ```markdown
 ---
 title: "Tittel på episoden"
-format: samtale            # samtale | masterclass | kort-forklart
+format: samtale            # samtale | laer-noe-nytt | kort-forklart
 status: kommende           # kommende | publisert
 guest: john-erik           # filnavn på en gjest (valgfritt)
 categories:
@@ -57,7 +57,7 @@ sources:                   # valgfritt – kilder og referanser
   - title: "Kilde 1"
     url: https://...
 related:                   # valgfritt – slugs til relaterte episoder
-  - sovn-masterclass
+  - sovn-laer-noe-nytt
 featured: false            # true = kan løftes frem på forsiden
 ---
 
@@ -122,7 +122,7 @@ Ressursen dukker automatisk opp i arkivet, filtrerbart på type, og under
 
 ### Nytt kurs (kursmodulen)
 
-Kursene (`/kurs`) er egne tilbud, adskilt fra Masterclass-episodene (som kun er
+Kursene (`/kurs`) er egne tilbud, adskilt fra Lær noe nytt-episodene (som kun er
 et episodearkiv). Besøkende melder interesse per kurs, og interessen brukes til å
 prioritere hvilke kurs som får fortgang.
 
@@ -232,7 +232,7 @@ Alt som endres ofte ligger i **`src/data/site.ts`**:
 - **`nav`** – hovedmenyen
 - **`socials`** – lenker til YouTube, Spotify, sosiale medier (sett `url: null` for å
   skjule en lenke til den er klar)
-- **`formats`** – de tre formatene (Samtaler, Masterclass, Kort forklart)
+- **`formats`** – de tre formatene (Samtaler, Lær noe nytt, Kort forklart)
 - **`categories`** – emnekategorier for filtrering
 - **`forms`** – hvor kontakt-/forslagsskjemaene sender data (se under)
 
@@ -321,7 +321,7 @@ Strukturen er lagd for å vokse uten å bygges på nytt:
 
 - **Nyhetsbrev / medlemskap** – skjemakomponenten og `forms.endpoint` kan kobles mot
   en e-post- eller betalingstjeneste.
-- **Betalt Masterclass-arkiv** – legg til et `access: 'medlem'`-felt i
+- **Betalt Lær noe nytt-arkiv** – legg til et `access: 'medlem'`-felt i
   `content.config.ts` og skjul/lås innhold basert på det.
 - **Artikler og guider** – legg til en ny content collection etter samme mønster som
   `episodes`/`guests`.
