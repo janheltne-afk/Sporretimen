@@ -440,6 +440,35 @@ main {
   font-size: 0.9em;
 }
 
+/* Tabeller i innhold – scroller vannrett på små skjermer */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0;
+  font-size: 0.96rem;
+}
+.prose table :is(th, td) {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.prose thead th {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--line-strong);
+}
+.prose tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+.prose tbody tr:hover {
+  background: var(--surface-2);
+}
+
 /* Diskret innfelling ved scroll.
    Skjulttilstanden gjelder bare når JavaScript kjører (html.js), slik at
    innholdet alltid er synlig hvis JS er av eller feiler. Respekterer også

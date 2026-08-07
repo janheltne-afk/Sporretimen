@@ -75,18 +75,41 @@ Når jeg «ser» personen i rommet, vet jeg altså med én gang hvilken farge ko
 
 Jeg har koblet hver bokstav til et tall på en måte som er lett for meg å huske:
 
-- **T** → 2 (Tone, Tora, Thor)
-- **E** → 3 (Eva, Emil, Eline, Eskil)
-- **F** → 4 (Fabian, Frida, Fredrik)
-- **P** → 5 (et femtall snudd på hodet ligner en P)
-- **C** → 6 (Cecilie, Kristina, Krister)
-- **N** → 9 (Nils, Natalie)
-- **O** → 10 (o ligner en null)
-- **B** → knekt, **D** → dame, **K** → konge
+| Bokstav | Kort | Hvorfor |
+| --- | --- | --- |
+| T | 2 | T ligner et totall |
+| E | 3 | E ligner et tretall speilvendt |
+| F | 4 | F for fire |
+| P | 5 | et femtall snudd på hodet ligner en P |
+| C | 6 | C for seks (og Kr-navn) |
+| L | 7 | L ligner en sjuer |
+| B | 8 | B ligner et åttetall |
+| N | 9 | N for ni |
+| O | 10 | o ligner en null |
+| J | knekt | J for jack |
+| D | dame | D for dame |
+| A | ess | A for ess |
 
-Så: ser jeg en **ung kvinne** som heter **Tone** på sløyden, vet jeg at kortet er
-**hjerter to**. Ser jeg en **voksen mann** som heter **Fabian** i tekstilrommet, er
-det **kløver fire**.
+Kongelige personer blir automatisk **konge**, uansett forbokstav – det er lett å
+huske.
+
+## Slik ser det ut i praksis
+
+Her er starten på ruta mi, så du ser hvordan de tre lagene spiller sammen. Jeg bruker
+bare noen få eksempler – poenget er systemet, ikke hvem som står hvor.
+
+| Sted på ruta | Person | Hvem er det? | Kortet blir |
+| --- | --- | --- | --- |
+| Hovedinngangen | Eva, hopper opp og ned | Voksen kvinne | ♦ **Ruter 3** (E = 3) |
+| Sløyden | Tone, står og hamrer | Voksen kvinne | ♦ **Ruter 2** (T = 2) |
+| Tekstilrommet | Fabian, hopper på bordet | Voksen mann | ♣ **Kløver 4** (F = 4) |
+| Toalettet i gangen | Anders | Ung mann | ♠ **Spar ess** (A = ess) |
+| Gymsalen | Nils | Voksen mann | ♣ **Kløver 9** (N = 9) |
+| Trappa mot rektors kontor | Emil | Ung mann | ♠ **Spar 3** (E = 3) |
+| Ballbingen | Obama, klatrer i et tre | Voksen mann | ♣ **Kløver 10** (O = 10) |
+
+Legg merke til at jeg aldri trenger å huske selve kortet. Jeg husker **stedet**, og
+stedet gir meg personen. Personen gir meg fargen, og navnet gir meg verdien.
 
 ## Del 3: Bildene må være rare
 
@@ -119,7 +142,8 @@ av bokstav og alder.
 ## Del 5: Når du roter det til
 
 To av kortene mine har alltid vært vanskelige. Jeg har to personer med samme
-forbokstav – én ung og én voksen – og jeg blander dem fortsatt av og til. Det er
+forbokstav på L – én ung og én voksen – som altså blir **spar 7** og **kløver 7**.
+Hvem av dem som er hvilken, blander jeg fortsatt av og til. Det er
 verdt å vite: **du kommer til å huske nesten alt, men et par kort vil alltid være
 litt vanskelige.** Det er normalt.
 
