@@ -1,7 +1,8 @@
 ---
 title: "Masterclass: Memoreringsteknikker – lær å memorere en kortstokk"
 format: masterclass
-status: kommende
+status: publisert
+publishDate: 2026-08-07
 categories:
   - Utdanning
 topics:
@@ -30,6 +31,9 @@ description: >-
   hvordan du kan bruke dem selv.
 image: /images/episoder/memorering-masterclass.jpg
 imageAlt: "Spørretimen Masterclass: Memoreringsteknikker – lær å memorere en kortstokk"
+links:
+  youtube: https://youtu.be/JMAWf7hJT-o
+  spotify: https://open.spotify.com/episode/6NKXd3VkGM9MKhIySnpAtC
 featured: true
 related:
   - memorering-kort-forklart
