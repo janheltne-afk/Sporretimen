@@ -28,10 +28,11 @@ description: >-
   Hvordan klarer noen å memorere en hel kortstokk? En praktisk Masterclass om
   husketeknikk: minnepalass, bildekoding og systemene som gjør det mulig – og
   hvordan du kan bruke dem selv.
-image: /images/episoder/masterclass-brand.jpg
-imageAlt: Spørretimen Masterclass – Jan Sindre i studio
+image: /images/episoder/memorering-masterclass.jpg
+imageAlt: "Spørretimen Masterclass: Memoreringsteknikker – lær å memorere en kortstokk"
 featured: true
-related: []
+related:
+  - memorering-kort-forklart
 ---
 
 Hvordan er det mulig å huske 52 kort i riktig rekkefølge? Svaret er verken talent
