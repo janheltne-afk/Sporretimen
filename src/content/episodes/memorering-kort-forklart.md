@@ -24,6 +24,7 @@ image: /images/episoder/memorering-kort-forklart.jpg
 imageAlt: "Spørretimen Kort forklart: Memoreringsteknikker – lær å memorere en kortstokk"
 links:
   youtube: https://youtu.be/51r4urqPV34
+  spotify: https://open.spotify.com/episode/2UVW0zURM0OCGt5idKeTYY
 related:
   - memoreringsteknikker-kortstokk
 ---
