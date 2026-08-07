@@ -1,7 +1,8 @@
 ---
 title: "Kort forklart: Memoreringsteknikker"
 format: kort-forklart
-status: kommende
+status: publisert
+publishDate: 2026-08-07
 categories:
   - Utdanning
 topics:
@@ -21,6 +22,8 @@ description: >-
   bedre enn tall, og hvordan et minnepalass gjør det mulig å huske en kortstokk.
 image: /images/episoder/memorering-kort-forklart.jpg
 imageAlt: "Spørretimen Kort forklart: Memoreringsteknikker – lær å memorere en kortstokk"
+links:
+  youtube: https://youtu.be/51r4urqPV34
 related:
   - memoreringsteknikker-kortstokk
 ---
