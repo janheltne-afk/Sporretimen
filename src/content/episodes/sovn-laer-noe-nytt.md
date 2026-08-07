@@ -7,8 +7,8 @@ categories:
 description: >-
   En kommende Lær noe nytt-episode om søvn: hvorfor vi sover, hva som påvirker
   søvnkvaliteten, og hva som faktisk hjelper – forklart forståelig og kildebasert.
-image: /images/episoder/laer-noe-nytt-brand.jpg
-imageAlt: Spørretimen Lær noe nytt – Jan Sindre i studio
+image: /images/episoder/sovn-laer-noe-nytt.jpg
+imageAlt: "Spørretimen Lær noe nytt: Søvn – slik får du bedre søvn"
 related:
   - john-erik-legeyrket
   - sovn-kort-forklart
