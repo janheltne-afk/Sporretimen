@@ -15,7 +15,7 @@ const guest = d.guest ? await getEntry(d.guest) : undefined;
 const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDate);
 ---
 
-<article class="card ep">
+<article class:list={['card', 'ep', { 'ep--kommende': d.status === 'kommende' }]}>
   <a class="ep__cover-link" href={`/episoder/${episode.id}`} tabindex="-1" aria-hidden="true">
     <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} />
   </a>
@@ -53,6 +53,47 @@ const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDat
   }
   .ep__cover-link {
     display: block;
+    position: relative;
+  }
+
+  /* Kommende episoder dempes visuelt, så publiserte episoder trer tydeligere
+     frem. Teksten holdes fullt lesbar – kun omslaget tones ned. */
+  .ep--kommende {
+    box-shadow: none;
+  }
+  .ep--kommende .ep__cover-link :global(.cover) {
+    filter: saturate(0.55) brightness(0.82);
+    transition: filter 0.25s ease;
+  }
+  .ep--kommende .ep__cover-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--paper) 38%, transparent);
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  /* Full farge når kortet får oppmerksomhet */
+  .ep--kommende:hover .ep__cover-link :global(.cover),
+  .ep--kommende:focus-within .ep__cover-link :global(.cover) {
+    filter: none;
+  }
+  .ep--kommende:hover .ep__cover-link::after,
+  .ep--kommende:focus-within .ep__cover-link::after {
+    opacity: 0;
+  }
+  .ep--kommende .ep__title a {
+    color: var(--ink-soft);
+  }
+  .ep--kommende:hover .ep__title a {
+    color: var(--accent-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ep--kommende .ep__cover-link :global(.cover),
+    .ep--kommende .ep__cover-link::after {
+      transition: none;
+    }
   }
   .ep__body {
     display: flex;
