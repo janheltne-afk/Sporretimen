@@ -44,7 +44,7 @@ const courses = await getCourses();
               const st = courseStatuses[c.data.status];
               return (
                 <article class="card course">
-                  <a class="course__link" href={`/kurs/${c.id}`}>
+                  <a class="course__link" href={`/kurs/${c.id}/`}>
                     <div class="course__body">
                       <span class:list={['tag', `cstatus-${c.data.status}`]}>{st.label}</span>
                       <h3 class="course__title">{c.data.title}</h3>

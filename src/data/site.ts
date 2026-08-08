@@ -72,15 +72,15 @@ export const forms = {
  * Hovednavigasjon.
  */
 export const nav: { label: string; href: string }[] = [
-  { label: 'Episoder', href: '/episoder' },
-  { label: 'Gjester', href: '/gjester' },
-  { label: 'Ressurser', href: '/ressurser' },
-  { label: 'Om', href: '/om' },
-  { label: 'Vær Varsom', href: '/var-varsom' },
-  { label: 'Foreslå en gjest', href: '/foresla-gjest' },
-  { label: 'Bli gjest', href: '/bli-gjest' },
-  { label: 'Samarbeid', href: '/samarbeid' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Episoder', href: '/episoder/' },
+  { label: 'Gjester', href: '/gjester/' },
+  { label: 'Ressurser', href: '/ressurser/' },
+  { label: 'Om', href: '/om/' },
+  { label: 'Vær Varsom', href: '/var-varsom/' },
+  { label: 'Foreslå en gjest', href: '/foresla-gjest/' },
+  { label: 'Bli gjest', href: '/bli-gjest/' },
+  { label: 'Samarbeid', href: '/samarbeid/' },
+  { label: 'Kontakt', href: '/kontakt/' },
 ];
 
 /**

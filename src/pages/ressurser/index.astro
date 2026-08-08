@@ -82,12 +82,12 @@ const courses = await getCourses();
                 Under ligger noen eksempler på hva som kan settes opp – meld
                 interesse for dem du ville tatt, eller foreslå ditt eget tema.
               </p>
-              <a class="btn" href="/kurs">Se eksempler og meld interesse →</a>
+              <a class="btn" href="/kurs/">Se eksempler og meld interesse →</a>
             </div>
             <ul class="callout__list">
               {courses.slice(0, 4).map((c) => (
                 <li>
-                  <a href={`/kurs/${c.id}`}>{c.data.title}</a>
+                  <a href={`/kurs/${c.id}/`}>{c.data.title}</a>
                 </li>
               ))}
             </ul>

@@ -75,7 +75,7 @@ const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : und
 >
   <article class="manus">
     <div class="container">
-      <a class="back-link" href={`/episoder/${episode.id}`}>← Tilbake til episoden</a>
+      <a class="back-link" href={`/episoder/${episode.id}/`}>← Tilbake til episoden</a>
     </div>
 
     <header class="manus-hero">
@@ -117,7 +117,7 @@ const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : und
               <h2>{guest.data.name}</h2>
               <p class="mini-role">{guest.data.role}</p>
               {!guest.data.draft && (
-                <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}/`}>
                   Om gjesten
                 </a>
               )}

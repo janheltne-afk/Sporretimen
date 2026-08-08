@@ -62,7 +62,7 @@ const jsonLd = [personJsonLd, breadcrumb];
 >
   <article class="guest-page">
     <div class="container">
-      <a class="back-link" href="/gjester">← Alle gjester</a>
+      <a class="back-link" href="/gjester/">← Alle gjester</a>
     </div>
 
     <header class="guest-hero">
@@ -105,7 +105,7 @@ const jsonLd = [personJsonLd, breadcrumb];
               <ul class="manus-list">
                 {manusEpisodes.map((ep) => (
                   <li>
-                    <a href={`/episoder/${ep.id}/manus`}>{ep.data.title}</a>
+                    <a href={`/episoder/${ep.id}/manus/`}>{ep.data.title}</a>
                   </li>
                 ))}
               </ul>

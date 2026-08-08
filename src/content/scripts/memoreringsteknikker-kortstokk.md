@@ -207,4 +207,4 @@ deg ned og bruker mental kapasitet på å bygge bildene. Det er ikke lett – me
 virker.
 
 *Innholdet er praktisk kunnskap du kan øve på selv. Nevnte bøker finner du i
-[ressursarkivet](/ressurser).*
+[ressursarkivet](/ressurser/).*

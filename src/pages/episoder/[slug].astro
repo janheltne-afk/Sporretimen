@@ -86,7 +86,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
 >
   <article class="episode">
     <div class="container container-narrow">
-      <a class="back-link" href="/episoder">← Alle episoder</a>
+      <a class="back-link" href="/episoder/">← Alle episoder</a>
 
       <div class="episode__meta">
         <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
@@ -103,7 +103,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
         {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
         <span>{d.status === 'kommende' ? 'Publiseres senere' : formatDate(d.publishDate)}</span>
         <span aria-hidden="true">·</span>
-        <span>Programleder <a href="/om" class="episode__host">{site.host}</a></span>
+        <span>Programleder <a href="/om/" class="episode__host">{site.host}</a></span>
         {guest && <span aria-hidden="true">·</span>}
         {guest && <span>Gjest {guest.data.name}</span>}
       </p>
@@ -172,7 +172,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
 
         {
           script && (
-            <a class="manus-panel" href={`/episoder/${episode.id}/manus`}>
+            <a class="manus-panel" href={`/episoder/${episode.id}/manus/`}>
               <span class="manus-panel__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="24" height="24">
                   <path
@@ -237,14 +237,14 @@ const jsonLd = [episodeJsonLd, breadcrumb];
             <div class="episode__guest-actions">
               {
                 !guest.data.draft && (
-                  <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}`}>
+                  <a class="btn btn-secondary btn-sm" href={`/gjester/${guest.id}/`}>
                     Om gjesten
                   </a>
                 )
               }
               {
                 script && (
-                  <a class="btn btn-ghost btn-sm" href={`/episoder/${episode.id}/manus`}>
+                  <a class="btn btn-ghost btn-sm" href={`/episoder/${episode.id}/manus/`}>
                     {script.data.kind === 'transkribert' ? 'Les i tekst →' : 'Se manus →'}
                   </a>
                 )

@@ -54,4 +54,4 @@ bord, stå på hendene, slå kråke. Jo rarere, desto bedre sitter det.
 3. Plasser personene langs huskeruta di, i rekkefølge.
 
 Det var kort forklart. Vil du ha hele gjennomgangen med detaljene, finner du den i
-[Lær noe nytt-episoden om memoreringsteknikker](/episoder/memoreringsteknikker-kortstokk).
+[Lær noe nytt-episoden om memoreringsteknikker](/episoder/memoreringsteknikker-kortstokk/).
