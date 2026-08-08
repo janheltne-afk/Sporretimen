@@ -172,6 +172,27 @@ Tabellene:
 Tilkoblingen settes i `src/data/supabase.ts`, og kan overstyres med
 miljøvariablene `PUBLIC_SUPABASE_URL` og `PUBLIC_SUPABASE_KEY` i Vercel.
 
+### Varsle søkemotorer ved publisering (IndexNow)
+
+Etter at nye sider er lagt ut, kan du varsle søkemotorene med én gang i stedet
+for å vente på at de finner innholdet selv:
+
+```bash
+npm run build     # sitemap må være oppdatert først
+npm run indexnow  # sender alle adressene fra sitemap
+```
+
+**Hvem lytter?** Bing, Yandex, Naver, Seznam og Yep. Bings indeks driver blant
+annet ChatGPT Search og Copilot, og brukes av Perplexity – så dette er den
+raskeste veien inn i AI-søk.
+
+**Google støtter ikke IndexNow.** Der gjelder fortsatt sitemap + Google Search
+Console (send inn `https://www.sporretimen.no/sitemap-index.xml` og bruk
+«Be om indeksering» på viktige sider).
+
+Nøkkelen ligger som en tekstfil i `public/` og må bli liggende – søkemotorene
+henter den for å bekrefte at du eier domenet.
+
 ### Manus og spørsmål til en episode
 
 Hver episode kan ha et **manus** (spørsmål/disposisjon) som vises på en egen,
