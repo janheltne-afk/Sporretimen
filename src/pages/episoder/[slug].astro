@@ -11,7 +11,7 @@ import Terningkast from '@/components/Terningkast.astro';
 import Comments from '@/components/Comments.astro';
 import { getEpisodes, scriptForEpisode, resourcesForEpisode } from '@/lib/content';
 import { formatById, site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
-import { formatDate } from '@/lib/utils';
+import { formatDate, formatRelease } from '@/lib/utils';
 
 export async function getStaticPaths() {
   const episodes = await getEpisodes();
@@ -101,7 +101,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
       <p class="episode__facts muted">
         {d.duration && <span>{d.duration}</span>}
         {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
-        <span>{d.status === 'kommende' ? 'Publiseres senere' : formatDate(d.publishDate)}</span>
+        <span>{d.status === 'kommende' ? formatRelease(d.publishDate) : formatDate(d.publishDate)}</span>
         <span aria-hidden="true">·</span>
         <span>Programleder <a href="/om/" class="episode__host">{site.host}</a></span>
         {guest && <span aria-hidden="true">·</span>}

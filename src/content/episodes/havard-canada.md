@@ -2,6 +2,7 @@
 title: "Canada-ekspedisjonen – sett med paramedisinerens øyne"
 format: samtale
 status: kommende
+publishDate: 2026-08-16T07:00:00+02:00
 guest: havard-hasund
 categories:
   - Friluftsliv

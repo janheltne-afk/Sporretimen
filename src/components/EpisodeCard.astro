@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 import Cover from './Cover.astro';
 import { formatById } from '@/data/site';
-import { formatDate } from '@/lib/utils';
+import { formatDate, formatReleaseShort } from '@/lib/utils';
 
 interface Props {
   episode: CollectionEntry<'episodes'>;
@@ -12,7 +12,8 @@ const { episode } = Astro.props;
 const d = episode.data;
 const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
-const dateLabel = d.status === 'kommende' ? 'Kommende' : formatDate(d.publishDate);
+const dateLabel =
+  d.status === 'kommende' ? formatReleaseShort(d.publishDate) : formatDate(d.publishDate);
 ---
 
 <article class:list={['card', 'ep', { 'ep--kommende': d.status === 'kommende' }]}>

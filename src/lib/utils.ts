@@ -10,6 +10,39 @@ export function formatDate(date?: Date): string {
   }).format(date);
 }
 
+/**
+ * Formaterer et annonsert publiseringstidspunkt, f.eks.
+ * "Slippes søndag 16. august kl. 07:00". Brukes på kommende episoder der
+ * datoen er avklart. Uten dato faller den tilbake til "Publiseres senere".
+ */
+export function formatRelease(date?: Date): string {
+  if (!date) return 'Publiseres senere';
+  const day = new Intl.DateTimeFormat('nb-NO', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  }).format(date);
+  const time = new Intl.DateTimeFormat('nb-NO', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Oslo',
+  }).format(date);
+  return `Slippes ${day} kl. ${time}`;
+}
+
+/**
+ * Kort variant av `formatRelease` for episodekort, f.eks. "Slippes 16. aug.".
+ * Uten dato faller den tilbake til "Kommende".
+ */
+export function formatReleaseShort(date?: Date): string {
+  if (!date) return 'Kommende';
+  const day = new Intl.DateTimeFormat('nb-NO', {
+    day: 'numeric',
+    month: 'short',
+  }).format(date);
+  return `Slippes ${day}`;
+}
+
 /** Henter initialer fra et navn eller en tittel (maks 2 tegn). */
 export function initials(text: string): string {
   const words = text.trim().split(/\s+/).filter(Boolean);
