@@ -7,26 +7,34 @@ categories:
   - Friluftsliv
   - Helse
 topics:
-  - Canada-ekspedisjonen
+  - Kanoekspedisjon i Nord-Canada
   - Planlegging og forberedelser
-  - Helseberedskap på tur
-  - Risikovurdering og krisehåndtering
-  - Utstyr og førstehjelp
-  - Opplevelser og utfordringer underveis
+  - Risikovurdering og sikkerhet på tur
+  - Helseberedskap langt fra hjelp
+  - Bjørn, moskus og dyreliv
+  - Fiske etter canadarøye
+  - Strykpadling med kano
+  - Mat, vekt og kaloriregnskap
 questions:
   - Hva gikk Canada-ekspedisjonen egentlig ut på?
-  - Hvordan forbereder man seg på en lengre tur langt fra hjelp?
-  - Hva tenker en paramedisiner på som andre kanskje ikke tenker på?
-  - Hvordan vurderer man risiko når hjelpen er langt unna?
-  - Hva bør man ha med av førstehjelp på tur?
-  - Hva var de største opplevelsene og utfordringene underveis?
+  - Hvordan planlegger man en kanotur på 1500 km?
+  - Hva er den største risikoen på en slik tur?
+  - Hva bør man ha med av førstehjelp og sikkerhetsutstyr?
+  - Dekker vanlig reiseforsikring en ekspedisjon?
+  - Hvordan håndterer man møter med bjørn?
+  - Hvordan planlegger man mat for nesten femti dager?
+  - Hva ville han gjort annerledes neste gang?
 takeaways:
-  - God planlegging betyr mer enn utstyr når hjelpen er langt unna.
-  - Å jobbe med akutthelse endrer hvordan man vurderer risiko på tur.
-  - De fleste hendelser på tur kan forebygges med enkle vurderinger.
+  - Sett en dato først, og planlegg bakover derfra.
+  - Kanovelt og kaldt vann er den reelle risikoen – ikke bjørn.
+  - Bjørnespray er viktigere enn våpen.
+  - Vanlige norske reiseforsikringer unntar ekspedisjoner i nordkanadisk villmark.
+  - En nødsender redder deg ikke – du må klare deg selv til hjelpen kommer.
+  - Reis som én samlet gruppe, ikke som to.
+duration: "Cirka 1 time og 10 min"
 description: >-
-  Håvard Hasund forteller om Canada-ekspedisjonen: turen, opplevelsene og hvordan
-  det er å være på tur langt fra hjelp når du selv jobber med akutt helsehjelp.
+  Håvard Hasund padlet 1500 kilometer gjennom Nord-Canada på 47 dager. En samtale
+  om planleggingen, sikkerheten, bjørnemøtene og hva som faktisk skjedde der ute.
 image: /images/episoder/kanada-ekspedisjon.jpg
 imageAlt: "Spørretimen: Kanada-ekspedisjon – fjell, innsjø og kanadisk flagg"
 featured: true
