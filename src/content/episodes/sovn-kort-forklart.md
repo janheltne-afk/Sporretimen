@@ -1,7 +1,7 @@
 ---
 title: "Kort forklart: Hvordan sove bedre"
 format: kort-forklart
-status: kommende
+status: publisert
 publishDate: 2026-08-12T09:00:00+02:00
 categories:
   - Helse

@@ -1,7 +1,7 @@
 ---
 title: "Lær noe nytt: Hvordan sove bedre"
 format: laer-noe-nytt
-status: kommende
+status: publisert
 publishDate: 2026-08-12T08:00:00+02:00
 categories:
   - Helse

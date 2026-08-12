@@ -1,7 +1,6 @@
 ---
 episode: sovn-kort-forklart
 kind: transkribert
-draft: true
 worktitle: "Hvordan sove bedre – kort forklart"
 subtitle: "Prioriteringsrekkefølgen, den siste timen før leggetid og de norske årstidene"
 description: "Hvordan sove bedre, kort forklart: prioriteringsrekkefølgen fra nok søvn og fast oppståelsestid til lys, kveldsrutine og soverom – og hva som gjelder i norsk vinter og sommer."
