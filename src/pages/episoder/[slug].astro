@@ -28,7 +28,9 @@ const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 const script = await scriptForEpisode(episode.id);
 const resources = await resourcesForEpisode(episode.id);
-const hasEmbed = Boolean(d.links?.youtube || d.links?.spotify);
+// Spillere vises kun for publiserte episoder. Lenkene kan være kjent på forhånd
+// for kommende episoder, men en innebygd spiller ville da vist en feilmelding.
+const hasEmbed = d.status === 'publisert' && Boolean(d.links?.youtube || d.links?.spotify);
 
 // Relaterte episoder
 const related = (
