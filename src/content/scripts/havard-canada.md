@@ -1,11 +1,10 @@
 ---
 episode: havard-canada
 kind: transkribert
-draft: true
 worktitle: "1500 km med kano gjennom Canadas villmark"
 subtitle: "Håvard Hasund om planleggingen, sikkerheten, bjørnemøtene og 47 dager på elva mellom Yellowknife og Baker Lake"
 description: "Hvordan planlegger man en kanoekspedisjon på 1500 km i Nord-Canada? Håvard Hasund forteller om ruta, sikkerheten, maten, bjørnemøtene og hva han ville gjort annerledes."
-updated: 2026-08-09
+updated: 2026-08-15
 ---
 
 Sommeren 2025 padlet Håvard Hasund og fire andre **cirka 1500 kilometer** gjennom

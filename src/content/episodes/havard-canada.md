@@ -1,8 +1,8 @@
 ---
-title: "Canada-ekspedisjonen – sett med paramedisinerens øyne"
+title: "Ut i den kanadiske villmarken – 1500 km med kano"
 format: samtale
-status: kommende
-publishDate: 2026-08-16T07:00:00+02:00
+status: publisert
+publishDate: 2026-08-15T09:53:00+02:00
 guest: havard-hasund
 categories:
   - Friluftsliv
@@ -38,18 +38,24 @@ description: >-
   om planleggingen, sikkerheten, bjørnemøtene og hva som faktisk skjedde der ute.
 image: /images/episoder/kanada-ekspedisjon.jpg
 imageAlt: "Spørretimen: Kanada-ekspedisjon – fjell, innsjø og kanadisk flagg"
+links:
+  youtube: https://youtu.be/1okHu9l2DO0
+  spotify: https://open.spotify.com/episode/4dTyhvfnp0axmlMHLjWLsy
 featured: true
 related:
   - havard-paramedisiner
 ---
 
-Hva skjer når en som jobber med akutt helsehjelp til daglig drar på ekspedisjon langt
-fra nærmeste sykehus?
+Sommeren 2025 padlet Håvard Hasund og fire andre **1500 kilometer** gjennom villmarka
+i Nord-Canada – fra Yellowknife til Baker Lake, på 47 dager, uten å se folk underveis.
 
-Håvard Hasund forteller om Canada-ekspedisjonen – hvordan turen ble planlagt og
-gjennomført, de store opplevelsene og utfordringene underveis. Vi snakker også om
-turen sett fra et helsefaglig perspektiv: risikovurdering, beredskap, hva man tar med
-av førstehjelp, og hvordan yrkesbakgrunnen påvirker vurderingene man gjør ute.
+Vi går gjennom hele turen: hvor ideen kom fra, hvordan den ble planlagt over halvannet
+år, og hva de tok med av sikkerhetsutstyr, våpen og medisiner. Og så det som faktisk
+skjedde – fisket, moskusen, bæringen på fem kilometer, hagla som forsvant i et tjern,
+strykpadlingen, og grizzlybinna som reiste seg på to bein tretti meter unna.
 
-*Innholdet er generelle erfaringer og råd, ikke en erstatning for kvalifisert
-opplæring i førstehjelp eller friluftsliv.*
+Håvard er paramedisiner, så vi snakker også om hvordan man vurderer risiko når hjelpen
+er timer unna – og hvorfor kanovelt er langt farligere enn bjørn.
+
+*Innholdet er erfaringer fra én tur, ikke en erstatning for kvalifisert opplæring i
+friluftsliv, førstehjelp eller elvepadling.*
