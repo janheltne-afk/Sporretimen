@@ -7,6 +7,8 @@ summary: >-
   Hovedpoenget: små, nesten umerkelige endringer gir store resultater over tid –
   hvis du bygger systemene riktig.
 url: https://www.ark.no/produkt/boker/hobbyboker-og-fritid/mikrovaner-9788284190327
+episodes:
+  - mikrovaner-laer-noe-nytt
 categories:
   - Arbeidsliv
   - Helse
