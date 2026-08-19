@@ -38,8 +38,8 @@ description: >-
   Hvordan bygger man vaner som varer? En gjennomgang av James Clears Mikrovaner
   (Atomic Habits) – de fire reglene, 1 %-regelen, habit stacking,
   to-minuttersregelen og hvorfor du aldri skal bomme to ganger.
-image: /images/episoder/laer-noe-nytt-brand.jpg
-imageAlt: "Spørretimen Lær noe nytt"
+image: /images/episoder/mikrovaner-laer-noe-nytt.jpg
+imageAlt: "Spørretimen Lær noe nytt: Mikrovaner – små vaner, store resultater. Habit tracker, Atomic Habits-bok, vannglass og joggesko"
 links:
   youtube: https://youtu.be/IMNoHvKTgIM
   spotify: https://open.spotify.com/episode/3Hx3D5Zu4V7AZkmPPsKTCV
