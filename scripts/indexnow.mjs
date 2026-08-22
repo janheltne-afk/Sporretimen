@@ -22,7 +22,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 
-const KEY = 'd9e9170191720b537807ec0d1ed7f81e';
+const KEY = '755d3feccae34d558cab370115d31977';
 const HOST = 'www.sporretimen.no';
 const SITEMAP = 'dist/sitemap-0.xml';
 const STATE = 'scripts/indexnow-state.json';
