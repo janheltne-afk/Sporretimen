@@ -2,6 +2,8 @@
 name: Håvard Hasund
 role: Paramedisiner
 intro: Paramedisiner med flere år i ambulansetjenesten i Oslo, nå i Volda. Har også ekspedisjonserfaring fra Canada-turen.
+image: /images/gjester/havard-hasund.jpg
+imageAlt: "Håvard Hasund utendørs med klatretau, foran fjell og blå himmel"
 themes:
   - Paramedisineryrket
   - Ambulansetjenesten i by og bygd
