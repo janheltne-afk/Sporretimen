@@ -91,7 +91,10 @@ export const nav: { label: string; href: string }[] = [
 export const socials: { label: string; url: string | null; handle?: string }[] = [
   { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
-  { label: 'Apple Podcasts', url: null },
+  {
+    label: 'Apple Podcasts',
+    url: 'https://podcasts.apple.com/no/podcast/sp%C3%B8rretimen/id6795102836',
+  },
   { label: 'Instagram', url: 'https://www.instagram.com/sporretimen/', handle: '@sporretimen' },
   { label: 'TikTok', url: 'https://www.tiktok.com/@sporretimen', handle: '@sporretimen' },
   { label: 'Facebook', url: null },
