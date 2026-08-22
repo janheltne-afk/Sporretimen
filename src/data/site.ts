@@ -92,7 +92,7 @@ export const socials: { label: string; url: string | null; handle?: string }[] =
   { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
   { label: 'Apple Podcasts', url: null },
-  { label: 'Instagram', url: null, handle: '@sporretimen' },
+  { label: 'Instagram', url: 'https://www.instagram.com/sporretimen/', handle: '@sporretimen' },
   { label: 'TikTok', url: null, handle: '@sporretimen' },
   { label: 'Facebook', url: null },
   { label: 'LinkedIn', url: null },
