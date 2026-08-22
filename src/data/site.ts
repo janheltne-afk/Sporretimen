@@ -93,7 +93,7 @@ export const socials: { label: string; url: string | null; handle?: string }[] =
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
   { label: 'Apple Podcasts', url: null },
   { label: 'Instagram', url: 'https://www.instagram.com/sporretimen/', handle: '@sporretimen' },
-  { label: 'TikTok', url: null, handle: '@sporretimen' },
+  { label: 'TikTok', url: 'https://www.tiktok.com/@sporretimen', handle: '@sporretimen' },
   { label: 'Facebook', url: null },
   { label: 'LinkedIn', url: null },
 ];
