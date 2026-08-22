@@ -1,8 +1,13 @@
 ---
 /**
  * Lenker til lyd-/videoplattformer for en episode.
- * Viser bare de plattformene som faktisk har en adresse.
+ *
+ * Peker til selve episoden der vi har en episodelenke, og faller ellers
+ * tilbake til podkastens hovedside på plattformen. Slik får også kommende
+ * episoder en vei videre til å følge podkasten.
  */
+import { socials } from '@/data/site';
+
 interface Props {
   links?: {
     youtube?: string;
@@ -10,41 +15,177 @@ interface Props {
     apple?: string;
     annet?: string;
   };
+  title?: string;
 }
-const { links = {} } = Astro.props;
+const { links = {}, title = 'episoden' } = Astro.props;
 
-const items = [
-  { key: 'youtube', label: 'YouTube', url: links.youtube },
-  { key: 'spotify', label: 'Spotify', url: links.spotify },
-  { key: 'apple', label: 'Apple Podcasts', url: links.apple },
-  { key: 'annet', label: 'Annen plattform', url: links.annet },
-].filter((i) => i.url);
+const show = (label: string) => socials.find((s) => s.label === label)?.url ?? undefined;
+
+type Platform = {
+  id: 'youtube' | 'spotify' | 'apple' | 'annet';
+  label: string;
+  href: string;
+  /** true = lenken går til denne episoden, ikke til podkasten. */
+  direct: boolean;
+};
+
+const platforms = (
+  [
+    { id: 'youtube', label: 'YouTube', href: links.youtube ?? show('YouTube'), direct: Boolean(links.youtube) },
+    { id: 'spotify', label: 'Spotify', href: links.spotify ?? show('Spotify'), direct: Boolean(links.spotify) },
+    {
+      id: 'apple',
+      label: 'Apple Podcasts',
+      href: links.apple ?? show('Apple Podcasts'),
+      direct: Boolean(links.apple),
+    },
+    { id: 'annet', label: 'Annen plattform', href: links.annet, direct: Boolean(links.annet) },
+  ] as { id: Platform['id']; label: string; href?: string; direct: boolean }[]
+).filter((p): p is Platform => Boolean(p.href));
+
+// Er ingen av lenkene episodespesifikke, sender vi folk til podkasten – ikke
+// til en episode som ikke finnes ennå.
+const anyDirect = platforms.some((p) => p.direct);
+const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
 ---
 
 {
-  items.length > 0 ? (
-    <div class="platforms">
-      {items.map((i) => (
-        <a class="btn btn-secondary btn-sm" href={i.url} target="_blank" rel="noopener">
-          {i.label}
-        </a>
-      ))}
-    </div>
-  ) : (
-    <p class="platforms__pending muted">
-      Lenker til lyd og video legges ut når episoden publiseres.
-    </p>
+  platforms.length > 0 && (
+    <nav class="platforms" aria-label={anyDirect ? `Hør ${title} på andre plattformer` : 'Følg Spørretimen'}>
+      <p class="platforms__label">{heading}</p>
+      <ul class="platforms__list">
+        {platforms.map((p) => (
+          <li>
+            <a
+              class:list={['platform', `platform--${p.id}`]}
+              href={p.href}
+              target="_blank"
+              rel="noopener"
+              title={p.direct ? `Hør ${title} på ${p.label}` : `Spørretimen på ${p.label}`}
+            >
+              {p.id !== 'annet' && (
+                <span class="platform__icon" aria-hidden="true">
+                  {p.id === 'youtube' && (
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                      <path
+                        d="M22.5 7.2a2.7 2.7 0 0 0-1.9-1.9C18.9 4.8 12 4.8 12 4.8s-6.9 0-8.6.5A2.7 2.7 0 0 0 1.5 7.2 28 28 0 0 0 1 12a28 28 0 0 0 .5 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 8.6.5 8.6.5s6.9 0 8.6-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 23 12a28 28 0 0 0-.5-4.8z"
+                        fill="currentColor"
+                      />
+                      <path d="M9.8 15.3 15.5 12 9.8 8.7z" fill="#fff" />
+                    </svg>
+                  )}
+                  {p.id === 'spotify' && (
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                      <circle cx="12" cy="12" r="11" fill="currentColor" />
+                      <g fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round">
+                        <path d="M6.6 8.6c3.6-1 7.6-.7 10.8 1.1" />
+                        <path d="M7.3 12.2c3-.8 6.3-.5 9 1" />
+                        <path d="M8 15.6c2.4-.6 4.9-.4 7.1.8" />
+                      </g>
+                    </svg>
+                  )}
+                  {p.id === 'apple' && (
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                      <circle cx="12" cy="12" r="11" fill="currentColor" />
+                      <rect x="10.2" y="5.6" width="3.6" height="7.4" rx="1.8" fill="#fff" />
+                      <path
+                        d="M7.6 11.2a4.4 4.4 0 0 0 8.8 0"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                      <path d="M11.1 18.6l.5-3.5h.8l.5 3.5c.1.7-.5 1.2-.9 1.2s-1-.5-.9-1.2z" fill="#fff" />
+                    </svg>
+                  )}
+                </span>
+              )}
+              <span class="platform__text">{p.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 
 <style>
-  .platforms {
+  .platforms__label {
+    margin: 0 0 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .platforms__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    gap: 0.6rem;
   }
-  .platforms__pending {
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    text-decoration: none;
     font-size: 0.92rem;
-    margin: 0;
+    font-weight: 600;
+    line-height: 1;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .platform__icon + .platform__text {
+    margin-left: -0.1rem;
+  }
+  .platform:hover,
+  .platform:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .platform__icon {
+    display: grid;
+    place-items: center;
+  }
+  /* Merkefarger kun på ikonet, så knappene passer med resten av siden. */
+  .platform--youtube .platform__icon {
+    color: #f00;
+  }
+  .platform--spotify .platform__icon {
+    color: #1db954;
+  }
+  .platform--apple .platform__icon {
+    color: #a238c8;
+  }
+  .platform--youtube:hover,
+  .platform--youtube:focus-visible {
+    border-color: #f00;
+  }
+  .platform--spotify:hover,
+  .platform--spotify:focus-visible {
+    border-color: #1db954;
+  }
+  .platform--apple:hover,
+  .platform--apple:focus-visible {
+    border-color: #a238c8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .platform {
+      transition: none;
+    }
+    .platform:hover,
+    .platform:focus-visible {
+      transform: none;
+    }
   }
 </style>
