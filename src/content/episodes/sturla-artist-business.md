@@ -38,6 +38,8 @@ description: >-
   Sturla har vært med i X Factor, Idol, The Voice og Melodi Grand Prix, og hadde
   platekontrakt med Sony. En samtale om livet som artist og businessen bak – fra
   TV-konkurranser til Tono, Gramo og booking av egne konserter.
+image: /images/episoder/sturla-artist-business.jpg
+imageAlt: "Spørretimen: Sturla – livet som artist og businessen bak. Med logoer fra MGP, The Voice, Idol og X Factor"
 links:
   youtube: https://youtu.be/k9vAk4qQKr0
   spotify: https://open.spotify.com/episode/1yPkxt8GyNC5jd4Zh5Obll

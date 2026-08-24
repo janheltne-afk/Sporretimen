@@ -5,6 +5,8 @@ intro: >-
   Bedre kjent som artisten Sturla. Trøndersk artist og låtskriver fra Orkdal, med
   over et tiår i bransjen – The Voice, band, platekontrakt med Sony Music Norway og
   Melodi Grand Prix. I dag skiftarbeider på smelteverk ved siden av artistlivet.
+image: /images/gjester/sturla.jpg
+imageAlt: "Sturla synger og spiller gitar på en intim scene"
 themes:
   - Livet som artist
   - The Voice, band 22 og Melodi Grand Prix
