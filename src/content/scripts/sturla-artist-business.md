@@ -215,11 +215,12 @@ vært langt verre.
 Han sluttet i jobben – for andre og siste gang – i januar 2026, for å satse fullt
 på musikken.
 
-## Sangen om å bryte ut av hamsterhjulet
+## Sangen «67»
 
-Sturla har nylig gitt ut en sang som handler om å bryte ut av «hamsterhjulet» – en
-referanse til pensjonsalderen 67 år, og følelsen av at smelteverksjobben bare var
-noe han gjorde for lønnsslippen, uten noen egentlig lidenskap for silisium.
+Sturla har gitt ut en sang som heter **«67»** – en referanse til den vanlige
+pensjonsalderen. Den handler om å bryte ut av «hamsterhjulet» og følelsen av at
+smelteverksjobben bare var noe han gjorde for lønnsslippen, uten noen egentlig
+lidenskap for silisium.
 
 ## Livet som selvstendig næringsdrivende
 
