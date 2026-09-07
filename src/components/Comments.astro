@@ -44,6 +44,10 @@ const { slug } = Astro.props;
       <button type="submit" class="btn">Send kommentar</button>
       <p class="kommentarer__status" role="status" aria-live="polite"></p>
     </div>
+    <p class="kommentarer__consent muted">
+      Navn og kommentar vises åpent under episoden og lagres slik det er beskrevet i
+      <a href="/personvern/">personvernerklæringen</a>.
+    </p>
   </form>
 
   <div class="kommentarer__list" data-role="list">
@@ -135,6 +139,14 @@ const { slug } = Astro.props;
   .kommentarer__status.is-success {
     color: var(--tag-samtale);
     font-weight: 600;
+  }
+  .kommentarer__consent {
+    margin: 0;
+    font-size: 0.82rem;
+  }
+  .kommentarer__consent a {
+    color: inherit;
+    text-decoration: underline;
   }
   .kommentarer__list {
     margin-top: 1.8rem;

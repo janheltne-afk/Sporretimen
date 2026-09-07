@@ -1,0 +1,157 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+
+const updated = new Intl.DateTimeFormat('nb-NO', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date('2026-08-25'));
+---
+
+<BaseLayout
+  title="Personvern"
+  description="Personvernerklæring for Spørretimen: hvilke opplysninger som behandles i kommentarfelt, terningkast og skjemaer, hvorfor, og hvilke rettigheter du har."
+>
+  <PageHeader
+    eyebrow="Personvern"
+    title="Personvernerklæring"
+    lead="Her forklarer vi konkret hva som samles inn på sporretimen.no, hvorfor, og hva du kan gjøre hvis du vil ha noe endret eller fjernet."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p class="muted">Sist oppdatert: {updated}</p>
+
+      <h2>Kort oppsummert</h2>
+      <ul>
+        <li>
+          Spørretimen er et hobbyprosjekt, ikke et registrert firma. Behandlingsansvarlig
+          er Jan Sindre Heltne.
+        </li>
+        <li>
+          Skjemaene for kontakt, gjesteforslag og «bli gjest» sender meldingen direkte fra
+          din egen e-postklient til {site.email}. Vi lagrer ikke disse skjemaene på
+          nettsiden.
+        </li>
+        <li>
+          Kommentarer og terningkast lagres i en database (Supabase) fordi de vises åpent
+          på episodesiden.
+        </li>
+        <li>Vi bruker ingen analyseverktøy, annonsenettverk eller sporingsinformasjonskapsler.</li>
+      </ul>
+
+      <h2>Behandlingsansvarlig</h2>
+      <p>
+        Jan Sindre Heltne er ansvarlig for sporretimen.no og de opplysningene som
+        behandles her. Spørretimen er et personlig hobbyprosjekt uten tilknytning til
+        Jan Sindres arbeidsgiver, og drives i dag ikke som et registrert foretak. Har du
+        spørsmål om personvern, kan du kontakte{' '}
+        <a href={`mailto:${site.email}?subject=${encodeURIComponent('Personvern – Spørretimen')}`}>
+          {site.email}
+        </a>.
+      </p>
+
+      <h2>Kommentarfeltet</h2>
+      <p>
+        Når du legger igjen en kommentar på en episode, lagres navnet du skriver inn og
+        selve kommentarteksten i en database, sammen med tidspunktet. Kommentarer vises
+        offentlig under episoden med det navnet du selv har oppgitt – skriv derfor ikke
+        inn mer enn du er komfortabel med at alle kan se.
+      </p>
+      <p>
+        Rettslig grunnlag er samtykke: du velger selv å skrive og sende inn kommentaren.
+        Er en kommentar støtende, sjikanerende eller på annen måte upassende, fjerner vi
+        den. Vil du at en kommentar med navnet ditt skal slettes, ta kontakt på{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a>, så ordner vi det.
+      </p>
+
+      <h2>Terningkast</h2>
+      <p>
+        Når du gir en episode terningkast, lagres selve vurderingen (1–6) sammen med
+        hvilken episode den gjelder. For å hindre at samme person stemmer flere ganger på
+        samme episode, lagrer nettleseren din en tilfeldig, anonym kode lokalt (se
+        «Nettlagring» under). Koden er ikke koblet til navn, e-postadresse eller
+        IP-adresse, og kan ikke brukes til å identifisere deg.
+      </p>
+
+      <h2>Kontaktskjemaer</h2>
+      <p>
+        Skjemaene under Kontakt, Foreslå en gjest og Bli gjest åpner en ferdig utfylt
+        e-post i din egen e-postklient når du sender inn. Innholdet går rett til{' '}
+        {site.email} som en vanlig e-post – det lagres ikke i noen database på
+        sporretimen.no. Behandlingen av selve e-posten følger de samme reglene som annen
+        e-post til {site.email}.
+      </p>
+
+      <h2>Nettlagring (localStorage)</h2>
+      <p>
+        Nettsiden bruker nettleserens lokale lagring – ikke tradisjonelle
+        informasjonskapsler – til to ting:
+      </p>
+      <ul>
+        <li><strong>Temavalg:</strong> om du har valgt lyst eller mørkt utseende.</li>
+        <li>
+          <strong>Terningkast-kode:</strong> den anonyme koden nevnt over, som hindrer
+          dobbeltstemming.
+        </li>
+      </ul>
+      <p>
+        Begge deler er nødvendige for at funksjonen du selv har bedt om skal virke, og
+        brukes ikke til sporing, profilering eller annonsering. Informasjonen ligger kun
+        i din egen nettleser og deles ikke med tredjeparter. Du kan slette den når som
+        helst ved å tømme nettleserens lagrede data for sporretimen.no.
+      </p>
+      <p>
+        Vi bruker ingen analyseverktøy (som Google Analytics), ingen
+        annonseinformasjonskapsler og ingen sporing på tvers av nettsteder.
+      </p>
+
+      <h2>Innebygd innhold fra YouTube og Spotify</h2>
+      <p>
+        Episodesidene kan vise av- og lyttespillere fra YouTube og Spotify. Spiller du av
+        en episode direkte på siden, kan YouTube og Spotify behandle opplysninger om deg i
+        tråd med sine egne personvernvilkår – det har vi ikke kontroll over. Vi bruker
+        YouTubes personvernvennlige innbyggingsmodus (youtube-nocookie.com), som
+        begrenser denne behandlingen inntil du faktisk spiller av videoen.
+      </p>
+
+      <h2>Bilder</h2>
+      <p>
+        Bilder av gjester og programleder er enten tatt eller godkjent av personene selv,
+        eller laget spesifikt for Spørretimen. Vi bruker ikke bilder vi ikke har rett til
+        å publisere.
+      </p>
+
+      <h2>Databehandler</h2>
+      <p>
+        Kommentarer og terningkast lagres hos <strong>Supabase</strong>, som er
+        databaseleverandøren vår. Tilgangen er begrenset med regler i databasen
+        (Row Level Security): besøkende kan lese og legge til kommentarer/terningkast,
+        men ikke endre eller slette andres innlegg. Fjerning og moderering gjøres av
+        Jan Sindre.
+      </p>
+
+      <h2>Dine rettigheter</h2>
+      <p>Etter personvernregelverket (GDPR) har du rett til å:</p>
+      <ul>
+        <li>få vite hvilke opplysninger som er lagret om deg,</li>
+        <li>få rettet feilaktige opplysninger,</li>
+        <li>få slettet opplysninger, som en kommentar du har skrevet,</li>
+        <li>klage til <a href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a> hvis du mener behandlingen er i strid med regelverket.</li>
+      </ul>
+      <p>
+        For kommentarer og terningkast er den enkleste veien å ta kontakt direkte på{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> – oppgi hvilken episode og
+        omtrent når kommentaren ble lagt inn, så finner vi den.
+      </p>
+
+      <h2>Endringer</h2>
+      <p>
+        Endrer vi hvordan nettsiden behandler opplysninger, oppdaterer vi denne siden og
+        datoen øverst.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

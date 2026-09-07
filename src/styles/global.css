@@ -10,13 +10,13 @@
   --surface-2: #f2ece1;     /* nedtonet flate */
   --ink: #1a1613;           /* varm nær-svart tekst */
   --ink-soft: #4b443c;      /* dempet tekst */
-  --ink-faint: #8a8177;     /* svak tekst / metadata */
+  --ink-faint: #756d65;     /* svak tekst / metadata – WCAG AA (4.75:1 mot --paper) */
   --line: #e6ddcf;          /* hårfine linjer */
   --line-strong: #d8cdb9;
 
   /* Aksentfarge (hentes normalt fra logoen) */
-  --accent: #d97a2b;        /* varm rav/oransje */
-  --accent-strong: #bd6320;
+  --accent: #d97a2b;        /* varm rav/oransje – kun til store flater/ikoner, ikke tekst */
+  --accent-strong: #aa591c; /* lenketekst – WCAG AA (4.73:1 mot --paper) */
   --accent-soft: #f7e6d3;
   --on-accent: #ffffff;
 
