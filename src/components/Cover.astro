@@ -1,9 +1,18 @@
 ---
-import { formatById, site } from '@/data/site';
+import { site } from '@/data/site';
 
 /**
- * Episodeomslag. Viser episodens eget bilde hvis `src` er satt, ellers den
- * generelle Spørretimen-plassholderen med formatnavnet lagt oppå.
+ * Episodeomslag.
+ *
+ * Som standard settes omslaget i sidens egen typografi – tittelen på en varm,
+ * mørk flate. Da slipper vi at omslagsgrafikk med sin egen skrift konkurrerer
+ * med tittelen som uansett står rett under, og alle episodene får samme
+ * uttrykk uavhengig av hva som er laget for YouTube.
+ *
+ * Har en episode et omslag som holder mål på egen hånd, settes
+ * `coverStyle: bilde` i frontmatter, så vises filen i stedet.
+ *
+ * Bildefilen brukes uansett som delebilde i sosiale medier (se SEO.astro).
  */
 interface Props {
   src?: string;
@@ -11,20 +20,56 @@ interface Props {
   title: string;
   format: string;
   ratio?: string;
+  variant?: 'plate' | 'bilde';
+  /** Gjesteportrett. Brukes som omslag når episoden har en gjest. */
+  portrait?: string;
+  portraitAlt?: string;
   class?: string;
 }
-// 16/9 er formatet omslagene faktisk er laget i. Andre forhold beskjærer dem,
-// og siden flere av dem har tekst helt ut i kanten, kutter det ord.
-const { src, alt, title, format, ratio = '16 / 9', class: className = '' } = Astro.props;
-const label = formatById(format)?.singular ?? 'Episode';
-const isPlaceholder = !src;
-const image = src ?? site.placeholderImage;
+const {
+  src,
+  alt,
+  title,
+  format,
+  ratio = '16 / 9',
+  variant = 'plate',
+  portrait,
+  portraitAlt,
+  class: className = '',
+} = Astro.props;
+
+const useImage = variant === 'bilde' && Boolean(src);
+// Har episoden en gjest, er portrettet et ekte bilde som ikke gjentar noe av
+// teksten rundt. Da er det et bedre omslag enn en flate med ord på.
+const usePortrait = !useImage && Boolean(portrait);
+// Platen er ren dekorasjon. Format og tittel står allerede i kortet under, så
+// et omslag som gjentar dem ville gitt samme rot som vi gikk bort fra – og en
+// skjermleser ville lest alt to ganger.
 ---
 
-<div class:list={['cover', { 'cover--placeholder': isPlaceholder }, className]} style={`--ratio:${ratio}`}>
-  <img src={image} alt={alt ?? title} loading="lazy" decoding="async" />
-  {isPlaceholder && <span class="cover__label">{label}</span>}
-</div>
+{
+  useImage || usePortrait ? (
+    <div class:list={['cover', { 'cover--portrait': usePortrait }, className]} style={`--ratio:${ratio}`}>
+      <img
+        src={useImage ? src : portrait}
+        alt={(useImage ? alt : portraitAlt) ?? title}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  ) : (
+    <div
+      class:list={['cover', 'cover--plate', `plate--${format}`, className]}
+      style={`--ratio:${ratio}`}
+      aria-hidden="true"
+    >
+      <div class="plate__inner">
+        <span class="plate__mark">{site.name}</span>
+        <span class="plate__rule" />
+      </div>
+    </div>
+  )
+}
 
 <style>
   .cover {
@@ -41,8 +86,13 @@ const image = src ?? site.placeholderImage;
     filter: var(--img-grade);
     transition: filter 0.45s ease;
   }
+  /* Portretter beskjæres mot øvre tredel, så ansiktet ikke kuttes når et
+     kvadratisk bilde vises i 16:9. */
+  .cover--portrait img {
+    object-position: center 28%;
+  }
   /* Varm hinne som demper de skarpeste omslagene og binder dem til paletten */
-  .cover::after {
+  .cover:not(.cover--plate)::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -60,22 +110,66 @@ const image = src ?? site.placeholderImage;
     box-shadow: inset 0 0 0 1px rgba(22, 19, 15, 0.09);
     pointer-events: none;
   }
-  .cover--placeholder {
-    background: #16130f;
+
+  /* ------------------------------------------------------------ Typeplate
+     Målene er i cqw, så samme plate fungerer både som lite kort på forsiden
+     og som stor plate på episodesiden. */
+  /* Selve platen er bare den målsatte boksen. Oppsettet ligger i __inner,
+     slik at container-type og flex ikke blandes på samme element. */
+  .cover--plate {
+    container-type: inline-size;
+    color: #f2ece2;
+    /* Varmt lys fra ett hjørne mot nær-svart – som en studiolampe, ikke en
+       fargeovergang for effektens skyld. */
+    background:
+      radial-gradient(115% 95% at 10% -5%, rgba(201, 141, 78, 0.17), transparent 60%),
+      #191411;
   }
-  .cover__label {
+  .cover--plate::before {
+    box-shadow: inset 0 0 0 1px rgba(242, 236, 226, 0.11);
+  }
+  .plate__inner {
     position: absolute;
-    left: 1rem;
-    bottom: 0.9rem;
-    z-index: 3;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.4cqw;
+    padding: 6.5cqw;
+  }
+  .plate__mark {
     font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 0.66rem;
-    letter-spacing: 0.15em;
+    font-size: 3.1cqw;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    /* Sperringen legger luft til høyre for siste tegn – trekkes fra igjen
+       så ordet står optisk midtstilt. */
+    margin-right: -0.3em;
     text-transform: uppercase;
-    color: #fffdf9;
-    border: 1px solid rgba(255, 253, 249, 0.5);
-    padding: 0.3rem 0.6rem;
-    border-radius: var(--radius-sm);
+    color: rgba(242, 236, 226, 0.72);
+    line-height: 1;
+  }
+  .plate__rule {
+    display: block;
+    width: 7cqw;
+    height: 1px;
+    background: var(--plate-tone, #c9955c);
+    opacity: 0.75;
+  }
+
+  /* Hvert format får sin egen lyssetting, så ni plater etter hverandre ikke
+     blir ni like flater. Tonene er de samme dempede som ellers på siden. */
+  .plate--laer-noe-nytt {
+    --plate-tone: #9aabd8;
+    background:
+      radial-gradient(115% 95% at 88% -5%, rgba(122, 141, 190, 0.16), transparent 60%),
+      #14161c;
+  }
+  .plate--kort-forklart {
+    --plate-tone: #dfa373;
+    background:
+      radial-gradient(105% 100% at 50% 115%, rgba(198, 122, 70, 0.17), transparent 62%),
+      #1b1512;
   }
 </style>

@@ -18,7 +18,15 @@ const dateLabel =
 
 <article class:list={['card', 'ep', { 'ep--kommende': d.status === 'kommende' }]}>
   <a class="ep__cover-link" href={`/episoder/${episode.id}/`} tabindex="-1" aria-hidden="true">
-    <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} />
+    <Cover
+      title={d.title}
+      src={d.image}
+      alt={d.imageAlt}
+      format={d.format}
+      variant={d.coverStyle}
+      portrait={guest?.data.image}
+      portraitAlt={guest?.data.imageAlt}
+    />
   </a>
   <div class="ep__body">
     <div class="ep__meta">

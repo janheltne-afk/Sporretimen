@@ -123,7 +123,15 @@ const jsonLd = [episodeJsonLd, breadcrumb];
           hasEmbed ? (
             <EpisodePlayers youtube={d.links?.youtube} spotify={d.links?.spotify} title={d.title} />
           ) : (
-            <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} />
+            <Cover
+              title={d.title}
+              src={d.image}
+              alt={d.imageAlt}
+              format={d.format}
+              variant={d.coverStyle}
+              portrait={guest?.data.image}
+              portraitAlt={guest?.data.imageAlt}
+            />
           )
         }
       </div>

@@ -48,9 +48,14 @@ const episodes = defineCollection({
       // Varighet som lesbar tekst, f.eks. "58 min" eller "7 min".
       duration: z.string().optional(),
       description: z.string(),
-      // Bilde/omslag. Utelates → nettsiden viser en pen plassholder.
+      // Bilde/omslag. Brukes som delebilde på Facebook, X og lignende, og
+      // vises på selve nettsiden bare når `coverStyle` er satt til "bilde".
       image: z.string().optional(),
       imageAlt: z.string().optional(),
+      // Hvordan omslaget vises på nettsiden:
+      // "plate"  – tittelen satt i sidens egen typografi (standard)
+      // "bilde"  – filen i `image`, for omslag som holder mål på egen hånd
+      coverStyle: z.enum(['plate', 'bilde']).default('plate'),
       links: platformLinks,
       // Kilder og referanser vist nederst i episoden.
       sources: z
