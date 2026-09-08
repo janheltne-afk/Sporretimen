@@ -123,7 +123,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
           hasEmbed ? (
             <EpisodePlayers youtube={d.links?.youtube} spotify={d.links?.spotify} title={d.title} />
           ) : (
-            <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} ratio="16 / 8" />
+            <Cover title={d.title} src={d.image} alt={d.imageAlt} format={d.format} />
           )
         }
       </div>
@@ -397,6 +397,11 @@ const jsonLd = [episodeJsonLd, breadcrumb];
   }
   .episode__cover :global(.cover) {
     border-radius: var(--radius);
+  }
+  /* Et omslag uten spiller vises som en plate i lesebredden, ikke som et
+     banner over hele siden – 1280 px brede filer tåler ikke å blåses opp. */
+  .episode__cover:not(:has(.players)) {
+    max-width: 44rem;
   }
   .episode__layout {
     display: grid;

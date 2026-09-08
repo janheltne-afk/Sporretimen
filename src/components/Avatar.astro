@@ -40,6 +40,15 @@ const [bg, fg] = placeholderColor(name);
     height: 100%;
     object-fit: cover;
   }
+  /* Samme hårfine innramming som omslagene, så lyse portretter får en klar
+     kant mot kortet i stedet for å flyte ut i det. */
+  .avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px rgba(22, 19, 15, 0.09);
+    pointer-events: none;
+  }
   .avatar__ph {
     position: absolute;
     inset: 0;

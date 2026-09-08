@@ -56,6 +56,16 @@ const dateLabel =
     display: block;
     position: relative;
   }
+  /* Omslaget ligger dempet i grunnvisningen og får full farge når kortet
+     får oppmerksomhet. Se --img-grade i global.css. */
+  .ep:hover .ep__cover-link :global(.cover img),
+  .ep:focus-within .ep__cover-link :global(.cover img) {
+    filter: none;
+  }
+  .ep:hover .ep__cover-link :global(.cover)::after,
+  .ep:focus-within .ep__cover-link :global(.cover)::after {
+    opacity: 0;
+  }
 
   /* Kommende episoder dempes visuelt, så publiserte episoder trer tydeligere
      frem. Teksten holdes fullt lesbar – kun omslaget tones ned. */

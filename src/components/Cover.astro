@@ -13,7 +13,9 @@ interface Props {
   ratio?: string;
   class?: string;
 }
-const { src, alt, title, format, ratio = '16 / 10', class: className = '' } = Astro.props;
+// 16/9 er formatet omslagene faktisk er laget i. Andre forhold beskjærer dem,
+// og siden flere av dem har tekst helt ut i kanten, kutter det ord.
+const { src, alt, title, format, ratio = '16 / 9', class: className = '' } = Astro.props;
 const label = formatById(format)?.singular ?? 'Episode';
 const isPlaceholder = !src;
 const image = src ?? site.placeholderImage;
@@ -35,6 +37,28 @@ const image = src ?? site.placeholderImage;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Felles gradering, se --img-grade i global.css */
+    filter: var(--img-grade);
+    transition: filter 0.45s ease;
+  }
+  /* Varm hinne som demper de skarpeste omslagene og binder dem til paletten */
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--img-veil-color);
+    opacity: var(--img-veil);
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  /* Hårfin innramming, så lyse omslag ikke flyter ut i kortet */
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    box-shadow: inset 0 0 0 1px rgba(22, 19, 15, 0.09);
+    pointer-events: none;
   }
   .cover--placeholder {
     background: #16130f;
@@ -43,7 +67,7 @@ const image = src ?? site.placeholderImage;
     position: absolute;
     left: 1rem;
     bottom: 0.9rem;
-    z-index: 1;
+    z-index: 3;
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 0.66rem;

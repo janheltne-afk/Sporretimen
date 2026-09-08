@@ -123,6 +123,14 @@
   --shadow-md: 0 2px 10px rgba(22, 19, 15, 0.06);
   --shadow-lg: 0 14px 44px rgba(22, 19, 15, 0.1);
 
+  /* Bildebehandling.
+     Omslagene kommer fra ulike kilder – noen er rolige, andre er laget for å
+     rope i en YouTube-feed. En felles, svak gradering demper de skarpeste og
+     binder dem sammen, uten å endre selve filene. Full farge ved hover. */
+  --img-grade: saturate(0.84) contrast(0.97);
+  --img-veil-color: #6b4a22;
+  --img-veil: 0.07;
+
   --container: 1180px;
   --container-narrow: 760px;
   --gutter: clamp(1.25rem, 4vw, 2.75rem);
@@ -145,6 +153,11 @@
   --accent-strong: #e0a768;
   --accent-soft: #2a2018;
   --on-accent: #14110d;
+
+  /* På mørk bakgrunn synker bildene bedre inn med litt lavere lysstyrke */
+  --img-grade: saturate(0.8) brightness(0.9);
+  --img-veil-color: #0b0908;
+  --img-veil: 0.12;
 
   --tag-samtale: #8fc2ae;
   --tag-samtale-bg: #1b2621;
@@ -174,6 +187,9 @@
     --accent-strong: #e0a768;
     --accent-soft: #2a2018;
     --on-accent: #14110d;
+    --img-grade: saturate(0.8) brightness(0.9);
+    --img-veil-color: #0b0908;
+    --img-veil: 0.12;
     --tag-samtale: #8fc2ae;
     --tag-samtale-bg: #1b2621;
     --tag-laer: #9aabd8;
