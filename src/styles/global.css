@@ -271,7 +271,7 @@ main {
   background: var(--btn-bg);
   color: var(--btn-fg);
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.98rem;
   text-decoration: none;

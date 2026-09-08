@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+
+const updated = new Intl.DateTimeFormat('nb-NO', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date('2026-09-08'));
+---
+
+<BaseLayout
+  title="Vilkår for bruk"
+  description="Vilkår for bruk av sporretimen.no: hva innholdet er (og ikke er), opphavsrett, regler for kommentarfeltet, ansvarsfraskrivelse og lenker til tredjeparter."
+>
+  <PageHeader
+    eyebrow="Vilkår"
+    title="Vilkår for bruk"
+    lead="Enkle, ærlige vilkår for hvordan du kan bruke sporretimen.no og innholdet som publiseres her."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p class="muted">Sist oppdatert: {updated}</p>
+
+      <h2>Kort oppsummert</h2>
+      <ul>
+        <li>Spørretimen er et personlig hobbyprosjekt, ikke et registrert firma.</li>
+        <li>
+          Innholdet er samtaler, meninger og erfaringer – ikke fasit, og ikke
+          profesjonell rådgivning (for eksempel medisinsk).
+        </li>
+        <li>Du kan lese, lytte og dele lenker til innholdet fritt. Du kan ikke kopiere og publisere det som ditt eget.</li>
+        <li>Kommentarfeltet modereres, og upassende innhold fjernes.</li>
+      </ul>
+
+      <h2>Hva innholdet er</h2>
+      <p>
+        Spørretimen er en podcast med samtaler om yrker, erfaringer og temaer
+        folk lurer på. Det som deles i episodene er gjestenes egne erfaringer,
+        meninger og vurderinger – ikke fasit eller offisielle anbefalinger fra
+        Spørretimen. Der episoder tar for seg helse, jus, økonomi eller andre
+        fagområder, er dette generell informasjon og personlige erfaringer, ikke
+        individuell rådgivning. Rådfør deg med kvalifisert fagperson før du
+        tar beslutninger basert på noe du hører her. Se også{' '}
+        <a href="/var-varsom/">Vær Varsom-plakaten og innholdet</a> for hvordan vi
+        jobber redaksjonelt.
+      </p>
+
+      <h2>Opphavsrett</h2>
+      <p>
+        Tekst, lyd, bilder og annet innhold på sporretimen.no eies av Spørretimen
+        eller er brukt med tillatelse fra rettighetshaver. Du kan gjerne lese,
+        lytte og dele lenker til innholdet. Du kan ikke kopiere, publisere på
+        nytt eller bruke innholdet kommersielt uten avtale. Innhold som spilles av
+        via innebygde YouTube- og Spotify-spillere eies av og reguleres av
+        henholdsvis YouTubes og Spotifys egne vilkår.
+      </p>
+
+      <h2>Kommentarfeltet</h2>
+      <p>
+        Du kan legge igjen kommentarer under episoder. Spørretimen forbeholder
+        seg retten til å fjerne kommentarer som er sjikanerende, krenkende,
+        ulovlige eller på annen måte i strid med god skikk, uten forvarsel. Se{' '}
+        <a href="/personvern/">personvernerklæringen</a> for hva som lagres når
+        du kommenterer eller gir terningkast.
+      </p>
+
+      <h2>Lenker til tredjeparter</h2>
+      <p>
+        Nettsiden kan lenke til eller vise innhold fra andre nettsteder, som
+        YouTube, Spotify eller ressurser gjestene nevner. Spørretimen har ikke
+        kontroll over og er ikke ansvarlig for innholdet på disse eksterne
+        sidene.
+      </p>
+
+      <h2>Ansvarsfraskrivelse</h2>
+      <p>
+        Innholdet på sporretimen.no gjøres tilgjengelig som det er, uten
+        garantier. Spørretimen er ikke ansvarlig for beslutninger du tar basert
+        på informasjon eller meninger som fremkommer i episoder, artikler eller
+        kommentarfelt.
+      </p>
+
+      <h2>Lovvalg</h2>
+      <p>Disse vilkårene reguleres av norsk rett.</p>
+
+      <h2>Endringer</h2>
+      <p>
+        Vi kan oppdatere disse vilkårene ved behov. Endringer publiseres på
+        denne siden med ny dato øverst.
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        Spørsmål om disse vilkårene kan sendes til{' '}
+        <a href={`mailto:${site.email}?subject=${encodeURIComponent('Vilkår – Spørretimen')}`}>
+          {site.email}
+        </a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
