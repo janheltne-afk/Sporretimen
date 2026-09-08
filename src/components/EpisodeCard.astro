@@ -59,9 +59,6 @@ const dateLabel =
 
   /* Kommende episoder dempes visuelt, så publiserte episoder trer tydeligere
      frem. Teksten holdes fullt lesbar – kun omslaget tones ned. */
-  .ep--kommende {
-    box-shadow: none;
-  }
   .ep--kommende .ep__cover-link :global(.cover) {
     filter: saturate(0.55) brightness(0.82);
     transition: filter 0.25s ease;
@@ -99,8 +96,8 @@ const dateLabel =
   .ep__body {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-    padding: 1.1rem 1.2rem 1.25rem;
+    gap: 0.6rem;
+    padding: 1.35rem 1.4rem 1.5rem;
     flex: 1;
   }
   .ep__meta {
@@ -109,34 +106,37 @@ const dateLabel =
     flex-wrap: wrap;
   }
   .ep__career {
-    margin: 0.1rem 0 -0.15rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.09em;
+    margin: 0.15rem 0 -0.2rem;
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent-strong);
+    color: var(--ink-faint);
   }
   .ep__title {
     font-size: 1.28rem;
-    margin: 0.1rem 0 0;
-    line-height: 1.2;
+    margin: 0.15rem 0 0;
+    line-height: 1.24;
+    letter-spacing: -0.014em;
+    text-wrap: pretty;
   }
   .ep__title a {
     text-decoration: none;
+    transition: color 0.2s ease;
   }
   .ep__title a:hover {
     color: var(--accent-strong);
   }
   .ep__guest {
     margin: 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink-soft);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
   }
   .ep__desc {
     margin: 0;
     color: var(--ink-soft);
-    font-size: 0.96rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -144,11 +144,12 @@ const dateLabel =
   }
   .ep__foot {
     margin-top: auto;
-    padding-top: 0.4rem;
+    padding-top: 1rem;
     display: flex;
     gap: 0.45rem;
     align-items: center;
     color: var(--ink-faint);
-    font-size: 0.84rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
   }
 </style>

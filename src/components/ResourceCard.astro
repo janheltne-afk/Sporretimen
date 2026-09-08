@@ -47,44 +47,47 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
   .resource__body {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    padding: 1.25rem 1.3rem 1.3rem;
+    gap: 0.45rem;
+    padding: 1.4rem 1.45rem 1.5rem;
     width: 100%;
   }
   .resource__meta {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     flex-wrap: wrap;
   }
   .resource__lang {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-faint);
-    border: 1px solid var(--line-strong);
-    padding: 0.16rem 0.5rem;
-    border-radius: 999px;
+    border: 1px solid var(--line);
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--radius-sm);
+    line-height: 1.35;
   }
   .resource__title {
-    margin: 0.15rem 0 0;
-    font-size: 1.28rem;
-    line-height: 1.2;
+    margin: 0.3rem 0 0;
+    font-size: 1.24rem;
+    line-height: 1.24;
+    letter-spacing: -0.015em;
+    transition: color 0.2s ease;
   }
   .resource__link:hover .resource__title {
     color: var(--accent-strong);
   }
   .resource__author {
     margin: 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink-soft);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
   }
   .resource__summary {
-    margin: 0.1rem 0 0;
+    margin: 0.15rem 0 0;
     color: var(--ink-soft);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -92,50 +95,41 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
   }
   .resource__foot {
     margin-top: auto;
-    padding-top: 0.7rem;
+    padding-top: 1rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.75rem;
     align-items: center;
-  }
-  .resource__cat {
-    font-size: 0.76rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--ink-faint);
-    background: var(--surface-2);
-    padding: 0.2rem 0.55rem;
-    border-radius: 999px;
   }
   .resource__from {
-    font-size: 0.74rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--accent-strong);
+    color: var(--ink-faint);
   }
 
-  /* Typefarger */
+  /* Typefarger – kun tekst og hårfin ramme, aldri fylte flater */
   .rtype-bok {
-    background: var(--tag-laer-bg);
     color: var(--tag-laer);
+    border-color: color-mix(in srgb, var(--tag-laer) 38%, transparent);
   }
   .rtype-husketeknikk {
-    background: var(--tag-samtale-bg);
     color: var(--tag-samtale);
+    border-color: color-mix(in srgb, var(--tag-samtale) 38%, transparent);
   }
   .rtype-tips {
-    background: var(--tag-kort-bg);
     color: var(--tag-kort);
+    border-color: color-mix(in srgb, var(--tag-kort) 38%, transparent);
   }
-  .rtype-verktoy {
-    background: var(--accent-soft);
+  .rtype-verktoy,
+  .rtype-podkast {
     color: var(--accent-strong);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   }
   .rtype-artikkel {
-    background: var(--surface-2);
     color: var(--ink-soft);
-  }
-  .rtype-podkast {
-    background: var(--accent-soft);
-    color: var(--accent-strong);
+    border-color: var(--line-strong);
   }
 </style>

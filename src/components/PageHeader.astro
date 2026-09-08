@@ -1,14 +1,19 @@
 ---
+/**
+ * Sidetopp. `wide` brukes på oversiktssider der innholdet under ligger i den
+ * brede containeren – da får tittelen samme venstrekant som innholdet.
+ */
 interface Props {
   eyebrow?: string;
   title: string;
   lead?: string;
+  wide?: boolean;
 }
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, wide = false } = Astro.props;
 ---
 
 <header class="page-header">
-  <div class="container container-narrow">
+  <div class:list={['container', { 'container-narrow': !wide }]}>
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
     {lead && <p class="lead">{lead}</p>}
@@ -18,14 +23,15 @@ const { eyebrow, title, lead } = Astro.props;
 
 <style>
   .page-header {
-    padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 4vw, 2.5rem);
+    padding-block: clamp(3rem, 7vw, 5.5rem) clamp(2rem, 4vw, 3rem);
     border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, var(--surface-2), transparent);
   }
   .page-header h1 {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0;
+    max-width: 20ch;
   }
   .page-header .lead {
-    margin-top: 0.6rem;
+    margin: 1.15rem 0 0;
+    max-width: 46ch;
   }
 </style>

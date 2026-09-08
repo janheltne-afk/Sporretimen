@@ -18,6 +18,7 @@ const courses = await getCourses();
   description="Ressursarkiv fra Spørretimen – husketeknikker, bokanbefalinger, tips og verktøy nevnt i podkasten."
 >
   <PageHeader
+    wide
     eyebrow="Ressursarkiv"
     title="Ressurser"
     lead="Husketeknikker, bokanbefalinger, tips og verktøy som nevnes i episodene – samlet på ett sted. Arkivet vokser etter hvert som nye episoder legges ut."
@@ -116,32 +117,32 @@ const courses = await getCourses();
     align-items: center;
   }
   .filters__label {
-    font-size: 0.74rem;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
+    letter-spacing: 0.15em;
+    font-weight: 600;
     color: var(--ink-faint);
     margin-right: 0.35rem;
   }
   .chip {
-    padding: 0.42rem 0.9rem;
+    padding: 0.48rem 0.95rem;
     border: 1px solid var(--line-strong);
     background: transparent;
     color: var(--ink-soft);
-    border-radius: 999px;
-    font-size: 0.88rem;
-    font-weight: 500;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 450;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   }
   .chip:hover {
-    border-color: var(--accent);
+    border-color: var(--ink);
     color: var(--ink);
   }
   .chip.is-active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--on-accent);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
   }
   .results-count {
     margin: 0 0 1.2rem;

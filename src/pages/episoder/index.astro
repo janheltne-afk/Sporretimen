@@ -21,6 +21,7 @@ const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
   description="Alle episoder av Spørretimen – samtaler, Lær noe nytt og Kort forklart. Filtrer på format og tema."
 >
   <PageHeader
+    wide
     eyebrow="Episoder"
     title="Alle episoder"
     lead="Filtrer på format eller tema for å finne det du er nysgjerrig på. Nye episoder legges til fortløpende."
@@ -102,33 +103,33 @@ const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
     align-items: center;
   }
   .filters__label {
-    font-size: 0.74rem;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
+    letter-spacing: 0.15em;
+    font-weight: 600;
     color: var(--ink-faint);
     margin-right: 0.35rem;
     min-width: 3.5rem;
   }
   .chip {
-    padding: 0.42rem 0.9rem;
+    padding: 0.48rem 0.95rem;
     border: 1px solid var(--line-strong);
     background: transparent;
     color: var(--ink-soft);
-    border-radius: 999px;
-    font-size: 0.88rem;
-    font-weight: 500;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 450;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   }
   .chip:hover {
-    border-color: var(--accent);
+    border-color: var(--ink);
     color: var(--ink);
   }
   .chip.is-active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--on-accent);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
   }
   .results-count {
     margin: 0 0 1.2rem;

@@ -28,7 +28,6 @@ const image = src ?? site.placeholderImage;
   .cover {
     position: relative;
     aspect-ratio: var(--ratio);
-    border-radius: var(--radius) var(--radius) 0 0;
     overflow: hidden;
     background: var(--surface-2);
   }
@@ -38,21 +37,21 @@ const image = src ?? site.placeholderImage;
     object-fit: cover;
   }
   .cover--placeholder {
-    background: #1a1613;
+    background: #16130f;
   }
   .cover__label {
     position: absolute;
-    left: 0.9rem;
-    bottom: 0.8rem;
+    left: 1rem;
+    bottom: 0.9rem;
     z-index: 1;
     font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
+    font-weight: 600;
+    font-size: 0.66rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #1a1613;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.24rem 0.6rem;
-    border-radius: 999px;
+    color: #fffdf9;
+    border: 1px solid rgba(255, 253, 249, 0.5);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
   }
 </style>

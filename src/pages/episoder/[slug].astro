@@ -87,7 +87,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
   jsonLd={jsonLd}
 >
   <article class="episode">
-    <div class="container container-narrow">
+    <div class="container episode__wrap episode__head">
       <a class="back-link" href="/episoder/">← Alle episoder</a>
 
       <div class="episode__meta">
@@ -117,7 +117,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
       </div>
     </div>
 
-    <div class="container container-narrow">
+    <div class="container episode__wrap">
       <div class="episode__cover">
         {
           hasEmbed ? (
@@ -129,7 +129,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
       </div>
     </div>
 
-    <div class="container container-narrow episode__layout">
+    <div class="container episode__wrap episode__layout">
       <div class="prose episode__content">
         <Content />
 
@@ -259,7 +259,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
 
     {
       resources.length > 0 && (
-        <section class="container container-narrow resources-block">
+        <section class="container episode__wrap resources-block">
           <h2>{d.status === 'kommende' ? 'Ressurser til episoden' : 'Ressurser nevnt i episoden'}</h2>
           <div class="grid grid-2">
             {resources.map((r) => (
@@ -272,7 +272,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
 
     {
       d.status === 'publisert' && (
-        <div class="container container-narrow">
+        <div class="container episode__wrap episode__feedback">
           <Terningkast slug={episode.id} />
           <Comments slug={episode.id} />
         </div>
@@ -298,55 +298,69 @@ const jsonLd = [episodeJsonLd, breadcrumb];
 
 <style>
   .episode {
-    padding-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding-top: clamp(1.75rem, 4vw, 3rem);
+  }
+  /* Artikkelen har egen bredde: bred nok til at brødtekst og gjestekort får
+     stå side om side uten at lesespalten blir klemt. */
+  .episode__wrap {
+    max-width: 1040px;
+  }
+  /* Tittel, ingress og fakta holdes på en behagelig lesebredde */
+  .episode__head > * {
+    max-width: 44rem;
   }
   .back-link {
     display: inline-block;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem;
     color: var(--ink-faint);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
   }
   .back-link:hover {
-    color: var(--accent-strong);
+    color: var(--ink);
   }
   .episode__meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
+    gap: 0.45rem;
+    margin-bottom: 1.4rem;
   }
   .episode__career {
-    margin: 0 0 0.3rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--accent-strong);
+    color: var(--ink-faint);
   }
   .episode__title {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.1rem;
   }
   .episode__facts {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    font-size: 0.92rem;
-    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--line);
   }
   .episode__host {
-    color: var(--accent-strong);
+    color: var(--ink-soft);
     text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
   }
   .episode__host:hover {
-    text-decoration: underline;
+    color: var(--ink);
   }
   .ep-section {
-    margin-top: 2rem;
+    margin-top: 2.6rem;
   }
   .ep-section h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.7rem;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
   }
   .ep-pills {
     list-style: none;
@@ -354,13 +368,14 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
   .ep-pills li {
-    padding: 0.32rem 0.75rem;
-    background: var(--surface-2);
-    border-radius: 999px;
-    font-size: 0.86rem;
+    padding: 0.42rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
     color: var(--ink-soft);
   }
   .ep-list {
@@ -368,88 +383,100 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     padding-left: 1.2rem;
   }
   .ep-list li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     color: var(--ink-soft);
   }
+  .ep-list li::marker {
+    color: var(--ink-faint);
+  }
   .episode__platforms {
-    margin: 1.5rem 0 0;
+    margin: 1.75rem 0 0;
   }
   .episode__cover {
-    margin-block: clamp(1.8rem, 5vw, 3rem);
+    margin-block: clamp(2rem, 5vw, 3.25rem);
   }
   .episode__cover :global(.cover) {
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius);
   }
   .episode__layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
   }
   .episode__content {
-    max-width: none;
+    max-width: 40rem;
+  }
+  .episode__feedback > * {
+    max-width: 44rem;
   }
   .sources {
-    margin-top: 2.5rem;
-    padding: 1.4rem 1.5rem;
-    background: var(--surface-2);
-    border-radius: var(--radius);
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
   }
   .sources h2 {
-    font-size: 1.15rem;
-    margin: 0 0 0.7rem;
+    font-size: 1.1rem;
+    margin: 0 0 0.9rem;
   }
   .sources ul {
     margin: 0;
     padding-left: 1.1rem;
+    font-size: 0.98rem;
   }
   .manus-panel {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-top: 2.2rem;
-    padding: 1.15rem 1.3rem;
-    border: 1px solid var(--line-strong);
+    gap: 1.15rem;
+    margin-top: 2.75rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: var(--surface-2);
+    background: var(--surface);
     text-decoration: none;
     color: var(--ink);
-    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    transition: border-color 0.2s ease;
   }
   .manus-panel:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    border-color: var(--ink);
   }
   .manus-panel__icon {
     flex: none;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     display: grid;
     place-items: center;
-    border-radius: 11px;
-    background: var(--accent-soft);
-    color: var(--accent-strong);
+    color: var(--ink-faint);
   }
   .manus-panel__text {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.25rem;
   }
   .manus-panel__text strong {
-    font-size: 1.02rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.1rem;
   }
   .manus-panel__text span {
+    font-family: var(--font-sans);
     color: var(--ink-soft);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
   }
   .manus-panel__arrow {
     margin-left: auto;
-    color: var(--accent-strong);
-    font-size: 1.2rem;
+    color: var(--ink-faint);
+    font-size: 1.1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .manus-panel:hover .manus-panel__arrow {
+    color: var(--ink);
+    transform: translateX(3px);
   }
   .episode__guest {
-    padding: 1.5rem;
+    padding: 1.75rem;
     align-self: start;
+    font-family: var(--font-sans);
   }
   .episode__guest-actions {
     display: flex;
@@ -457,55 +484,58 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     gap: 0.5rem;
   }
   .episode__guest-label {
-    font-size: 0.74rem;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
+    letter-spacing: 0.15em;
+    font-weight: 600;
     color: var(--ink-faint);
-    margin: 0 0 0.9rem;
+    margin: 0 0 1.1rem;
   }
   .episode__guest-portrait {
-    width: 96px;
-    border-radius: 50%;
+    width: 84px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.1rem;
   }
   .episode__guest h2 {
-    font-size: 1.4rem;
-    margin: 0 0 0.15rem;
+    font-size: 1.32rem;
+    margin: 0 0 0.3rem;
   }
   .episode__guest-role {
-    color: var(--accent-strong);
+    color: var(--ink-faint);
+    font-size: 0.68rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    margin: 0 0 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.9rem;
   }
   .episode__guest-intro {
     color: var(--ink-soft);
-    font-size: 0.95rem;
-    margin-bottom: 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.35rem;
   }
   .resources-block {
-    margin-top: clamp(2rem, 5vw, 3rem);
-    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    margin-top: clamp(2.5rem, 5vw, 3.75rem);
+    padding-top: clamp(2rem, 4vw, 2.75rem);
     border-top: 1px solid var(--line);
   }
   .resources-block h2 {
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.75rem;
   }
   .related {
-    margin-top: clamp(2rem, 6vw, 4rem);
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
     border-top: 1px solid var(--line);
     background: var(--surface);
   }
   .related__heading {
-    margin-bottom: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   /* På brede skjermer: innhold + gjestekort side om side */
   @media (min-width: 900px) {
     .episode__layout:has(.episode__guest) {
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: minmax(0, 1fr) 288px;
     }
   }
 </style>

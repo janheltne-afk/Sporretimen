@@ -21,10 +21,25 @@ const props = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#faf7f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f3ed" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12100d" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Skriftene er selvhostet. De to som alltid brukes lastes tidlig. -->
+    <link
+      rel="preload"
+      href="/fonts/newsreader-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link
       rel="alternate"
       type="application/rss+xml"

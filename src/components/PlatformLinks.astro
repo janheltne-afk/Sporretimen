@@ -111,10 +111,11 @@ const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
 
 <style>
   .platforms__label {
-    margin: 0 0 0.6rem;
-    font-size: 0.8rem;
+    margin: 0 0 0.85rem;
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
@@ -130,27 +131,19 @@ const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
-    padding: 0.5rem 0.9rem;
+    padding: 0.62rem 1rem;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
     color: var(--ink);
     text-decoration: none;
-    font-size: 0.92rem;
-    font-weight: 600;
+    font-size: 0.88rem;
+    font-weight: 500;
     line-height: 1;
-    transition:
-      border-color 0.2s ease,
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+    transition: border-color 0.2s ease;
   }
   .platform__icon + .platform__text {
     margin-left: -0.1rem;
-  }
-  .platform:hover,
-  .platform:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
   }
   .platform__icon {
     display: grid;
@@ -182,10 +175,6 @@ const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
   @media (prefers-reduced-motion: reduce) {
     .platform {
       transition: none;
-    }
-    .platform:hover,
-    .platform:focus-visible {
-      transform: none;
     }
   }
 </style>

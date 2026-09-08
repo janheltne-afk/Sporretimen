@@ -1,106 +1,189 @@
 /* =========================================================================
    Spørretimen – globalt designsystem
-   Ett tydelig aksentfarge, varm redaksjonell tone, lys og mørk bakgrunn.
+
+   Redaksjonell og nedtonet: varmt papir, nær-svart blekk og én dempet
+   bronseaksent. Typografien bærer uttrykket – Newsreader til overskrifter
+   og brødtekst i artikler, Inter til grensesnitt og metadata.
+
+   Prinsipper:
+   - Hårfine linjer framfor skygger.
+   - Nesten rette hjørner (2–4 px), aldri pilleform.
+   - Ingen bevegelse ved hover – bare rolige fargeskift.
+   - God luft. Seksjonene får puste.
    ========================================================================= */
 
-:root {
-  /* Farger – lys modus (standard) */
-  --paper: #faf7f1;         /* varm off-white bakgrunn */
-  --surface: #ffffff;       /* kort/flater */
-  --surface-2: #f2ece1;     /* nedtonet flate */
-  --ink: #1a1613;           /* varm nær-svart tekst */
-  --ink-soft: #4b443c;      /* dempet tekst */
-  --ink-faint: #756d65;     /* svak tekst / metadata – WCAG AA (4.75:1 mot --paper) */
-  --line: #e6ddcf;          /* hårfine linjer */
-  --line-strong: #d8cdb9;
+/* --------------------------------------------------------------- Skrifter
+   Selvhostet (public/fonts) – ingen tredjepartsforespørsler, i tråd med
+   personvernerklæringen. Lisenser ligger ved siden av filene. */
 
-  /* Aksentfarge (hentes normalt fra logoen) */
-  --accent: #d97a2b;        /* varm rav/oransje – kun til store flater/ikoner, ikke tekst */
-  --accent-strong: #aa591c; /* lenketekst – WCAG AA (4.73:1 mot --paper) */
-  --accent-soft: #f7e6d3;
-  --on-accent: #ffffff;
-
-  /* Formatfarger – diskrete, én familie */
-  --tag-samtale: #2f6f5e;
-  --tag-samtale-bg: #e3efe9;
-  --tag-laer: #7a4bb0;
-  --tag-laer-bg: #ece2f6;
-  --tag-kort: #b5561f;
-  --tag-kort-bg: #f8e5d6;
-
-  /* Typografi */
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
-    Georgia, "Times New Roman", serif;
-
-  /* Struktur */
-  --radius: 14px;
-  --radius-sm: 9px;
-  --radius-lg: 22px;
-  --shadow-sm: 0 1px 2px rgba(26, 22, 19, 0.05), 0 1px 3px rgba(26, 22, 19, 0.06);
-  --shadow-md: 0 4px 14px rgba(26, 22, 19, 0.08), 0 2px 6px rgba(26, 22, 19, 0.05);
-  --shadow-lg: 0 18px 50px rgba(26, 22, 19, 0.14);
-
-  --container: 1140px;
-  --container-narrow: 780px;
-  --gutter: clamp(1.1rem, 4vw, 2.25rem);
-
-  --focus: 0 0 0 3px var(--paper), 0 0 0 5.5px var(--accent);
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/newsreader-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/newsreader-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/newsreader-latin-wght-italic.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/newsreader-latin-ext-wght-italic.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'InterVar';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'InterVar';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-:root[data-theme="dark"] {
-  --paper: #14120f;
-  --surface: #1e1a16;
-  --surface-2: #26211b;
-  --ink: #f3ece0;
-  --ink-soft: #cbc2b4;
-  --ink-faint: #948a7c;
-  --line: #2e2822;
-  --line-strong: #3a332b;
+/* ------------------------------------------------------------------ Tokens */
+:root {
+  /* Flater */
+  --paper: #f6f3ed; /* varm off-white bakgrunn */
+  --surface: #fffdf9; /* kort og opphøyde flater */
+  --surface-2: #ede8de; /* nedtonet flate */
 
-  --accent: #eb9350;
-  --accent-strong: #f2a869;
-  --accent-soft: #33261b;
-  --on-accent: #1a1310;
+  /* Blekk – alle kombinasjoner er kontrollert mot WCAG AA */
+  --ink: #16130f;
+  --ink-soft: #4c453c;
+  --ink-faint: #6a635a;
 
-  --tag-samtale: #7fc9b3;
-  --tag-samtale-bg: #1c2b27;
-  --tag-laer: #c3a2ea;
-  --tag-laer-bg: #241c30;
-  --tag-kort: #eaa06f;
-  --tag-kort-bg: #2e2118;
+  /* Linjer */
+  --line: #e0d9cc;
+  --line-strong: #c8bfae;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.55);
-  --focus: 0 0 0 3px var(--paper), 0 0 0 5.5px var(--accent);
+  /* Aksent – dempet bronse, brukes sparsomt */
+  --accent: #8a5a25;
+  --accent-strong: #74491a;
+  --accent-soft: #f0e7d9;
+  --on-accent: #fffdf9;
+
+  /* Formatfarger – én rolig familie, aldri fyll uten grunn */
+  --tag-samtale: #3c5c4e;
+  --tag-samtale-bg: #e8efea;
+  --tag-laer: #42527a;
+  --tag-laer-bg: #e8ebf2;
+  --tag-kort: #8a4b26;
+  --tag-kort-bg: #f3e9e0;
+
+  /* Typografi */
+  --font-sans: 'InterVar', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    Georgia, 'Times New Roman', serif;
+
+  /* Struktur */
+  --radius: 3px;
+  --radius-sm: 2px;
+  --radius-lg: 4px;
+
+  /* Skygger brukes nesten ikke – hårfine linjer bærer dybden */
+  --shadow-sm: 0 1px 2px rgba(22, 19, 15, 0.04);
+  --shadow-md: 0 2px 10px rgba(22, 19, 15, 0.06);
+  --shadow-lg: 0 14px 44px rgba(22, 19, 15, 0.1);
+
+  --container: 1180px;
+  --container-narrow: 760px;
+  --gutter: clamp(1.25rem, 4vw, 2.75rem);
+  --section-y: clamp(3.5rem, 8vw, 7rem);
+
+  --focus: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+}
+
+:root[data-theme='dark'] {
+  --paper: #12100d;
+  --surface: #191612;
+  --surface-2: #211d18;
+  --ink: #f2ede4;
+  --ink-soft: #c5bdb0;
+  --ink-faint: #928a7e;
+  --line: #2b2621;
+  --line-strong: #3b352d;
+
+  --accent: #c98d4e;
+  --accent-strong: #e0a768;
+  --accent-soft: #2a2018;
+  --on-accent: #14110d;
+
+  --tag-samtale: #8fc2ae;
+  --tag-samtale-bg: #1b2621;
+  --tag-laer: #9aabd8;
+  --tag-laer-bg: #1c202b;
+  --tag-kort: #e0a06b;
+  --tag-kort-bg: #271d15;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55);
+  --focus: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
 }
 
 /* Følg systemets valg når brukeren ikke har valgt tema manuelt */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #14120f;
-    --surface: #1e1a16;
-    --surface-2: #26211b;
-    --ink: #f3ece0;
-    --ink-soft: #cbc2b4;
-    --ink-faint: #948a7c;
-    --line: #2e2822;
-    --line-strong: #3a332b;
-    --accent: #eb9350;
-    --accent-strong: #f2a869;
-    --accent-soft: #33261b;
-    --on-accent: #1a1310;
-    --tag-samtale: #7fc9b3;
-    --tag-samtale-bg: #1c2b27;
-    --tag-laer: #c3a2ea;
-    --tag-laer-bg: #241c30;
-    --tag-kort: #eaa06f;
-    --tag-kort-bg: #2e2118;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.55);
+  :root:not([data-theme='light']) {
+    --paper: #12100d;
+    --surface: #191612;
+    --surface-2: #211d18;
+    --ink: #f2ede4;
+    --ink-soft: #c5bdb0;
+    --ink-faint: #928a7e;
+    --line: #2b2621;
+    --line-strong: #3b352d;
+    --accent: #c98d4e;
+    --accent-strong: #e0a768;
+    --accent-soft: #2a2018;
+    --on-accent: #14110d;
+    --tag-samtale: #8fc2ae;
+    --tag-samtale-bg: #1b2621;
+    --tag-laer: #9aabd8;
+    --tag-laer-bg: #1c202b;
+    --tag-kort: #e0a06b;
+    --tag-kort-bg: #271d15;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 2px 12px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55);
+    --focus: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
   }
 }
 
@@ -134,11 +217,11 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 1.02rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "cv11", "ss01";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -155,7 +238,8 @@ video {
 a {
   color: inherit;
   text-decoration-color: var(--line-strong);
-  text-underline-offset: 3px;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
 }
 
 button {
@@ -163,53 +247,75 @@ button {
   color: inherit;
 }
 
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
 :focus-visible {
   outline: none;
   box-shadow: var(--focus);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
-/* -------------------------------------------------------------- Typografi */
+/* -------------------------------------------------------------- Typografi
+   Serifen settes lett (400) – i display-størrelser blir den da elegant
+   framfor tung. Negativ knipning strammer de store gradene. */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.12;
   color: var(--ink);
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.021em;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.3rem, 6vw, 4rem);
+  font-size: clamp(2.35rem, 5.4vw, 3.85rem);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
 }
 h2 {
-  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.45rem);
 }
 h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.18rem, 1.9vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.22;
+}
+h4 {
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: -0.008em;
 }
 
 p {
   margin: 0 0 1.1rem;
 }
 
+/* Liten, sperret merkelapp over overskrifter */
 .eyebrow {
   font-family: var(--font-sans);
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.74rem;
-  font-weight: 700;
+  letter-spacing: 0.17em;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--accent-strong);
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.95rem;
 }
 
 .lead {
-  font-size: clamp(1.1rem, 2vw, 1.32rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.14rem, 1.8vw, 1.38rem);
   line-height: 1.55;
+  letter-spacing: -0.008em;
   color: var(--ink-soft);
+  text-wrap: pretty;
 }
 
 /* ----------------------------------------------------------------- Layout */
@@ -225,16 +331,16 @@ p {
 }
 
 .section {
-  padding-block: clamp(3rem, 8vw, 6rem);
+  padding-block: var(--section-y);
 }
 
 .section-tight {
-  padding-block: clamp(2.2rem, 5vw, 3.5rem);
+  padding-block: clamp(2.4rem, 5vw, 3.75rem);
 }
 
 .section-head {
-  max-width: 46rem;
-  margin-bottom: clamp(1.8rem, 4vw, 2.8rem);
+  max-width: 44rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .stack > * + * {
@@ -247,7 +353,7 @@ main {
 
 .grid {
   display: grid;
-  gap: clamp(1.1rem, 2.5vw, 1.6rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 .grid-2 {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
@@ -259,104 +365,110 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
 }
 
-/* ---------------------------------------------------------------- Knapper */
+/* ---------------------------------------------------------------- Knapper
+   Primærknappen er blekksvart, ikke farget – aksenten kommer først ved
+   hover. Ingen løft, ingen skygge. */
 .btn {
-  --btn-bg: var(--accent);
-  --btn-fg: var(--on-accent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.8rem 1.4rem;
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  border: 1px solid transparent;
+  padding: 0.82rem 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.98rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.92rem;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: var(--shadow-sm);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn:hover {
   background: var(--accent-strong);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-.btn:active {
-  transform: translateY(0);
+  border-color: var(--accent-strong);
+  color: var(--on-accent);
 }
 
 .btn-secondary {
-  --btn-bg: transparent;
-  --btn-fg: var(--ink);
+  background: transparent;
+  color: var(--ink);
   border-color: var(--line-strong);
-  box-shadow: none;
 }
 .btn-secondary:hover {
-  --btn-bg: var(--surface-2);
-  background: var(--surface-2);
-  border-color: var(--ink-faint);
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .btn-ghost {
-  --btn-bg: transparent;
-  --btn-fg: var(--ink);
-  box-shadow: none;
-  padding-inline: 0.75rem;
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: transparent;
+  padding-inline: 0.35rem;
 }
 .btn-ghost:hover {
-  background: var(--surface-2);
+  background: transparent;
+  color: var(--accent-strong);
+  border-color: transparent;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
 }
 
 .btn-sm {
-  padding: 0.5rem 0.95rem;
-  font-size: 0.86rem;
+  padding: 0.58rem 1.1rem;
+  font-size: 0.84rem;
 }
 
-/* ------------------------------------------------------------------- Tags */
+/* ------------------------------------------------------------------- Tags
+   Små, sperrede versaler med hårfin ramme – ingen fargede piller. */
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.28rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.76rem;
+  padding: 0.3rem 0.62rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.67rem;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  background: var(--surface-2);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
   color: var(--ink-soft);
   white-space: nowrap;
+  line-height: 1.35;
 }
 .tag-samtale {
-  background: var(--tag-samtale-bg);
   color: var(--tag-samtale);
+  border-color: color-mix(in srgb, var(--tag-samtale) 38%, transparent);
 }
 .tag-laer-noe-nytt {
-  background: var(--tag-laer-bg);
   color: var(--tag-laer);
+  border-color: color-mix(in srgb, var(--tag-laer) 38%, transparent);
 }
 .tag-kort-forklart {
-  background: var(--tag-kort-bg);
   color: var(--tag-kort);
+  border-color: color-mix(in srgb, var(--tag-kort) 38%, transparent);
 }
 .tag-status {
-  background: var(--accent-soft);
   color: var(--accent-strong);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: var(--accent-soft);
 }
 
-/* ------------------------------------------------------------------ Kort */
+/* ------------------------------------------------------------------- Kort
+   Flate flater med hårfin ramme. Ved hover mørkner bare rammen. */
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  transition: border-color 0.2s ease;
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
   border-color: var(--line-strong);
 }
 
@@ -374,7 +486,7 @@ main {
   height: 1px;
   background: var(--line);
   border: 0;
-  margin-block: clamp(2rem, 5vw, 3.5rem);
+  margin-block: clamp(2.5rem, 5vw, 4rem);
 }
 .visually-hidden {
   position: absolute;
@@ -395,78 +507,116 @@ main {
   z-index: 100;
   background: var(--ink);
   color: var(--paper);
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius-sm);
   text-decoration: none;
+  font-size: 0.9rem;
   transition: top 0.15s ease;
 }
 .skip-link:focus {
   top: 0.75rem;
 }
 
-/* ------------------------------------------------------ Prosa (artikkeltekst) */
+/* ------------------------------------------------------ Prosa (artikkeltekst)
+   Brødteksten i artikler settes i serifen – roligere å lese over lengde. */
 .prose {
-  max-width: 42rem;
-  font-size: 1.08rem;
+  max-width: 40rem;
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  line-height: 1.72;
+  letter-spacing: -0.003em;
   color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.prose > p:first-child {
+  margin-top: 0;
 }
 .prose h2,
-.prose h3 {
+.prose h3,
+.prose h4 {
   color: var(--ink);
-  margin-top: 2em;
+  margin-top: 2.1em;
+  margin-bottom: 0.55em;
+}
+.prose h2 {
+  font-size: 1.72rem;
+}
+.prose h3 {
+  font-size: 1.3rem;
+}
+.prose strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 .prose a {
   color: var(--accent-strong);
-  text-decoration-color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.prose a:hover {
+  text-decoration-color: currentColor;
 }
 .prose blockquote {
-  margin: 1.6rem 0;
-  padding: 0.4rem 0 0.4rem 1.2rem;
-  border-left: 3px solid var(--accent);
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--accent);
   color: var(--ink);
   font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.prose blockquote p:last-child {
+  margin-bottom: 0;
 }
 .prose ul,
 .prose ol {
-  padding-left: 1.3rem;
+  padding-left: 1.25rem;
+  margin-bottom: 1.3rem;
 }
 .prose li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.2rem;
+}
+.prose li::marker {
+  color: var(--ink-faint);
 }
 .prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   background: var(--surface-2);
-  padding: 0.1em 0.4em;
-  border-radius: 5px;
-  font-size: 0.9em;
+  padding: 0.12em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.86em;
+}
+.prose hr {
+  height: 1px;
+  border: 0;
+  background: var(--line);
+  margin-block: 2.5rem;
 }
 
-/* Tabeller i innhold – scroller vannrett på små skjermer */
+/* Tabeller i innhold */
 .prose table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.6rem 0;
-  font-size: 0.96rem;
+  margin: 2rem 0;
+  font-size: 0.98rem;
 }
 .prose table :is(th, td) {
-  padding: 0.65rem 0.9rem;
+  padding: 0.75rem 0.9rem;
   text-align: left;
   border-bottom: 1px solid var(--line);
 }
 .prose thead th {
-  background: var(--surface-2);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  border-bottom: 2px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
 }
 .prose tbody tr:last-child :is(th, td) {
   border-bottom: 0;
-}
-.prose tbody tr:hover {
-  background: var(--surface-2);
 }
 
 /* Diskret innfelling ved scroll.
@@ -476,8 +626,8 @@ main {
 @media (prefers-reduced-motion: no-preference) {
   html.js .reveal {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(10px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   html.js .reveal.is-visible {
     opacity: 1;
