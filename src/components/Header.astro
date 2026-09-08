@@ -1,30 +1,26 @@
 ---
 import Logo from './Logo.astro';
-import { nav } from '@/data/site';
+import { nav, site } from '@/data/site';
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+/**
+ * Menylenkene i site.ts har etterfølgende skråstrek. Vi fjerner den fra begge
+ * sider før vi sammenligner, ellers ville ikke en seksjons egen forside
+ * (/episoder/, /om/ …) blitt markert som gjeldende side.
+ */
+const stripSlash = (value: string) => value.replace(/\/+$/, '') || '/';
+const path = stripSlash(Astro.url.pathname);
+const isActive = (href: string) => {
+  const target = stripSlash(href);
+  return path === target || (target !== '/' && path.startsWith(`${target}/`));
+};
 ---
 
 <header class="site-header">
-  <div class="container site-header__inner">
-    <a class="site-header__brand" href="/" aria-label="Spørretimen – til forsiden">
-      <Logo />
+  <!-- Øverste rad: ordmerket alene, slik det står hos et advokathus -->
+  <div class="container site-header__top">
+    <a class="site-header__brand" href="/" aria-label={`${site.name} – til forsiden`}>
+      <Logo sub={`Podkast med ${site.host}`} />
     </a>
-
-    <nav class="site-nav" aria-label="Hovedmeny">
-      <ul>
-        {
-          nav.map((item) => (
-            <li>
-              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
 
     <div class="site-header__actions">
       <button
@@ -34,14 +30,14 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
         aria-label="Bytt mellom lyst og mørkt tema"
         title="Bytt tema"
       >
-        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
-          <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
             <path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"></path>
           </g>
         </svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M20 14.5A8 8 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <path d="M20 14.5A8 8 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
         </svg>
       </button>
 
@@ -57,6 +53,23 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
       </button>
     </div>
   </div>
+
+  <!-- Nederste rad: menyen får sin egen linje og god luft -->
+  <nav class="site-nav" aria-label="Hovedmeny">
+    <div class="container">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
 
   <!-- Mobilmeny -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Meny" hidden>
@@ -79,88 +92,40 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--paper) 90%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--paper);
     border-bottom: 1px solid var(--line);
   }
-  .site-header__inner {
+
+  /* --------------------------------------------------------- Ordmerkerad */
+  .site-header__top {
     display: flex;
     align-items: center;
-    gap: 1.75rem;
-    min-height: 78px;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 76px;
   }
   .site-header__brand {
     text-decoration: none;
     flex: none;
   }
-  .site-nav {
-    margin-left: auto;
-  }
-  .site-nav ul {
-    display: flex;
-    gap: 1.55rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .site-nav a {
-    position: relative;
-    display: inline-block;
-    padding-block: 0.3rem;
-    text-decoration: none;
-    color: var(--ink-soft);
-    font-size: 0.86rem;
-    font-weight: 450;
-    letter-spacing: 0.005em;
-    white-space: nowrap;
-    transition: color 0.2s ease;
-  }
-  /* Hårfin strek som gror fram i stedet for en farget flate */
-  .site-nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.22s ease;
-  }
-  .site-nav a:hover {
-    color: var(--ink);
-  }
-  .site-nav a:hover::after {
-    transform: scaleX(1);
-  }
-  .site-nav a[aria-current='page'] {
-    color: var(--ink);
-  }
-  .site-nav a[aria-current='page']::after {
-    transform: scaleX(1);
-    background: var(--accent);
-  }
   .site-header__actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35rem;
   }
   .theme-toggle {
     display: grid;
     place-items: center;
-    width: 38px;
-    height: 38px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
+    width: 36px;
+    height: 36px;
+    border: 0;
     background: transparent;
     color: var(--ink-faint);
     cursor: pointer;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease;
   }
   .theme-toggle:hover {
     color: var(--ink);
-    border-color: var(--line-strong);
   }
   .theme-toggle .icon-moon {
     display: none;
@@ -181,22 +146,70 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     }
   }
 
+  /* -------------------------------------------------------------- Menyrad */
+  .site-nav {
+    border-top: 1px solid var(--line);
+    /* Løftes over topplinjens bunnkant, så markøren for gjeldende side
+       tegnes oppå streken i stedet for under den. */
+    position: relative;
+    z-index: 1;
+  }
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav a {
+    position: relative;
+    display: block;
+    padding-block: 0.92rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  .site-nav a:hover {
+    color: var(--ink);
+  }
+  /* Hårfin strek under gjeldende side – eneste stedet aksenten brukes her */
+  .site-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s ease;
+  }
+  .site-nav a[aria-current='page'] {
+    color: var(--ink);
+  }
+  .site-nav a[aria-current='page']::after {
+    transform: scaleX(1);
+  }
+
+  /* -------------------------------------------------------------- Mobil */
   .menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 4px;
-    width: 38px;
-    height: 38px;
-    padding: 0 8px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0 7px;
+    border: 0;
     background: transparent;
     cursor: pointer;
-    transition: border-color 0.2s ease;
-  }
-  .menu-toggle:hover {
-    border-color: var(--line-strong);
   }
   .menu-toggle span {
     display: block;
@@ -205,17 +218,17 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
   .menu-toggle[aria-expanded='true'] span:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
+    transform: translateY(6px) rotate(45deg);
   }
   .menu-toggle[aria-expanded='true'] span:nth-child(2) {
     opacity: 0;
   }
   .menu-toggle[aria-expanded='true'] span:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   .mobile-nav {
-    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
     background: var(--paper);
   }
   .mobile-nav[hidden] {
@@ -230,10 +243,13 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
   }
   .mobile-nav a {
     display: block;
-    padding: 0.9rem 0;
+    padding: 0.95rem 0;
     text-decoration: none;
     color: var(--ink-soft);
-    font-size: 0.98rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     border-bottom: 1px solid var(--line);
     transition: color 0.2s ease;
   }
@@ -245,7 +261,6 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
   }
   .mobile-nav a[aria-current='page'] {
     color: var(--ink);
-    font-weight: 500;
   }
 
   @media (max-width: 1180px) {
@@ -254,6 +269,9 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     }
     .menu-toggle {
       display: flex;
+    }
+    .site-header__top {
+      min-height: 68px;
     }
   }
 </style>
