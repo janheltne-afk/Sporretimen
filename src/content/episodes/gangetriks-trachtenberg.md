@@ -1,33 +1,41 @@
 ---
-title: "Lær noe nytt: Trachtenberg-systemet – gang med 11 i hodet"
+title: "Lær noe nytt: Trachtenberg-systemet – hoderegning uten gangetabell"
 format: laer-noe-nytt
 status: kommende
 categories:
   - Utdanning
 topics:
-  - Trachtenberg-systemet
-  - Å gange med 11 uten å regne
-  - Egne regler for 12, 6, 9 og de andre sifrene
-  - Hvorfor triksene faktisk virker
+  - Trachtenberg-systemet som helhet
+  - Én kort regel for hvert siffer fra 2 til 12
+  - Nabosifferet og halvering – grunnbegrepene i systemet
+  - Reglene som legger til, og de som trekker fra
+  - Den generelle metoden for store tall
+  - Addisjon, divisjon, kvadrering og kvadratrot
+  - Sifferkontroll – å sjekke svaret uten å regne på nytt
+  - Hvorfor reglene virker
   - Jakow Trachtenberg og bakgrunnen for systemet
-  - Hoderegning i praksis
 questions:
-  - Hvordan ganger man med 11 i hodet, uten å regne?
-  - Hvorfor virker regelen om å legge sammen med nabosifferet?
-  - Finnes det tilsvarende regler for de andre sifrene?
+  - Hva er Trachtenberg-systemet, og hva dekker det?
+  - Hva menes med «nabosifferet», og hva vil det si å halvere i systemet?
+  - Hvordan ganger man med 11 – og hvordan ser reglene for de andre sifrene ut?
+  - Hvorfor trekker reglene for 8 og 9 fra, mens de fleste andre legger til?
+  - Hvordan takler systemet store tall, der ingen enkeltregel passer?
+  - Kan man virkelig regne uten å kunne gangetabellen?
+  - Hvordan sjekker man at svaret er riktig?
   - Hvem var Jakow Trachtenberg, og hvor kom systemet fra?
-  - Må man kunne gangetabellen for å bruke systemet?
-  - Er dette nyttig i dag, eller mest et kuriosum?
 takeaways:
-  - Å gange med 11 er å legge hvert siffer sammen med sifferet til høyre.
-  - Systemet bytter ut gangetabellen med én kort regel per siffer.
-  - Triksene er ikke magi – de følger av hvordan titallsystemet er bygd opp.
-  - Trachtenberg utviklet systemet i hodet, uten penn og papir, som fange.
+  - Systemet er én kort regel per siffer, ikke ett triks – det dekker 2 til 12.
+  - "To begreper bærer det hele: nabosifferet til høyre, og halvering rundet ned."
+  - Den generelle metoden tar store tall, der ingen enkeltregel rekker til.
+  - Systemet dekker også addisjon, divisjon, kvadrering og kvadratrot.
+  - Sifferkontrollen fanger de fleste feil, men ikke alle – den er en test, ikke et bevis.
+  - Reglene er ikke magi – de faller ut av hvordan titallsystemet er bygd opp.
 coverTheme: "Trachtenberg-systemet"
 description: >-
-  Hvordan ganger man 3 425 med 11 i hodet, på ett sekund? En gjennomgang av
-  Trachtenberg-systemet: regelen for 11, de andre gangereglene, og hvorfor
-  triksene virker.
+  En metode for å regne i hodet der gangetabellen byttes ut med én kort regel
+  per siffer. En gjennomgang av hele Trachtenberg-systemet: reglene fra 2 til
+  12, den generelle metoden for store tall, addisjon og divisjon – og hvordan
+  du sjekker svaret.
 featured: false
 related:
   - memoreringsteknikker-kortstokk
@@ -35,17 +43,46 @@ related:
 
 Ta 3 425 × 11. De fleste av oss setter opp et regnestykke. Men det finnes en regel
 som gir svaret – 37 675 – uten at du regner i vanlig forstand: **legg hvert siffer
-sammen med sifferet til høyre for det.** Det er hele trikset.
+sammen med sifferet til høyre for det.**
 
-Regelen er én av flere i **Trachtenberg-systemet**, en metode for hoderegning med
-egne, korte regler for hvert siffer fra 2 til 12. Poenget er at du slipper
-gangetabellen: i stedet for å hente fram et memorert svar, følger du en
-oppskrift som gjør et stort regnestykke om til en rekke små tillegg.
+Det er den enkleste regelen i **Trachtenberg-systemet**, og den er et greit sted å
+begynne. Men systemet er langt større enn 11-gangen. Det er et helt oppsett for å
+regne i hodet, der gangetabellen byttes ut med korte oppskrifter du følger siffer
+for siffer.
 
-I denne Lær noe nytt-episoden går Jan Sindre gjennom regelen for 11, ser på hvordan
-de andre gangereglene er bygd opp, og – viktigst – hvorfor de faktisk virker. For
-dette er ikke tryllekunst. Triksene faller ut av måten titallsystemet er satt
-sammen på, og når du ser hvorfor, blir de lettere å huske enn å pugge.
+## Én regel per siffer
+
+Hvert siffer fra 2 til 12 har sin egen regel. To begreper går igjen i alle:
+**nabosifferet**, som alltid er sifferet til høyre, og **halvering**, som i dette
+systemet betyr halvparten rundet ned.
+
+Reglene har ulik form. Noen legger til – å gange med 5 er å ta halve nabosifferet
+og legge til 5 hvis sifferet selv er oddetall. Andre trekker fra: reglene for 8 og
+9 bygger på å trekke fra i stedet for å legge til. Poenget er det samme hele veien:
+et stort regnestykke gjøres om til en rekke små steg, stort sett enkle tillegg.
+
+## Når ingen enkeltregel passer
+
+Sifferreglene dekker 2 til 12. For alt annet har systemet en **generell metode**,
+der du jobber deg gjennom tallene parvis og legger sammen produktene som hører til
+hver plass i svaret. Den er tyngre å lære, men den tar hvilke som helst to tall –
+og den er laget for å holde minst mulig i hodet underveis.
+
+## Mer enn ganging
+
+Trachtenberg stoppet ikke ved multiplikasjon. Systemet har også egne
+framgangsmåter for **addisjon**, **divisjon**, **kvadrering** og **kvadratrot**.
+
+Og det har en **sifferkontroll**: du legger sammen sifrene i hvert tall, reduserer
+til ett siffer, og sammenligner med svaret ditt behandlet på samme måte. Stemmer
+det ikke, har du gjort en feil. Men merk at det motsatte ikke holder – kontrollen
+fanger de fleste feil, ikke alle. Den er en test, ikke et bevis.
+
+## Hvorfor virker det?
+
+Dette er den delen som er verdt mest. Reglene er ikke tryllekunst, og de er ikke
+tilfeldige. De faller ut av måten titallsystemet er satt sammen på – og når du ser
+hvorfor 11-regelen må stemme, blir den lettere å huske enn å pugge.
 
 ## Mannen bak
 
