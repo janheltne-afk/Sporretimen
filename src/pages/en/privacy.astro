@@ -1,0 +1,157 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+
+const updated = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date('2026-08-25'));
+---
+
+<BaseLayout
+  lang="en"
+  title="Privacy"
+  description="Privacy policy for Spørretimen: what information is processed in comments, ratings and forms, why, and what rights you have."
+>
+  <PageHeader
+    eyebrow="Privacy"
+    title="Privacy policy"
+    lead="Here we explain in concrete terms what is collected on sporretimen.no, why, and what you can do if you want something changed or removed."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p class="muted">Last updated: {updated}</p>
+
+      <h2>In short</h2>
+      <ul>
+        <li>
+          Spørretimen is a hobby project, not a registered company. The data controller
+          is Jan Sindre Heltne.
+        </li>
+        <li>
+          The forms for contact, guest suggestions and “be a guest” send the message
+          directly from your own email client to {site.email}. We do not store these
+          form submissions on the website.
+        </li>
+        <li>
+          Comments and ratings are stored in a database (Supabase) because they are
+          displayed publicly on the episode page.
+        </li>
+        <li>We use no analytics tools, ad networks or tracking cookies.</li>
+      </ul>
+
+      <h2>Data controller</h2>
+      <p>
+        Jan Sindre Heltne is responsible for sporretimen.no and the information
+        processed here. Spørretimen is a personal hobby project with no connection to
+        Jan Sindre’s employer, and is not currently run as a registered business. If you
+        have questions about privacy, you can get in touch at{' '}
+        <a href={`mailto:${site.email}?subject=${encodeURIComponent('Privacy – Spørretimen')}`}>
+          {site.email}
+        </a>.
+      </p>
+
+      <h2>Comments</h2>
+      <p>
+        When you leave a comment on an episode, the name you enter and the comment text
+        itself are stored in a database, along with the time. Comments are shown
+        publicly beneath the episode under the name you provided — so do not write more
+        than you are comfortable with everyone seeing.
+      </p>
+      <p>
+        The legal basis is consent: you choose to write and submit the comment yourself.
+        If a comment is offensive, harassing or otherwise inappropriate, we remove it.
+        If you want a comment with your name deleted, get in touch at{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> and we will take care of it.
+      </p>
+
+      <h2>Ratings</h2>
+      <p>
+        When you rate an episode, the rating itself (1–6) is stored together with which
+        episode it applies to. To prevent the same person voting several times on the
+        same episode, your browser stores a random, anonymous code locally (see
+        “Browser storage” below). The code is not linked to a name, email address or IP
+        address, and cannot be used to identify you.
+      </p>
+
+      <h2>Contact forms</h2>
+      <p>
+        The forms under Contact, Suggest a guest and Be a guest open a pre-filled email
+        in your own email client when you submit. The content goes straight to{' '}
+        {site.email} as an ordinary email — it is not stored in any database on
+        sporretimen.no. The handling of the email itself follows the same rules as any
+        other email to {site.email}.
+      </p>
+
+      <h2>Browser storage (localStorage)</h2>
+      <p>
+        The website uses the browser’s local storage — not traditional cookies — for two
+        things:
+      </p>
+      <ul>
+        <li><strong>Theme choice:</strong> whether you have selected a light or dark appearance.</li>
+        <li>
+          <strong>Rating code:</strong> the anonymous code mentioned above, which
+          prevents double voting.
+        </li>
+      </ul>
+      <p>
+        Both are necessary for the feature you asked for to work, and are not used for
+        tracking, profiling or advertising. The information stays in your own browser
+        only and is not shared with third parties. You can delete it at any time by
+        clearing the browser’s stored data for sporretimen.no.
+      </p>
+      <p>
+        We use no analytics tools (such as Google Analytics), no advertising cookies and
+        no cross-site tracking.
+      </p>
+
+      <h2>Embedded content from YouTube and Spotify</h2>
+      <p>
+        The episode pages may show players from YouTube and Spotify. If you play an
+        episode directly on the page, YouTube and Spotify may process information about
+        you in line with their own privacy terms — that is outside our control. We use
+        YouTube’s privacy-enhanced embed mode (youtube-nocookie.com), which limits this
+        processing until you actually play the video.
+      </p>
+
+      <h2>Images</h2>
+      <p>
+        Photographs of guests and the host are either taken or approved by the people
+        themselves, or made specifically for Spørretimen. We do not use images we do not
+        have the right to publish.
+      </p>
+
+      <h2>Data processor</h2>
+      <p>
+        Comments and ratings are stored with <strong>Supabase</strong>, our database
+        provider. Access is restricted by rules in the database (Row Level Security):
+        visitors can read and add comments and ratings, but cannot edit or delete other
+        people’s posts. Removal and moderation are handled by Jan Sindre.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>Under data protection law (GDPR) you have the right to:</p>
+      <ul>
+        <li>be told what information is stored about you,</li>
+        <li>have incorrect information corrected,</li>
+        <li>have information deleted, such as a comment you have written,</li>
+        <li>complain to the <a href="https://www.datatilsynet.no/en/" target="_blank" rel="noopener">Norwegian Data Protection Authority</a> if you believe the processing breaches the rules.</li>
+      </ul>
+      <p>
+        For comments and ratings the simplest route is to get in touch directly at{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> — tell us which episode it was
+        and roughly when the comment was posted, and we will find it.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        If we change how the website processes information, we update this page and the
+        date at the top.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

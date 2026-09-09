@@ -1,0 +1,196 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+import { path } from '@/i18n/config';
+
+// How Spørretimen applies Norwegian press ethics in practice.
+const principles = [
+  {
+    title: 'Care for the people we cover',
+    body: 'We consider how material may feel for guests, their families and anyone else discussed. We think through the consequences before publishing, and go further still for people in a vulnerable situation.',
+    vvp: 'Code of Ethics, sections 4.1 and 4.3',
+  },
+  {
+    title: 'Health and confidentiality',
+    body: 'Experience from the health service is always discussed in general terms. We do not share identifiable patient stories or confidential information. The content is never individual medical advice and does not replace an assessment by a health professional.',
+    vvp: 'Good press practice and statutory confidentiality',
+  },
+  {
+    title: 'Separating experience, explanation and fact',
+    body: 'We keep personal experience, professional explanation and documented fact clearly apart. The host is not presented as an expert on every subject, and the guests’ views are their own.',
+    vvp: 'Code of Ethics, section 4.2',
+  },
+  {
+    title: 'Sources and source criticism',
+    body: 'Explainers and primers are source-based, and we name sources where it makes sense. We aim to verify that information is correct, and we are open about uncertainty.',
+    vvp: 'Code of Ethics, chapter 3',
+  },
+  {
+    title: 'Consent and participation',
+    body: 'Guests know what they are taking part in. An episode can be cut if the conversation touches on information or subjects that should not be published, and anyone taking part can get in touch if something feels wrong or uncomfortable.',
+    vvp: 'Code of Ethics, sections 3.3 and 3.9',
+  },
+  {
+    title: 'Right of reply',
+    body: 'Anyone subjected to strong allegations should have the chance to respond. If you believe something is wrong or unreasonable, you can ask for a correction or a right of reply – see the contact details below.',
+    vvp: 'Code of Ethics, sections 4.14 and 4.15',
+  },
+  {
+    title: 'Corrections and apologies',
+    body: 'Incorrect information is corrected as soon as possible, and we apologise where there is reason to. Corrections are made plainly.',
+    vvp: 'Code of Ethics, section 4.13',
+  },
+  {
+    title: 'Editorial content and advertising kept apart',
+    body: 'Spørretimen is not a commercial podcast today. Should a collaboration ever involve something in return, it will always be clearly marked, and we keep a clear line between editorial content and any advertising.',
+    vvp: 'Code of Ethics, chapter 2',
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Editorial standards"
+  description="How Spørretimen relates to press ethics: responsible handling of health information, source criticism, consent, corrections and right of reply."
+>
+  <PageHeader
+    eyebrow="Editorial standards"
+    title="Press ethics and the content"
+    lead="Spørretimen is a podcast built on curiosity and respect. We are guided by Norwegian press ethics where they are relevant."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p>
+        Although Spørretimen is a personal project and not a traditional newsroom,
+        we take seriously the responsibility that comes with publishing about
+        people, professions and specialist subjects. The Code of Ethics of the
+        Norwegian Press — <em>Vær Varsom-plakaten</em> — is the shared set of rules
+        for good press practice in Norway. We use it as a guide for how we treat
+        guests, sources and subjects, particularly where health and sensitive
+        stories are concerned.
+      </p>
+      <p>
+        Below we explain what that means in practice, so it is clear what
+        considerations lie behind what we publish.
+      </p>
+    </div>
+  </section>
+
+  <section class="section principles">
+    <div class="container">
+      <div class="section-head">
+        <h2>How we apply the principles</h2>
+      </div>
+      <div class="grid grid-2">
+        {
+          principles.map((p) => (
+            <article class="card principle">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+              <p class="principle__ref">{p.vvp}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section sensitive">
+    <div class="container container-narrow">
+      <div class="card sensitive__card">
+        <h2>On health and sensitive subjects in particular</h2>
+        <p>
+          Several of our guests work in health care or share personal experience. We
+          always discuss emergency medicine, mental health and other health material
+          in general terms, and we never share identifiable patient stories. If a
+          conversation moves onto something that should not be published, we cut it.
+          The purpose is to give insight and understanding – never to expose
+          individuals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-block">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">Do you have an objection?</p>
+      <h2>Get in touch – we want to get things right</h2>
+      <p class="lead mx-auto">
+        Do you believe something in an episode is wrong, unreasonable or goes too
+        far? Would you like a correction or a right of reply? Contact the person
+        responsible for the content, Jan Sindre Heltne, and we will take it
+        seriously.
+      </p>
+      <div class="contact-block__actions">
+        <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent('Press ethics / correction – Spørretimen')}`}>
+          {site.email}
+        </a>
+        <a class="btn btn-secondary" href={path('en', 'contact')}>To the contact page</a>
+      </div>
+      <p class="muted external">
+        Read the full code at the Norwegian Press Association:
+        <a href="https://presse.no/pfu/etiske-regler/vaer-varsom-plakaten/" target="_blank" rel="noopener">
+          Vær Varsom-plakaten (presse.no)
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .principles {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .principle {
+    padding: 1.4rem 1.5rem;
+  }
+  .principle h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .principle p {
+    color: var(--ink-soft);
+    margin: 0;
+    font-size: 0.96rem;
+  }
+  .principle__ref {
+    margin-top: 0.8rem !important;
+    font-size: 0.8rem !important;
+    color: var(--ink-faint) !important;
+    font-weight: 600;
+  }
+  .sensitive__card {
+    padding: 1.8rem;
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+  }
+  .sensitive__card h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .sensitive__card p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .contact-block {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .contact-block__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .external {
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+  }
+  .external a {
+    color: var(--accent-strong);
+  }
+</style>

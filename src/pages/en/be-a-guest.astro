@@ -1,0 +1,73 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="Be a guest"
+  description="Do you have an interesting job, experience or knowledge you want to share? Register your interest in being a guest on Spørretimen."
+>
+  <PageHeader
+    eyebrow="Be a guest"
+    title="Do you have something real to tell?"
+    lead="Spørretimen wants to hear from people known and unknown who have a job, an experience, a story or knowledge others could benefit from."
+  />
+
+  <section class="section">
+    <div class="container container-narrow">
+      <Form
+        lang="en"
+        formName="be-a-guest"
+        subject="Guest enquiry – Spørretimen"
+        submitLabel="Register interest"
+        successMessage="Thank you. We have your enquiry and will be in touch if it fits."
+      >
+        <div class="field--row">
+          <div class="field">
+            <label for="name">Name <span class="req">*</span></label>
+            <input id="name" name="Name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input id="email" name="Email" type="email" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="role">Job or role</label>
+          <input id="role" name="Job or role" type="text" autocomplete="organization-title" />
+        </div>
+
+        <div class="field">
+          <label for="topic">What would you like to talk about? <span class="req">*</span></label>
+          <textarea
+            id="topic"
+            name="Subject"
+            required
+            placeholder="Briefly describe the job, experience, story or knowledge you want to share."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="links">Links <span class="field__hint">(optional)</span></label>
+          <input id="links" name="Links" type="text" placeholder="Website, LinkedIn, social media" />
+        </div>
+      </Form>
+
+      <p class="privacy muted">
+        We use your contact details only to follow up on your enquiry.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .req {
+    color: var(--accent-strong);
+  }
+  .privacy {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+  }
+</style>

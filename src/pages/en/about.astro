@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Avatar from '@/components/Avatar.astro';
+import { site } from '@/data/site';
+import { path } from '@/i18n/config';
+import { formatList } from '@/i18n/taxonomy';
+
+const formats = formatList('en');
+---
+
+<BaseLayout
+  lang="en"
+  title="About Spørretimen"
+  description="Why Spørretimen was started, what the concept is, and who Jan Sindre Heltne is."
+>
+  <PageHeader
+    eyebrow="About Spørretimen"
+    title="The people, the jobs and the stories you want to understand better"
+    lead="A podcast for anyone curious about how things actually work."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p>
+        Spørretimen started from a simple idea: a lot of people carry stories,
+        experience and knowledge that more of us ought to hear.
+      </p>
+      <p>
+        Through personal conversations Jan Sindre meets people from different jobs,
+        communities and backgrounds. Some episodes are about careers and working
+        life. Others are about expeditions, health, money, music, technology or the
+        experiences that shaped a guest.
+      </p>
+      <p>
+        Alongside the interviews, Spørretimen makes explainers and short primers
+        that render complicated subjects easier to grasp.
+      </p>
+
+      <h2>One question keeps coming back</h2>
+      <p>
+        One question runs through many of the interviews:
+        <em>what is it actually like to do this for a living?</em> Through the
+        guests’ stories the podcast also works as a kind of careers podcast, giving
+        you a view into different professions, educational choices, working days,
+        difficulties, opportunities and routes into an industry.
+      </p>
+
+      <p class="muted">
+        The podcast is recorded in Norwegian. These English pages summarise each
+        episode so you can find and follow the material.
+      </p>
+    </div>
+  </section>
+
+  <section class="section why">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Three formats</p>
+        <h2>Why we combine conversations and explainers</h2>
+        <p class="lead">
+          The interviews carry the personal stories. The explainers and short
+          primers make the subject matter around the guests easier to understand.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {
+          formats.map((f) => (
+            <div class="card format-card">
+              <h3>{f.singular}</h3>
+              <p>{f.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section host">
+    <div class="container host__inner">
+      <div class="host__portrait">
+        <Avatar
+          name={site.host}
+          src={site.hostImage}
+          alt={`${site.host}, host of Spørretimen`}
+          ratio="1 / 1"
+        />
+      </div>
+      <div class="host__text">
+        <p class="eyebrow">Host</p>
+        <h2>{site.host}</h2>
+        <p class="lead">
+          Jan Sindre has a background in logistics, finance and consulting. He is
+          curious, people-oriented, and enjoys meeting people whose experience and
+          field differ from his own.
+        </p>
+        <p class="host__note">
+          His day job is in business analytics. Spørretimen is purely a hobby
+          project with no connection to his employer – neither the content, the
+          guests nor any collaboration has anything to do with that job.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section principles">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">How we work</p>
+        <h2>Principles that matter</h2>
+      </div>
+      <ul class="principles__list">
+        <li>The podcast should be curious, not lecturing.</li>
+        <li>The guests’ stories come first.</li>
+        <li>Subject matter should be explained so it can be followed.</li>
+        <li>Health information and sensitive stories are handled responsibly.</li>
+        <li>Identifiable patient stories are not published.</li>
+        <li>
+          We follow Norwegian press ethics and the Code of Ethics of the Norwegian
+          Press where relevant.
+        </li>
+        <li>The host is not presented as an expert on every subject.</li>
+        <li>
+          Personal experience, professional explanation and documented fact are kept
+          clearly apart.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section geo">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">Where it comes from</p>
+      <h2>Rooted in Sunnmøre and Trøndelag – open to the whole country</h2>
+      <p class="lead mx-auto">
+        Spørretimen has natural ties to Sunnmøre, Volda, Ålesund, Sandsøya, Romsdal,
+        Molde, Trondheim and Trøndelag. The podcast is not limited geographically –
+        the aim is to invite guests from all of Norway, and in time international
+        guests as well.
+      </p>
+      <div class="geo__actions">
+        <a class="btn" href={path('en', 'episodes')}>See the episodes</a>
+        <a class="btn btn-secondary" href={path('en', 'beGuest')}>Be a guest</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .why {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .format-card {
+    padding: 1.5rem;
+  }
+  .format-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  .format-card p {
+    color: var(--ink-soft);
+    margin: 0;
+    font-size: 0.96rem;
+  }
+  .host__inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    align-items: center;
+  }
+  .host__portrait {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 280px;
+  }
+  .host__note {
+    margin-top: 1.1rem;
+    padding: 1rem 1.2rem;
+    background: var(--surface-2);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--accent);
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .principles {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .principles__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 0.8rem;
+  }
+  .principles__list li {
+    position: relative;
+    padding: 1rem 1.1rem 1rem 2.6rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+  }
+  .principles__list li::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 1.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .geo__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 760px) {
+    .host__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

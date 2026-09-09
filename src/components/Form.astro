@@ -10,26 +10,43 @@ import { forms } from '@/data/site';
  * Feltene legges inn via <slot />. Bruk vanlige <input>/<textarea> med `name`
  * og `required` der det trengs.
  */
+import { type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
 interface Props {
+  lang?: Locale;
   formName: string;
   subject: string;
   submitLabel?: string;
   successMessage?: string;
 }
 const {
+  lang = 'no',
   formName,
   subject,
-  submitLabel = 'Send inn',
-  successMessage = 'Takk! Meldingen din er sendt. Vi tar kontakt hvis det er aktuelt.',
+  submitLabel,
+  successMessage,
 } = Astro.props;
+
+const t = useTranslations(lang);
+const label = submitLabel ?? t('form.submit');
+const success =
+  successMessage ??
+  (lang === 'en'
+    ? 'Thank you. Your message has been sent. We will be in touch if it fits.'
+    : 'Takk! Meldingen din er sendt. Vi tar kontakt hvis det er aktuelt.');
 ---
 
 <form
   class="st-form"
+  data-required={t('form.required')}
+  data-error={t('form.error')}
+  data-sending={t('form.sending')}
+  data-mailto={t('form.mailtoOpened')}
   data-endpoint={forms.endpoint ?? ''}
   data-recipient={forms.recipient}
   data-subject={subject}
-  data-success={successMessage}
+  data-success={success}
   name={formName}
   novalidate
 >
@@ -39,13 +56,13 @@ const {
 
   <!-- Enkel spam-felle: skjult felt som mennesker ikke fyller ut -->
   <div class="st-form__hp" aria-hidden="true">
-    <label>La dette feltet stå tomt
+    <label>{t('form.honeypot')}
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
     </label>
   </div>
 
   <div class="st-form__foot">
-    <button type="submit" class="btn">{submitLabel}</button>
+    <button type="submit" class="btn">{label}</button>
     <p class="st-form__status" role="status" aria-live="polite"></p>
   </div>
 </form>
@@ -186,7 +203,7 @@ const {
       if (hp && hp.value) return;
 
       if (!validate(form)) {
-        setStatus('Fyll ut de påkrevde feltene før du sender.', 'error');
+        setStatus(form.dataset.required!, 'error');
         return;
       }
 
@@ -196,7 +213,7 @@ const {
 
       if (endpoint) {
         try {
-          setStatus('Sender …');
+          setStatus(form.dataset.sending!);
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -204,12 +221,9 @@ const {
           });
           if (!res.ok) throw new Error('Nettverksfeil');
           form.reset();
-          setStatus(form.dataset.success ?? 'Takk! Meldingen er sendt.', 'success');
+          setStatus(form.dataset.success!, 'success');
         } catch (err) {
-          setStatus(
-            'Noe gikk galt. Prøv igjen, eller send oss en e-post direkte.',
-            'error'
-          );
+          setStatus(form.dataset.error!, 'error');
         }
       } else {
         // Fallback uten backend: åpne e-postklient
@@ -220,10 +234,7 @@ const {
         window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
           subject
         )}&body=${encodeURIComponent(body)}`;
-        setStatus(
-          'Vi åpner e-postprogrammet ditt med forslaget klart til å sendes.',
-          'success'
-        );
+        setStatus(form.dataset.mailto!, 'success');
       }
     });
   });

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site } from '@/data/site';
+import { path } from '@/i18n/config';
+
+const updated = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date('2026-09-08'));
+---
+
+<BaseLayout
+  lang="en"
+  title="Terms of use"
+  description="Terms of use for sporretimen.no: what the content is (and is not), copyright, rules for the comments, disclaimer and third-party links."
+>
+  <PageHeader
+    eyebrow="Terms"
+    title="Terms of use"
+    lead="Simple, honest terms for how you may use sporretimen.no and the content published here."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <p class="muted">Last updated: {updated}</p>
+
+      <h2>In short</h2>
+      <ul>
+        <li>Spørretimen is a personal hobby project, not a registered company.</li>
+        <li>
+          The content is conversation, opinion and experience — not settled truth, and
+          not professional advice (medical, for instance).
+        </li>
+        <li>You may read, listen and share links to the content freely. You may not copy it and publish it as your own.</li>
+        <li>The comments are moderated, and inappropriate content is removed.</li>
+      </ul>
+
+      <h2>What the content is</h2>
+      <p>
+        Spørretimen is a podcast of conversations about occupations, experiences and
+        subjects people wonder about. What is shared in the episodes is the guests’ own
+        experiences, opinions and judgements — not settled truth or official
+        recommendations from Spørretimen. Where episodes deal with health, law, finance
+        or other specialist fields, this is general information and personal experience,
+        not individual advice. Consult a qualified professional before making decisions
+        based on anything you hear here. See also{' '}
+        <a href={path('en', 'ethics')}>press ethics and the content</a> for how we work
+        editorially.
+      </p>
+
+      <h2>Copyright</h2>
+      <p>
+        Text, audio, images and other content on sporretimen.no is owned by Spørretimen
+        or used with permission from the rights holder. You are welcome to read, listen
+        and share links to the content. You may not copy it, republish it or use it
+        commercially without an agreement. Content played through embedded YouTube and
+        Spotify players is owned by, and governed by, YouTube’s and Spotify’s own terms
+        respectively.
+      </p>
+
+      <h2>The comments</h2>
+      <p>
+        You may leave comments beneath episodes. Spørretimen reserves the right to
+        remove comments that are harassing, offensive, unlawful or otherwise contrary to
+        good conduct, without notice. See the{' '}
+        <a href={path('en', 'privacy')}>privacy policy</a> for what is stored when you
+        comment or leave a rating.
+      </p>
+
+      <h2>Third-party links</h2>
+      <p>
+        The website may link to or display content from other sites, such as YouTube,
+        Spotify or resources the guests mention. Spørretimen has no control over, and is
+        not responsible for, the content on those external sites.
+      </p>
+
+      <h2>Disclaimer</h2>
+      <p>
+        The content on sporretimen.no is made available as it is, without warranties.
+        Spørretimen is not responsible for decisions you make based on information or
+        opinions appearing in episodes, articles or comments.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>These terms are governed by Norwegian law.</p>
+
+      <h2>Changes</h2>
+      <p>
+        We may update these terms as needed. Changes are published on this page with a
+        new date at the top.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms can be sent to{' '}
+        <a href={`mailto:${site.email}?subject=${encodeURIComponent('Terms – Spørretimen')}`}>
+          {site.email}
+        </a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

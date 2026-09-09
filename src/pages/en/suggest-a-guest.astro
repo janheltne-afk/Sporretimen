@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="Suggest a guest"
+  description="Do you know someone with an interesting job, experience or story? Suggest a guest for Spørretimen."
+>
+  <PageHeader
+    eyebrow="Suggest a guest"
+    title="Do you know someone we should talk to?"
+    lead="Spørretimen is meant to be a platform for interesting people who are not necessarily already well known. Tips are welcome."
+  />
+
+  <section class="section">
+    <div class="container container-narrow">
+      <Form
+        lang="en"
+        formName="suggest-a-guest"
+        subject="Guest suggestion – Spørretimen"
+        submitLabel="Send suggestion"
+        successMessage="Thanks for the tip. We look at every suggestion and get in touch if it fits."
+      >
+        <div class="field">
+          <label for="guest-name">Name of the guest <span class="req">*</span></label>
+          <input id="guest-name" name="Name of the guest" type="text" required autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="guest-topic">Possible subject</label>
+          <input
+            id="guest-topic"
+            name="Possible subject"
+            type="text"
+            placeholder="A job, a field or a story, for example"
+          />
+        </div>
+
+        <div class="field">
+          <label for="guest-why">Why would they fit Spørretimen? <span class="req">*</span></label>
+          <textarea
+            id="guest-why"
+            name="Why they fit"
+            required
+            placeholder="Briefly, what makes this person interesting."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="guest-contact">
+            How to reach them <span class="field__hint">(if you have it)</span>
+          </label>
+          <input
+            id="guest-contact"
+            name="How to reach the guest"
+            type="text"
+            placeholder="Email, phone or a link"
+          />
+        </div>
+
+        <hr class="divider" style="margin:0.4rem 0" />
+
+        <div class="field--row">
+          <div class="field">
+            <label for="your-name">Your name <span class="req">*</span></label>
+            <input id="your-name" name="Your name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="your-email">Your email <span class="req">*</span></label>
+            <input id="your-email" name="Your email" type="email" required autocomplete="email" />
+          </div>
+        </div>
+      </Form>
+
+      <p class="privacy muted">
+        We use your contact details only to follow up on your suggestion.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .req {
+    color: var(--accent-strong);
+  }
+  .privacy {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+  }
+</style>

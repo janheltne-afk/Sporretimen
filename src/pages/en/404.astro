@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { path } from '@/i18n/config';
+---
+
+<BaseLayout
+  lang="en"
+  title="Page not found"
+  description="This page does not exist. Go to the front page or see every episode of Spørretimen."
+  noindex
+>
+  <section class="section notfound">
+    <div class="container container-narrow text-center">
+      <p class="big">?</p>
+      <h1>We could not find this page</h1>
+      <p class="lead mx-auto">
+        The link may be out of date, or the content may have moved. Try one of the
+        routes below.
+      </p>
+      <div class="notfound__actions">
+        <a class="btn" href={path('en', 'home')}>To the front page</a>
+        <a class="btn btn-secondary" href={path('en', 'episodes')}>See episodes</a>
+        <a class="btn btn-ghost" href={path('en', 'contact')}>Contact us →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding-block: clamp(3rem, 10vw, 7rem);
+  }
+  .big {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 18vw, 10rem);
+    line-height: 1;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  .notfound__actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.6rem;
+  }
+</style>
