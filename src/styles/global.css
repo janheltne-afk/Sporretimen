@@ -635,6 +635,26 @@ main {
   border-bottom: 0;
 }
 
+/* Kommende episoder med typeplate som omslag.
+   Det lyse sløret i EpisodeCard fungerer over et fotografi, men gjør en mørk
+   plate bare grå. Der lar vi flaten stå og demper teksten i den i stedet.
+   Regelen må ligge her: den spenner over to komponenter, og Astros `:global()`
+   pakkes ikke ut inne i `:has()`. */
+.ep--kommende .ep__cover-link:has(.cover--plate)::after {
+  opacity: 0;
+}
+.ep--kommende .ep__cover-link .cover--plate {
+  filter: none;
+}
+.ep--kommende .ep__cover-link .plate__inner {
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+.ep--kommende:hover .ep__cover-link .plate__inner,
+.ep--kommende:focus-within .ep__cover-link .plate__inner {
+  opacity: 1;
+}
+
 /* Diskret innfelling ved scroll.
    Skjulttilstanden gjelder bare når JavaScript kjører (html.js), slik at
    innholdet alltid er synlig hvis JS er av eller feiler. Respekterer også
