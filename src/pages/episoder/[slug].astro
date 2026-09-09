@@ -32,6 +32,8 @@ const resources = await resourcesForEpisode(episode.id);
 // for kommende episoder, men en innebygd spiller ville da vist en feilmelding.
 const hasEmbed = d.status === 'publisert' && Boolean(d.links?.youtube || d.links?.spotify);
 
+// Kort temalinje på omslaget. Faller tilbake til første kategori.
+const coverTheme = d.coverTheme ?? d.categories[0];
 // Relaterte episoder
 const related = (
   await Promise.all(d.related.map((ref) => getEntry(ref)))
@@ -129,8 +131,8 @@ const jsonLd = [episodeJsonLd, breadcrumb];
               alt={d.imageAlt}
               format={d.format}
               variant={d.coverStyle}
-              portrait={guest?.data.image}
-              portraitAlt={guest?.data.imageAlt}
+              portrait={guest?.data.cover}
+              theme={coverTheme}
             />
           )
         }

@@ -34,6 +34,7 @@ takeaways:
   - Det er greit å bomme én gang. Bom aldri to.
   - Et godt system sparer viljestyrke – den er en begrenset ressurs.
 duration: "Cirka 23 min"
+coverTheme: "Vaner som varer"
 description: >-
   Hvordan bygger man vaner som varer? En gjennomgang av James Clears Mikrovaner
   (Atomic Habits) – de fire reglene, 1 %-regelen, habit stacking,

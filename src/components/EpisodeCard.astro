@@ -12,6 +12,8 @@ const { episode } = Astro.props;
 const d = episode.data;
 const format = formatById(d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
+// Kort temalinje på omslaget. Faller tilbake til første kategori.
+const coverTheme = d.coverTheme ?? d.categories[0];
 const dateLabel =
   d.status === 'kommende' ? formatReleaseShort(d.publishDate) : formatDate(d.publishDate);
 ---
@@ -24,8 +26,8 @@ const dateLabel =
       alt={d.imageAlt}
       format={d.format}
       variant={d.coverStyle}
-      portrait={guest?.data.image}
-      portraitAlt={guest?.data.imageAlt}
+      portrait={guest?.data.cover}
+      theme={coverTheme}
     />
   </a>
   <div class="ep__body">

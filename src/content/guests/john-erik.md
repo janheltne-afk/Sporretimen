@@ -17,6 +17,7 @@ featured: true
 order: 10
 image: /images/gjester/john-erik.jpg
 imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
+cover: /images/omslag/john-erik.jpg
 ---
 
 John Erik har tatt medisinutdanningen i Polen og har siden jobbet med alt fra

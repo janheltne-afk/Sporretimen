@@ -17,6 +17,7 @@ takeaways:
   - Hjernen husker bilder og steder mye bedre enn tall og symboler.
   - Husketeknikk er et system du kan lære, ikke en medfødt evne.
 duration: "Cirka 6 min"
+coverTheme: "Memoreringsteknikker"
 description: >-
   Memoreringsteknikker forklart kort og enkelt: hvorfor hjernen husker bilder
   bedre enn tall, og hvordan et minnepalass gjør det mulig å huske en kortstokk.

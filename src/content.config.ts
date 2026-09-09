@@ -53,9 +53,12 @@ const episodes = defineCollection({
       image: z.string().optional(),
       imageAlt: z.string().optional(),
       // Hvordan omslaget vises på nettsiden:
-      // "plate"  – tittelen satt i sidens egen typografi (standard)
+      // "plate"  – gjestebilde eller flate satt i sidens egen typografi
       // "bilde"  – filen i `image`, for omslag som holder mål på egen hånd
       coverStyle: z.enum(['plate', 'bilde']).default('plate'),
+      // Kort temalinje på omslaget, f.eks. "Kanada-ekspedisjonen".
+      // Utelates → første kategori brukes.
+      coverTheme: z.string().optional(),
       links: platformLinks,
       // Kilder og referanser vist nederst i episoden.
       sources: z
@@ -85,6 +88,9 @@ const guests = defineCollection({
       intro: z.string(),
       image: z.string().optional(),
       imageAlt: z.string().optional(),
+      // Mørkt, behandlet portrett brukt som episodeomslag.
+      // Lages av scripts/lag-omslag.py ut fra `image`.
+      cover: z.string().optional(),
       // Temaer samtalen(e) handler om.
       themes: z.array(z.string()).default([]),
       // Geografisk tilknytning (valgfritt).

@@ -34,6 +34,7 @@ takeaways:
   - Å booke konserter selv krever utholdenhet – kalde e-poster og telefoner over tid.
   - "Det viktigste rådet: bli trygg på musikken din før du lar businessen styre valgene."
 duration: "Cirka 1 time og 33 min"
+coverTheme: "Livet som artist"
 description: >-
   Sturla har vært med i X Factor, Idol, The Voice og Melodi Grand Prix, og hadde
   platekontrakt med Sony. En samtale om livet som artist og businessen bak – fra

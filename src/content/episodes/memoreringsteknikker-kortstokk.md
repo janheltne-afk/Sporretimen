@@ -25,6 +25,7 @@ takeaways:
   - Med minnepalass kobler du informasjon til steder du allerede kjenner godt.
   - De samme teknikkene fungerer på navn, tall, fagstoff og presentasjoner.
 duration: "Cirka 45 min"
+coverTheme: "Memoreringsteknikker"
 description: >-
   Hvordan klarer noen å memorere en hel kortstokk? En praktisk gjennomgang av
   husketeknikk: minnepalass, bildekoding og systemene som gjør det mulig – og

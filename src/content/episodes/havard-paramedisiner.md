@@ -34,6 +34,7 @@ takeaways:
   - Ambulansetjenesten i Oslo har et eget debriefingsystem etter tunge hendelser.
   - Den største forskjellen på by og bygd er oppdragsmengden – grunnjobben er den samme.
 duration: "Cirka 53 min"
+coverTheme: "Yrket som paramedisiner"
 description: >-
   Håvard Hasund har jobbet som paramedisiner i både Oslo og på Sunnmøre. En
   samtale om utdanningen, praksisen, året på AMK og de store forskjellene mellom
