@@ -1,0 +1,221 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import { getEpisodes } from '@/lib/content';
+import { type Locale } from '@/i18n/config';
+import { formatList, categories } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const episodes = await getEpisodes(lang);
+const formats = formatList(lang);
+const allCategories = categories(lang);
+
+// Bygg filterknapper: formater + kategorier faktisk i bruk
+const usedFormats = formats.filter((f) => episodes.some((e) => e.data.format === f.id));
+const usedCategories = allCategories.filter((c) =>
+  episodes.some((e) => e.data.categories.includes(c))
+);
+// Skjul filterpanelet når det ikke er noe meningsfylt å filtrere på.
+const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
+
+---
+
+<BaseLayout
+  lang={lang}
+  title={lang === 'en' ? 'Episodes' : 'Episoder'}
+  description={lang === 'en'
+    ? 'Every episode of Spørretimen – conversations, explainers and short primers. Filter by format and topic.'
+    : 'Alle episoder av Spørretimen – samtaler, Lær noe nytt og Kort forklart. Filtrer på format og tema.'}
+>
+  <PageHeader
+    wide
+    eyebrow={lang === 'en' ? 'Episodes' : 'Episoder'}
+    title={t('episode.allEpisodes')}
+    lead={lang === 'en'
+      ? 'Filter by format or topic to find what you are curious about. New episodes are added as they go out.'
+      : 'Filtrer på format eller tema for å finne det du er nysgjerrig på. Nye episoder legges til fortløpende.'}
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      {
+        showFilters && (
+          <div class="filters" role="group" aria-label={lang === 'en' ? 'Filter episodes' : 'Filtrer episoder'}>
+            {usedFormats.length > 1 && (
+              <div class="filters__group" data-filter-group="format">
+                <span class="filters__label">{t('filter.format')}</span>
+                <button class="chip is-active" data-value="alle" aria-pressed="true">
+                  {t('filter.all')}
+                </button>
+                {usedFormats.map((f) => (
+                  <button class="chip" data-value={f.id} aria-pressed="false">
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            )}
+            {usedCategories.length > 1 && (
+              <div class="filters__group" data-filter-group="category">
+                <span class="filters__label">{t('filter.topic')}</span>
+                <button class="chip is-active" data-value="alle" aria-pressed="true">
+                  {t('filter.all')}
+                </button>
+                {usedCategories.map((c) => (
+                  <button class="chip" data-value={c} aria-pressed="false">
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      }
+
+      <p
+        class="results-count muted"
+        id="results-count"
+        aria-live="polite"
+        data-one={t('filter.countOne')}
+        data-many={t('filter.countMany')}
+      ></p>
+
+      <div class="grid grid-3" id="episode-grid">
+        {
+          episodes.map((ep) => (
+            <div
+              class="episode-item"
+              data-format={ep.data.format}
+              data-categories={ep.data.categories.join('|')}
+            >
+              <EpisodeCard lang={lang} episode={ep} />
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="no-results" id="no-results" hidden>
+        {t('filter.none')}
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 1.4rem;
+  }
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .filters__label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+    min-width: 3.5rem;
+  }
+  .chip {
+    padding: 0.48rem 0.95rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 450;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .results-count {
+    margin: 0 0 1.2rem;
+    font-size: 0.9rem;
+  }
+  .no-results {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+</style>
+
+<script>
+  const grid = document.getElementById('episode-grid');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.episode-item'));
+  const countEl = document.getElementById('results-count');
+  const noResults = document.getElementById('no-results');
+  const state = { format: 'alle', category: 'alle' };
+
+  function apply() {
+    let visible = 0;
+    items.forEach((item) => {
+      const f = item.dataset.format ?? '';
+      const cats = (item.dataset.categories ?? '').split('|');
+      const okFormat = state.format === 'alle' || f === state.format;
+      const okCat = state.category === 'alle' || cats.includes(state.category);
+      const show = okFormat && okCat;
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    if (countEl) {
+      const unit = visible === 1 ? countEl.dataset.one : countEl.dataset.many;
+      countEl.textContent = `${visible} ${unit}`;
+    }
+    if (noResults) noResults.hidden = visible !== 0;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+    const key = group.dataset.filterGroup as 'format' | 'category';
+    group.querySelectorAll<HTMLButtonElement>('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach((c) => {
+          c.classList.remove('is-active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-pressed', 'true');
+        state[key] = chip.dataset.value ?? 'alle';
+        apply();
+      });
+    });
+  });
+
+  // Forhåndsvelg format fra ?format=-parameter (fra forsiden)
+  const params = new URLSearchParams(window.location.search);
+  const preset = params.get('format');
+  const presetBtn = preset
+    ? document.querySelector<HTMLButtonElement>(
+        `[data-filter-group="format"] .chip[data-value="${preset}"]`
+      )
+    : null;
+  if (presetBtn) {
+    presetBtn.click();
+  } else {
+    apply();
+  }
+</script>

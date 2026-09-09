@@ -1,0 +1,459 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import GuestCard from '@/components/GuestCard.astro';
+import Avatar from '@/components/Avatar.astro';
+import { getEpisodes, getGuests, slugOf } from '@/lib/content';
+import { site } from '@/data/site';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
+import { formatList } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const episodes = await getEpisodes(lang);
+const guests = await getGuests(lang);
+const formats = formatList(lang);
+
+// Kan være tom mens et språk ennå ikke har innhold – da skal siden fortsatt
+// bygge, bare uten knappen til «siste episode».
+const featuredEpisode = episodes.find((e) => e.data.featured) ?? episodes[0];
+const latest = episodes.slice(0, 3);
+const featuredGuests = guests.filter((g) => g.data.featured).slice(0, 4);
+const guestsShown = featuredGuests.length ? featuredGuests : guests.slice(0, 4);
+
+const formatIcons: Record<string, string> = {
+  chat: 'M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H9l-4 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z',
+  book: 'M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM19 18v3H6.5A1.5 1.5 0 0 1 5 19.5',
+  bolt: 'M13 3 5 13h5l-1 8 8-11h-5z',
+};
+
+---
+
+<BaseLayout lang={lang}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        {/* Ingen forklarende merkelapp her – toppen sier allerede hva dette er. */}
+        {en ? (
+          <h1 class="hero__title">
+            About the jobs, the experiences<br />and the questions<br />
+            <span class="hero__accent">you rarely get to ask.</span>
+          </h1>
+        ) : (
+          <h1 class="hero__title">
+            Om yrkene, opplevelsene<br />og spørsmålene<br />
+            <span class="hero__accent">du sjelden får stilt.</span>
+          </h1>
+        )}
+        <p class="lead hero__lead">{t('site.description')}</p>
+        <div class="hero__actions">
+          {featuredEpisode && (
+            <a class="btn" href={entryPath(lang, 'episodes', slugOf(featuredEpisode.id))}>
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5v14l11-7z" fill="currentColor"></path></svg>
+              {en ? 'Play the latest episode' : 'Hør siste episode'}
+            </a>
+          )}
+          <a class:list={['btn', { 'btn-secondary': Boolean(featuredEpisode) }]} href={routePath(lang, 'episodes')}>
+            {en ? 'See all episodes' : 'Se alle episoder'}
+          </a>
+          <a class="btn btn-ghost" href={routePath(lang, 'suggestGuest')}>
+            {en ? 'Suggest a guest →' : 'Foreslå en gjest →'}
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero__media">
+        <div class="hero__portrait">
+          {/* Bildet er kvadratisk og har Spørretimen-merket inne i seg.
+              Et annet forhold beskjærer sidene og kutter ordet. */}
+          <Avatar
+            name={site.host}
+            src={site.hostImage}
+            alt={en
+              ? `${site.host}, host of Spørretimen`
+              : `${site.host}, programleder i Spørretimen`}
+            ratio="1 / 1"
+          />
+        </div>
+        <figcaption class="hero__caption">
+          <strong>{site.host}</strong>
+          <span>{t('episode.host')}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Siste / kommende episoder -->
+  <section class="section" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">{en ? 'Episodes' : 'Episoder'}</p>
+          <h2 id="latest-heading">{en ? 'Latest and upcoming' : 'Siste og kommende'}</h2>
+        </div>
+        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'episodes')}>
+          {t('episode.allEpisodes')}
+        </a>
+      </div>
+      <div class="grid grid-3">
+        {latest.map((ep) => <EpisodeCard lang={lang} episode={ep} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- De tre formatene -->
+  <section class="section formats" aria-labelledby="formats-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{en ? 'Three formats' : 'Tre formater'}</p>
+        <h2 id="formats-heading">
+          {en ? 'One thread, three ways to learn' : 'Én rød tråd, tre måter å lære på'}
+        </h2>
+        <p class="lead">
+          {en
+            ? 'Around some guests the material is split in three: a longer conversation, an explainer that goes into the subject, and a short summary.'
+            : 'Rundt enkelte gjester deles innholdet i tre: en lengre samtale, en Lær noe nytt-episode som forklarer et fagtema, og en kort oppsummering.'}
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {
+          formats.map((f) => (
+            <article class="card format reveal">
+              <span class:list={['format__icon', `tag-${f.id}`]}>
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <path d={formatIcons[f.icon]} fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+                </svg>
+              </span>
+              <h3>{f.label}</h3>
+              <p class="format__tagline">{f.tagline}</p>
+              <p class="format__desc">{f.description}</p>
+              <a class="format__link" href={`${routePath(lang, 'episodes')}?format=${f.id}`}>
+                {en ? `See ${f.label.toLowerCase()} →` : `Se ${f.label.toLowerCase()} →`}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Utvalgte gjester -->
+  <section class="section" aria-labelledby="guests-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">{en ? 'Guests' : 'Gjester'}</p>
+          <h2 id="guests-heading">
+            {en ? 'The people of Spørretimen' : 'Menneskene i Spørretimen'}
+          </h2>
+        </div>
+        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'guests')}>{t('guest.all')}</a>
+      </div>
+      <div class="grid grid-4">
+        {guestsShown.map((g) => <GuestCard lang={lang} guest={g} />)}
+      </div>
+      <p class="muted note">
+        {en
+          ? 'The guests above are planned and current for the podcast. The final programme is announced as we go.'
+          : 'Gjestene over er planlagte og aktuelle for podcasten. Endelig program annonseres fortløpende.'}
+      </p>
+    </div>
+  </section>
+
+  <!-- Om-teaser -->
+  <section class="section about-teaser">
+    <div class="container about-teaser__inner">
+      <div>
+        <p class="eyebrow">{en ? 'About Spørretimen' : 'Om Spørretimen'}</p>
+        <h2>
+          {en
+            ? 'The people, the jobs and the stories you want to understand better'
+            : 'Menneskene, yrkene og historiene du vil forstå bedre'}
+        </h2>
+        <p class="lead">
+          {en
+            ? 'A lot of people carry stories, experience and knowledge that more of us ought to hear. Through personal conversations Jan Sindre meets people from different jobs, communities and backgrounds – alongside explainers and short primers that make complicated subjects easier to grasp.'
+            : 'Mange mennesker sitter på historier, erfaringer og kunnskap som flere burde få høre. Gjennom personlige samtaler møter Jan Sindre mennesker fra ulike yrker, miljøer og bakgrunner – og i tillegg lages Lær noe nytt-episoder og korte forklaringer som gjør kompliserte temaer lettere å forstå.'}
+        </p>
+        <a class="btn btn-secondary" href={routePath(lang, 'about')}>
+          {en ? 'More about the podcast' : 'Les mer om podcasten'}
+        </a>
+      </div>
+      <ul class="about-teaser__points">
+        {en ? (
+          <>
+            <li><strong>Curious, not lecturing.</strong> We ask the questions you have wondered about yourself.</li>
+            <li><strong>The guests at the centre.</strong> Their stories and experience are what matter.</li>
+            <li><strong>Subject matter you can follow.</strong> We keep experience, explanation and documented fact clearly apart.</li>
+          </>
+        ) : (
+          <>
+            <li><strong>Nysgjerrig, ikke belærende.</strong> Vi stiller spørsmålene du selv har tenkt på.</li>
+            <li><strong>Gjestene i sentrum.</strong> Historiene og erfaringene er det viktigste.</li>
+            <li><strong>Forståelig fagstoff.</strong> Vi skiller tydelig mellom erfaring, forklaring og fakta.</li>
+          </>
+        )}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Kontakt / CTA -->
+  <section class="section cta">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">{en ? 'Take part' : 'Bli med'}</p>
+      <h2>
+        {en
+          ? 'Do you have a story, a job or knowledge more people should hear about?'
+          : 'Har du en historie, en jobb eller en kunnskap flere bør høre om?'}
+      </h2>
+      <p class="lead mx-auto">
+        {en
+          ? 'Spørretimen wants to hear from people known and unknown who have something real to tell.'
+          : 'Spørretimen ønsker å høre fra både kjente og ukjente mennesker med noe ekte å fortelle.'}
+      </p>
+      <div class="cta__actions">
+        <a class="btn" href={routePath(lang, 'beGuest')}>{en ? 'Be a guest' : 'Bli gjest'}</a>
+        <a class="btn btn-secondary" href={routePath(lang, 'suggestGuest')}>
+          {en ? 'Suggest a guest' : 'Foreslå en gjest'}
+        </a>
+        <a class="btn btn-ghost" href={routePath(lang, 'contact')}>
+          {en ? 'Contact us →' : 'Kontakt oss →'}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero – rolig og redaksjonell. Ingen gradienter, ingen skjeve kort. */
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6.5rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .hero__title {
+    margin: 0 0 1.4rem;
+    max-width: 15ch;
+  }
+  .hero__accent {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .hero__lead {
+    max-width: 40ch;
+    margin-bottom: 2.2rem;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+  }
+  .hero__media {
+    margin: 0;
+    justify-self: end;
+    width: min(380px, 100%);
+  }
+  .hero__portrait {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .hero__caption {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+  .hero__caption strong {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+  .hero__caption span {
+    color: var(--ink-faint);
+    font-size: 0.78rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  /* Seksjonshode med handling til høyre */
+  .row-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: clamp(1.8rem, 3.5vw, 2.75rem);
+    padding-bottom: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .row-head h2 {
+    margin: 0;
+  }
+  .row-head .eyebrow {
+    margin-bottom: 0.55rem;
+  }
+
+  .note {
+    margin-top: 1.8rem;
+    font-size: 0.88rem;
+  }
+
+  /* Formater */
+  .formats {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .format {
+    padding: 1.9rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .format__icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 1.1rem;
+    color: var(--ink-soft);
+    background: transparent;
+    border-radius: 0;
+  }
+  .format__icon.tag-samtale {
+    color: var(--tag-samtale);
+  }
+  .format__icon.tag-laer-noe-nytt {
+    color: var(--tag-laer);
+  }
+  .format__icon.tag-kort-forklart {
+    color: var(--tag-kort);
+  }
+  .format h3 {
+    margin: 0;
+  }
+  .format__tagline {
+    margin: 0;
+    color: var(--ink-faint);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .format__desc {
+    margin: 0.7rem 0 1.4rem;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .format__link {
+    margin-top: auto;
+    color: var(--ink);
+    font-size: 0.88rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 0.15rem;
+    align-self: flex-start;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .format__link:hover {
+    color: var(--accent-strong);
+    border-color: var(--accent);
+  }
+
+  /* Om-teaser */
+  .about-teaser__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .about-teaser h2 {
+    max-width: 18ch;
+  }
+  .about-teaser .lead {
+    margin-bottom: 2rem;
+  }
+  .about-teaser__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .about-teaser__points li {
+    padding: 1.35rem 0;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+  .about-teaser__points li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .about-teaser__points strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .cta h2 {
+    max-width: 24ch;
+    margin-inline: auto;
+  }
+  .cta .lead {
+    max-width: 46ch;
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 880px) {
+    .hero__inner,
+    .about-teaser__inner {
+      grid-template-columns: 1fr;
+    }
+    .hero__media {
+      order: -1;
+      justify-self: start;
+      width: min(220px, 60%);
+    }
+    .hero__title {
+      max-width: none;
+    }
+  }
+
+  /* På smale skjermer legger vi handlingen under overskriften i stedet for at
+     knappeteksten brekker i to linjer. */
+  @media (max-width: 560px) {
+    .row-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+  }
+</style>

@@ -1,0 +1,16 @@
+---
+import ResourcePage from '@/components/pages/ResourcePage.astro';
+import { getResources, slugOf } from '@/lib/content';
+
+export async function getStaticPaths() {
+  const resources = await getResources('en');
+  return resources.map((resource) => ({
+    params: { slug: slugOf(resource.id) },
+    props: { resource },
+  }));
+}
+
+const { resource } = Astro.props;
+---
+
+<ResourcePage lang="en" resource={resource} />

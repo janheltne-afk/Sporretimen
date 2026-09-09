@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import GuestCard from '@/components/GuestCard.astro';
+import { getGuests } from '@/lib/content';
+import { type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const guests = await getGuests(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={lang === 'en' ? 'Guests' : 'Gjester'}
+  description={lang === 'en'
+    ? 'The people of Spørretimen – planned and current guests from a range of jobs, communities and backgrounds.'
+    : 'Menneskene i Spørretimen – planlagte og aktuelle gjester fra ulike yrker, miljøer og bakgrunner.'}
+>
+  <PageHeader
+    wide
+    eyebrow={lang === 'en' ? 'Guests' : 'Gjester'}
+    title={lang === 'en' ? 'The people of Spørretimen' : 'Menneskene i Spørretimen'}
+    lead={lang === 'en'
+      ? 'The podcast starts with guests Jan Sindre knows or has a natural connection to – and invites guests from across the country as it goes.'
+      : 'Podcasten starter med gjester Jan Sindre kjenner eller har en naturlig relasjon til – og inviterer gjester fra hele landet etter hvert.'}
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-3">
+        {guests.map((g) => <GuestCard lang={lang} guest={g} />)}
+      </div>
+      <p class="muted note">
+        {lang === 'en'
+          ? 'This list shows planned and current guests. The final programme is announced as we go, and the list is updated as new guests are confirmed.'
+          : 'Oversikten viser planlagte og aktuelle gjester. Endelig program annonseres fortløpende, og listen oppdateres etter hvert som nye gjester bekreftes.'}
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .note {
+    margin-top: 1.6rem;
+    font-size: 0.9rem;
+  }
+</style>

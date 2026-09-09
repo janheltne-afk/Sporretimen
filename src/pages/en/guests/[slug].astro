@@ -1,14 +1,14 @@
 ---
 import GuestPage from '@/components/pages/GuestPage.astro';
-import { getGuests, getEpisodes, episodesForGuest, getScripts } from '@/lib/content';
+import { getGuests, getEpisodes, episodesForGuest, getScripts, slugOf } from '@/lib/content';
 
 export async function getStaticPaths() {
-  const guests = await getGuests('no');
-  const episodes = await getEpisodes('no');
+  const guests = await getGuests('en');
+  const episodes = await getEpisodes('en');
   const scriptEpisodeIds = (await getScripts()).map((s) => s.data.episode.id);
   return Promise.all(
     guests.map(async (guest) => ({
-      params: { slug: guest.id },
+      params: { slug: slugOf(guest.id) },
       props: { guest, episodes: await episodesForGuest(guest.id, episodes), scriptEpisodeIds },
     }))
   );
@@ -17,4 +17,4 @@ export async function getStaticPaths() {
 const { guest, episodes, scriptEpisodeIds } = Astro.props;
 ---
 
-<GuestPage lang="no" guest={guest} episodes={episodes} scriptEpisodeIds={scriptEpisodeIds} />
+<GuestPage lang="en" guest={guest} episodes={episodes} scriptEpisodeIds={scriptEpisodeIds} />

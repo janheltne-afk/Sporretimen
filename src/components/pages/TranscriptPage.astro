@@ -1,0 +1,296 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Avatar from '@/components/Avatar.astro';
+import type { CollectionEntry } from 'astro:content';
+import { slugOf } from '@/lib/content';
+import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
+import { formatDate } from '@/lib/utils';
+import { entryPath, path as routePath, transcriptPath, type Locale } from '@/i18n/config';
+import { formatById } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  script: CollectionEntry<'scripts'>;
+  episode: CollectionEntry<'episodes'>;
+}
+
+const { lang, script, episode } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+const slug = slugOf(episode.id);
+const d = episode.data;
+const { Content, headings } = await render(script);
+const format = formatById(lang, d.format);
+const guest = d.guest ? await getEntry(d.guest) : undefined;
+
+// Innholdsfortegnelse fra nivå-2-overskrifter
+const toc = headings.filter((h) => h.depth === 2);
+const transkribert = script.data.kind === 'transkribert';
+const heading = script.data.worktitle ?? d.title;
+const pageTitle = transkribert
+  ? `${heading} – ${en ? 'transcript' : 'transkripsjon'}`
+  : `${en ? 'Outline' : 'Manus'}: ${heading}`;
+const pageDesc =
+  script.data.description ??
+  (transkribert
+    ? en
+      ? `${heading} – transcript and summary from Spørretimen.`
+      : `${heading} – transkripsjon og oppsummering fra Spørretimen.`
+    : en
+      ? `Questions and outline for the Spørretimen episode “${d.title}”.`
+      : `Manus og spørsmål til episoden «${d.title}» i Spørretimen.`);
+const kindLabel = transkribert ? t('episode.transcript') : t('episode.script');
+const eyebrow = transkribert
+  ? en ? 'Transcript and summary' : 'Transkripsjon og oppsummering'
+  : en ? 'Questions and outline' : 'Manus og spørsmål';
+
+// Structured data – transkripsjonen er en fyldig artikkel (kun når publisert/indekserbar).
+const articleJsonLd = transkribert
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: heading,
+      description: pageDesc,
+      url: canonicalUrl(transcriptPath(lang, slug)),
+      inLanguage: en ? 'en' : 'nb-NO',
+      author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'about')) },
+      publisher: { '@type': 'Organization', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
+      ...(script.data.updated ? { dateModified: script.data.updated.toISOString() } : {}),
+      ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
+      ...(d.image ? { image: absoluteUrl(d.image) } : {}),
+      isPartOf: { '@type': 'PodcastEpisode', name: d.title, url: canonicalUrl(entryPath(lang, 'episodes', slug)) },
+      ...(guest ? { about: { '@type': 'Person', name: guest.data.name, jobTitle: guest.data.role } } : {}),
+    }
+  : undefined;
+
+const breadcrumb = breadcrumbList([
+  { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+  { name: t('episode.allEpisodes'), path: routePath(lang, 'episodes') },
+  { name: d.title, path: entryPath(lang, 'episodes', slug) },
+  { name: kindLabel, path: transcriptPath(lang, slug) },
+]);
+
+const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : undefined;
+---
+
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={pageDesc}
+  type="article"
+  image={d.image}
+  imageAlt={d.imageAlt}
+  noindex={!transkribert}
+  jsonLd={jsonLd}
+>
+  <article class="manus">
+    <div class="container">
+      <a class="back-link" href={entryPath(lang, 'episodes', slug)}>{t('episode.backToEpisode')}</a>
+    </div>
+
+    <header class="manus-hero">
+      <div class="container">
+        <div class="manus-hero__meta">
+          <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+          <span class:list={['tag', transkribert ? 'tag-samtale' : 'tag-status']}>
+            {kindLabel}
+          </span>
+        </div>
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{heading}</h1>
+        {script.data.subtitle && <p class="lead">{script.data.subtitle}</p>}
+        {
+          !transkribert && !script.data.subtitle && (
+            <p class="lead">
+              {en
+                ? 'These are the questions and the outline for the episode. Answers and a transcript are added as we go.'
+                : 'Dette er spørsmålene og disposisjonen for episoden. Svar og transkripsjon legges inn etter hvert.'}
+            </p>
+          )
+        }
+        {script.data.updated && (
+          <p class="muted">{t('episode.updated')} {formatDate(script.data.updated, lang)}</p>
+        )}
+      </div>
+    </header>
+
+    <div class="container manus-layout">
+      <div class="prose manus-content">
+        <Content />
+      </div>
+
+      <aside class="manus-aside">
+        {
+          guest && (
+            <div class="card guest-card-mini">
+              <p class="mini-label">{t('episode.guest')}</p>
+              <div class="mini-portrait">
+                <Avatar name={guest.data.name} src={guest.data.image} alt={guest.data.imageAlt} />
+              </div>
+              <h2>{guest.data.name}</h2>
+              <p class="mini-role">{guest.data.role}</p>
+              {!guest.data.draft && (
+                <a class="btn btn-secondary btn-sm" href={entryPath(lang, 'guests', slugOf(guest.id))}>
+                  {t('episode.aboutGuest')}
+                </a>
+              )}
+            </div>
+          )
+        }
+
+        {
+          toc.length > 0 && (
+            <nav class="toc card" aria-label={t('episode.contents')}>
+              <p class="mini-label">{t('episode.contents')}</p>
+              <ol>
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .manus {
+    padding-top: clamp(1.2rem, 4vw, 2rem);
+  }
+  /* Samme bredde som episodesiden, så manus og episode ligger på samme rutenett */
+  .manus .container {
+    max-width: 1040px;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--ink);
+  }
+  .manus-hero {
+    padding-block: clamp(1.2rem, 4vw, 2.2rem) clamp(1rem, 3vw, 1.8rem);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .manus-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+  }
+  .manus-hero h1 {
+    margin: 0.2rem 0 0;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+  }
+  .manus-hero .lead {
+    margin-top: 0.7rem;
+  }
+  .manus-hero .muted {
+    margin: 0.6rem 0 0;
+    font-size: 0.85rem;
+  }
+  .manus-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  /* .prose gir lesebredden – ingen overstyring her, så manus og episodetekst
+     har nøyaktig samme spaltebredde. */
+  .manus-content :global(h2) {
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 142px;
+  }
+  .manus-content :global(ol > li),
+  .manus-content :global(ul > li) {
+    margin-bottom: 0.55rem;
+  }
+  /* Sidespalten følger med ved scroll. Er innholdsfortegnelsen lengre enn
+     skjermen, får spalten sin egen rulling så ingen punkter blir utilgjengelige. */
+  .manus-aside {
+    position: sticky;
+    top: 142px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: calc(100vh - 162px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-family: var(--font-sans);
+  }
+  .mini-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+  }
+  .guest-card-mini {
+    padding: 1.4rem;
+  }
+  .mini-portrait {
+    width: 72px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+  }
+  .guest-card-mini h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.3rem;
+  }
+  .mini-role {
+    color: var(--ink-faint);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 1.1rem;
+  }
+  .toc {
+    padding: 1.4rem;
+  }
+  .toc ol {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.86rem;
+  }
+  .toc li::marker {
+    color: var(--ink-faint);
+  }
+  .toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .toc a:hover {
+    color: var(--ink);
+  }
+  @media (max-width: 860px) {
+    .manus-layout {
+      grid-template-columns: 1fr;
+    }
+    .manus-aside {
+      position: static;
+      order: -1;
+      max-height: none;
+      overflow: visible;
+    }
+  }
+</style>

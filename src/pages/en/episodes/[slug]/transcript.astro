@@ -1,14 +1,14 @@
 ---
 import TranscriptPage from '@/components/pages/TranscriptPage.astro';
-import { getScripts } from '@/lib/content';
+import { getScripts, slugOf } from '@/lib/content';
 import { getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const scripts = await getScripts('no');
+  const scripts = await getScripts('en');
   return Promise.all(
     scripts.map(async (script) => {
       const episode = await getEntry(script.data.episode);
-      return { params: { slug: episode!.id }, props: { script, episode } };
+      return { params: { slug: slugOf(episode!.id) }, props: { script, episode } };
     })
   );
 }
@@ -16,4 +16,4 @@ export async function getStaticPaths() {
 const { script, episode } = Astro.props;
 ---
 
-<TranscriptPage lang="no" script={script} episode={episode} />
+<TranscriptPage lang="en" script={script} episode={episode} />

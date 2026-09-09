@@ -1,0 +1,175 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import type { CollectionEntry } from 'astro:content';
+import { slugOf } from '@/lib/content';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
+import { resourceTypeById, allResourceTypes } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  resource: CollectionEntry<'resources'>;
+}
+
+const { lang, resource } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+const slug = slugOf(resource.id);
+const d = resource.data;
+const { Content } = await render(resource);
+const types = allResourceTypes(d);
+
+const episodes = (await Promise.all(d.episodes.map((ref) => getEntry(ref)))).filter(Boolean);
+
+const resourceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': d.type === 'bok' ? 'Book' : 'CreativeWork',
+  name: d.title,
+  ...(d.author ? { author: { '@type': 'Person', name: d.author } } : {}),
+  ...(d.language ? { inLanguage: /engelsk|english/i.test(d.language) ? 'en' : 'nb' } : {}),
+  description: d.summary,
+  url: canonicalUrl(entryPath(lang, 'resources', slug)),
+  ...(d.url ? { sameAs: d.url } : {}),
+};
+
+const breadcrumb = breadcrumbList([
+  { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+  { name: en ? 'Resources' : 'Ressurser', path: routePath(lang, 'resources') },
+  { name: d.title, path: entryPath(lang, 'resources', slug) },
+]);
+
+const jsonLd = [resourceJsonLd, breadcrumb];
+
+---
+
+<BaseLayout lang={lang} title={d.title} description={d.summary} type="article" jsonLd={jsonLd}>
+  <article class="resource-page">
+    <div class="container container-narrow">
+      <a class="back-link" href={routePath(lang, 'resources')}>{`← ${t('resource.all')}`}</a>
+
+      <div class="resource-head">
+        {types.map((ty) => (
+          <span class:list={['tag', `rtype-${ty}`]}>{resourceTypeById(lang, ty)?.label}</span>
+        ))}
+        {d.language && <span class="tag tag-lang">{d.language}</span>}
+        {d.categories.map((c) => <span class="tag">{c}</span>)}
+      </div>
+
+      <h1 class="resource-title">{d.title}</h1>
+      {d.author && <p class="resource-author">{d.author}</p>}
+      <p class="lead">{d.summary}</p>
+
+      {
+        d.url && (
+          <p class="resource-cta">
+            <a class="btn" href={d.url} target="_blank" rel="noopener">
+              {d.type === 'bok'
+                ? en ? 'Find the book' : 'Finn boken'
+                : en ? 'Open link' : 'Åpne lenke'} ↗
+            </a>
+          </p>
+        )
+      }
+    </div>
+
+    <div class="container container-narrow">
+      <div class="prose resource-notes">
+        <Content />
+      </div>
+
+      {
+        episodes.length > 0 && (
+          <section class="mentioned">
+            <h2>{en ? 'Mentioned in the episode' : 'Nevnt i episoden'}</h2>
+            <div class="grid grid-2">
+              {episodes.map((ep) => (
+                <EpisodeCard lang={lang} episode={ep} />
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .resource-page {
+    padding-top: clamp(1.2rem, 4vw, 2rem);
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    color: var(--accent-strong);
+  }
+  .resource-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .resource-title {
+    margin-bottom: 0.35rem;
+  }
+  .resource-author {
+    margin: 0 0 0.9rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+  }
+  .resource-cta {
+    margin: 1.4rem 0 0;
+  }
+  .resource-notes {
+    margin-top: clamp(1.8rem, 4vw, 2.6rem);
+    max-width: none;
+  }
+  .mentioned {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.5rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+  }
+  .mentioned h2 {
+    margin-bottom: 1.3rem;
+  }
+
+  .rtype-bok {
+    background: var(--tag-laer-bg);
+    color: var(--tag-laer);
+  }
+  .rtype-husketeknikk {
+    background: var(--tag-samtale-bg);
+    color: var(--tag-samtale);
+  }
+  .rtype-tips {
+    background: var(--tag-kort-bg);
+    color: var(--tag-kort);
+  }
+  .rtype-verktoy {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .rtype-artikkel {
+    background: var(--surface-2);
+    color: var(--ink-soft);
+  }
+  .rtype-podkast {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .tag-lang {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-faint);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>

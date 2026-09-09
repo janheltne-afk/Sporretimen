@@ -1,0 +1,255 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import ResourceCard from '@/components/ResourceCard.astro';
+import { getResources, getCourses, slugOf } from '@/lib/content';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
+import { resourceTypeList, allResourceTypes } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const resources = await getResources(lang);
+const usedTypes = resourceTypeList(lang).filter((ty) =>
+  resources.some((r) => allResourceTypes(r.data).includes(ty.id))
+);
+const showFilters = usedTypes.length > 1;
+const courses = await getCourses(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={en ? 'Resources' : 'Ressurser'}
+  description={en
+    ? 'The Spørretimen resource archive – memory techniques, book recommendations, tips and tools mentioned in the podcast.'
+    : 'Ressursarkiv fra Spørretimen – husketeknikker, bokanbefalinger, tips og verktøy nevnt i podkasten.'}
+>
+  <PageHeader
+    wide
+    eyebrow={en ? 'Resource archive' : 'Ressursarkiv'}
+    title={en ? 'Resources' : 'Ressurser'}
+    lead={en
+      ? 'Memory techniques, book recommendations, tips and tools mentioned in the episodes – gathered in one place. The archive grows as new episodes go out.'
+      : 'Husketeknikker, bokanbefalinger, tips og verktøy som nevnes i episodene – samlet på ett sted. Arkivet vokser etter hvert som nye episoder legges ut.'}
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      {
+        resources.length === 0 ? (
+          <p class="empty muted">
+            {en
+              ? 'The resource archive fills up as episodes are published. Do come back soon.'
+              : 'Ressursarkivet fylles opp etter hvert som episodene publiseres. Kom gjerne tilbake snart.'}
+          </p>
+        ) : (
+          <>
+            {showFilters && (
+              <div class="filters" role="group" aria-label={en ? 'Filter resources' : 'Filtrer ressurser'}>
+                <div class="filters__group" data-filter-group="type">
+                  <span class="filters__label">{en ? 'Type' : 'Type'}</span>
+                  <button class="chip is-active" data-value="alle" aria-pressed="true">
+                    {t('filter.all')}
+                  </button>
+                  {usedTypes.map((ty) => (
+                    <button class="chip" data-value={ty.id} aria-pressed="false">
+                      {ty.plural}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <p class="results-count muted" id="results-count" aria-live="polite" />
+
+            <div class="grid grid-3" id="resource-grid">
+              {resources.map((r) => (
+                <div class="resource-item" data-type={allResourceTypes(r.data).join('|')}>
+                  <ResourceCard lang={lang} resource={r} />
+                </div>
+              ))}
+            </div>
+
+            <p class="no-results" id="no-results" hidden>
+              {en ? 'No resources in this category yet.' : 'Ingen ressurser i denne kategorien ennå.'}
+            </p>
+          </>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    courses.length > 0 && (
+      <section class="section courses-callout">
+        <div class="container">
+          <div class="callout card">
+            <div class="callout__text">
+              <p class="eyebrow">{en ? 'Courses' : 'Kurs'}</p>
+              <h2>{en ? 'What is missing a course?' : 'Hva mangler det kurs om?'}</h2>
+              <p>
+                {en
+                  ? 'There are any number of subjects with no course and no good material. If enough people want one, a course can be built. Below are some examples of what could be set up – register interest in the ones you would take, or suggest your own subject.'
+                  : 'Det finnes ufattelig mange temaer det mangler kurs og god kunnskap om. Er interessen stor nok for et tema, kan det bygges et kurs. Under ligger noen eksempler på hva som kan settes opp – meld interesse for dem du ville tatt, eller foreslå ditt eget tema.'}
+              </p>
+              <a class="btn" href={routePath(lang, 'courses')}>
+                {en ? 'See examples and register interest →' : 'Se eksempler og meld interesse →'}
+              </a>
+            </div>
+            <ul class="callout__list">
+              {courses.slice(0, 4).map((c) => (
+                <li>
+                  <a href={entryPath(lang, 'courses', slugOf(c.id))}>{c.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 1.4rem;
+  }
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .filters__label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin-right: 0.35rem;
+  }
+  .chip {
+    padding: 0.48rem 0.95rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 450;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .chip.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .results-count {
+    margin: 0 0 1.2rem;
+    font-size: 0.9rem;
+  }
+  .no-results,
+  .empty {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+  .courses-callout {
+    border-top: 1px solid var(--line);
+  }
+  .callout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: clamp(1.2rem, 4vw, 2.5rem);
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+    align-items: center;
+    background: linear-gradient(120deg, var(--accent-soft), var(--surface) 70%);
+  }
+  .callout h2 {
+    margin: 0 0 0.5rem;
+  }
+  .callout__text p:not(.eyebrow) {
+    color: var(--ink-soft);
+    margin: 0 0 1.2rem;
+  }
+  .callout__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 1px solid var(--line-strong);
+    padding-left: clamp(1rem, 3vw, 2rem);
+  }
+  .callout__list a {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+  }
+  .callout__list a:hover {
+    color: var(--accent-strong);
+  }
+  @media (max-width: 720px) {
+    .callout {
+      grid-template-columns: 1fr;
+    }
+    .callout__list {
+      border-left: 0;
+      border-top: 1px solid var(--line-strong);
+      padding-left: 0;
+      padding-top: 1rem;
+    }
+  }
+</style>
+
+<script>
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.resource-item'));
+  const countEl = document.getElementById('results-count');
+  const noResults = document.getElementById('no-results');
+  let active = 'alle';
+
+  function apply() {
+    let visible = 0;
+    items.forEach((item) => {
+      const types = (item.dataset.type ?? '').split('|');
+      const show = active === 'alle' || types.includes(active);
+      item.hidden = !show;
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = visible === 1 ? '1 ressurs' : `${visible} ressurser`;
+    if (noResults) noResults.hidden = visible !== 0;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-filter-group="type"] .chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter-group="type"] .chip').forEach((c) => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-pressed', 'true');
+      active = chip.dataset.value ?? 'alle';
+      apply();
+    });
+  });
+
+  apply();
+</script>
