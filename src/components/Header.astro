@@ -1,34 +1,62 @@
 ---
 import Logo from './Logo.astro';
-import { nav, site } from '@/data/site';
+import { site } from '@/data/site';
+import { alternatePath, englishReady, localeName, path as routePath, type Locale } from '@/i18n/config';
+import { navItems, useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const other: Locale = lang === 'no' ? 'en' : 'no';
+
+const nav = navItems.map((item) => ({ label: item.label[lang], href: routePath(lang, item.key) }));
 
 /**
- * Menylenkene i site.ts har etterfølgende skråstrek. Vi fjerner den fra begge
- * sider før vi sammenligner, ellers ville ikke en seksjons egen forside
- * (/episoder/, /om/ …) blitt markert som gjeldende side.
+ * Menylenkene har etterfølgende skråstrek. Vi fjerner den fra begge sider før
+ * vi sammenligner, ellers ville ikke en seksjons egen forside (/episoder/,
+ * /om/ …) blitt markert som gjeldende side.
  */
 const stripSlash = (value: string) => value.replace(/\/+$/, '') || '/';
-const path = stripSlash(Astro.url.pathname);
+const here = stripSlash(Astro.url.pathname);
 const isActive = (href: string) => {
   const target = stripSlash(href);
-  return path === target || (target !== '/' && path.startsWith(`${target}/`));
+  return here === target || (target !== '/' && here.startsWith(`${target}/`));
 };
+
+// Språkknappen peker til samme side på det andre språket – en ekte lenke, slik
+// at søkemotorer følger den og finner den andre versjonen.
+const otherHref = alternatePath(lang, Astro.url.pathname);
 ---
 
 <header class="site-header">
   <!-- Øverste rad: ordmerket alene, slik det står hos et advokathus -->
   <div class="container site-header__top">
-    <a class="site-header__brand" href="/" aria-label={`${site.name} – til forsiden`}>
-      <Logo sub={`Podkast med ${site.host}`} />
+    <a class="site-header__brand" href={routePath(lang, 'home')} aria-label={`${site.name} – ${t('header.home')}`}>
+      <Logo sub={`${t('site.subtitle')} ${site.host}`} />
     </a>
 
     <div class="site-header__actions">
+      {englishReady && (
+      <a
+        class="lang-toggle"
+        href={otherHref}
+        hreflang={other === 'en' ? 'en' : 'nb'}
+        lang={other === 'en' ? 'en' : 'nb'}
+        aria-label={t('header.language')}
+        title={localeName[other]}
+      >
+        {t('header.languageShort')}
+      </a>
+      )}
+
       <button
         type="button"
         class="theme-toggle"
         id="theme-toggle"
-        aria-label="Bytt mellom lyst og mørkt tema"
-        title="Bytt tema"
+        aria-label={t('header.theme')}
+        title={t('header.themeShort')}
       >
         <svg class="icon-sun" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
           <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
@@ -45,7 +73,9 @@ const isActive = (href: string) => {
         type="button"
         class="menu-toggle"
         id="menu-toggle"
-        aria-label="Åpne meny"
+        aria-label={t('header.openMenu')}
+        data-open-label={t('header.openMenu')}
+        data-close-label={t('header.closeMenu')}
         aria-expanded="false"
         aria-controls="mobile-nav"
       >
@@ -55,7 +85,7 @@ const isActive = (href: string) => {
   </div>
 
   <!-- Nederste rad: menyen får sin egen linje og god luft -->
-  <nav class="site-nav" aria-label="Hovedmeny">
+  <nav class="site-nav" aria-label={t('header.menu')}>
     <div class="container">
       <ul>
         {
@@ -72,7 +102,7 @@ const isActive = (href: string) => {
   </nav>
 
   <!-- Mobilmeny -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Meny" hidden>
+  <nav class="mobile-nav" id="mobile-nav" aria-label={t('header.menu')} hidden>
     <ul>
       {
         nav.map((item) => (
@@ -113,6 +143,29 @@ const isActive = (href: string) => {
     align-items: center;
     gap: 0.35rem;
   }
+  /* Språkknappen står ved siden av temaknappen og er en ekte lenke, ikke en
+     bryter – den fører til den engelske versjonen av siden du står på. */
+  .lang-toggle {
+    display: grid;
+    place-items: center;
+    height: 36px;
+    padding-inline: 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink-faint);
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .lang-toggle:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+
   .theme-toggle {
     display: grid;
     place-items: center;
@@ -283,7 +336,8 @@ const isActive = (href: string) => {
   menuToggle?.addEventListener('click', () => {
     const open = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', String(!open));
-    menuToggle.setAttribute('aria-label', open ? 'Åpne meny' : 'Lukk meny');
+    const labels = menuToggle.dataset;
+    menuToggle.setAttribute('aria-label', open ? labels.openLabel! : labels.closeLabel!);
     if (mobileNav) mobileNav.hidden = open;
   });
 

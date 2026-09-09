@@ -1,7 +1,10 @@
 ---
 import { site, socials, canonicalUrl, absoluteUrl } from '@/data/site';
+import { alternatePath, englishReady, htmlLang, ogLocale, path, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
 
 interface Props {
+  lang?: Locale;
   title?: string;
   description?: string;
   /** Sti til delingsbilde (valgfritt). */
@@ -15,8 +18,8 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 const {
+  lang = 'no',
   title,
-  description = site.description,
   image,
   imageAlt,
   type = 'website',
@@ -24,10 +27,18 @@ const {
   jsonLd,
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${site.tagline}`;
+const t = useTranslations(lang);
+const tagline = t('site.tagline');
+const description = Astro.props.description ?? t('site.description');
+
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${tagline}`;
 const canonical = canonicalUrl(Astro.url.pathname);
 const ogImage = absoluteUrl(image ?? site.ogImage);
-const ogImageAlt = imageAlt ?? title ?? `${site.name} – ${site.tagline}`;
+const ogImageAlt = imageAlt ?? title ?? `${site.name} – ${tagline}`;
+
+// Samme side på det andre språket. Uten hreflang vet ikke søkemotorene at de
+// to versjonene hører sammen, og risikoen er at de leses som duplikater.
+const alternate = canonicalUrl(alternatePath(lang, Astro.url.pathname));
 
 // Lenker til offisielle profiler (sameAs).
 const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
@@ -36,8 +47,8 @@ const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
 const host = {
   '@type': 'Person',
   name: site.host,
-  jobTitle: 'Programleder',
-  url: canonicalUrl('/om'),
+  jobTitle: lang === 'en' ? 'Host' : 'Programleder',
+  url: canonicalUrl(path(lang, 'about')),
 };
 
 // Organisasjonen bak podkasten.
@@ -45,9 +56,9 @@ const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: site.name,
-  url: canonicalUrl('/'),
+  url: canonicalUrl(path(lang, 'home')),
   logo: absoluteUrl('/favicon.svg'),
-  description: site.description,
+  description,
   founder: host,
   ...(sameAs.length ? { sameAs } : {}),
 };
@@ -57,9 +68,9 @@ const podcastSeries = {
   '@context': 'https://schema.org',
   '@type': 'PodcastSeries',
   name: site.name,
-  url: canonicalUrl('/'),
-  description: site.description,
-  inLanguage: 'nb-NO',
+  url: canonicalUrl(path(lang, 'home')),
+  description,
+  inLanguage: lang === 'en' ? 'en' : 'nb-NO',
   author: host,
   ...(sameAs.length ? { sameAs } : {}),
 };
@@ -71,6 +82,17 @@ const structured = jsonLd ? [...base, ...(Array.isArray(jsonLd) ? jsonLd : [json
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+{
+  /* hreflang skal bare peke på sider som faktisk finnes. Peker den på en
+     adresse som gir 404, er den verre enn ingen hreflang. */
+  englishReady && (
+    <>
+      <link rel="alternate" hreflang={htmlLang.no} href={canonicalUrl(lang === 'no' ? Astro.url.pathname : alternate)} />
+      <link rel="alternate" hreflang={htmlLang.en} href={canonicalUrl(lang === 'en' ? Astro.url.pathname : alternate)} />
+      <link rel="alternate" hreflang="x-default" href={canonicalUrl(lang === 'no' ? Astro.url.pathname : alternate)} />
+    </>
+  )
+}
 {
   noindex ? (
     <meta name="robots" content="noindex, nofollow" />
@@ -85,11 +107,11 @@ const structured = jsonLd ? [...base, ...(Array.isArray(jsonLd) ? jsonLd : [json
 
 <!-- Open Graph -->
 <meta property="og:site_name" content={site.name} />
-<meta property="og:title" content={title ?? `${site.name} – ${site.tagline}`} />
+<meta property="og:title" content={title ?? `${site.name} – ${tagline}`} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonical} />
-<meta property="og:locale" content={site.locale} />
+<meta property="og:locale" content={ogLocale[lang]} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:alt" content={ogImageAlt} />
 

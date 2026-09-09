@@ -4,8 +4,11 @@ import SEO from '@/components/SEO.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { site } from '@/data/site';
+import { htmlLang, localeFromUrl, type Locale } from '@/i18n/config';
 
 interface Props {
+  /** Språket siden vises på. Utledes fra adressen hvis den ikke settes. */
+  lang?: Locale;
   title?: string;
   description?: string;
   image?: string;
@@ -14,10 +17,11 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 const props = Astro.props;
+const lang: Locale = props.lang ?? localeFromUrl(Astro.url);
 ---
 
 <!doctype html>
-<html lang={site.lang}>
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,10 +47,10 @@ const props = Astro.props;
     <link
       rel="alternate"
       type="application/rss+xml"
-      title={`${site.name} – episoder`}
+      title={`${site.name} – ${lang === 'en' ? 'episodes' : 'episoder'}`}
       href="/rss.xml"
     />
-    <SEO {...props} />
+    <SEO {...props} lang={lang} />
     <!-- Sett tema før maling for å unngå flimmer -->
     <script is:inline>
       (function () {
@@ -61,12 +65,12 @@ const props = Astro.props;
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Hopp til innhold</a>
-    <Header />
+    <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}</a>
+    <Header lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
 
     <script>
       // Diskret innfelling ved scroll
