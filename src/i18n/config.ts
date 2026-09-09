@@ -13,8 +13,11 @@
  * Skrus på når de engelske sidene faktisk finnes. Så lenge den er av, vises
  * ingen språkknapp – en knapp som fører til en side som ikke er bygget ennå
  * er verre enn ingen knapp, både for besøkende og for søkemotorer.
+ *
+ * Enkeltsider uten motstykke på det andre språket (manusene, kursene) setter
+ * `noAlternate` på BaseLayout i stedet, og står da uten knapp og uten hreflang.
  */
-export const englishReady = false;
+export const englishReady = true;
 
 export const locales = ['no', 'en'] as const;
 export type Locale = (typeof locales)[number];

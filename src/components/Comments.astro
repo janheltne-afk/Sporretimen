@@ -6,10 +6,19 @@ import { supabase } from '@/data/supabase';
  * Kommentarer vises umiddelbart, men kan skjules eller slettes av redaksjonen
  * i Supabase-dashboardet (feltet `is_hidden`).
  */
+import { path, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
 interface Props {
+  lang?: Locale;
+  /**
+   * Episoden kommentarene hører til. Bruk grunnslugen uten språkprefiks, slik at
+   * den norske og den engelske utgaven av samme episode deler kommentarfelt.
+   */
   slug: string;
 }
-const { slug } = Astro.props;
+const { lang = 'no', slug } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section
@@ -18,46 +27,47 @@ const { slug } = Astro.props;
   data-slug={slug}
   data-url={supabase.url}
   data-key={supabase.key}
+  data-empty={t('comments.empty')}
+  data-load-failed={t('comments.loadFailed')}
+  data-send-failed={t('comments.sendFailed')}
+  data-thanks={t('comments.thanks')}
+  data-invalid={t('comments.invalid')}
+  data-sending={t('form.sending')}
+  data-locale={lang === 'en' ? 'en-GB' : 'nb-NO'}
 >
-  <h2 id="kommentar-heading">Kommentarer</h2>
-  <p class="kommentarer__intro muted">
-    Har du tanker om episoden? Skriv gjerne en kommentar. Vi ber om at du bruker
-    navnet ditt og holder en god tone.
-  </p>
+  <h2 id="kommentar-heading">{t('comments.heading')}</h2>
+  <p class="kommentarer__intro muted">{t('comments.intro')}</p>
 
   <form class="kommentarer__form card" novalidate>
     <div class="field--row">
       <div class="field">
-        <label for="k-navn">Navn <span class="req">*</span></label>
+        <label for="k-navn">{t('comments.name')} <span class="req">*</span></label>
         <input id="k-navn" name="navn" type="text" required maxlength="60" autocomplete="name" />
       </div>
     </div>
     <div class="field">
-      <label for="k-tekst">Kommentar <span class="req">*</span></label>
+      <label for="k-tekst">{t('comments.body')} <span class="req">*</span></label>
       <textarea id="k-tekst" name="tekst" required maxlength="2000" rows="4"></textarea>
     </div>
     <!-- Enkel spam-felle -->
     <div class="kommentarer__hp" aria-hidden="true">
-      <label>La stå tomt<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      <label>{t('form.honeypot')}<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
     </div>
     <div class="kommentarer__foot">
-      <button type="submit" class="btn">Send kommentar</button>
+      <button type="submit" class="btn">{t('comments.send')}</button>
       <p class="kommentarer__status" role="status" aria-live="polite"></p>
     </div>
     <p class="kommentarer__consent muted">
-      Navn og kommentar vises åpent under episoden og lagres slik det er beskrevet i
-      <a href="/personvern/">personvernerklæringen</a>.
+      {t('comments.consent')}{' '}
+      <a href={path(lang, 'privacy')}>{t('comments.consentLink')}</a>.
     </p>
   </form>
 
   <div class="kommentarer__list" data-role="list">
-    <p class="muted">Laster kommentarer …</p>
+    <p class="muted">{t('comments.loading')}</p>
   </div>
 
-  <p class="kommentarer__note muted">
-    Spørretimen forbeholder seg retten til å fjerne kommentarer som er
-    sjikanerende, krenkende eller på annen måte i strid med god skikk.
-  </p>
+  <p class="kommentarer__note muted">{t('comments.moderation')}</p>
 </section>
 
 <style>
@@ -207,7 +217,7 @@ const { slug } = Astro.props;
       status.className = 'kommentarer__status' + (kind ? ` is-${kind}` : '');
     };
 
-    const dateFmt = new Intl.DateTimeFormat('nb-NO', {
+    const dateFmt = new Intl.DateTimeFormat(root.dataset.locale!, {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -219,7 +229,7 @@ const { slug } = Astro.props;
       if (!rows.length) {
         const p = document.createElement('p');
         p.className = 'muted';
-        p.textContent = 'Ingen kommentarer ennå. Bli den første til å si noe!';
+        p.textContent = root!.dataset.empty!;
         list.append(p);
         return;
       }
@@ -261,7 +271,7 @@ const { slug } = Astro.props;
         list.textContent = '';
         const p = document.createElement('p');
         p.className = 'muted';
-        p.textContent = 'Klarte ikke å laste kommentarer akkurat nå.';
+        p.textContent = root!.dataset.loadFailed!;
         list.append(p);
       }
     }
@@ -283,11 +293,11 @@ const { slug } = Astro.props;
         }
       }
       if (!ok) {
-        setStatus('Fyll inn navn og kommentar (minst to tegn).', 'error');
+        setStatus(root.dataset.invalid!, 'error');
         return;
       }
 
-      setStatus('Sender …');
+      setStatus(root.dataset.sending!);
       try {
         const res = await fetch(`${url}/rest/v1/comments`, {
           method: 'POST',
@@ -300,10 +310,10 @@ const { slug } = Astro.props;
         });
         if (!res.ok) throw new Error('feil');
         tekst.value = '';
-        setStatus('Takk for kommentaren!', 'success');
+        setStatus(root.dataset.thanks!, 'success');
         await load();
       } catch {
-        setStatus('Klarte ikke å sende kommentaren. Prøv igjen senere.', 'error');
+        setStatus(root.dataset.sendFailed!, 'error');
       }
     });
 

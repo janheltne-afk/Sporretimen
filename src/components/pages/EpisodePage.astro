@@ -287,8 +287,10 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     {
       d.status === 'publisert' && (
         <div class="container episode__wrap episode__feedback">
-          <Terningkast lang={lang} slug={episode.id} />
-          <Comments lang={lang} slug={episode.id} />
+          {/* Grunnslugen uten språkprefiks: begge språkutgavene av en episode
+              deler terningkast og kommentarfelt, siden det er samme episode. */}
+          <Terningkast lang={lang} slug={slug} />
+          <Comments lang={lang} slug={slug} />
         </div>
       )
     }

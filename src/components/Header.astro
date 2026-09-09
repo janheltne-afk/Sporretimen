@@ -6,8 +6,10 @@ import { navItems, useTranslations } from '@/i18n/ui';
 
 interface Props {
   lang: Locale;
+  /** Skjuler språkknappen på sider som ikke finnes på det andre språket. */
+  noAlternate?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, noAlternate = false } = Astro.props;
 const t = useTranslations(lang);
 const other: Locale = lang === 'no' ? 'en' : 'no';
 
@@ -38,7 +40,7 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
     </a>
 
     <div class="site-header__actions">
-      {englishReady && (
+      {englishReady && !noAlternate && (
       <a
         class="lang-toggle"
         href={otherHref}
@@ -325,6 +327,31 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
     }
     .site-header__top {
       min-height: 68px;
+    }
+  }
+
+  /* På smale skjermer er det tre knapper og et ordmerke om plassen. Brødsmulene
+     krympes, knappene rykker sammen, og ordmerket får lov til å gi etter. */
+  @media (max-width: 560px) {
+    .site-header__top {
+      gap: 0.6rem;
+    }
+    .site-header__brand {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+    .site-header__actions {
+      flex: none;
+      gap: 0.1rem;
+    }
+    .lang-toggle {
+      padding-inline: 0.4rem;
+      letter-spacing: 0.08em;
+      margin-right: -0.08em;
+    }
+    .theme-toggle,
+    .menu-toggle {
+      width: 32px;
     }
   }
 </style>

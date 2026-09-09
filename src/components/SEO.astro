@@ -14,6 +14,8 @@ interface Props {
   /** 'website' | 'article' */
   type?: string;
   noindex?: boolean;
+  /** Sider uten motstykke på det andre språket får ingen hreflang. */
+  noAlternate?: boolean;
   /** Ekstra JSON-LD-objekt(er) som legges inn i <head>. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -24,6 +26,7 @@ const {
   imageAlt,
   type = 'website',
   noindex = false,
+  noAlternate = false,
   jsonLd,
 } = Astro.props;
 
@@ -85,7 +88,7 @@ const structured = jsonLd ? [...base, ...(Array.isArray(jsonLd) ? jsonLd : [json
 {
   /* hreflang skal bare peke på sider som faktisk finnes. Peker den på en
      adresse som gir 404, er den verre enn ingen hreflang. */
-  englishReady && (
+  englishReady && !noAlternate && (
     <>
       <link rel="alternate" hreflang={htmlLang.no} href={canonicalUrl(lang === 'no' ? Astro.url.pathname : alternate)} />
       <link rel="alternate" hreflang={htmlLang.en} href={canonicalUrl(lang === 'en' ? Astro.url.pathname : alternate)} />

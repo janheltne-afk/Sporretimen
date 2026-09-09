@@ -14,6 +14,11 @@ interface Props {
   image?: string;
   type?: string;
   noindex?: boolean;
+  /**
+   * Settes på sider som ikke finnes på det andre språket (foreløpig manusene).
+   * Da vises verken språkknapp eller hreflang, siden begge ville pekt på 404.
+   */
+  noAlternate?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 const props = Astro.props;
@@ -66,7 +71,7 @@ const lang: Locale = props.lang ?? localeFromUrl(Astro.url);
   </head>
   <body>
     <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}</a>
-    <Header lang={lang} />
+    <Header lang={lang} noAlternate={props.noAlternate} />
     <main id="main">
       <slot />
     </main>
