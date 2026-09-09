@@ -45,11 +45,13 @@ const formatIcons: Record<string, string> = {
 
       <figure class="hero__media">
         <div class="hero__portrait">
+          {/* Bildet er kvadratisk og har Spørretimen-merket inne i seg.
+              Et annet forhold beskjærer sidene og kutter ordet. */}
           <Avatar
             name={site.host}
             src={site.hostImage}
             alt={`${site.host}, programleder i Spørretimen`}
-            ratio="4 / 5"
+            ratio="1 / 1"
           />
         </div>
         <figcaption class="hero__caption">
@@ -202,7 +204,7 @@ const formatIcons: Record<string, string> = {
   .hero__media {
     margin: 0;
     justify-self: end;
-    width: min(345px, 100%);
+    width: min(380px, 100%);
   }
   .hero__portrait {
     border: 1px solid var(--line);
