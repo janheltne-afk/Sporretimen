@@ -14,6 +14,8 @@ const usedCategories = categories.filter((c) =>
 );
 // Skjul filterpanelet når det ikke er noe meningsfylt å filtrere på.
 const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
+
+const lang = 'no' as const;
 ---
 
 <BaseLayout
@@ -72,7 +74,7 @@ const showFilters = usedFormats.length > 1 || usedCategories.length > 1;
               data-format={ep.data.format}
               data-categories={ep.data.categories.join('|')}
             >
-              <EpisodeCard episode={ep} />
+              <EpisodeCard lang={lang} episode={ep} />
             </div>
           ))
         }

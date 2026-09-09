@@ -5,10 +5,15 @@ import { supabase } from '@/data/supabase';
  * Terningkast (1–6) for en episode.
  * Leser gjennomsnitt fra Supabase og lar besøkende avgi sin egen stemme.
  */
+import { type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
 interface Props {
+  lang?: Locale;
   slug: string;
 }
-const { slug } = Astro.props;
+const { lang = 'no', slug } = Astro.props;
+const t = useTranslations(lang);
 
 // Øyne-plassering for hver terningverdi (koordinater i et 100x100-rutenett)
 const pips: Record<number, [number, number][]> = {
@@ -48,23 +53,35 @@ const values = [1, 2, 3, 4, 5, 6];
 ---
 
 <section
+  data-failed={t('rating.failed')}
+  data-avg={lang === 'en' ? 'Average' : 'Snitt'}
+  data-of={lang === 'en' ? 'of 6' : 'av 6'}
+  data-votes-one={lang === 'en' ? '1 rating' : '1 terningkast'}
+  data-votes-many={lang === 'en' ? 'ratings' : 'terningkast'}
+  data-empty={lang === 'en'
+    ? 'No ratings yet – be the first!'
+    : 'Ingen har kastet terning ennå – bli den første!'}
+  data-yours={lang === 'en' ? 'You gave' : 'Du ga'}
+  data-vote-failed={lang === 'en'
+    ? 'Could not register the rating. Please try again later.'
+    : 'Klarte ikke å registrere terningkastet. Prøv igjen senere.'}
   class="terning"
   aria-labelledby="terning-heading"
   data-slug={slug}
   data-url={supabase.url}
   data-key={supabase.key}
 >
-  <h2 id="terning-heading">Hva synes du om episoden?</h2>
-  <p class="terning__intro muted">Gi episoden et terningkast fra 1 til 6.</p>
+  <h2 id="terning-heading">{t('rating.heading')}</h2>
+  <p class="terning__intro muted">{t('rating.intro')}</p>
 
-  <div class="terning__dice" role="group" aria-label="Gi terningkast">
+  <div class="terning__dice" role="group" aria-label={t('rating.give')}>
     {
       values.map((v) => (
         <button
           type="button"
           class="die"
           data-value={v}
-          aria-label={`Gi terningkast ${v}`}
+          aria-label={`${t('rating.give')} ${v}`}
           aria-pressed="false"
         >
           <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
@@ -78,7 +95,7 @@ const values = [1, 2, 3, 4, 5, 6];
     }
   </div>
 
-  <p class="terning__result" data-role="result" aria-live="polite">Laster …</p>
+  <p class="terning__result" data-role="result" aria-live="polite">{t('rating.loading')}</p>
 </section>
 
 <style>
@@ -197,17 +214,19 @@ const values = [1, 2, 3, 4, 5, 6];
         const stats = Array.isArray(rows) ? rows[0] : undefined;
         const mine = myVote();
         if (stats && stats.vote_count > 0) {
-          const label = stats.vote_count === 1 ? '1 terningkast' : `${stats.vote_count} terningkast`;
-          result.innerHTML = `Snitt: <strong>${stats.average}</strong> av 6 · ${label}`;
+          const d = root.dataset;
+          const label =
+            stats.vote_count === 1 ? d.votesOne! : `${stats.vote_count} ${d.votesMany}`;
+          result.innerHTML = `${d.avg}: <strong>${stats.average}</strong> ${d.of} · ${label}`;
         } else {
-          result.textContent = 'Ingen har kastet terning ennå – bli den første!';
+          result.textContent = root.dataset.empty!;
         }
         if (mine) {
           markVoted(mine);
-          result.innerHTML += ` · Du ga <strong>${mine}</strong>`;
+          result.innerHTML += ` · ${root.dataset.yours} <strong>${mine}</strong>`;
         }
       } catch {
-        result.textContent = 'Klarte ikke å hente terningkast akkurat nå.';
+        result.textContent = root.dataset.failed!;
       }
     }
 
@@ -228,7 +247,7 @@ const values = [1, 2, 3, 4, 5, 6];
         markVoted(value);
         await loadStats();
       } catch {
-        result.textContent = 'Klarte ikke å registrere terningkastet. Prøv igjen senere.';
+        result.textContent = root.dataset.voteFailed!;
         dice.forEach((d) => (d.disabled = false));
       }
     }

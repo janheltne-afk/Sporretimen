@@ -1,0 +1,560 @@
+---
+import { render, getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Cover from '@/components/Cover.astro';
+import EpisodePlayers from '@/components/EpisodePlayers.astro';
+import Avatar from '@/components/Avatar.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import PlatformLinks from '@/components/PlatformLinks.astro';
+import ResourceCard from '@/components/ResourceCard.astro';
+import Terningkast from '@/components/Terningkast.astro';
+import Comments from '@/components/Comments.astro';
+import type { CollectionEntry } from 'astro:content';
+import { scriptForEpisode, resourcesForEpisode, slugOf } from '@/lib/content';
+import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
+import { formatDate, formatRelease } from '@/lib/utils';
+import { entryPath, path as routePath, transcriptPath, type Locale } from '@/i18n/config';
+import { formatById } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  episode: CollectionEntry<'episodes'>;
+}
+
+const { lang, episode } = Astro.props;
+const t = useTranslations(lang);
+const slug = slugOf(episode.id);
+const d = episode.data;
+const { Content } = await render(episode);
+const format = formatById(lang, d.format);
+const guest = d.guest ? await getEntry(d.guest) : undefined;
+const script = await scriptForEpisode(episode.id);
+const resources = await resourcesForEpisode(episode.id);
+// Spillere vises kun for publiserte episoder. Lenkene kan være kjent på forhånd
+// for kommende episoder, men en innebygd spiller ville da vist en feilmelding.
+const hasEmbed = d.status === 'publisert' && Boolean(d.links?.youtube || d.links?.spotify);
+
+// Kort temalinje på omslaget. Faller tilbake til første kategori.
+const coverTheme = d.coverTheme ?? d.categories[0];
+// Relaterte episoder
+const related = (
+  await Promise.all(d.related.map((ref) => getEntry(ref)))
+).filter(Boolean);
+
+const platformUrls = [d.links?.youtube, d.links?.spotify, d.links?.apple, d.links?.annet].filter(
+  (u): u is string => Boolean(u)
+);
+const keywords = [...d.topics, ...d.categories, ...(d.yrke ? [d.yrke] : [])];
+
+const episodeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastEpisode',
+  name: d.title,
+  description: d.description,
+  url: canonicalUrl(entryPath(lang, 'episodes', slug)),
+  inLanguage: lang === 'en' ? 'en' : 'nb-NO',
+  ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
+  ...(d.image ? { image: absoluteUrl(d.image) } : {}),
+  ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
+  partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
+  author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'about')) },
+  ...(guest
+    ? {
+        actor: {
+          '@type': 'Person',
+          name: guest.data.name,
+          jobTitle: guest.data.role,
+          ...(guest.data.draft ? {} : { url: canonicalUrl(entryPath(lang, 'guests', slugOf(guest.id))) }),
+        },
+      }
+    : {}),
+  ...(platformUrls.length
+    ? { associatedMedia: platformUrls.map((u) => ({ '@type': 'MediaObject', contentUrl: u })) }
+    : {}),
+};
+
+const breadcrumb = breadcrumbList([
+  { name: lang === 'en' ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+  { name: t('episode.allEpisodes'), path: routePath(lang, 'episodes') },
+  { name: d.title, path: entryPath(lang, 'episodes', slug) },
+]);
+
+const jsonLd = [episodeJsonLd, breadcrumb];
+---
+
+<BaseLayout
+  lang={lang}
+  title={d.title}
+  description={d.description}
+  type="article"
+  image={d.image}
+  imageAlt={d.imageAlt}
+  jsonLd={jsonLd}
+>
+  <article class="episode">
+    <div class="container episode__wrap episode__head">
+      <a class="back-link" href={routePath(lang, 'episodes')}>{t('episode.backToAll')}</a>
+
+      <div class="episode__meta">
+        <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+        {d.status === 'kommende' && <span class="tag tag-status">{t('episode.upcoming')}</span>}
+        {d.categories.map((c) => <span class="tag">{c}</span>)}
+      </div>
+
+      {d.yrke && <p class="episode__career">{t('episode.career')} · {d.yrke}</p>}
+
+      <h1 class="episode__title">{d.title}</h1>
+
+      <p class="episode__facts muted">
+        {d.duration && <span>{d.duration}</span>}
+        {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
+        <span>{d.status === 'kommende' ? formatRelease(d.publishDate) : formatDate(d.publishDate)}</span>
+        <span aria-hidden="true">·</span>
+        <span>{t('episode.host')} <a href={routePath(lang, 'about')} class="episode__host">{site.host}</a></span>
+        {guest && <span aria-hidden="true">·</span>}
+        {guest && <span>{t('episode.guest')} {guest.data.name}</span>}
+      </p>
+
+      <p class="lead">{d.description}</p>
+
+      <div class="episode__platforms">
+        <PlatformLinks lang={lang} links={d.links} title={d.title} />
+      </div>
+    </div>
+
+    <div class="container episode__wrap">
+      <div class="episode__cover">
+        {
+          hasEmbed ? (
+            <EpisodePlayers youtube={d.links?.youtube} spotify={d.links?.spotify} title={d.title} />
+          ) : (
+            <Cover
+              title={d.title}
+              src={d.image}
+              alt={d.imageAlt}
+              format={d.format}
+              variant={d.coverStyle}
+              portrait={guest?.data.cover}
+              theme={coverTheme}
+            />
+          )
+        }
+      </div>
+    </div>
+
+    <div class="container episode__wrap episode__layout">
+      <div class="prose episode__content">
+        <Content />
+
+        {
+          d.topics.length > 0 && (
+            <section class="ep-section" aria-labelledby="temaer-heading">
+              <h2 id="temaer-heading">{t('episode.topics')}</h2>
+              <ul class="ep-pills">
+                {d.topics.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          d.questions.length > 0 && (
+            <section class="ep-section" aria-labelledby="sporsmal-heading">
+              <h2 id="sporsmal-heading">{t('episode.questions')}</h2>
+              <ul class="ep-list">
+                {d.questions.map((q) => (
+                  <li>{q}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          d.takeaways.length > 0 && (
+            <section class="ep-section" aria-labelledby="hovedpunkter-heading">
+              <h2 id="hovedpunkter-heading">{t('episode.takeaways')}</h2>
+              <ul class="ep-list">
+                {d.takeaways.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          script && (
+            <a class="manus-panel" href={transcriptPath(lang, slug)}>
+              <span class="manus-panel__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path
+                    d="M6 3.5h9L19 7.5v13H6zM15 3.5V8h4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path d="M9 12h7M9 15.5h7M9 8.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="manus-panel__text">
+                <strong>
+                  {script.data.kind === 'transkribert'
+                    ? t('episode.readTranscript')
+                    : t('episode.seeScript')}
+                </strong>
+                <span>
+                  {script.data.kind === 'transkribert'
+                    ? t('episode.readTranscriptDesc')
+                    : t('episode.seeScriptDesc')}
+                </span>
+              </span>
+              <span class="manus-panel__arrow" aria-hidden="true">→</span>
+            </a>
+          )
+        }
+
+        {
+          d.sources.length > 0 && (
+            <section class="sources" aria-labelledby="sources-heading">
+              <h2 id="sources-heading">{t('episode.sources')}</h2>
+              <ul>
+                {d.sources.map((s) => (
+                  <li>
+                    {s.url ? (
+                      <a href={s.url} target="_blank" rel="noopener">
+                        {s.title}
+                      </a>
+                    ) : (
+                      s.title
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </div>
+
+      {
+        guest && (
+          <aside class="episode__guest card">
+            <p class="episode__guest-label">{t('episode.guest')}</p>
+            <div class="episode__guest-portrait">
+              <Avatar name={guest.data.name} src={guest.data.image} alt={guest.data.imageAlt} />
+            </div>
+            <h2>{guest.data.name}</h2>
+            <p class="episode__guest-role">{guest.data.role}</p>
+            <p class="episode__guest-intro">{guest.data.intro}</p>
+            <div class="episode__guest-actions">
+              {
+                !guest.data.draft && (
+                  <a class="btn btn-secondary btn-sm" href={entryPath(lang, 'guests', slugOf(guest.id))}>
+                    {t('episode.aboutGuest')}
+                  </a>
+                )
+              }
+              {
+                script && (
+                  <a class="btn btn-ghost btn-sm" href={transcriptPath(lang, slug)}>
+                    {script.data.kind === 'transkribert' ? `${t('guest.readAsText')} →` : `${t('episode.script')} →`}
+                  </a>
+                )
+              }
+            </div>
+          </aside>
+        )
+      }
+    </div>
+
+    {
+      resources.length > 0 && (
+        <section class="container episode__wrap resources-block">
+          <h2>{d.status === 'kommende' ? t('episode.resourcesFor') : t('episode.resourcesMentioned')}</h2>
+          <div class="grid grid-2">
+            {resources.map((r) => (
+              <ResourceCard lang={lang} resource={r} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      d.status === 'publisert' && (
+        <div class="container episode__wrap episode__feedback">
+          <Terningkast lang={lang} slug={episode.id} />
+          <Comments lang={lang} slug={episode.id} />
+        </div>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <section class="section related">
+          <div class="container">
+            <h2 class="related__heading">{t('episode.related')}</h2>
+            <div class="grid grid-3">
+              {related.map((ep) => (
+                <EpisodeCard lang={lang} episode={ep} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .episode {
+    padding-top: clamp(1.75rem, 4vw, 3rem);
+  }
+  /* Artikkelen har egen bredde: bred nok til at brødtekst og gjestekort får
+     stå side om side uten at lesespalten blir klemt. */
+  .episode__wrap {
+    max-width: 1040px;
+  }
+  /* Tittel, ingress og fakta holdes på en behagelig lesebredde */
+  .episode__head > * {
+    max-width: 44rem;
+  }
+  .back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--ink);
+  }
+  .episode__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.4rem;
+  }
+  .episode__career {
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .episode__title {
+    margin-bottom: 1.1rem;
+  }
+  .episode__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .episode__host {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .episode__host:hover {
+    color: var(--ink);
+  }
+  .ep-section {
+    margin-top: 2.6rem;
+  }
+  .ep-section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+  .ep-pills {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .ep-pills li {
+    padding: 0.42rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .ep-list {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .ep-list li {
+    margin-bottom: 0.6rem;
+    color: var(--ink-soft);
+  }
+  .ep-list li::marker {
+    color: var(--ink-faint);
+  }
+  .episode__platforms {
+    margin: 1.75rem 0 0;
+  }
+  .episode__cover {
+    margin-block: clamp(2rem, 5vw, 3.25rem);
+  }
+  .episode__cover :global(.cover) {
+    border-radius: var(--radius);
+  }
+  /* Et omslag uten spiller vises som en plate i lesebredden, ikke som et
+     banner over hele siden – 1280 px brede filer tåler ikke å blåses opp. */
+  .episode__cover:not(:has(.players)) {
+    max-width: 44rem;
+  }
+  .episode__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+  .episode__content {
+    max-width: 40rem;
+  }
+  .episode__feedback > * {
+    max-width: 44rem;
+  }
+  .sources {
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line);
+  }
+  .sources h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.9rem;
+  }
+  .sources ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.98rem;
+  }
+  .manus-panel {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    margin-top: 2.75rem;
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s ease;
+  }
+  .manus-panel:hover {
+    border-color: var(--ink);
+  }
+  .manus-panel__icon {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    color: var(--ink-faint);
+  }
+  .manus-panel__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .manus-panel__text strong {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .manus-panel__text span {
+    font-family: var(--font-sans);
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .manus-panel__arrow {
+    margin-left: auto;
+    color: var(--ink-faint);
+    font-size: 1.1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .manus-panel:hover .manus-panel__arrow {
+    color: var(--ink);
+    transform: translateX(3px);
+  }
+  .episode__guest {
+    padding: 1.75rem;
+    align-self: start;
+    font-family: var(--font-sans);
+  }
+  .episode__guest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .episode__guest-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--ink-faint);
+    margin: 0 0 1.1rem;
+  }
+  .episode__guest-portrait {
+    width: 84px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 1.1rem;
+  }
+  .episode__guest h2 {
+    font-size: 1.32rem;
+    margin: 0 0 0.3rem;
+  }
+  .episode__guest-role {
+    color: var(--ink-faint);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.9rem;
+  }
+  .episode__guest-intro {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.35rem;
+  }
+  .resources-block {
+    margin-top: clamp(2.5rem, 5vw, 3.75rem);
+    padding-top: clamp(2rem, 4vw, 2.75rem);
+    border-top: 1px solid var(--line);
+  }
+  .resources-block h2 {
+    margin-bottom: 1.75rem;
+  }
+  .related {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .related__heading {
+    margin-bottom: 2rem;
+  }
+
+  /* På brede skjermer: innhold + gjestekort side om side */
+  @media (min-width: 900px) {
+    .episode__layout:has(.episode__guest) {
+      grid-template-columns: minmax(0, 1fr) 288px;
+    }
+  }
+</style>

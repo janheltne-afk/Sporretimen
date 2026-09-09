@@ -38,6 +38,8 @@ const breadcrumb = breadcrumbList([
 ]);
 
 const jsonLd = [resourceJsonLd, breadcrumb];
+
+const lang = 'no' as const;
 ---
 
 <BaseLayout title={d.title} description={d.summary} type="article" jsonLd={jsonLd}>
@@ -79,7 +81,7 @@ const jsonLd = [resourceJsonLd, breadcrumb];
             <h2>Nevnt i episoden</h2>
             <div class="grid grid-2">
               {episodes.map((ep) => (
-                <EpisodeCard episode={ep} />
+                <EpisodeCard lang={lang} episode={ep} />
               ))}
             </div>
           </section>

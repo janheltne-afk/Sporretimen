@@ -2,15 +2,19 @@
 import type { CollectionEntry } from 'astro:content';
 import Avatar from './Avatar.astro';
 
+import { entryPath, type Locale } from '@/i18n/config';
+import { slugOf } from '@/lib/content';
+
 interface Props {
+  lang: Locale;
   guest: CollectionEntry<'guests'>;
 }
-const { guest } = Astro.props;
+const { lang, guest } = Astro.props;
 const d = guest.data;
 ---
 
 <article class="card guest">
-  <a class="guest__link" href={`/gjester/${guest.id}/`}>
+  <a class="guest__link" href={entryPath(lang, 'guests', slugOf(guest.id))}>
     <Avatar name={d.name} src={d.image} alt={d.imageAlt} ratio="1 / 1" />
     <div class="guest__body">
       <span class="guest__role">{d.role}</span>

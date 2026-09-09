@@ -19,6 +19,8 @@ const formatIcons: Record<string, string> = {
   book: 'M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5zM19 18v3H6.5A1.5 1.5 0 0 1 5 19.5',
   bolt: 'M13 3 5 13h5l-1 8 8-11h-5z',
 };
+
+const lang = 'no' as const;
 ---
 
 <BaseLayout>
@@ -73,7 +75,7 @@ const formatIcons: Record<string, string> = {
         <a class="btn btn-secondary btn-sm" href="/episoder/">Alle episoder</a>
       </div>
       <div class="grid grid-3">
-        {latest.map((ep) => <EpisodeCard episode={ep} />)}
+        {latest.map((ep) => <EpisodeCard lang={lang} episode={ep} />)}
       </div>
     </div>
   </section>
@@ -122,7 +124,7 @@ const formatIcons: Record<string, string> = {
         <a class="btn btn-secondary btn-sm" href="/gjester/">Alle gjester</a>
       </div>
       <div class="grid grid-4">
-        {guestsShown.map((g) => <GuestCard guest={g} />)}
+        {guestsShown.map((g) => <GuestCard lang={lang} guest={g} />)}
       </div>
       <p class="muted note">
         Gjestene over er planlagte og aktuelle for podcasten. Endelig program

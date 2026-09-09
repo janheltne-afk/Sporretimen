@@ -11,6 +11,8 @@ const usedTypes = resourceTypes.filter((t) =>
 );
 const showFilters = usedTypes.length > 1;
 const courses = await getCourses();
+
+const lang = 'no' as const;
 ---
 
 <BaseLayout
@@ -55,7 +57,7 @@ const courses = await getCourses();
             <div class="grid grid-3" id="resource-grid">
               {resources.map((r) => (
                 <div class="resource-item" data-type={allResourceTypes(r.data).join('|')}>
-                  <ResourceCard resource={r} />
+                  <ResourceCard lang={lang} resource={r} />
                 </div>
               ))}
             </div>

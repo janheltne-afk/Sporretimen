@@ -5,6 +5,8 @@ import GuestCard from '@/components/GuestCard.astro';
 import { getGuests } from '@/lib/content';
 
 const guests = await getGuests();
+
+const lang = 'no' as const;
 ---
 
 <BaseLayout
@@ -21,7 +23,7 @@ const guests = await getGuests();
   <section class="section-tight">
     <div class="container">
       <div class="grid grid-3">
-        {guests.map((g) => <GuestCard guest={g} />)}
+        {guests.map((g) => <GuestCard lang={lang} guest={g} />)}
       </div>
       <p class="muted note">
         Oversikten viser planlagte og aktuelle gjester. Endelig program annonseres

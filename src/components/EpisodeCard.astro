@@ -2,24 +2,32 @@
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 import Cover from './Cover.astro';
-import { formatById } from '@/data/site';
 import { formatDate, formatReleaseShort } from '@/lib/utils';
+import { entryPath, type Locale } from '@/i18n/config';
+import { formatById } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+import { slugOf } from '@/lib/content';
 
 interface Props {
+  lang: Locale;
   episode: CollectionEntry<'episodes'>;
 }
-const { episode } = Astro.props;
+const { lang, episode } = Astro.props;
+const t = useTranslations(lang);
+const href = entryPath(lang, 'episodes', slugOf(episode.id));
 const d = episode.data;
-const format = formatById(d.format);
+const format = formatById(lang, d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 // Kort temalinje på omslaget. Faller tilbake til første kategori.
 const coverTheme = d.coverTheme ?? d.categories[0];
 const dateLabel =
-  d.status === 'kommende' ? formatReleaseShort(d.publishDate) : formatDate(d.publishDate);
+  d.status === 'kommende'
+    ? formatReleaseShort(d.publishDate, lang)
+    : formatDate(d.publishDate, lang);
 ---
 
 <article class:list={['card', 'ep', { 'ep--kommende': d.status === 'kommende' }]}>
-  <a class="ep__cover-link" href={`/episoder/${episode.id}/`} tabindex="-1" aria-hidden="true">
+  <a class="ep__cover-link" href={href} tabindex="-1" aria-hidden="true">
     <Cover
       title={d.title}
       src={d.image}
@@ -33,16 +41,16 @@ const dateLabel =
   <div class="ep__body">
     <div class="ep__meta">
       <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
-      {d.status === 'kommende' && <span class="tag tag-status">Kommende</span>}
+      {d.status === 'kommende' && <span class="tag tag-status">{t('episode.upcoming')}</span>}
     </div>
-    {d.yrke && <p class="ep__career">Karriere · {d.yrke}</p>}
+    {d.yrke && <p class="ep__career">{t('episode.career')} · {d.yrke}</p>}
     <h3 class="ep__title">
-      <a href={`/episoder/${episode.id}/`}>{d.title}</a>
+      <a href={href}>{d.title}</a>
     </h3>
     {
       guest && (
         <p class="ep__guest">
-          Med {guest.data.name}
+          {t('episode.with')} {guest.data.name}
           {!d.yrke && ` · ${guest.data.role}`}
         </p>
       )

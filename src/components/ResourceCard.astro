@@ -1,12 +1,17 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
-import { resourceTypeById, allResourceTypes } from '@/data/site';
+import { entryPath, type Locale } from '@/i18n/config';
+import { resourceTypeById, allResourceTypes } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+import { slugOf } from '@/lib/content';
 
 interface Props {
+  lang: Locale;
   resource: CollectionEntry<'resources'>;
 }
-const { resource } = Astro.props;
+const { lang, resource } = Astro.props;
+const t = useTranslations(lang);
 const d = resource.data;
 const types = allResourceTypes(d);
 
@@ -15,11 +20,11 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
 ---
 
 <article class="card resource">
-  <a class="resource__link" href={`/ressurser/${resource.id}/`}>
+  <a class="resource__link" href={entryPath(lang, 'resources', slugOf(resource.id))}>
     <div class="resource__body">
       <div class="resource__meta">
-        {types.map((t) => (
-          <span class:list={['tag', `rtype-${t}`]}>{resourceTypeById(t)?.label}</span>
+        {types.map((ty) => (
+          <span class:list={['tag', `rtype-${ty}`]}>{resourceTypeById(lang, ty)?.label}</span>
         ))}
         {d.language && <span class="resource__lang">{d.language}</span>}
       </div>
@@ -28,7 +33,7 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
       <p class="resource__summary">{d.summary}</p>
       <div class="resource__foot">
         {d.categories.slice(0, 2).map((c) => <span class="resource__cat">{c}</span>)}
-        {firstEpisode && <span class="resource__from">Fra episode</span>}
+        {firstEpisode && <span class="resource__from">{t('resource.from')}</span>}
       </div>
     </div>
   </a>

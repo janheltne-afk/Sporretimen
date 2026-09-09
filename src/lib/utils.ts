@@ -1,9 +1,13 @@
 /** Små hjelpefunksjoner brukt på tvers av nettsiden. */
 
-/** Formaterer en dato til norsk lesbar tekst, f.eks. "3. mars 2026". */
-export function formatDate(date?: Date): string {
+import type { Locale } from '@/i18n/config';
+
+const intlLocale = (lang: Locale) => (lang === 'en' ? 'en-GB' : 'nb-NO');
+
+/** Formaterer en dato lesbart, f.eks. «3. mars 2026» / «3 March 2026». */
+export function formatDate(date?: Date, lang: Locale = 'no'): string {
   if (!date) return '';
-  return new Intl.DateTimeFormat('nb-NO', {
+  return new Intl.DateTimeFormat(intlLocale(lang), {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -12,35 +16,35 @@ export function formatDate(date?: Date): string {
 
 /**
  * Formaterer et annonsert publiseringstidspunkt, f.eks.
- * "Slippes søndag 16. august kl. 07:00". Brukes på kommende episoder der
- * datoen er avklart. Uten dato faller den tilbake til "Publiseres senere".
+ * «Slippes søndag 16. august kl. 07:00». Brukes på kommende episoder der
+ * datoen er avklart. Uten dato faller den tilbake til «Publiseres senere».
  */
-export function formatRelease(date?: Date): string {
-  if (!date) return 'Publiseres senere';
-  const day = new Intl.DateTimeFormat('nb-NO', {
+export function formatRelease(date?: Date, lang: Locale = 'no'): string {
+  if (!date) return lang === 'en' ? 'Published later' : 'Publiseres senere';
+  const day = new Intl.DateTimeFormat(intlLocale(lang), {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
   }).format(date);
-  const time = new Intl.DateTimeFormat('nb-NO', {
+  const time = new Intl.DateTimeFormat(intlLocale(lang), {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: 'Europe/Oslo',
   }).format(date);
-  return `Slippes ${day} kl. ${time}`;
+  return lang === 'en' ? `Out ${day} at ${time}` : `Slippes ${day} kl. ${time}`;
 }
 
 /**
- * Kort variant av `formatRelease` for episodekort, f.eks. "Slippes 16. aug.".
- * Uten dato faller den tilbake til "Kommende".
+ * Kort variant av `formatRelease` for episodekort, f.eks. «Slippes 16. aug.».
+ * Uten dato faller den tilbake til «Kommende».
  */
-export function formatReleaseShort(date?: Date): string {
-  if (!date) return 'Kommende';
-  const day = new Intl.DateTimeFormat('nb-NO', {
+export function formatReleaseShort(date?: Date, lang: Locale = 'no'): string {
+  if (!date) return lang === 'en' ? 'Upcoming' : 'Kommende';
+  const day = new Intl.DateTimeFormat(intlLocale(lang), {
     day: 'numeric',
     month: 'short',
   }).format(date);
-  return `Slippes ${day}`;
+  return lang === 'en' ? `Out ${day}` : `Slippes ${day}`;
 }
 
 /** Henter initialer fra et navn eller en tittel (maks 2 tegn). */

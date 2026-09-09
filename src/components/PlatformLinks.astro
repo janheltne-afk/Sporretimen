@@ -8,7 +8,11 @@
  */
 import { socials } from '@/data/site';
 
+import { type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
 interface Props {
+  lang?: Locale;
   links?: {
     youtube?: string;
     spotify?: string;
@@ -17,7 +21,8 @@ interface Props {
   };
   title?: string;
 }
-const { links = {}, title = 'episoden' } = Astro.props;
+const { lang = 'no', links = {}, title } = Astro.props;
+const t = useTranslations(lang);
 
 const show = (label: string) => socials.find((s) => s.label === label)?.url ?? undefined;
 
@@ -39,19 +44,27 @@ const platforms = (
       href: links.apple ?? show('Apple Podcasts'),
       direct: Boolean(links.apple),
     },
-    { id: 'annet', label: 'Annen plattform', href: links.annet, direct: Boolean(links.annet) },
+    {
+      id: 'annet',
+      label: lang === 'en' ? 'Other platform' : 'Annen plattform',
+      href: links.annet,
+      direct: Boolean(links.annet),
+    },
   ] as { id: Platform['id']; label: string; href?: string; direct: boolean }[]
 ).filter((p): p is Platform => Boolean(p.href));
 
 // Er ingen av lenkene episodespesifikke, sender vi folk til podkasten – ikke
 // til en episode som ikke finnes ennå.
 const anyDirect = platforms.some((p) => p.direct);
-const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
+const heading = anyDirect ? t('episode.listenHere') : t('footer.follow');
+const navLabel = anyDirect
+  ? (lang === 'en' ? `Listen to ${title} on other platforms` : `Hør ${title} på andre plattformer`)
+  : t('footer.follow');
 ---
 
 {
   platforms.length > 0 && (
-    <nav class="platforms" aria-label={anyDirect ? `Hør ${title} på andre plattformer` : 'Følg Spørretimen'}>
+    <nav class="platforms" aria-label={navLabel}>
       <p class="platforms__label">{heading}</p>
       <ul class="platforms__list">
         {platforms.map((p) => (
@@ -61,7 +74,13 @@ const heading = anyDirect ? 'Hør episoden her' : 'Følg Spørretimen';
               href={p.href}
               target="_blank"
               rel="noopener"
-              title={p.direct ? `Hør ${title} på ${p.label}` : `Spørretimen på ${p.label}`}
+              title={
+                p.direct
+                  ? lang === 'en'
+                    ? `Listen to ${title} on ${p.label}`
+                    : `Hør ${title} på ${p.label}`
+                  : `Spørretimen – ${p.label}`
+              }
             >
               {p.id !== 'annet' && (
                 <span class="platform__icon" aria-hidden="true">

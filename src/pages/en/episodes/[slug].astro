@@ -1,0 +1,16 @@
+---
+import EpisodePage from '@/components/pages/EpisodePage.astro';
+import { getEpisodes, slugOf } from '@/lib/content';
+
+export async function getStaticPaths() {
+  const episodes = await getEpisodes('en');
+  return episodes.map((episode) => ({
+    params: { slug: slugOf(episode.id) },
+    props: { episode },
+  }));
+}
+
+const { episode } = Astro.props;
+---
+
+<EpisodePage lang="en" episode={episode} />
