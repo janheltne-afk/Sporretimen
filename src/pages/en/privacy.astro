@@ -7,7 +7,7 @@ const updated = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
-}).format(new Date('2026-08-25'));
+}).format(new Date('2026-09-15'));
 ---
 
 <BaseLayout
@@ -37,8 +37,9 @@ const updated = new Intl.DateTimeFormat('en-GB', {
           form submissions on the website.
         </li>
         <li>
-          Comments and ratings are stored in a database (Supabase) because they are
-          displayed publicly on the episode page.
+          Comments, ratings and interest signals are stored in a database (Supabase).
+          Comments and ratings are displayed publicly on the episode page; interest
+          signals are anonymous counts.
         </li>
         <li>We use no analytics tools, ad networks or tracking cookies.</li>
       </ul>
@@ -75,6 +76,15 @@ const updated = new Intl.DateTimeFormat('en-GB', {
         same episode, your browser stores a random, anonymous code locally (see
         “Browser storage” below). The code is not linked to a name, email address or IP
         address, and cannot be used to identify you.
+      </p>
+
+      <h2>Interest signals</h2>
+      <p>
+        On upcoming episodes, topic pages and the talks page you can press “I want to
+        hear more” or similar. This stores which episode or topic it concerned, together
+        with the same anonymous code the ratings use – so the same browser cannot vote
+        several times on the same item. No name, email or IP address is stored. The
+        counts are used to decide what to make more of.
       </p>
 
       <h2>Contact forms</h2>
@@ -127,10 +137,10 @@ const updated = new Intl.DateTimeFormat('en-GB', {
 
       <h2>Data processor</h2>
       <p>
-        Comments and ratings are stored with <strong>Supabase</strong>, our database
-        provider. Access is restricted by rules in the database (Row Level Security):
-        visitors can read and add comments and ratings, but cannot edit or delete other
-        people’s posts. Removal and moderation are handled by Jan Sindre.
+        Comments, ratings and interest signals are stored with <strong>Supabase</strong>,
+        our database provider. Access is restricted by rules in the database (Row Level
+        Security): visitors can read and add, but cannot edit or delete other people’s
+        posts. Removal and moderation are handled by Jan Sindre.
       </p>
 
       <h2>Your rights</h2>

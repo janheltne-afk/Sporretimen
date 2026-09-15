@@ -7,7 +7,7 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
-}).format(new Date('2026-08-25'));
+}).format(new Date('2026-09-15'));
 ---
 
 <BaseLayout
@@ -36,8 +36,9 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
           nettsiden.
         </li>
         <li>
-          Kommentarer og terningkast lagres i en database (Supabase) fordi de vises åpent
-          på episodesiden.
+          Kommentarer, terningkast og interessemarkeringer lagres i en database
+          (Supabase). Kommentarer og terningkast vises åpent på episodesiden;
+          interessemarkeringer er anonyme tellinger.
         </li>
         <li>Vi bruker ingen analyseverktøy, annonsenettverk eller sporingsinformasjonskapsler.</li>
       </ul>
@@ -74,6 +75,15 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
         samme episode, lagrer nettleseren din en tilfeldig, anonym kode lokalt (se
         «Nettlagring» under). Koden er ikke koblet til navn, e-postadresse eller
         IP-adresse, og kan ikke brukes til å identifisere deg.
+      </p>
+
+      <h2>Interessemarkeringer</h2>
+      <p>
+        På kommende episoder, temasider og foredragssiden kan du trykke «Jeg vil høre
+        mer» eller lignende. Da lagres hvilken episode eller hvilket tema det gjaldt,
+        sammen med den samme anonyme koden som terningkastene bruker – slik at samme
+        nettleser ikke kan stemme flere ganger på samme sak. Ingen navn, e-post eller
+        IP-adresse lagres. Tellingene brukes til å avgjøre hva som skal lages mer av.
       </p>
 
       <h2>Kontaktskjemaer</h2>
@@ -126,10 +136,10 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
 
       <h2>Databehandler</h2>
       <p>
-        Kommentarer og terningkast lagres hos <strong>Supabase</strong>, som er
-        databaseleverandøren vår. Tilgangen er begrenset med regler i databasen
-        (Row Level Security): besøkende kan lese og legge til kommentarer/terningkast,
-        men ikke endre eller slette andres innlegg. Fjerning og moderering gjøres av
+        Kommentarer, terningkast og interessemarkeringer lagres hos
+        <strong>Supabase</strong>, som er databaseleverandøren vår. Tilgangen er
+        begrenset med regler i databasen (Row Level Security): besøkende kan lese og
+        legge til, men ikke endre eller slette andres innlegg. Fjerning og moderering gjøres av
         Jan Sindre.
       </p>
 
