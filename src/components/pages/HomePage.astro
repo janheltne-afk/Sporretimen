@@ -57,21 +57,6 @@ const pickedExplained = notInLatest(explained);
 // Temaene på forsiden: de som har innhold, i registerets rekkefølge.
 const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 
-const talkAreas = en
-  ? [
-      'Economics and decisions',
-      'AI and the future of work',
-      'From data to decision',
-      'Learning and memory',
-      'Technology and business',
-    ]
-  : [
-      'Økonomi og beslutninger',
-      'AI og fremtidens arbeidsliv',
-      'Fra data til beslutning',
-      'Læring og hukommelse',
-      'Teknologi og næringsliv',
-    ];
 ---
 
 <BaseLayout lang={lang}>
@@ -313,24 +298,6 @@ const talkAreas = en
     </div>
   </section>
 
-  <!-- Foredrag -->
-  <section class="section talks">
-    <div class="container talks__inner">
-      <div>
-        <p class="eyebrow">{en ? 'Talks and collaboration' : 'Foredrag og samarbeid'}</p>
-        <h2>{en ? 'From the podcast to the stage' : 'Fra podkasten til scenen'}</h2>
-        <p class="lead">
-          {en
-            ? 'Some of the subjects explored through Spørretimen are developed further into talks and presentations for companies and events.'
-            : 'Noen av temaene som utforskes gjennom Spørretimen utvikles videre til foredrag og presentasjoner for bedrifter og arrangementer.'}
-        </p>
-        <a class="btn btn-secondary" href={routePath(lang, 'foredrag')}>{en ? 'Explore talks' : 'Utforsk foredrag'}</a>
-      </div>
-      <ul class="talks__areas">
-        {talkAreas.map((area) => <li>{area}</li>)}
-      </ul>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
@@ -585,43 +552,10 @@ const talkAreas = en
     margin-bottom: 1.6rem;
   }
 
-  /* Foredrag – nederst, og med vilje lite. */
-  .talks__inner {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: start;
-  }
-  .talks h2 {
-    max-width: 18ch;
-  }
-  .talks .lead {
-    margin-bottom: 1.8rem;
-    max-width: 48ch;
-  }
-  .talks__areas {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .talks__areas li {
-    padding: 0.95rem 0;
-    border-top: 1px solid var(--line);
-    color: var(--ink-soft);
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-  }
-  .talks__areas li:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-
   @media (max-width: 880px) {
     .hero__inner,
     .series__pair,
-    .host__inner,
-    .talks__inner {
+    .host__inner {
       grid-template-columns: 1fr;
     }
     .hero__media {

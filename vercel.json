@@ -1,5 +1,9 @@
 {
   "redirects": [
+    { "source": "/foredrag", "destination": "/", "permanent": false },
+    { "source": "/foredrag/", "destination": "/", "permanent": false },
+    { "source": "/en/talks", "destination": "/en/", "permanent": false },
+    { "source": "/en/talks/", "destination": "/en/", "permanent": false },
     { "source": "/okonomi", "destination": "/temaer/okonomi/", "permanent": true },
     { "source": "/okonomi/", "destination": "/temaer/okonomi/", "permanent": true },
     { "source": "/en/economics", "destination": "/en/topics/okonomi/", "permanent": true },

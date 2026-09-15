@@ -18,7 +18,6 @@ export const navItems: { key: RouteKey; label: Record<Locale, string> }[] = [
   { key: 'explained', label: { no: 'Forklart', en: 'Explained' } },
   { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
   { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
-  { key: 'foredrag', label: { no: 'Foredrag', en: 'Talks' } },
   { key: 'about', label: { no: 'Om', en: 'About' } },
 ];
 
@@ -44,8 +43,7 @@ export const footerNav: {
       { key: 'suggestGuest', label: { no: 'Foreslå en gjest', en: 'Suggest a guest' } },
       { key: 'beGuest', label: { no: 'Bli gjest', en: 'Be a guest' } },
       { key: 'partner', label: { no: 'Samarbeid', en: 'Collaborate' } },
-      { key: 'foredrag', label: { no: 'Foredrag', en: 'Talks' } },
-      { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },
+          { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },
     ],
   },
   {
@@ -170,7 +168,7 @@ const strings = {
       'Denne episoden er ikke spilt inn ennå. Meld interesse, så vet vi hva som bør komme først.',
     'interest.moreHeading': 'Vil du høre mer om dette?',
     'interest.moreIntro':
-      'Vi tester stadig nye temaer. Er interessen stor nok, utvikles temaet videre til lengre episoder, serier eller foredrag.',
+      'Vi tester stadig nye temaer. Er interessen stor nok, utvikles temaet videre til lengre episoder eller serier.',
     'topic.all': 'Alle temaer',
     'topic.explore': 'Utforsk temaer',
     'topic.subtopics': 'Undertemaer',
@@ -181,7 +179,6 @@ const strings = {
     'nav.conversations': 'Samtaler',
     'nav.explained': 'Forklart',
     'nav.topics': 'Temaer',
-    'nav.foredrag': 'Foredrag',
     // Kommentarer
     'comments.heading': 'Kommentarer',
     'comments.intro':
@@ -303,7 +300,7 @@ const strings = {
       'This episode has not been recorded yet. Register your interest, and we will know what should come first.',
     'interest.moreHeading': 'Want to hear more about this?',
     'interest.moreIntro':
-      'We are constantly testing new subjects. If there is enough interest, a subject is developed further into longer episodes, a series or a talk.',
+      'We are constantly testing new subjects. If there is enough interest, a subject is developed further into longer episodes or a series.',
     'topic.all': 'All topics',
     'topic.explore': 'Explore topics',
     'topic.subtopics': 'Subtopics',
@@ -314,7 +311,6 @@ const strings = {
     'nav.conversations': 'Conversations',
     'nav.explained': 'Explained',
     'nav.topics': 'Topics',
-    'nav.foredrag': 'Talks',
     'comments.heading': 'Comments',
     'comments.intro':
       'Any thoughts on the episode? Feel free to leave a comment. We ask that you use your name and keep a civil tone.',
