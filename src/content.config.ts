@@ -251,4 +251,48 @@ const courses = defineCollection({
     }),
 });
 
-export const collections = { episodes, guests, scripts, resources, courses };
+/**
+ * Foredrag – de enkelte foredragene, når de finnes. Lista kan være tom;
+ * foredragssiden viser da bare fagområdene under utvikling.
+ *
+ * Legg en .md-fil i `src/content/foredrag/`. Brødteksten er den lengre
+ * beskrivelsen. Et foredrag kan peke på episodene det bygger på, og episodene
+ * kan i sin tur vise «dette temaet inngår i foredraget X».
+ */
+const foredrag = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/foredrag' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+      subtitle: z.string().optional(),
+      // Kort oppsummering vist på kort og øverst på siden.
+      summary: z.string(),
+      // Hvem foredraget passer for.
+      audience: z.string().optional(),
+      // Varighet som lesbar tekst, f.eks. «45–60 min».
+      duration: z.string().optional(),
+      // Læringspunkter – hva publikum sitter igjen med.
+      outcomes: z.array(z.string()).default([]),
+      topic: topicField,
+      subtopics: subtopicsField,
+      image: z.string().optional(),
+      imageAlt: z.string().optional(),
+      // Lenke til en trailer eller et utdrag (YouTube, Vimeo …).
+      trailer: z.string().url().optional(),
+      // Steder foredraget er holdt.
+      references: z.array(z.object({ name: z.string(), note: z.string().optional() })).default([]),
+      // Uttalelser fra publikum eller arrangører.
+      testimonials: z
+        .array(z.object({ quote: z.string(), name: z.string(), role: z.string().optional() }))
+        .default([]),
+      // Episodene og ressursene foredraget bygger på.
+      episodes: z.array(reference('episodes')).default([]),
+      // 'utvikling' = tema under arbeid, 'klart' = kan bookes.
+      status: z.enum(['utvikling', 'klart']).default('utvikling'),
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      order: z.number().default(100),
+    }),
+});
+
+export const collections = { episodes, guests, scripts, resources, courses, foredrag };

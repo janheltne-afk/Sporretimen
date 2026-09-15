@@ -38,6 +38,7 @@ links:
   youtube: https://youtu.be/JMAWf7hJT-o
   spotify: https://open.spotify.com/episode/6NKXd3VkGM9MKhIySnpAtC
 featured: true
+popularityScore: 8
 related:
   - memorering-kort-forklart
 ---

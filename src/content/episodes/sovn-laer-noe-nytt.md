@@ -49,6 +49,7 @@ sources:
   - title: "Matthew Walker – Hvorfor vi sover (Why We Sleep)"
   - title: "Andrew Huberman – Huberman Lab, episode om søvn"
   - title: "Bryan Johnson – arbeid med søvn og optimalisering"
+popularityScore: 6
 related:
   - sovn-kort-forklart
   - john-erik-legeyrket

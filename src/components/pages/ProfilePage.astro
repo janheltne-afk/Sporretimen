@@ -1,0 +1,361 @@
+---
+/**
+ * /jan-sindre-heltne – programlederens profilside.
+ *
+ * Alt som står om bakgrunn her er hentet fra det som allerede sto på
+ * Om-siden. Ingen titler, ingen «ekspert». Profilen bygges av det som faktisk
+ * er publisert – derfor er nyeste innhold og temaene det meste av siden.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Avatar from '@/components/Avatar.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import TopicIcon from '@/components/TopicIcon.astro';
+import { getEpisodes, getSeriesEpisodes, topicCounts } from '@/lib/content';
+import { topics } from '@/data/topics';
+import { site, socials, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
+import { path as routePath, topicPath, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+import { seriesById } from '@/i18n/taxonomy';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const episodes = await getEpisodes(lang);
+const published = episodes.filter((e) => e.data.status === 'publisert');
+// Det han lager selv – forklaringene. Samtalene er gjestenes.
+const own = await getSeriesEpisodes(lang, 'sporretimen-forklart', published);
+const latestOwn = own.slice(0, 3);
+const counts = await topicCounts(lang);
+const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
+const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
+
+const here = routePath(lang, 'profile');
+
+const person = {
+  '@type': 'Person',
+  '@id': `${canonicalUrl(here)}#person`,
+  name: site.host,
+  url: canonicalUrl(here),
+  image: absoluteUrl(site.hostImage),
+  jobTitle: en ? 'Host and explainer, Spørretimen' : 'Programleder og fagformidler, Spørretimen',
+  description: en
+    ? 'Host of Spørretimen. Background in logistics, economics and consulting; works in business analytics. Publishes conversations and sourced explainers on economics, technology, learning and decision-making.'
+    : 'Programleder i Spørretimen. Bakgrunn innen logistikk, økonomi og konsulentarbeid; jobber med Business Analytics. Publiserer samtaler og kildebaserte forklaringer om økonomi, teknologi, læring og beslutninger.',
+  knowsAbout: shownTopics.map((topic) => topic.label[lang]),
+  sameAs,
+  worksFor: undefined,
+};
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: canonicalUrl(here),
+    dateModified: new Date().toISOString().slice(0, 10),
+    mainEntity: person,
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: site.host, path: here },
+  ]),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={site.host}
+  description={person.description}
+  image={site.hostImage}
+  imageAlt={site.host}
+  type="profile"
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow={en ? 'Profile' : 'Profil'}
+    title={site.host}
+    lead={en
+      ? 'Host of Spørretimen and explainer. He uses the podcast to explore economics, technology, business, learning and how people make decisions.'
+      : 'Programleder i Spørretimen og fagformidler. Han bruker podkasten til å utforske økonomi, teknologi, næringsliv, læring og hvordan mennesker tar beslutninger.'}
+  />
+
+  <section class="section">
+    <div class="container profile">
+      <aside class="profile__side">
+        <div class="profile__portrait">
+          <Avatar
+            name={site.host}
+            src={site.hostImage}
+            alt={en ? `${site.host}, host of Spørretimen` : `${site.host}, programleder i Spørretimen`}
+            ratio="1 / 1"
+          />
+        </div>
+        <dl class="profile__facts">
+          <dt>{en ? 'Role' : 'Rolle'}</dt>
+          <dd>{en ? 'Host and explainer' : 'Programleder og fagformidler'}</dd>
+          <dt>{en ? 'Background' : 'Bakgrunn'}</dt>
+          <dd>{en ? 'Logistics, economics and consulting' : 'Logistikk, økonomi og konsulentarbeid'}</dd>
+          <dt>{en ? 'Works with' : 'Jobber med'}</dt>
+          <dd>Business Analytics</dd>
+          <dt>{en ? 'Based in' : 'Tilknytning'}</dt>
+          <dd>{en ? 'Sunnmøre and Trøndelag' : 'Sunnmøre og Trøndelag'}</dd>
+        </dl>
+        {
+          sameAs.length > 0 && (
+            <ul class="profile__links">
+              {socials
+                .filter((s) => s.url)
+                .map((s) => (
+                  <li>
+                    <a href={s.url!} target="_blank" rel="noopener me">{s.label}</a>
+                  </li>
+                ))}
+            </ul>
+          )
+        }
+      </aside>
+
+      <div class="profile__main prose">
+        {
+          en ? (
+            <>
+              <p>
+                Jan Sindre Heltne started Spørretimen from a simple idea: a lot of people carry
+                stories, experience and knowledge that more of us ought to hear. The
+                conversations are about what it is really like to work in a profession, to
+                take an expedition, to build a career in music. The explainers are about the
+                subjects around them – sleep, memory, habits, money.
+              </p>
+              <p>
+                His background is in logistics, economics and consulting, and he works in
+                business analytics day to day. Spørretimen is a personal project with no
+                connection to his employer – neither the content, the guests nor any
+                collaboration has anything to do with the job.
+              </p>
+              <p>
+                He is not presented as an expert on every subject covered, and the site keeps
+                personal experience, professional explanation and documented fact clearly
+                apart. The explainers are sourced, and where a claim is disputed, the episode
+                says so. That is the whole approach: curious, not lecturing.
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                Jan Sindre Heltne startet Spørretimen ut fra en enkel idé: mange mennesker
+                sitter på historier, erfaringer og kunnskap som flere burde få høre. Samtalene
+                handler om hvordan det egentlig er å jobbe i et yrke, å dra på ekspedisjon, å
+                bygge en karriere i musikken. Forklaringene handler om temaene rundt – søvn,
+                hukommelse, vaner, penger.
+              </p>
+              <p>
+                Bakgrunnen hans er innen logistikk, økonomi og konsulentarbeid, og til daglig
+                jobber han med Business Analytics. Spørretimen er et rent hobbyprosjekt uten
+                koblinger til arbeidsgiveren – verken innhold, gjester eller samarbeid har noe
+                med jobben å gjøre.
+              </p>
+              <p>
+                Han fremstilles ikke som ekspert på alle temaene som dekkes, og nettsiden
+                skiller tydelig mellom personlig erfaring, faglig forklaring og dokumenterte
+                fakta. Forklaringene er kildebaserte, og der en påstand er omdiskutert, sier
+                episoden det. Det er hele tilnærmingen: nysgjerrig, ikke belærende.
+              </p>
+            </>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    latestOwn.length > 0 && (
+      <section class="section own" aria-labelledby="own-heading">
+        <div class="container">
+          <div class="row-head">
+            <div>
+              <p class="eyebrow">{seriesById(lang, 'sporretimen-forklart')!.label}</p>
+              <h2 id="own-heading">{en ? 'Latest from Jan Sindre' : 'Nyeste fra Jan Sindre'}</h2>
+            </div>
+            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'explained')}>
+              {en ? 'All of Explained' : 'Alt i Forklart'}
+            </a>
+          </div>
+          <div class="grid grid-3">
+            {latestOwn.map((ep) => (
+              <EpisodeCard lang={lang} episode={ep} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" aria-labelledby="ptopics-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">{en ? 'Topics' : 'Temaer'}</p>
+          <h2 id="ptopics-heading">{en ? 'What he publishes about' : 'Det han publiserer om'}</h2>
+        </div>
+        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'topics')}>{t('topic.all')}</a>
+      </div>
+      <ul class="profile__topics">
+        {
+          shownTopics.map((topic) => (
+            <li>
+              <a href={topicPath(lang, topic.id)}>
+                <TopicIcon name={topic.icon} size={16} />
+                {topic.label[lang]}
+                <span class="muted">· {counts.get(topic.id)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container container-narrow text-center">
+      <h2>{en ? 'Talks, guests and contact' : 'Foredrag, gjester og kontakt'}</h2>
+      <div class="cta__actions">
+        <a class="btn" href={routePath(lang, 'foredrag')}>{en ? 'Talks' : 'Foredrag'}</a>
+        <a class="btn btn-secondary" href={routePath(lang, 'conversations')}>{en ? 'The conversations' : 'Samtalene'}</a>
+        <a class="btn btn-ghost" href={routePath(lang, 'contact')} data-track="contact_click" data-track-label="profile">
+          {en ? 'Contact →' : 'Kontakt →'}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .profile {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .profile__portrait {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .profile__facts {
+    margin: 1.4rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .profile__facts dt {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .profile__facts dd {
+    margin: 0.25rem 0 0.85rem;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .profile__links {
+    list-style: none;
+    margin: 0.4rem 0 0;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.88rem;
+  }
+  .profile__links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .profile__links a:hover {
+    color: var(--accent-strong);
+    border-color: var(--accent);
+  }
+  .profile__main {
+    max-width: none;
+  }
+
+  .row-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: clamp(1.8rem, 3.5vw, 2.75rem);
+    padding-bottom: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .row-head h2 {
+    margin: 0;
+  }
+  .row-head .eyebrow {
+    margin-bottom: 0.55rem;
+  }
+  .own {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .profile__topics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .profile__topics a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .profile__topics a:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+  .cta {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+
+  @media (max-width: 800px) {
+    .profile {
+      grid-template-columns: 1fr;
+    }
+    .profile__portrait {
+      width: min(240px, 70%);
+    }
+  }
+  @media (max-width: 560px) {
+    .row-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+  }
+</style>

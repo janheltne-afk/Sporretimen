@@ -18,6 +18,7 @@ import {
   resourcesForEpisode,
   relatedEpisodes,
   relatedResources,
+  talksForEpisode,
   slugOf,
 } from '@/lib/content';
 import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
@@ -57,6 +58,8 @@ const series = seriesById(lang, seriesId)!;
  */
 const related = await relatedEpisodes(episode, 3);
 const nearbyResources = await relatedResources(episode, 3);
+// Foredragene dette temaet inngår i, hvis noen. Tom liste er det vanlige.
+const talks = await talksForEpisode(episode.id);
 
 const platformUrls = [d.links?.youtube, d.links?.spotify, d.links?.apple, d.links?.annet].filter(
   (u): u is string => Boolean(u)
@@ -83,7 +86,7 @@ const episodeJsonLd = {
   ...(d.image ? { image: absoluteUrl(d.image) } : {}),
   ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
   partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
-  author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'about')) },
+  author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
   ...(guest
     ? {
         actor: {
@@ -99,13 +102,34 @@ const episodeJsonLd = {
     : {}),
 };
 
+/**
+ * VideoObject for publiserte episoder med YouTube-lenke. Krever navn,
+ * beskrivelse, miniatyrbilde og opplastingsdato – ellers avviser Google den,
+ * så den lages bare når alle fire finnes.
+ */
+const videoJsonLd =
+  d.status === 'publisert' && d.links?.youtube && d.image && d.publishDate
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: d.title,
+        description: d.description,
+        thumbnailUrl: absoluteUrl(d.image),
+        uploadDate: d.publishDate.toISOString(),
+        embedUrl: d.links.youtube,
+        url: canonicalUrl(entryPath(lang, 'episodes', slug)),
+        inLanguage: lang === 'en' ? 'en' : 'nb-NO',
+        author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
+      }
+    : undefined;
+
 const breadcrumb = breadcrumbList([
   { name: lang === 'en' ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
   { name: t('episode.allEpisodes'), path: routePath(lang, 'episodes') },
   { name: d.title, path: entryPath(lang, 'episodes', slug) },
 ]);
 
-const jsonLd = [episodeJsonLd, breadcrumb];
+const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb];
 ---
 
 <BaseLayout
@@ -151,7 +175,7 @@ const jsonLd = [episodeJsonLd, breadcrumb];
         {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
         <span>{d.status === 'kommende' ? formatRelease(d.publishDate) : formatDate(d.publishDate)}</span>
         <span aria-hidden="true">·</span>
-        <span>{t('episode.host')} <a href={routePath(lang, 'about')} class="episode__host">{site.host}</a></span>
+        <span>{t('episode.host')} <a href={routePath(lang, 'profile')} class="episode__host">{site.host}</a></span>
         {guest && <span aria-hidden="true">·</span>}
         {guest && <span>{t('episode.guest')} {guest.data.name}</span>}
       </p>
@@ -321,6 +345,20 @@ const jsonLd = [episodeJsonLd, breadcrumb];
             ))}
           </div>
         </section>
+      )
+    }
+
+    {
+      talks.length > 0 && (
+        <div class="container episode__wrap episode__talks">
+          <p class="eyebrow">{lang === 'en' ? 'Also a talk' : 'Også som foredrag'}</p>
+          {talks.map((talk) => (
+            <p class="episode__talk">
+              {lang === 'en' ? 'This subject is also part of the talk' : 'Dette temaet inngår også i foredraget'}{' '}
+              <a href={routePath(lang, 'foredrag')}>{talk.data.title}</a>.
+            </p>
+          ))}
+        </div>
       )
     }
 
@@ -618,6 +656,17 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     margin-top: clamp(2.5rem, 6vw, 4.5rem);
     border-top: 1px solid var(--line);
     background: var(--surface);
+  }
+  .episode__talks {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+    padding: 1.3rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .episode__talk {
+    margin: 0.3rem 0 0;
+    color: var(--ink-soft);
   }
   .episode__interest {
     margin-top: clamp(2.5rem, 5vw, 3.5rem);

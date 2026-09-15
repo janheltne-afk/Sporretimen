@@ -252,3 +252,19 @@ export async function relatedResources(
     .map((x) => x.r);
   return [...direct, ...nearby].slice(0, limit);
 }
+
+/* --------------------------------------------------------------- foredrag */
+
+type Talk = CollectionEntry<'foredrag'>;
+
+/** Alle foredrag på ett språk som ikke er draft. */
+export async function getTalks(lang: Locale = 'no'): Promise<Talk[]> {
+  const all = await getCollection('foredrag', ({ data }) => !data.draft);
+  return all.filter((f) => inLocale(lang)(f.id)).sort(byOrderThen(lang, 'title'));
+}
+
+/** Foredragene en episode inngår i – for «dette temaet inngår i foredraget X». */
+export async function talksForEpisode(episodeId: string, talks?: Talk[]): Promise<Talk[]> {
+  const list = talks ?? (await getTalks(localeOf(episodeId)));
+  return list.filter((f) => f.data.episodes.some((e) => e.id === episodeId));
+}

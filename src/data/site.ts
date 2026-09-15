@@ -10,7 +10,7 @@ export const site = {
   name: 'Spørretimen',
   tagline: 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
   description:
-    'Spørretimen er en norsk podcast med personlige samtaler, lærerike Lær noe nytt-episoder og korte forklaringer om yrker, erfaringer og temaer du alltid har ønsket å forstå bedre.',
+    'Spørretimen utforsker mennesker, ideer og temaer det er verdt å forstå bedre. Gjennom lange samtaler og korte, kildebaserte forklaringer gjør vi kompliserte ting lettere å forstå.',
   url: 'https://www.sporretimen.no',
   host: 'Jan Sindre Heltne',
   locale: 'nb_NO',

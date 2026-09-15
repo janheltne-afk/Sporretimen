@@ -44,6 +44,7 @@ links:
   youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk
   spotify: https://open.spotify.com/episode/73OXh7269Een3JioMSk1Ns
 featured: true
+popularityScore: 10
 related:
   - sovn-laer-noe-nytt
   - sovn-kort-forklart

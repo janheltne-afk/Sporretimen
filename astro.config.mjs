@@ -23,4 +23,10 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
+  // Korte inngangsadresser som peker inn i temasystemet. Ingen eksisterende
+  // adresser er endret – dette er bare snarveier.
+  redirects: {
+    '/okonomi': '/temaer/okonomi/',
+    '/en/economics': '/en/topics/okonomi/',
+  },
 });

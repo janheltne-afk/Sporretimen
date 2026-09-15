@@ -64,7 +64,7 @@ const strings = {
     // Nettstedet
     'site.tagline': 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
     'site.description':
-      'Spørretimen er en norsk podcast med personlige samtaler, lærerike Lær noe nytt-episoder og korte forklaringer om yrker, erfaringer og temaer du alltid har ønsket å forstå bedre.',
+      'Spørretimen utforsker mennesker, ideer og temaer det er verdt å forstå bedre. Gjennom lange samtaler og korte, kildebaserte forklaringer gjør vi kompliserte ting lettere å forstå.',
     'site.subtitle': 'Podkast med',
 
     // Toppen
@@ -205,7 +205,7 @@ const strings = {
   en: {
     'site.tagline': 'Good questions. Interesting people. New perspectives.',
     'site.description':
-      'Spørretimen is a Norwegian podcast of personal conversations, in-depth explainers and short primers on the jobs, experiences and subjects you have always wanted to understand better.',
+      'Spørretimen explores people, ideas and subjects worth understanding better. Through long conversations and short, sourced explainers, we make complicated things easier to grasp.',
     'site.subtitle': 'Podcast with',
 
     'header.home': 'to the front page',

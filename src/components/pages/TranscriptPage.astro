@@ -55,7 +55,7 @@ const articleJsonLd = transkribert
       description: pageDesc,
       url: canonicalUrl(transcriptPath(lang, slug)),
       inLanguage: en ? 'en' : 'nb-NO',
-      author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'about')) },
+      author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
       publisher: { '@type': 'Organization', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
       ...(script.data.updated ? { dateModified: script.data.updated.toISOString() } : {}),
       ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),

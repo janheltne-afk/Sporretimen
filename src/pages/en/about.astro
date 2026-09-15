@@ -4,9 +4,11 @@ import PageHeader from '@/components/PageHeader.astro';
 import Avatar from '@/components/Avatar.astro';
 import { site } from '@/data/site';
 import { path } from '@/i18n/config';
-import { formatList } from '@/i18n/taxonomy';
+import { formatList, seriesById } from '@/i18n/taxonomy';
 
 const formats = formatList('en');
+const sporretimen = seriesById('en', 'sporretimen')!;
+const forklart = seriesById('en', 'sporretimen-forklart')!;
 ---
 
 <BaseLayout
@@ -56,14 +58,15 @@ const formats = formatList('en');
   <section class="section why">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Three formats</p>
+        <p class="eyebrow">Two podcasts – one universe</p>
         <h2>Why we combine conversations and explainers</h2>
         <p class="lead">
-          The interviews carry the personal stories. The explainers and short
-          primers make the subject matter around the guests easier to understand.
+          <strong>{sporretimen.label}</strong> is the conversations – {sporretimen.blurb.toLowerCase()}{' '}
+          <strong>{forklart.label}</strong> is the ideas – {forklart.blurb.toLowerCase()} The two are
+          one universe, with four formats.
         </p>
       </div>
-      <div class="grid grid-3">
+      <div class="grid grid-2">
         {
           formats.map((f) => (
             <div class="card format-card">

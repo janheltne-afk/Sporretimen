@@ -1,0 +1,318 @@
+---
+/**
+ * /foredrag. Nøkternt med vilje: temaene er under utvikling, og siden sier
+ * det. Når enkeltforedrag legges inn i src/content/foredrag/, vises de her
+ * over fagområdene – templaten trenger ikke endres.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Interest from '@/components/Interest.astro';
+import TopicIcon from '@/components/TopicIcon.astro';
+import { getTalks } from '@/lib/content';
+import { topicById } from '@/data/topics';
+import { site, canonicalUrl, breadcrumbList } from '@/data/site';
+import { path as routePath, topicPath, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const talks = await getTalks(lang);
+
+/**
+ * Fagområdene under utvikling. Hvert peker på et tema i registeret, slik at
+ * interessen her kan ses sammen med interessen for temaet ellers på siden.
+ */
+const areas = [
+  {
+    slug: 'okonomi-og-beslutninger',
+    topic: 'okonomi',
+    title: { no: 'Økonomi og beslutninger', en: 'Economics and decisions' },
+    blurb: {
+      no: 'Hvordan penger, insentiver og tankefeller styrer valgene vi tar – i privatøkonomien og i bedriften.',
+      en: 'How money, incentives and mental traps steer the choices we make – in personal finance and in business.',
+    },
+  },
+  {
+    slug: 'ai-og-fremtidens-arbeidsliv',
+    topic: 'teknologi-og-ai',
+    title: { no: 'AI og fremtidens arbeidsliv', en: 'AI and the future of work' },
+    blurb: {
+      no: 'Hva som faktisk endrer seg i jobbene, hva som ikke gjør det, og hvordan man forbereder seg.',
+      en: 'What is actually changing in the jobs, what is not, and how to prepare.',
+    },
+  },
+  {
+    slug: 'fra-data-til-beslutning',
+    topic: 'teknologi-og-ai',
+    title: { no: 'Fra data til beslutning', en: 'From data to decision' },
+    blurb: {
+      no: 'Hvordan tall og målinger brukes – og misbrukes – når noe skal bestemmes.',
+      en: 'How numbers and measurement are used – and misused – when something must be decided.',
+    },
+  },
+  {
+    slug: 'laering-og-hukommelse',
+    topic: 'laering',
+    title: { no: 'Læring og hukommelse', en: 'Learning and memory' },
+    blurb: {
+      no: 'Teknikkene som virker, og hvorfor hjernen husker bilder bedre enn tall.',
+      en: 'The techniques that work, and why the brain remembers images better than numbers.',
+    },
+  },
+  {
+    slug: 'teknologi-og-naeringsliv',
+    topic: 'arbeidsliv-og-naeringsliv',
+    title: { no: 'Teknologi og næringsliv', en: 'Technology and business' },
+    blurb: {
+      no: 'Hva teknologien gjør med bransjer, bedrifter og måten vi jobber på.',
+      en: 'What technology does to industries, companies and the way we work.',
+    },
+  },
+];
+
+const mailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: en ? 'Talks with Jan Sindre Heltne' : 'Foredrag med Jan Sindre Heltne',
+    url: canonicalUrl(routePath(lang, 'foredrag')),
+    about: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: en ? 'Talks' : 'Foredrag', path: routePath(lang, 'foredrag') },
+  ]),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={en ? 'Talks' : 'Foredrag'}
+  description={en
+    ? 'Talks with Jan Sindre Heltne: economics and decisions, AI and the future of work, from data to decision, learning and memory. Subjects developed from Spørretimen for companies and events.'
+    : 'Foredrag med Jan Sindre Heltne: økonomi og beslutninger, AI og fremtidens arbeidsliv, fra data til beslutning, læring og hukommelse. Temaer utviklet fra Spørretimen for bedrifter og arrangementer.'}
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow={en ? 'Talks' : 'Foredrag'}
+    title={en ? `Talks with ${site.host}` : `Foredrag med ${site.host}`}
+    lead={en
+      ? 'Through Spørretimen, Jan Sindre explores economics, technology, working life and how people make decisions. Selected subjects are developed further into talks for companies, organisations and events.'
+      : 'Gjennom Spørretimen utforsker Jan Sindre økonomi, teknologi, arbeidsliv og menneskelig beslutningstaking. Utvalgte temaer utvikles videre til foredrag for bedrifter, organisasjoner og arrangementer.'}
+  />
+
+  {
+    talks.length > 0 && (
+      <section class="section" aria-labelledby="talks-heading">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">{en ? 'Talks' : 'Foredragene'}</p>
+            <h2 id="talks-heading">{en ? 'Ready to book' : 'Klare til å bookes'}</h2>
+          </div>
+          <div class="grid grid-2">
+            {talks.map((talk) => (
+              <article class="card talk">
+                <p class="eyebrow">{topicById(talk.data.topic)?.label[lang]}</p>
+                <h3>{talk.data.title}</h3>
+                {talk.data.subtitle && <p class="talk__sub">{talk.data.subtitle}</p>}
+                <p class="talk__summary">{talk.data.summary}</p>
+                <dl class="talk__facts">
+                  {talk.data.audience && (
+                    <>
+                      <dt>{en ? 'For' : 'Passer for'}</dt>
+                      <dd>{talk.data.audience}</dd>
+                    </>
+                  )}
+                  {talk.data.duration && (
+                    <>
+                      <dt>{en ? 'Length' : 'Varighet'}</dt>
+                      <dd>{talk.data.duration}</dd>
+                    </>
+                  )}
+                </dl>
+                {talk.data.outcomes.length > 0 && (
+                  <ul class="talk__outcomes">
+                    {talk.data.outcomes.map((o) => (
+                      <li>{o}</li>
+                    ))}
+                  </ul>
+                )}
+                <a class="btn btn-secondary btn-sm" href={mailto(`${en ? 'Booking' : 'Booking'}: ${talk.data.title}`)}>
+                  {en ? 'Ask about this talk' : 'Spør om foredraget'}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section areas" aria-labelledby="areas-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">{en ? 'In development' : 'Under utvikling'}</p>
+        <h2 id="areas-heading">{en ? 'Subjects and talks in development' : 'Temaer og foredrag under utvikling'}</h2>
+        <p class="lead">
+          {en
+            ? 'These are the areas being worked on now. None of them is a finished, bestselling talk – they are subjects explored through the podcast first, and developed further where the interest is there. Tell us which ones matter to you.'
+            : 'Dette er områdene det arbeides med nå. Ingen av dem er et ferdig, bestselgende foredrag – de er temaer som først utforskes gjennom podkasten, og utvikles videre der interessen finnes. Si fra hvilke som betyr noe for deg.'}
+        </p>
+      </div>
+      <ul class="areas__grid">
+        {
+          areas.map((area) => {
+            const topic = topicById(area.topic);
+            return (
+              <li class="areas__card card">
+                <a class="areas__topic" href={topicPath(lang, area.topic)}>
+                  {topic && <TopicIcon name={topic.icon} size={16} />}
+                  {topic?.label[lang]}
+                </a>
+                <h3 class="areas__title">{area.title[lang]}</h3>
+                <p class="areas__blurb">{area.blurb[lang]}</p>
+                <Interest lang={lang} kind="lecture" slug={area.slug} compact />
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">{en ? 'Get in touch' : 'Ta kontakt'}</p>
+      <h2>{en ? 'Invite Jan Sindre, or suggest a subject' : 'Inviter Jan Sindre, eller foreslå et tema'}</h2>
+      <p class="lead mx-auto">
+        {en
+          ? 'A talk is shaped for the audience it meets. Say a little about who you are and what you would like covered, and we will get back to you.'
+          : 'Et foredrag formes etter publikummet det møter. Fortell litt om hvem dere er og hva dere ønsker dekket, så tar vi kontakt.'}
+      </p>
+      <div class="cta__actions">
+        <a class="btn" href={mailto(en ? 'Invitation – talk' : 'Invitasjon – foredrag')} data-track="contact_click" data-track-label="invite">
+          {en ? 'Invite Jan Sindre' : 'Inviter Jan Sindre'}
+        </a>
+        <a class="btn btn-secondary" href={mailto(en ? 'Subject suggestion – talk' : 'Temaforslag – foredrag')} data-track="contact_click" data-track-label="suggest-topic">
+          {en ? 'Suggest a subject' : 'Foreslå tema'}
+        </a>
+        <a class="btn btn-ghost" href={routePath(lang, 'contact')}>{en ? 'Contact →' : 'Kontakt →'}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .talk {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.75rem;
+  }
+  .talk h3 {
+    margin: 0;
+  }
+  .talk__sub {
+    margin: 0;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .talk__summary {
+    margin: 0.5rem 0;
+    color: var(--ink-soft);
+  }
+  .talk__facts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  .talk__facts dt {
+    color: var(--ink-faint);
+  }
+  .talk__facts dd {
+    margin: 0;
+  }
+  .talk__outcomes {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+    font-size: 0.93rem;
+  }
+  .talk .btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  .areas {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .areas .section-head .lead {
+    max-width: 60ch;
+  }
+  .areas__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .areas__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.5rem 1.6rem;
+    background: var(--paper);
+  }
+  .areas__topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+  .areas__topic:hover {
+    color: var(--accent-strong);
+  }
+  .areas__title {
+    margin: 0.3rem 0 0;
+    font-size: 1.25rem;
+  }
+  .areas__blurb {
+    margin: 0 0 0.9rem;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .cta h2 {
+    max-width: 24ch;
+    margin-inline: auto;
+  }
+  .cta .lead {
+    max-width: 50ch;
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>
