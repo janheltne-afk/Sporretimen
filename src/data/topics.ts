@@ -99,6 +99,14 @@ export const topics: Topic[] = [
         },
       },
       {
+        id: 'risiko-og-usikkerhet',
+        label: { no: 'Risiko & usikkerhet', en: 'Risk & uncertainty' },
+        blurb: {
+          no: 'Hvordan man tenker om det som kan gå galt – og om det ingen så komme.',
+          en: 'How to think about what can go wrong – and about what no one saw coming.',
+        },
+      },
+      {
         id: 'krypto-og-blockchain',
         label: { no: 'Krypto & blockchain', en: 'Crypto & blockchain' },
         blurb: {
@@ -184,6 +192,30 @@ export const topics: Topic[] = [
           en: 'Attention, drive and what it takes to stay with something over time.',
         },
       },
+      {
+        id: 'personlighet',
+        label: { no: 'Personlighet', en: 'Personality' },
+        blurb: {
+          no: 'Hva personlighet er, hva som faktisk lar seg måle, og hva som bare er merkelapper.',
+          en: 'What personality is, what can actually be measured, and what is merely labels.',
+        },
+      },
+      {
+        id: 'relasjoner',
+        label: { no: 'Relasjoner', en: 'Relationships' },
+        blurb: {
+          no: 'Hvordan folk faktisk reagerer på hverandre – og hva som får dem til å like deg.',
+          en: 'How people actually respond to one another – and what makes them like you.',
+        },
+      },
+      {
+        id: 'pavirkning-og-forhandling',
+        label: { no: 'Påvirkning & forhandling', en: 'Persuasion & negotiation' },
+        blurb: {
+          no: 'Mekanismene som får folk til å si ja, og hvordan man forhandler uten å møte på midten.',
+          en: 'The mechanisms that make people say yes, and how to negotiate without splitting the difference.',
+        },
+      },
     ],
   },
   {
@@ -217,6 +249,14 @@ export const topics: Topic[] = [
         blurb: {
           no: 'Regnesystemer og triks som gjør tall lettere å håndtere uten kalkulator.',
           en: 'Systems and tricks that make numbers easier to handle without a calculator.',
+        },
+      },
+      {
+        id: 'ekspertise-og-ovelse',
+        label: { no: 'Ekspertise & øvelse', en: 'Expertise & practice' },
+        blurb: {
+          no: 'Hva som faktisk skiller de beste fra resten – talent, timer, omstendigheter eller noe annet.',
+          en: 'What actually separates the best from the rest – talent, hours, circumstance or something else.',
         },
       },
     ],
