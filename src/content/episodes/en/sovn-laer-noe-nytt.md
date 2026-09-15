@@ -3,8 +3,9 @@ title: "Learn something new: how to sleep better"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-12T08:00:00+02:00
-categories:
-  - Health
+topic: helse
+subtopics:
+  - sovn
 topics:
   - The circadian rhythm and the body clock
   - Sleep pressure and adenosine

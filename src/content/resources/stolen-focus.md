@@ -8,9 +8,9 @@ summary: >-
   hvorfor han mener årsakene ligger i omgivelsene våre, ikke i viljestyrken.
 episodes:
   - fokus-laer-noe-nytt
-categories:
-  - Arbeidsliv
-  - Helse
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
 order: 11
 ---
 

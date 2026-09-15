@@ -9,9 +9,9 @@ summary: >-
 url: https://jamesclear.com/atomic-habits
 episodes:
   - en/mikrovaner-laer-noe-nytt
-categories:
-  - Working life
-  - Health
+topic: psykologi-og-beslutninger
+subtopics:
+  - vaner
 featured: true
 order: 7
 ---

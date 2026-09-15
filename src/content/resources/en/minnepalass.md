@@ -9,9 +9,9 @@ episodes:
   - en/memoreringsteknikker-kortstokk
   - en/memorering-kort-forklart
   - en/john-erik-legeyrket
-categories:
-  - Education
-  - Health
+topic: laering
+subtopics:
+  - hukommelse
 featured: true
 order: 10
 ---

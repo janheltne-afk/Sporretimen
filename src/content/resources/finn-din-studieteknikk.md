@@ -6,8 +6,9 @@ summary: >-
   metoden som passer din egen måte å lære på.
 episodes:
   - john-erik-legeyrket
-categories:
-  - Utdanning
+topic: laering
+subtopics:
+  - studieteknikk
 order: 20
 ---
 

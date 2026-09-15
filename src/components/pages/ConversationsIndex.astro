@@ -1,0 +1,49 @@
+---
+/**
+ * /samtaler – Spørretimen, det opprinnelige sporet. Bare de lange samtalene.
+ */
+import ContentIndex from './ContentIndex.astro';
+import { getEpisodes, getSeriesEpisodes } from '@/lib/content';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { path as routePath, type Locale } from '@/i18n/config';
+import { seriesById } from '@/i18n/taxonomy';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const en = lang === 'en';
+const series = seriesById(lang, 'sporretimen')!;
+const episodes = await getSeriesEpisodes(lang, 'sporretimen', await getEpisodes(lang));
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: en ? 'Spørretimen – conversations' : 'Spørretimen – samtaler',
+    description: series.blurb,
+    url: canonicalUrl(routePath(lang, 'conversations')),
+    isPartOf: { '@type': 'PodcastSeries', name: 'Spørretimen', url: canonicalUrl(routePath(lang, 'home')) },
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: en ? 'Conversations' : 'Samtaler', path: routePath(lang, 'conversations') },
+  ]),
+];
+---
+
+<ContentIndex
+  lang={lang}
+  episodes={episodes}
+  eyebrow="Spørretimen"
+  title={en ? 'The conversations' : 'Samtalene'}
+  lead={en
+    ? 'Long conversations with people who carry experience, stories, professions and knowledge worth hearing. Artists, doctors, paramedics, founders – people who know something from the inside.'
+    : 'Lange samtaler med mennesker som sitter på erfaringer, historier, yrker og kunnskap det er verdt å høre. Artister, leger, paramedisinere, gründere – folk som kan noe innenfra.'}
+  metaTitle={en ? 'Conversations' : 'Samtaler'}
+  metaDescription={en
+    ? 'Long, personal conversations from Spørretimen – about professions, experience and the questions you rarely get to ask.'
+    : 'Lange, personlige samtaler fra Spørretimen – om yrker, erfaringer og spørsmålene du sjelden får stilt.'}
+  showFormatFilter={false}
+  jsonLd={jsonLd}
+/>

@@ -1,18 +1,56 @@
 /**
- * Faste lister som vises til besøkende: formater, ressurstyper, kursstatuser
- * og emnekategorier – på begge språk.
+ * Faste lister som vises til besøkende: serier, formater, ressurstyper og
+ * kursstatuser – på begge språk.
  *
  * Id-ene er de samme på tvers av språk (`samtale`, `bok`, `apen` …), så
  * innholdsfilene bruker samme verdi uansett språk. Bare etikettene skifter.
  *
- * Kategorier er unntaket: de står som ren tekst i frontmatter, så norske
- * filer bruker de norske ordene og engelske filer de engelske. `categoryId`
- * kobler dem sammen når det trengs.
+ * Temaene ligger for seg selv i src/data/topics.ts, siden de har undertemaer
+ * og egne sider.
  */
 
 import type { Locale } from './config';
 
 type Text = Record<Locale, string>;
+
+/**
+ * De to innholdssporene. Serien utledes av formatet – `samtale` hører til
+ * Spørretimen, alt annet til Spørretimen Forklart – så den lagres ikke i
+ * frontmatter. Ett sted å endre, ingen mulighet for at de spriker.
+ */
+export const seriesList = [
+  {
+    id: 'sporretimen',
+    label: { no: 'Spørretimen', en: 'Spørretimen' } as Text,
+    kicker: { no: 'Samtalene', en: 'The conversations' } as Text,
+    blurb: {
+      no: 'Lange samtaler med mennesker med interessante erfaringer, historier, yrker og kunnskap.',
+      en: 'Long conversations with people who carry interesting experience, stories, professions and knowledge.',
+    } as Text,
+  },
+  {
+    id: 'sporretimen-forklart',
+    label: { no: 'Spørretimen Forklart', en: 'Spørretimen Explained' } as Text,
+    kicker: { no: 'Ideene', en: 'The ideas' } as Text,
+    blurb: {
+      no: 'Økonomi, teknologi, psykologi, bøker og andre temaer forklart forståelig.',
+      en: 'Economics, technology, psychology, books and other subjects explained so they make sense.',
+    } as Text,
+  },
+] as const;
+
+export type SeriesId = (typeof seriesList)[number]['id'];
+
+/** Serien et format hører til. Samtaler er Spørretimen, resten er Forklart. */
+export function seriesOf(format: string): SeriesId {
+  return format === 'samtale' ? 'sporretimen' : 'sporretimen-forklart';
+}
+
+export function seriesById(lang: Locale, id: string) {
+  const s = seriesList.find((x) => x.id === id);
+  if (!s) return undefined;
+  return { id: s.id, label: s.label[lang], kicker: s.kicker[lang], blurb: s.blurb[lang] };
+}
 
 export const formats = [
   {
@@ -46,6 +84,17 @@ export const formats = [
     description: {
       no: 'Korte episoder som oppsummerer ett konkret tema enkelt og oversiktlig. Lette å finne og lette å høre på når du har begrenset tid.',
       en: 'Short episodes that sum up one concrete subject simply and clearly. Easy to find and easy to listen to when time is short.',
+    } as Text,
+  },
+  {
+    id: 'boker-forklart',
+    icon: 'books',
+    label: { no: 'Bøker forklart', en: 'Books explained' } as Text,
+    singular: { no: 'Bøker forklart', en: 'Books explained' } as Text,
+    tagline: { no: 'Ideene, ikke bokanmeldelsen', en: 'The ideas, not the review' } as Text,
+    description: {
+      no: 'Episoder som tar for seg ideene i en bok – hva den faktisk hevder, hva som er verdt å ta med seg, og hva som er omdiskutert. Ikke et sammendrag kapittel for kapittel.',
+      en: 'Episodes that take on the ideas in a book – what it actually argues, what is worth carrying away, and what is disputed. Not a chapter-by-chapter summary.',
     } as Text,
   },
 ] as const;
@@ -102,23 +151,6 @@ export const courseStatuses = {
     },
   },
 } as const;
-
-/** Emnekategoriene, i samme rekkefølge på begge språk. */
-const categoryPairs = [
-  { no: 'Karriere', en: 'Career' },
-  { no: 'Økonomi', en: 'Finance' },
-  { no: 'Helse', en: 'Health' },
-  { no: 'Friluftsliv', en: 'Outdoors' },
-  { no: 'Musikk', en: 'Music' },
-  { no: 'Teknologi', en: 'Technology' },
-  { no: 'Arbeidsliv', en: 'Working life' },
-  { no: 'Utdanning', en: 'Education' },
-  { no: 'Frivillighet', en: 'Volunteering' },
-] as const;
-
-export function categories(lang: Locale): string[] {
-  return categoryPairs.map((c) => c[lang]);
-}
 
 export function formatById(lang: Locale, id: string) {
   const f = formats.find((x) => x.id === id);

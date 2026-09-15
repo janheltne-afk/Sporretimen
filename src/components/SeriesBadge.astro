@@ -1,0 +1,100 @@
+---
+/**
+ * Serie- og formatmerket som står øverst på hvert kort og hver innholdsside.
+ *
+ * SPØRRETIMEN               SPØRRETIMEN FORKLART
+ * Samtale                   Bøker forklart · Økonomi
+ *
+ * Serien utledes av formatet, så den kan aldri sprike fra innholdet.
+ */
+import { seriesOf, seriesById, formatById } from '@/i18n/taxonomy';
+import { topicLabel } from '@/data/topics';
+import { path as routePath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  format: string;
+  /** Hovedtema. Vises etter formatet når det er satt. */
+  topic?: string;
+  /** Liten variant til bruk inni kort. */
+  compact?: boolean;
+  /** Gjør seriemerket til en lenke til seriens oversiktsside. */
+  link?: boolean;
+}
+const { lang, format, topic, compact = false, link = false } = Astro.props;
+
+const seriesId = seriesOf(format);
+const series = seriesById(lang, seriesId)!;
+const fmt = formatById(lang, format);
+const topicName = topic ? topicLabel(lang, topic) : undefined;
+const href = routePath(lang, seriesId === 'sporretimen' ? 'conversations' : 'explained');
+---
+
+<div class:list={['series-badge', { 'series-badge--compact': compact }]}>
+  {
+    link ? (
+      <a class="series-badge__series" href={href}>{series.label}</a>
+    ) : (
+      <span class="series-badge__series">{series.label}</span>
+    )
+  }
+  <span class="series-badge__line">
+    <span class:list={['series-badge__format', `fmt-${format}`]}>{fmt?.singular}</span>
+    {topicName && <span class="series-badge__sep" aria-hidden="true">·</span>}
+    {topicName && <span class="series-badge__topic">{topicName}</span>}
+  </span>
+</div>
+
+<style>
+  .series-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+  /* Seriens navn i sperrede versaler – det er merkevarelinjen. */
+  .series-badge__series {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.19em;
+    margin-right: -0.19em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+  a.series-badge__series:hover {
+    color: var(--accent-strong);
+  }
+  .series-badge__line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-size: 0.86rem;
+  }
+  .series-badge__format {
+    font-family: var(--font-display);
+    color: var(--ink);
+  }
+  /* Formatet får sin egen farge, samme som merkelappene ellers på siden. */
+  .series-badge__format.fmt-samtale {
+    color: var(--tag-samtale);
+  }
+  .series-badge__format.fmt-laer-noe-nytt,
+  .series-badge__format.fmt-boker-forklart {
+    color: var(--tag-laer);
+  }
+  .series-badge__format.fmt-kort-forklart {
+    color: var(--tag-kort);
+  }
+  .series-badge__sep,
+  .series-badge__topic {
+    color: var(--ink-faint);
+  }
+  .series-badge--compact .series-badge__series {
+    font-size: 0.56rem;
+  }
+  .series-badge--compact .series-badge__line {
+    font-size: 0.8rem;
+  }
+</style>

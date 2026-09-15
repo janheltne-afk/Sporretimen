@@ -1,4 +1,5 @@
 ---
+import { topicLabel, subtopicLabel } from '@/data/topics';
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 import { entryPath, type Locale } from '@/i18n/config';
@@ -17,6 +18,12 @@ const types = allResourceTypes(d);
 
 // Første episode ressursen er nevnt i (for en liten «Fra»-lenke).
 const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefined;
+
+// Hovedtemaet, og eventuelt det første undertemaet, som kort tekstlinje.
+const topicNames = [
+  topicLabel(lang, d.topic),
+  d.subtopics[0] ? subtopicLabel(lang, d.subtopics[0]) : undefined,
+].filter((v): v is string => Boolean(v));
 ---
 
 <article class="card resource">
@@ -32,7 +39,7 @@ const firstEpisode = d.episodes.length ? await getEntry(d.episodes[0]) : undefin
       {d.author && <p class="resource__author">{d.author}</p>}
       <p class="resource__summary">{d.summary}</p>
       <div class="resource__foot">
-        {d.categories.slice(0, 2).map((c) => <span class="resource__cat">{c}</span>)}
+        {topicNames.map((c) => <span class="resource__cat">{c}</span>)}
         {firstEpisode && <span class="resource__from">{t('resource.from')}</span>}
       </div>
     </div>

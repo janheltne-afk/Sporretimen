@@ -5,6 +5,7 @@ import EpisodeCard from '@/components/EpisodeCard.astro';
 import type { CollectionEntry } from 'astro:content';
 import { slugOf } from '@/lib/content';
 import { canonicalUrl, breadcrumbList } from '@/data/site';
+import TopicTags from '@/components/TopicTags.astro';
 import { entryPath, path as routePath, type Locale } from '@/i18n/config';
 import { resourceTypeById, allResourceTypes } from '@/i18n/taxonomy';
 import { useTranslations } from '@/i18n/ui';
@@ -55,8 +56,9 @@ const jsonLd = [resourceJsonLd, breadcrumb];
           <span class:list={['tag', `rtype-${ty}`]}>{resourceTypeById(lang, ty)?.label}</span>
         ))}
         {d.language && <span class="tag tag-lang">{d.language}</span>}
-        {d.categories.map((c) => <span class="tag">{c}</span>)}
       </div>
+
+      <TopicTags lang={lang} topic={d.topic} subtopics={d.subtopics} class="resource-topics" />
 
       <h1 class="resource-title">{d.title}</h1>
       {d.author && <p class="resource-author">{d.author}</p>}
@@ -115,6 +117,9 @@ const jsonLd = [resourceJsonLd, breadcrumb];
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 1rem;
+  }
+  .resource-topics {
+    margin-bottom: 1.1rem;
   }
   .resource-title {
     margin-bottom: 0.35rem;

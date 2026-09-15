@@ -4,10 +4,11 @@ format: samtale
 status: publisert
 publishDate: 2026-08-09
 guest: havard-hasund
-categories:
-  - Karriere
-  - Helse
-  - Arbeidsliv
+topic: arbeidsliv-og-naeringsliv
+subtopics:
+  - karriere
+  - helsevesenet
+  - beredskap
 yrke: Paramedisiner
 topics:
   - Veien inn i paramedisineryrket

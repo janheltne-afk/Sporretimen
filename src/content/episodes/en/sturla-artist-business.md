@@ -4,10 +4,10 @@ format: samtale
 status: publisert
 publishDate: 2026-08-24T07:31:00+02:00
 guest: en/sturla
-categories:
-  - Music
-  - Working life
-  - Finance
+topic: kultur
+subtopics:
+  - musikk
+  - grunderskap
 topics:
   - The road through X Factor, Idol, The Voice and Melodi Grand Prix
   - A record deal with Sony and a 360 agreement

@@ -2,7 +2,7 @@
 import Logo from './Logo.astro';
 import { site, socials } from '@/data/site';
 import { path as routePath, type Locale } from '@/i18n/config';
-import { navItems, useTranslations } from '@/i18n/ui';
+import { footerNav, useTranslations } from '@/i18n/ui';
 
 interface Props {
   lang: Locale;
@@ -10,7 +10,11 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const nav = navItems.map((item) => ({ label: item.label[lang], href: routePath(lang, item.key) }));
+// Bunnteksten bærer hele nettstedet, gruppert. Hovedmenyen er kort.
+const groups = footerNav.map((g) => ({
+  heading: g.heading[lang],
+  items: g.items.map((i) => ({ label: i.label[lang], href: routePath(lang, i.key) })),
+}));
 const year = new Date().getFullYear();
 const activeSocials = socials.filter((s) => s.url);
 ---
@@ -23,12 +27,20 @@ const activeSocials = socials.filter((s) => s.url);
       <a class="site-footer__mail" href={`mailto:${site.email}`}>{site.email}</a>
     </div>
 
-    <nav class="site-footer__nav" aria-label={t('footer.contents')}>
-      <h2>{t('footer.contents')}</h2>
-      <ul>
-        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
-      </ul>
-    </nav>
+    {
+      groups.map((group) => (
+        <nav class="site-footer__nav" aria-label={group.heading}>
+          <h2>{group.heading}</h2>
+          <ul>
+            {group.items.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
 
     <div class="site-footer__social">
       <h2>{t('footer.follow')}</h2>
@@ -69,8 +81,8 @@ const activeSocials = socials.filter((s) => s.url);
   }
   .site-footer__grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
+    grid-template-columns: 1.5fr repeat(4, minmax(0, 1fr));
+    gap: clamp(1.6rem, 3vw, 3rem);
     padding-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   .site-footer__tag {
@@ -148,10 +160,25 @@ const activeSocials = socials.filter((s) => s.url);
   .site-footer__legal a:hover {
     color: var(--ink);
   }
+  /* Fem spalter blir trangt før mobilbredde. Merkevaren legger seg over
+     lenkene, som deler resten likt. */
+  @media (max-width: 1080px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .site-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
   @media (max-width: 720px) {
     .site-footer__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2.25rem;
+    }
+  }
+  @media (max-width: 460px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

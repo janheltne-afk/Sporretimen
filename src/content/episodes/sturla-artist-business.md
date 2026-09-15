@@ -4,10 +4,10 @@ format: samtale
 status: publisert
 publishDate: 2026-08-24T07:31:00+02:00
 guest: sturla
-categories:
-  - Musikk
-  - Arbeidsliv
-  - Økonomi
+topic: kultur
+subtopics:
+  - musikk
+  - grunderskap
 topics:
   - Veien gjennom X Factor, Idol, The Voice og Melodi Grand Prix
   - Platekontrakt med Sony og en 360-avtale

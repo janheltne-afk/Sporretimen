@@ -3,8 +3,9 @@ title: "Briefly explained: how to sleep better"
 format: kort-forklart
 status: publisert
 publishDate: 2026-08-12T09:00:00+02:00
-categories:
-  - Health
+topic: helse
+subtopics:
+  - sovn
 topics:
   - The order to prioritise things in for better sleep
   - A fixed wake-up time

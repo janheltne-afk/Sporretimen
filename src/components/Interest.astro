@@ -1,0 +1,222 @@
+---
+import { supabase } from '@/data/supabase';
+
+/**
+ * Interessemarkering – «jeg vil høre mer om dette».
+ *
+ * Brukes tre steder, skilt med `kind`:
+ *   episode – en kommende episode, for å vise hva folk vil ha først
+ *   topic   – et tema eller undertema, for å måle hva som er verdt å lage mer av
+ *   lecture – et foredragstema
+ *
+ * Tellingene lagres i `interest` i Supabase og leses fra visningen
+ * `interest_stats`. Én stemme per nettleser per sak, hindret av en anonym,
+ * tilfeldig kode i localStorage – samme kode som terningkastene bruker.
+ *
+ * Slugen skal være uten språkprefiks, slik at den norske og den engelske
+ * utgaven av samme sak teller sammen.
+ */
+import { type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  kind: 'episode' | 'topic' | 'lecture';
+  slug: string;
+  /** Teksten på knappen. Faller tilbake til en standard per `kind`. */
+  label?: string;
+  /** Kompakt variant til bruk inni kort. */
+  compact?: boolean;
+  class?: string;
+}
+const { lang, kind, slug, label, compact = false, class: className = '' } = Astro.props;
+const t = useTranslations(lang);
+
+const fallback = {
+  episode: t('interest.wantThis'),
+  topic: t('interest.wantMore'),
+  lecture: t('interest.wantLecture'),
+}[kind];
+
+const event = kind === 'topic' ? 'topic_interest' : kind === 'lecture' ? 'lecture_interest' : 'episode_interest';
+---
+
+<div
+  class:list={['interest', { 'interest--compact': compact }, className]}
+  data-interest
+  data-kind={kind}
+  data-slug={slug}
+  data-url={supabase.url}
+  data-key={supabase.key}
+  data-voted={t('interest.voted')}
+  data-failed={t('interest.failed')}
+  data-one={t('interest.oneVote')}
+  data-many={t('interest.manyVotes')}
+>
+  <button
+    type="button"
+    class="interest__btn"
+    data-track={event}
+    data-track-slug={slug}
+    data-track-lang={lang}
+  >
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <path
+        d="M5 13.5 9.5 18 19 7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+    <span data-role="label">{label ?? fallback}</span>
+  </button>
+  <p class="interest__count" data-role="count" role="status" aria-live="polite"></p>
+</div>
+
+<style>
+  .interest {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .interest__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.05rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .interest__btn svg {
+    /* Haken dukker først opp når stemmen er avgitt. */
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    flex: none;
+  }
+  .interest__btn:hover:not(:disabled) {
+    border-color: var(--ink);
+  }
+  .interest__btn:disabled {
+    cursor: default;
+    color: var(--ink-soft);
+    background: var(--surface-2);
+    border-color: var(--line);
+  }
+  .interest[data-state='voted'] .interest__btn svg {
+    opacity: 1;
+    color: var(--tag-samtale);
+  }
+  .interest__count {
+    margin: 0;
+    font-size: 0.84rem;
+    color: var(--ink-faint);
+  }
+  .interest--compact .interest__btn {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.8rem;
+  }
+</style>
+
+<script>
+  import { bindTrackedElements } from '@/lib/analytics';
+
+  /** Stabil, anonym kode per nettleser. Samme nøkkel som terningkastene. */
+  function voterKey(): string {
+    try {
+      let k = localStorage.getItem('sporretimen-voter') ?? '';
+      if (!k) {
+        k = crypto.randomUUID().replace(/-/g, '');
+        localStorage.setItem('sporretimen-voter', k);
+      }
+      return k;
+    } catch {
+      return crypto.randomUUID().replace(/-/g, '');
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-interest]').forEach((root) => {
+    const { kind, slug, url, key } = root.dataset as Record<string, string>;
+    const btn = root.querySelector<HTMLButtonElement>('.interest__btn')!;
+    const count = root.querySelector<HTMLElement>('[data-role="count"]')!;
+    const labelEl = root.querySelector<HTMLElement>('[data-role="label"]')!;
+    const headers = { apikey: key, Authorization: `Bearer ${key}` };
+    const storageKey = `sporretimen-interest-${kind}-${slug}`;
+
+    const mine = () => {
+      try {
+        return localStorage.getItem(storageKey) === '1';
+      } catch {
+        return false;
+      }
+    };
+
+    const showCount = (votes: number) => {
+      if (votes <= 0) {
+        count.textContent = '';
+        return;
+      }
+      count.textContent =
+        votes === 1 ? root.dataset.one! : root.dataset.many!.replace('{n}', String(votes));
+    };
+
+    const markVoted = () => {
+      root.dataset.state = 'voted';
+      btn.disabled = true;
+      labelEl.textContent = root.dataset.voted!;
+    };
+
+    async function loadCount() {
+      try {
+        const res = await fetch(
+          `${url}/rest/v1/interest_stats?kind=eq.${encodeURIComponent(kind)}` +
+            `&subject_slug=eq.${encodeURIComponent(slug)}&select=votes`,
+          { headers }
+        );
+        const rows = await res.json();
+        showCount(Array.isArray(rows) && rows[0] ? rows[0].votes : 0);
+      } catch {
+        // Uten tall er knappen fortsatt brukbar – vi sier ingenting.
+      }
+    }
+
+    async function vote() {
+      btn.disabled = true;
+      try {
+        const res = await fetch(`${url}/rest/v1/interest`, {
+          method: 'POST',
+          headers: { ...headers, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ kind, subject_slug: slug, voter_key: voterKey() }),
+        });
+        // 409 = har alt stemt. Like greit som en ny stemme.
+        if (!res.ok && res.status !== 409) throw new Error('feil');
+        try {
+          localStorage.setItem(storageKey, '1');
+        } catch {
+          /* ignorer */
+        }
+        markVoted();
+        await loadCount();
+      } catch {
+        count.textContent = root.dataset.failed!;
+        btn.disabled = false;
+      }
+    }
+
+    if (mine()) markVoted();
+    btn.addEventListener('click', () => {
+      if (!btn.disabled) vote();
+    });
+    loadCount();
+  });
+
+  // Knappene her er merket med data-track, så de må bindes etter at de finnes.
+  bindTrackedElements();
+</script>

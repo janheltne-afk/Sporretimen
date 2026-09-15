@@ -3,8 +3,9 @@ title: "Kort forklart: Memoreringsteknikker"
 format: kort-forklart
 status: publisert
 publishDate: 2026-08-07
-categories:
-  - Utdanning
+topic: laering
+subtopics:
+  - hukommelse
 topics:
   - Husketeknikk
   - Minnepalass

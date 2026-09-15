@@ -9,9 +9,9 @@ summary: >-
 url: https://www.ark.no/produkt/boker/hobbyboker-og-fritid/mikrovaner-9788284190327
 episodes:
   - mikrovaner-laer-noe-nytt
-categories:
-  - Arbeidsliv
-  - Helse
+topic: psykologi-og-beslutninger
+subtopics:
+  - vaner
 featured: true
 order: 7
 ---

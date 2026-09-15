@@ -13,8 +13,10 @@ url: https://oby.no
 episodes:
   - en/memoreringsteknikker-kortstokk
   - en/john-erik-legeyrket
-categories:
-  - Education
+topic: laering
+subtopics:
+  - hukommelse
+  - studieteknikk
 featured: true
 order: 5
 ---

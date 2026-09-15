@@ -1,0 +1,84 @@
+---
+/**
+ * Tema og undertemaer som lenkede merkelapper.
+ *
+ * Hovedtemaet står først og litt tydeligere, undertemaene etter. Alle lenker
+ * til sin egen side, så temaene faktisk blir en navigasjonsvei og ikke bare
+ * pynt.
+ */
+import { topicById, subtopicById } from '@/data/topics';
+import { topicPath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  topic: string;
+  subtopics?: string[];
+  /** Maks antall undertemaer som vises. */
+  limit?: number;
+  class?: string;
+}
+const { lang, topic, subtopics = [], limit, class: className = '' } = Astro.props;
+
+const main = topicById(topic);
+const shown = typeof limit === 'number' ? subtopics.slice(0, limit) : subtopics;
+
+const subs = shown
+  .map((id) => {
+    const found = subtopicById(id);
+    if (!found) return undefined;
+    return {
+      id,
+      label: found.subtopic.label[lang],
+      href: topicPath(lang, found.topic.id, id),
+    };
+  })
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+---
+
+{
+  main && (
+    <div class:list={['topic-tags', className]}>
+      <a class="topic-tags__main" href={topicPath(lang, main.id)}>{main.label[lang]}</a>
+      {subs.map((s) => (
+        <a class="topic-tags__sub" href={s.href}>{s.label}</a>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .topic-tags__main,
+  .topic-tags__sub {
+    display: inline-block;
+    padding: 0.3rem 0.62rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.73rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .topic-tags__main {
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .topic-tags__main:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+  .topic-tags__sub {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-faint);
+  }
+  .topic-tags__sub:hover {
+    border-color: var(--line-strong);
+    color: var(--ink);
+  }
+</style>

@@ -3,8 +3,9 @@ title: "Briefly explained: memory techniques"
 format: kort-forklart
 status: publisert
 publishDate: 2026-08-07
-categories:
-  - Education
+topic: laering
+subtopics:
+  - hukommelse
 topics:
   - Memory technique
   - The memory palace

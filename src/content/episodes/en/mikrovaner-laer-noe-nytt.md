@@ -3,9 +3,10 @@ title: "Learn something new: atomic habits"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-18T18:41:00+02:00
-categories:
-  - Working life
-  - Health
+topic: psykologi-og-beslutninger
+subtopics:
+  - vaner
+  - motivasjon-og-fokus
 topics:
   - The four laws of building habits
   - The 1 % rule and small improvements

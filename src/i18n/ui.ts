@@ -9,16 +9,54 @@
 import type { Locale, RouteKey } from './config';
 
 /** Menyen. `key` peker inn i rutetabellen, så adressen blir riktig per språk. */
+/**
+ * Hovedmenyen. Kort med vilje: de seks inngangene folk faktisk leter etter.
+ * Alt det sekundære – skjemaene, ressursene, det juridiske – ligger i bunnen.
+ */
 export const navItems: { key: RouteKey; label: Record<Locale, string> }[] = [
-  { key: 'episodes', label: { no: 'Episoder', en: 'Episodes' } },
+  { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
+  { key: 'explained', label: { no: 'Forklart', en: 'Explained' } },
+  { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
   { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
-  { key: 'resources', label: { no: 'Ressurser', en: 'Resources' } },
+  { key: 'foredrag', label: { no: 'Foredrag', en: 'Talks' } },
   { key: 'about', label: { no: 'Om', en: 'About' } },
-  { key: 'ethics', label: { no: 'Vær Varsom', en: 'Editorial standards' } },
-  { key: 'suggestGuest', label: { no: 'Foreslå en gjest', en: 'Suggest a guest' } },
-  { key: 'beGuest', label: { no: 'Bli gjest', en: 'Be a guest' } },
-  { key: 'partner', label: { no: 'Samarbeid', en: 'Collaborate' } },
-  { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },
+];
+
+/** Bunntekstens lenker, gruppert. Her ligger alt som ikke er i hovedmenyen. */
+export const footerNav: {
+  heading: Record<Locale, string>;
+  items: { key: RouteKey; label: Record<Locale, string> }[];
+}[] = [
+  {
+    heading: { no: 'Innhold', en: 'Content' },
+    items: [
+      { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
+      { key: 'explained', label: { no: 'Forklart', en: 'Explained' } },
+      { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
+      { key: 'episodes', label: { no: 'Alle episoder', en: 'All episodes' } },
+      { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
+      { key: 'resources', label: { no: 'Ressurser', en: 'Resources' } },
+    ],
+  },
+  {
+    heading: { no: 'Delta', en: 'Take part' },
+    items: [
+      { key: 'suggestGuest', label: { no: 'Foreslå en gjest', en: 'Suggest a guest' } },
+      { key: 'beGuest', label: { no: 'Bli gjest', en: 'Be a guest' } },
+      { key: 'partner', label: { no: 'Samarbeid', en: 'Collaborate' } },
+      { key: 'foredrag', label: { no: 'Foredrag', en: 'Talks' } },
+      { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },
+    ],
+  },
+  {
+    heading: { no: 'Om', en: 'About' },
+    items: [
+      { key: 'about', label: { no: 'Om Spørretimen', en: 'About Spørretimen' } },
+      { key: 'profile', label: { no: 'Jan Sindre Heltne', en: 'Jan Sindre Heltne' } },
+      { key: 'ethics', label: { no: 'Vær Varsom', en: 'Editorial standards' } },
+      { key: 'courses', label: { no: 'Kurs', en: 'Courses' } },
+    ],
+  },
 ];
 
 const strings = {
@@ -116,6 +154,34 @@ const strings = {
     'rating.give': 'Gi terningkast',
     'rating.failed': 'Klarte ikke å hente terningkast akkurat nå.',
 
+    'search.label': 'Søk',
+    'search.placeholder': 'Søk i tittel, gjest, tema eller spørsmål …',
+
+    // Interesse og temaer
+    'interest.wantThis': 'Jeg vil høre denne',
+    'interest.wantMore': 'Jeg vil høre mer',
+    'interest.wantLecture': 'Dette er interessant',
+    'interest.voted': 'Interesse registrert',
+    'interest.failed': 'Klarte ikke å registrere. Prøv igjen senere.',
+    'interest.oneVote': '1 har meldt interesse',
+    'interest.manyVotes': '{n} har meldt interesse',
+    'interest.episodeHeading': 'Vil du høre denne?',
+    'interest.episodeIntro':
+      'Denne episoden er ikke spilt inn ennå. Meld interesse, så vet vi hva som bør komme først.',
+    'interest.moreHeading': 'Vil du høre mer om dette?',
+    'interest.moreIntro':
+      'Vi tester stadig nye temaer. Er interessen stor nok, utvikles temaet videre til lengre episoder, serier eller foredrag.',
+    'topic.all': 'Alle temaer',
+    'topic.explore': 'Utforsk temaer',
+    'topic.subtopics': 'Undertemaer',
+    'topic.empty': 'Ingen episoder om dette temaet ennå.',
+    'topic.inTopic': 'Innhold om dette temaet',
+    'topic.related': 'Relatert innhold',
+    'topic.resources': 'Ressurser om temaet',
+    'nav.conversations': 'Samtaler',
+    'nav.explained': 'Forklart',
+    'nav.topics': 'Temaer',
+    'nav.foredrag': 'Foredrag',
     // Kommentarer
     'comments.heading': 'Kommentarer',
     'comments.intro':
@@ -221,6 +287,34 @@ const strings = {
     'rating.give': 'Give a rating of',
     'rating.failed': 'Could not load ratings right now.',
 
+    'search.label': 'Search',
+    'search.placeholder': 'Search titles, guests, topics or questions …',
+
+    // Interest and topics
+    'interest.wantThis': 'I want to hear this',
+    'interest.wantMore': 'I want to hear more',
+    'interest.wantLecture': 'This is interesting',
+    'interest.voted': 'Interest registered',
+    'interest.failed': 'Could not register that. Please try again later.',
+    'interest.oneVote': '1 person is interested',
+    'interest.manyVotes': '{n} people are interested',
+    'interest.episodeHeading': 'Do you want to hear this one?',
+    'interest.episodeIntro':
+      'This episode has not been recorded yet. Register your interest, and we will know what should come first.',
+    'interest.moreHeading': 'Want to hear more about this?',
+    'interest.moreIntro':
+      'We are constantly testing new subjects. If there is enough interest, a subject is developed further into longer episodes, a series or a talk.',
+    'topic.all': 'All topics',
+    'topic.explore': 'Explore topics',
+    'topic.subtopics': 'Subtopics',
+    'topic.empty': 'No episodes on this topic yet.',
+    'topic.inTopic': 'Content on this topic',
+    'topic.related': 'Related content',
+    'topic.resources': 'Resources on this topic',
+    'nav.conversations': 'Conversations',
+    'nav.explained': 'Explained',
+    'nav.topics': 'Topics',
+    'nav.foredrag': 'Talks',
     'comments.heading': 'Comments',
     'comments.intro':
       'Any thoughts on the episode? Feel free to leave a comment. We ask that you use your name and keep a civil tone.',

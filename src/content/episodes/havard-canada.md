@@ -4,9 +4,10 @@ format: samtale
 status: publisert
 publishDate: 2026-08-15T09:53:00+02:00
 guest: havard-hasund
-categories:
-  - Friluftsliv
-  - Helse
+topic: friluftsliv
+subtopics:
+  - ekspedisjon
+  - beredskap
 topics:
   - Kanoekspedisjon i Nord-Canada
   - Planlegging og forberedelser

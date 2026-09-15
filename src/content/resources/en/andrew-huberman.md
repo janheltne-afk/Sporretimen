@@ -10,8 +10,9 @@ url: https://www.hubermanlab.com/
 episodes:
   - en/sovn-laer-noe-nytt
   - en/sovn-kort-forklart
-categories:
-  - Health
+topic: helse
+subtopics:
+  - sovn
 featured: true
 order: 9
 ---

@@ -6,8 +6,9 @@ summary: >-
   find the method that suits the way you learn.
 episodes:
   - en/john-erik-legeyrket
-categories:
-  - Education
+topic: laering
+subtopics:
+  - studieteknikk
 order: 20
 ---
 

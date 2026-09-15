@@ -8,9 +8,10 @@ summary: >-
   much.
 episodes:
   - en/fokus-laer-noe-nytt
-categories:
-  - Working life
-  - Education
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
+  - studieteknikk
 order: 12
 ---
 

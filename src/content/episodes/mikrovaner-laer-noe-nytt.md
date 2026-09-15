@@ -3,9 +3,10 @@ title: "Lær noe nytt: Mikrovaner"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-18T18:41:00+02:00
-categories:
-  - Arbeidsliv
-  - Helse
+topic: psykologi-og-beslutninger
+subtopics:
+  - vaner
+  - motivasjon-og-fokus
 topics:
   - De fire reglene for å bygge vaner
   - 1 %-regelen og små forbedringer

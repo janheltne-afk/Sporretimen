@@ -9,9 +9,10 @@ summary: >-
   like viktig.
 episodes:
   - fokus-laer-noe-nytt
-categories:
-  - Arbeidsliv
-  - Utdanning
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
+  - studieteknikk
 order: 12
 ---
 

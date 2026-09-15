@@ -4,10 +4,11 @@ format: samtale
 status: publisert
 publishDate: 2026-08-09
 guest: en/havard-hasund
-categories:
-  - Career
-  - Health
-  - Working life
+topic: arbeidsliv-og-naeringsliv
+subtopics:
+  - karriere
+  - helsevesenet
+  - beredskap
 yrke: Paramedic
 topics:
   - The road into the paramedic profession

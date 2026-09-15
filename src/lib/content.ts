@@ -100,3 +100,155 @@ export async function episodesForGuest(
   const list = episodes ?? (await getEpisodes(localeOf(guestId)));
   return list.filter((e) => e.data.guest?.id === guestId);
 }
+
+/* ------------------------------------------------- serier, temaer, relatert */
+
+import { seriesOf, type SeriesId } from '@/i18n/taxonomy';
+import { topicById, topics, type Topic } from '@/data/topics';
+
+type Episode = CollectionEntry<'episodes'>;
+type Resource = CollectionEntry<'resources'>;
+
+/** Episodene i ett av de to innholdssporene. */
+export async function getSeriesEpisodes(
+  lang: Locale,
+  series: SeriesId,
+  episodes?: Episode[]
+): Promise<Episode[]> {
+  const list = episodes ?? (await getEpisodes(lang));
+  return list.filter((e) => seriesOf(e.data.format) === series);
+}
+
+/**
+ * Hører innholdet til et hovedtema?
+ *
+ * Enten fordi det er hovedtemaet, eller fordi ett av undertemaene ligger under
+ * det. Det andre er poenget: en samtale om paramedisineryrket har karriere som
+ * hovedspor, men hører like fullt hjemme under Helse.
+ */
+function inTopic(data: { topic: string; subtopics: string[] }, topic: Topic): boolean {
+  if (data.topic === topic.id) return true;
+  const own = new Set(topic.subtopics.map((s) => s.id));
+  return data.subtopics.some((s) => own.has(s));
+}
+
+/** Episodene under et hovedtema, inkludert dem som bare har et undertema der. */
+export async function episodesForTopic(
+  lang: Locale,
+  topicId: string,
+  episodes?: Episode[]
+): Promise<Episode[]> {
+  const topic = topicById(topicId);
+  if (!topic) return [];
+  const list = episodes ?? (await getEpisodes(lang));
+  return list.filter((e) => inTopic(e.data, topic));
+}
+
+/** Episodene under ett undertema. */
+export async function episodesForSubtopic(
+  lang: Locale,
+  subtopicId: string,
+  episodes?: Episode[]
+): Promise<Episode[]> {
+  const list = episodes ?? (await getEpisodes(lang));
+  return list.filter((e) => e.data.subtopics.includes(subtopicId));
+}
+
+/** Ressursene under et hovedtema. */
+export async function resourcesForTopic(
+  lang: Locale,
+  topicId: string,
+  resources?: Resource[]
+): Promise<Resource[]> {
+  const topic = topicById(topicId);
+  if (!topic) return [];
+  const list = resources ?? (await getResources(lang));
+  return list.filter((r) => inTopic(r.data, topic));
+}
+
+/** Ressursene under ett undertema. */
+export async function resourcesForSubtopic(
+  lang: Locale,
+  subtopicId: string,
+  resources?: Resource[]
+): Promise<Resource[]> {
+  const list = resources ?? (await getResources(lang));
+  return list.filter((r) => r.data.subtopics.includes(subtopicId));
+}
+
+/** Hvor mye innhold som finnes under hvert hovedtema. */
+export async function topicCounts(lang: Locale): Promise<Map<string, number>> {
+  const [episodes, resources] = await Promise.all([getEpisodes(lang), getResources(lang)]);
+  const counts = new Map<string, number>();
+  for (const topic of topics) {
+    const n =
+      episodes.filter((e) => inTopic(e.data, topic)).length +
+      resources.filter((r) => inTopic(r.data, topic)).length;
+    counts.set(topic.id, n);
+  }
+  return counts;
+}
+
+/**
+ * Relatert innhold, rangert.
+ *
+ * Prioriteringen følger hvor nær slektskapet er: felles undertema veier mest,
+ * så samme hovedtema og samme format, så samme hovedtema, og til slutt samme
+ * format. Episoder forfatteren selv har pekt ut i `related` står alltid først.
+ */
+export async function relatedEpisodes(
+  episode: Episode,
+  limit = 3,
+  episodes?: Episode[]
+): Promise<Episode[]> {
+  const lang = localeOf(episode.id);
+  const list = episodes ?? (await getEpisodes(lang));
+  const d = episode.data;
+  const picked = d.related.map((r) => r.id);
+
+  const score = (other: Episode): number => {
+    if (other.id === episode.id) return -1;
+    let s = 0;
+    // Håndplukket av forfatteren – skal alltid ligge øverst.
+    if (picked.includes(other.id)) s += 100;
+    const shared = other.data.subtopics.filter((x) => d.subtopics.includes(x)).length;
+    s += shared * 10;
+    if (other.data.topic === d.topic) s += 6;
+    if (other.data.format === d.format) s += 2;
+    if (seriesOf(other.data.format) === seriesOf(d.format)) s += 1;
+    // Publiserte episoder er mer nyttige som neste steg enn kommende.
+    if (other.data.status === 'publisert') s += 1;
+    return s;
+  };
+
+  return list
+    .map((e) => ({ e, s: score(e) }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .slice(0, limit)
+    .map((x) => x.e);
+}
+
+/** Ressursene som hører tematisk sammen med en episode. */
+export async function relatedResources(
+  episode: Episode,
+  limit = 3,
+  resources?: Resource[]
+): Promise<Resource[]> {
+  const lang = localeOf(episode.id);
+  const list = resources ?? (await getResources(lang));
+  const d = episode.data;
+  const direct = list.filter((r) => r.data.episodes.some((e) => e.id === episode.id));
+  const nearby = list
+    .filter((r) => !direct.includes(r))
+    .map((r) => ({
+      r,
+      s:
+        r.data.subtopics.filter((x) => d.subtopics.includes(x)).length * 10 +
+        (r.data.topic === d.topic ? 5 : 0),
+    }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .map((x) => x.r);
+  return [...direct, ...nearby].slice(0, limit);
+}

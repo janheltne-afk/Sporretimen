@@ -37,6 +37,14 @@ export const localeName: Record<Locale, string> = { no: 'Norsk', en: 'English' }
  */
 const routes = {
   home: { no: '/', en: '/en' },
+  // De to innholdssporene, hver med sin egen oversiktsside.
+  conversations: { no: '/samtaler', en: '/en/conversations' },
+  explained: { no: '/forklart', en: '/en/explained' },
+  // Temabiblioteket. Undersidene ligger under, se topicPath().
+  topics: { no: '/temaer', en: '/en/topics' },
+  foredrag: { no: '/foredrag', en: '/en/talks' },
+  profile: { no: '/jan-sindre-heltne', en: '/en/jan-sindre-heltne' },
+  // Hele arkivet, på tvers av seriene. Adressen er uendret fra før.
   episodes: { no: '/episoder', en: '/en/episodes' },
   guests: { no: '/gjester', en: '/en/guests' },
   resources: { no: '/ressurser', en: '/en/resources' },
@@ -65,6 +73,15 @@ export function path(lang: Locale, key: RouteKey): string {
 /** Stien til en enkelt oppføring i en seksjon, f.eks. en episode. */
 export function entryPath(lang: Locale, key: RouteKey, slug: string): string {
   return `${path(lang, key)}${slug}/`;
+}
+
+/**
+ * Stien til en temaside, eventuelt til et undertema under den.
+ * /temaer/okonomi/ og /temaer/okonomi/makrookonomi/
+ */
+export function topicPath(lang: Locale, topicId: string, subtopicId?: string): string {
+  const base = entryPath(lang, 'topics', topicId);
+  return subtopicId ? `${base}${subtopicId}/` : base;
 }
 
 /** Stien til manuset/transkripsjonen for en episode. */

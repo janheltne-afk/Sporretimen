@@ -12,8 +12,9 @@ url: https://protocol.bryanjohnson.com/
 episodes:
   - sovn-laer-noe-nytt
   - sovn-kort-forklart
-categories:
-  - Helse
+topic: helse
+subtopics:
+  - sovn
 order: 10
 ---
 

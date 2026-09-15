@@ -2,9 +2,10 @@
 title: "Lær noe nytt: Fokus – hvorfor det er blitt så vanskelig"
 format: laer-noe-nytt
 status: kommende
-categories:
-  - Arbeidsliv
-  - Helse
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
+  - tenkning-og-bias
 topics:
   - Hvorfor oppmerksomheten er under press
   - Stolen Focus av Johann Hari

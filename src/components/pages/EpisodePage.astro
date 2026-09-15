@@ -9,12 +9,22 @@ import PlatformLinks from '@/components/PlatformLinks.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
 import Terningkast from '@/components/Terningkast.astro';
 import Comments from '@/components/Comments.astro';
+import SeriesBadge from '@/components/SeriesBadge.astro';
+import TopicTags from '@/components/TopicTags.astro';
+import Interest from '@/components/Interest.astro';
 import type { CollectionEntry } from 'astro:content';
-import { scriptForEpisode, resourcesForEpisode, slugOf } from '@/lib/content';
+import {
+  scriptForEpisode,
+  resourcesForEpisode,
+  relatedEpisodes,
+  relatedResources,
+  slugOf,
+} from '@/lib/content';
 import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { formatDate, formatRelease } from '@/lib/utils';
 import { entryPath, path as routePath, transcriptPath, type Locale } from '@/i18n/config';
-import { formatById } from '@/i18n/taxonomy';
+import { seriesOf, seriesById } from '@/i18n/taxonomy';
+import { topicById, subtopicById } from '@/data/topics';
 import { useTranslations } from '@/i18n/ui';
 
 interface Props {
@@ -27,7 +37,6 @@ const t = useTranslations(lang);
 const slug = slugOf(episode.id);
 const d = episode.data;
 const { Content } = await render(episode);
-const format = formatById(lang, d.format);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 const script = await scriptForEpisode(episode.id);
 const resources = await resourcesForEpisode(episode.id);
@@ -35,17 +44,33 @@ const resources = await resourcesForEpisode(episode.id);
 // for kommende episoder, men en innebygd spiller ville da vist en feilmelding.
 const hasEmbed = d.status === 'publisert' && Boolean(d.links?.youtube || d.links?.spotify);
 
-// Kort temalinje på omslaget. Faller tilbake til første kategori.
-const coverTheme = d.coverTheme ?? d.categories[0];
-// Relaterte episoder
-const related = (
-  await Promise.all(d.related.map((ref) => getEntry(ref)))
-).filter(Boolean);
+// Kort temalinje på omslaget. Faller tilbake til hovedtemaets navn.
+const topic = topicById(d.topic);
+const coverTheme = d.coverTheme ?? topic?.label[lang];
+const seriesId = seriesOf(d.format);
+const series = seriesById(lang, seriesId)!;
+
+/**
+ * Relatert innhold. `related` i frontmatter veier tyngst, men lista fylles
+ * videre ut fra tema og undertema, slik at en ny episode alltid har noe å
+ * peke videre til uten at den må vedlikeholdes manuelt.
+ */
+const related = await relatedEpisodes(episode, 3);
+const nearbyResources = await relatedResources(episode, 3);
 
 const platformUrls = [d.links?.youtube, d.links?.spotify, d.links?.apple, d.links?.annet].filter(
   (u): u is string => Boolean(u)
 );
-const keywords = [...d.topics, ...d.categories, ...(d.yrke ? [d.yrke] : [])];
+const subtopicNames = d.subtopics
+  .map((id) => subtopicById(id)?.subtopic.label[lang])
+  .filter((v): v is string => Boolean(v));
+const keywords = [
+  ...d.topics,
+  ...(topic ? [topic.label[lang]] : []),
+  ...subtopicNames,
+  ...d.tags,
+  ...(d.yrke ? [d.yrke] : []),
+];
 
 const episodeJsonLd = {
   '@context': 'https://schema.org',
@@ -92,15 +117,30 @@ const jsonLd = [episodeJsonLd, breadcrumb];
   imageAlt={d.imageAlt}
   jsonLd={jsonLd}
 >
-  <article class="episode">
+  <article
+    class="episode"
+    data-content-meta
+    data-content-id={slug}
+    data-series={seriesId}
+    data-format={d.format}
+    data-topic={d.topic}
+    data-slug={slug}
+    data-lang={lang}
+  >
     <div class="container episode__wrap episode__head">
       <a class="back-link" href={routePath(lang, 'episodes')}>{t('episode.backToAll')}</a>
 
       <div class="episode__meta">
-        <span class:list={['tag', `tag-${d.format}`]}>{format?.singular}</span>
+        <SeriesBadge lang={lang} format={d.format} link />
         {d.status === 'kommende' && <span class="tag tag-status">{t('episode.upcoming')}</span>}
-        {d.categories.map((c) => <span class="tag">{c}</span>)}
       </div>
+
+      <TopicTags
+        lang={lang}
+        topic={d.topic}
+        subtopics={d.subtopics}
+        class="episode__topics"
+      />
 
       {d.yrke && <p class="episode__career">{t('episode.career')} · {d.yrke}</p>}
 
@@ -285,6 +325,16 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     }
 
     {
+      d.status === 'kommende' && (
+        <div class="container episode__wrap episode__interest">
+          <h2>{t('interest.episodeHeading')}</h2>
+          <p class="muted">{t('interest.episodeIntro')}</p>
+          <Interest lang={lang} kind="episode" slug={slug} />
+        </div>
+      )
+    }
+
+    {
       d.status === 'publisert' && (
         <div class="container episode__wrap episode__feedback">
           {/* Grunnslugen uten språkprefiks: begge språkutgavene av en episode
@@ -296,15 +346,32 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     }
 
     {
-      related.length > 0 && (
+      (related.length > 0 || nearbyResources.length > 0) && (
         <section class="section related">
           <div class="container">
             <h2 class="related__heading">{t('episode.related')}</h2>
-            <div class="grid grid-3">
-              {related.map((ep) => (
-                <EpisodeCard lang={lang} episode={ep} />
-              ))}
-            </div>
+            {related.length > 0 && (
+              <div
+                class="grid grid-3"
+                data-track="related_content_click"
+                data-track-content-id={slug}
+                data-track-topic={d.topic}
+              >
+                {related.map((ep) => (
+                  <EpisodeCard lang={lang} episode={ep} />
+                ))}
+              </div>
+            )}
+            {nearbyResources.length > 0 && (
+              <div class="related__resources">
+                <h3 class="related__sub">{t('topic.resources')}</h3>
+                <div class="grid grid-3">
+                  {nearbyResources.map((r) => (
+                    <ResourceCard lang={lang} resource={r} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       )
@@ -350,6 +417,9 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--ink-faint);
+  }
+  .episode__topics {
+    margin-bottom: 1.15rem;
   }
   .episode__title {
     margin-bottom: 1.1rem;
@@ -548,6 +618,26 @@ const jsonLd = [episodeJsonLd, breadcrumb];
     margin-top: clamp(2.5rem, 6vw, 4.5rem);
     border-top: 1px solid var(--line);
     background: var(--surface);
+  }
+  .episode__interest {
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-top: clamp(2rem, 4vw, 2.75rem);
+    border-top: 1px solid var(--line);
+  }
+  .episode__interest h2 {
+    margin-bottom: 0.4rem;
+  }
+  .episode__interest .muted {
+    margin: 0 0 1.4rem;
+    max-width: 52ch;
+    font-size: 0.92rem;
+  }
+  .related__resources {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+  }
+  .related__sub {
+    margin-bottom: 1.2rem;
+    font-size: 1.15rem;
   }
   .related__heading {
     margin-bottom: 2rem;

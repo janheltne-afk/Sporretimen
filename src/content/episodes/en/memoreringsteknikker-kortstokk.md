@@ -3,8 +3,10 @@ title: "Learn something new: memory techniques – learn to memorise a deck of c
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-07
-categories:
-  - Education
+topic: laering
+subtopics:
+  - hukommelse
+  - studieteknikk
 topics:
   - Memory technique and memorisation
   - The memory palace (the method of loci)

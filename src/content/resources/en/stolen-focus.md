@@ -7,9 +7,9 @@ summary: >-
   the causes lie in our surroundings rather than in our willpower.
 episodes:
   - en/fokus-laer-noe-nytt
-categories:
-  - Working life
-  - Health
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
 order: 11
 ---
 

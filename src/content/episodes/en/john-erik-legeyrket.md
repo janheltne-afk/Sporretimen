@@ -4,10 +4,11 @@ format: samtale
 status: publisert
 publishDate: 2026-07-23
 guest: en/john-erik
-categories:
-  - Career
-  - Health
-  - Education
+topic: arbeidsliv-og-naeringsliv
+subtopics:
+  - karriere
+  - helsevesenet
+  - studieteknikk
 yrke: Doctor
 topics:
   - The road into medicine

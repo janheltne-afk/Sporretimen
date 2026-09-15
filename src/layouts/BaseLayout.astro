@@ -78,6 +78,16 @@ const lang: Locale = props.lang ?? localeFromUrl(Astro.url);
     <Footer lang={lang} />
 
     <script>
+      import { bindTrackedElements, track } from '@/lib/analytics';
+
+      // Alt som er merket med data-track kobles opp ett sted.
+      bindTrackedElements();
+      // Én sidevisning, med konteksten siden har lagt ut i data-content-meta.
+      const meta = document.querySelector<HTMLElement>('[data-content-meta]');
+      track('content_view', { ...(meta?.dataset ?? {}) });
+    </script>
+
+    <script>
       // Diskret innfelling ved scroll
       const els = document.querySelectorAll('.reveal');
       if (els.length && 'IntersectionObserver' in window) {

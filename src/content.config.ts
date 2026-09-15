@@ -1,5 +1,6 @@
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { topicIds, subtopicIds } from '@/data/topics';
 
 /**
  * Innholdsmodell for Spørretimen.
@@ -10,6 +11,25 @@ import { glob } from 'astro/loaders';
  * Filnavnet (uten .md) blir adressen (slug). Feltene under valideres
  * automatisk ved bygg, slik at det er vanskelig å publisere noe halvferdig.
  */
+
+/**
+ * Tema og undertema valideres mot registeret i src/data/topics.ts. Skriver du
+ * en id som ikke finnes, stopper bygget – i stedet for at innholdet stille
+ * forsvinner fra temasidene.
+ */
+const topicField = z
+  .string()
+  .refine((v) => topicIds.includes(v), (v) => ({
+    message: `Ukjent tema "${v}". Gyldige: ${topicIds.join(', ')}`,
+  }));
+
+const subtopicsField = z
+  .array(
+    z.string().refine((v) => subtopicIds.includes(v), (v) => ({
+      message: `Ukjent undertema "${v}". Se src/data/topics.ts`,
+    }))
+  )
+  .default([]);
 
 const platformLinks = z
   .object({
@@ -27,13 +47,21 @@ const episodes = defineCollection({
   schema: () =>
     z.object({
       title: z.string(),
-      // Format avgjør hvilken «type» episoden er.
-      format: z.enum(['samtale', 'laer-noe-nytt', 'kort-forklart']),
+      // Format avgjør hvilken «type» episoden er. Serien utledes av formatet:
+      // samtale → Spørretimen, alt annet → Spørretimen Forklart (se seriesOf).
+      format: z.enum(['samtale', 'laer-noe-nytt', 'kort-forklart', 'boker-forklart']),
       // status: bruk 'kommende' for planlagte episoder som ikke er publisert ennå.
       status: z.enum(['publisert', 'kommende']).default('kommende'),
       // Referanse til en gjest (valgfritt – Lær noe nytt / Kort forklart kan stå alene).
       guest: reference('guests').optional(),
-      categories: z.array(z.string()).default([]),
+      // Hovedtema. Avgjør hvilken temaside episoden havner på.
+      topic: topicField,
+      // Undertemaer under hovedtemaet. Gir finere inndeling og bedre
+      // «relatert innhold».
+      subtopics: subtopicsField,
+      // Frie stikkord på tvers av temaene. Vises ikke som filtre, men brukes
+      // i søk og som siste kriterium for relatert innhold.
+      tags: z.array(z.string()).default([]),
       // Yrket episoden handler om (for karriere-episoder), f.eks. «Lege».
       // Knyttes til episoden, ikke gjesten – én gjest kan dekke flere yrker.
       yrke: z.string().optional(),
@@ -72,6 +100,13 @@ const episodes = defineCollection({
       // Relaterte episoder (slugs). Brukes for tematisk tredeling.
       related: z.array(reference('episodes')).default([]),
       featured: z.boolean().default(false),
+      /**
+       * Manuell vekt for «Populært akkurat nå» på forsiden, 0 = ikke med.
+       * Ligger i frontmatter fordi det ennå ikke finnes analytics å hente
+       * tallene fra. Se src/lib/popularity.ts for hvordan seksjonen kobles
+       * til reelle data senere.
+       */
+      popularityScore: z.number().default(0),
       // Skjul en episode uten å slette den.
       draft: z.boolean().default(false),
     }),
@@ -161,8 +196,9 @@ const resources = defineCollection({
       url: z.string().url().optional(),
       // Episoder ressursen er nevnt i (kobles begge veier).
       episodes: z.array(reference('episodes')).default([]),
-      // Tema-tagger (Helse, Karriere, Friluftsliv ...).
-      categories: z.array(z.string()).default([]),
+      // Hovedtema og undertemaer, samme registre som episodene.
+      topic: topicField,
+      subtopics: subtopicsField,
       image: z.string().optional(),
       imageAlt: z.string().optional(),
       featured: z.boolean().default(false),

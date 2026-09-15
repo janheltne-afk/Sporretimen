@@ -8,8 +8,9 @@ summary: >-
 url: https://www.olavschewe.com/
 episodes:
   - en/john-erik-legeyrket
-categories:
-  - Education
+topic: laering
+subtopics:
+  - studieteknikk
 featured: true
 order: 6
 ---

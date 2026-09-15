@@ -3,8 +3,10 @@ title: "Lær noe nytt: Memoreringsteknikker – lær å memorere en kortstokk"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-07
-categories:
-  - Utdanning
+topic: laering
+subtopics:
+  - hukommelse
+  - studieteknikk
 topics:
   - Husketeknikk og memorering
   - Minnepalass (loci-metoden)

@@ -2,8 +2,10 @@
 title: "Learn something new: the Trachtenberg system – mental arithmetic without the times tables"
 format: laer-noe-nytt
 status: kommende
-categories:
-  - Education
+topic: laering
+subtopics:
+  - hoderegning
+  - hukommelse
 topics:
   - The Trachtenberg system as a whole
   - Every digit rule from 2 to 12, with examples

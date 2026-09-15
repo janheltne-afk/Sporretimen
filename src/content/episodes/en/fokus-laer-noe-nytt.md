@@ -2,9 +2,10 @@
 title: "Learn something new: focus – why it has become so hard"
 format: laer-noe-nytt
 status: kommende
-categories:
-  - Working life
-  - Health
+topic: psykologi-og-beslutninger
+subtopics:
+  - motivasjon-og-fokus
+  - tenkning-og-bias
 topics:
   - Why attention is under pressure
   - Stolen Focus by Johann Hari

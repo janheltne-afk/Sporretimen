@@ -56,7 +56,7 @@ export function initials(text: string): string {
 }
 
 /** Deterministisk fargevalg for plassholdergrafikk basert på en streng. */
-const PLACEHOLDER_COLORS = [
+const PLACEHOLDER_COLORS: [string, string][] = [
   ['#e9d5c0', '#b06a2c'],
   ['#d9e4dd', '#2f6f5e'],
   ['#e2d8ee', '#7a4bb0'],

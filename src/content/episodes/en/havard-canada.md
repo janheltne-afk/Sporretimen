@@ -4,9 +4,10 @@ format: samtale
 status: publisert
 publishDate: 2026-08-15T09:53:00+02:00
 guest: en/havard-hasund
-categories:
-  - Outdoors
-  - Health
+topic: friluftsliv
+subtopics:
+  - ekspedisjon
+  - beredskap
 topics:
   - A canoe expedition in northern Canada
   - Planning and preparation

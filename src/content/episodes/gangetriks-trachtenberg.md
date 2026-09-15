@@ -2,8 +2,10 @@
 title: "Lær noe nytt: Trachtenberg-systemet – hoderegning uten gangetabell"
 format: laer-noe-nytt
 status: kommende
-categories:
-  - Utdanning
+topic: laering
+subtopics:
+  - hoderegning
+  - hukommelse
 topics:
   - Trachtenberg-systemet som helhet
   - Alle sifferreglene fra 2 til 12, med eksempler

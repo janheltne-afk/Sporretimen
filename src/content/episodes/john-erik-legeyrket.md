@@ -4,10 +4,11 @@ format: samtale
 status: publisert
 publishDate: 2026-07-23
 guest: john-erik
-categories:
-  - Karriere
-  - Helse
-  - Utdanning
+topic: arbeidsliv-og-naeringsliv
+subtopics:
+  - karriere
+  - helsevesenet
+  - studieteknikk
 yrke: Lege
 topics:
   - Veien inn i legeyrket

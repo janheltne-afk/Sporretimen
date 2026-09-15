@@ -1,0 +1,49 @@
+---
+/**
+ * /forklart – Spørretimen Forklart. Kunnskapssporet: Kort forklart, Lær noe
+ * nytt og Bøker forklart, på tvers av temaene.
+ */
+import ContentIndex from './ContentIndex.astro';
+import { getEpisodes, getSeriesEpisodes } from '@/lib/content';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { path as routePath, type Locale } from '@/i18n/config';
+import { seriesById } from '@/i18n/taxonomy';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const en = lang === 'en';
+const series = seriesById(lang, 'sporretimen-forklart')!;
+const episodes = await getSeriesEpisodes(lang, 'sporretimen-forklart', await getEpisodes(lang));
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: series.label,
+    description: series.blurb,
+    url: canonicalUrl(routePath(lang, 'explained')),
+    isPartOf: { '@type': 'PodcastSeries', name: 'Spørretimen', url: canonicalUrl(routePath(lang, 'home')) },
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: series.label, path: routePath(lang, 'explained') },
+  ]),
+];
+---
+
+<ContentIndex
+  lang={lang}
+  episodes={episodes}
+  eyebrow={series.label}
+  title={en ? 'Complicated subjects, explained' : 'Kompliserte temaer forklart forståelig'}
+  lead={en
+    ? 'Economics, technology, psychology, learning and books – gone through carefully and sourced, so the ideas actually stick. Filter by format or topic.'
+    : 'Økonomi, teknologi, psykologi, læring og bøker – gjennomgått grundig og kildebasert, slik at ideene faktisk fester seg. Filtrer på format eller tema.'}
+  metaTitle={series.label}
+  metaDescription={en
+    ? 'Spørretimen Explained: economics, technology, psychology, learning and books explained so they make sense – briefly explained, learn something new and books explained.'
+    : 'Spørretimen Forklart: økonomi, teknologi, psykologi, læring og bøker forklart forståelig – Kort forklart, Lær noe nytt og Bøker forklart.'}
+  jsonLd={jsonLd}
+/>

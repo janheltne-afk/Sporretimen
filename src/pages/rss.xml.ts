@@ -16,7 +16,7 @@ export async function GET(context: APIContext) {
         description: e.data.description,
         link: `/episoder/${e.id}`,
         pubDate: e.data.publishDate,
-        categories: e.data.categories,
+        categories: [e.data.topic, ...e.data.subtopics],
       })),
     customData: `<language>nb-no</language>`,
   });
