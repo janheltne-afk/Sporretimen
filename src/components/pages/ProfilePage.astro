@@ -44,11 +44,22 @@ const person = {
   image: absoluteUrl(site.hostImage),
   jobTitle: en ? 'Host and explainer, Spørretimen' : 'Programleder og fagformidler, Spørretimen',
   description: en
-    ? 'Host of Spørretimen. Background in logistics, economics and consulting; works in business analytics. Publishes conversations and sourced explainers on economics, technology, learning and decision-making.'
-    : 'Programleder i Spørretimen. Bakgrunn innen logistikk, økonomi og konsulentarbeid; jobber med Business Analytics. Publiserer samtaler og kildebaserte forklaringer om økonomi, teknologi, læring og beslutninger.',
+    ? 'Host of Spørretimen. Siviløkonom (MSc in Business) with a master’s in logistics, a background in ERP, and a day job in business analytics. Publishes conversations and sourced explainers on economics, technology, learning and decision-making.'
+    : 'Programleder i Spørretimen. Siviløkonom med master i logistikk, bakgrunn fra ERP, og jobber til daglig med Business Analytics. Publiserer samtaler og kildebaserte forklaringer om økonomi, teknologi, læring og beslutninger.',
   knowsAbout: shownTopics.map((topic) => topic.label[lang]),
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'degree',
+      name: en ? 'Siviløkonom (MSc in Business)' : 'Siviløkonom',
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'degree',
+      name: en ? 'Master in logistics' : 'Master i logistikk',
+    },
+  ],
   sameAs,
-  worksFor: undefined,
 };
 
 const jsonLd = [
@@ -97,8 +108,10 @@ const jsonLd = [
         <dl class="profile__facts">
           <dt>{en ? 'Role' : 'Rolle'}</dt>
           <dd>{en ? 'Host and explainer' : 'Programleder og fagformidler'}</dd>
+          <dt>{en ? 'Education' : 'Utdanning'}</dt>
+          <dd>{en ? 'Siviløkonom (MSc in Business), master’s in logistics' : 'Siviløkonom, master i logistikk'}</dd>
           <dt>{en ? 'Background' : 'Bakgrunn'}</dt>
-          <dd>{en ? 'Logistics, economics and consulting' : 'Logistikk, økonomi og konsulentarbeid'}</dd>
+          <dd>ERP</dd>
           <dt>{en ? 'Works with' : 'Jobber med'}</dt>
           <dd>Business Analytics</dd>
           <dt>{en ? 'Based in' : 'Tilknytning'}</dt>
@@ -131,8 +144,9 @@ const jsonLd = [
                 subjects around them – sleep, memory, habits, money.
               </p>
               <p>
-                His background is in logistics, economics and consulting, and he works in
-                business analytics day to day. Spørretimen is a personal project with no
+                He is a siviløkonom – the Norwegian MSc in Business – with a master’s in
+                logistics, has a background in ERP systems, and works in business analytics
+                day to day. Spørretimen is a personal project with no
                 connection to his employer – neither the content, the guests nor any
                 collaboration has anything to do with the job.
               </p>
@@ -153,8 +167,8 @@ const jsonLd = [
                 hukommelse, vaner, penger.
               </p>
               <p>
-                Bakgrunnen hans er innen logistikk, økonomi og konsulentarbeid, og til daglig
-                jobber han med Business Analytics. Spørretimen er et rent hobbyprosjekt uten
+                Han er siviløkonom med master i logistikk, har bakgrunn fra ERP, og jobber til
+                daglig med Business Analytics. Spørretimen er et rent hobbyprosjekt uten
                 koblinger til arbeidsgiveren – verken innhold, gjester eller samarbeid har noe
                 med jobben å gjøre.
               </p>
