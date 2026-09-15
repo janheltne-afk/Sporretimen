@@ -33,6 +33,13 @@ takeaways:
   - Du kan kjenne igjen atferd uten å sette merkelapp på et menneske.
   - Det som hjelper er dokumentasjon, avstand og andres øyne – ikke å vinne diskusjonen.
 coverTheme: "Psykopati"
+book:
+  title: "Omgitt av psykopater"
+  author: "Thomas Erikson"
+  year: 2017
+  originalTitle: "Omgiven av psykopater"
+advisory:
+  - helse
 description: >-
   Ordet brukes om alt fra dårlige sjefer til ekser. En gjennomgang av temaet i
   Thomas Eriksons Omgitt av psykopater – hva psykopati faktisk er som klinisk

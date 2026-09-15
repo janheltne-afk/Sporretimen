@@ -33,6 +33,10 @@ takeaways:
   - Den eneste måten å vinne en krangel på, er å unngå den.
   - Boken er fra 1936. Eksemplene er gamle, prinsippene er ikke.
 coverTheme: "Relasjoner"
+book:
+  title: "How to Win Friends and Influence People"
+  author: "Dale Carnegie"
+  year: 1936
 description: >-
   Den mest solgte boken om mennesker noensinne, fra 1936. En gjennomgang av
   ideene i Dale Carnegies How to Win Friends and Influence People – hvorfor
@@ -105,4 +109,4 @@ At kritikk setter folk i forsvar, at folk husker hvordan du fikk dem til å føl
 seg, og at ekte interesse for andre er sjeldnere enn den burde være – det er ikke
 utdatert. Les den som en påminnelse om det, ikke som en teknikk.
 
-*Innholdet er en gjennomgang av hva boken hevder. Kilder oppgis i episoden.*
+*Kilder oppgis i episoden.*

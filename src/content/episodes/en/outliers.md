@@ -34,6 +34,10 @@ takeaways:
   - Culture and upbringing shape how we work more than we like to think.
   - The book argues with examples, not data. That is both its strength and its problem.
 coverTheme: "Expertise"
+book:
+  title: "Outliers: The Story of Success"
+  author: "Malcolm Gladwell"
+  year: 2008
 description: >-
   What does it take to succeed enormously? Not what you think, argues Malcolm
   Gladwell. A walk through the ideas in Outliers – 10,000 hours, birth months,
@@ -111,5 +115,4 @@ What holds up is the central idea: that success is less individual than we
 think, and that “what opportunities did they get?” is a more revealing question
 than “how able were they?”.
 
-*The content is a walk through what the book argues, together with the criticism
-it has met.*
+*The walk-through includes the criticism the book has met.*

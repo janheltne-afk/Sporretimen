@@ -36,6 +36,8 @@ takeaways:
   - The bedroom should be dark, cool and quiet.
 duration: "About 44 min"
 coverTheme: "Sleep"
+advisory:
+  - helse
 description: >-
   How do you sleep better? A walk through what Matthew Walker, Andrew Huberman and
   Bryan Johnson agree on - the circadian rhythm, sleep pressure, light, caffeine

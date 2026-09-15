@@ -52,6 +52,7 @@ export const footerNav: {
       { key: 'about', label: { no: 'Om Spørretimen', en: 'About Spørretimen' } },
       { key: 'profile', label: { no: 'Jan Sindre Heltne', en: 'Jan Sindre Heltne' } },
       { key: 'ethics', label: { no: 'Vær Varsom', en: 'Editorial standards' } },
+      { key: 'principles', label: { no: 'Redaksjonelle prinsipper', en: 'Editorial principles' } },
       { key: 'courses', label: { no: 'Kurs', en: 'Courses' } },
     ],
   },
@@ -81,9 +82,10 @@ const strings = {
     'footer.follow': 'Følg Spørretimen',
     'footer.socialsComing':
       'Lenker til YouTube, Spotify, Apple Podcasts og sosiale medier kommer her så snart kanalene er klare.',
-    'footer.rights': 'Alle rettigheter forbeholdt.',
+    'footer.rights': 'Eget innhold er opphavsrettslig beskyttet. Tredjeparts materiale tilhører sine rettighetshavere.',
     'footer.ethicsNote':
       'Spørretimen følger presseetiske prinsipper og Vær Varsom-plakaten der det er relevant.',
+    'footer.principles': 'Redaksjonelle prinsipper',
     'footer.privacy': 'Personvern',
     'footer.terms': 'Vilkår for bruk',
 
@@ -219,9 +221,10 @@ const strings = {
     'footer.follow': 'Follow Spørretimen',
     'footer.socialsComing':
       'Links to YouTube, Spotify, Apple Podcasts and social media will appear here as soon as the channels are ready.',
-    'footer.rights': 'All rights reserved.',
+    'footer.rights': 'Our own content is copyright protected. Third-party material belongs to its rights holders.',
     'footer.ethicsNote':
       'Spørretimen follows Norwegian press ethics and the Code of Ethics of the Norwegian Press where relevant.',
+    'footer.principles': 'Editorial principles',
     'footer.privacy': 'Privacy',
     'footer.terms': 'Terms of use',
 

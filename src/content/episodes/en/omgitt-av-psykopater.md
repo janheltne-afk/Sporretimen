@@ -33,6 +33,13 @@ takeaways:
   - You can recognise behaviour without putting a label on a person.
   - What helps is documentation, distance and other people's eyes – not winning the argument.
 coverTheme: "Psychopathy"
+book:
+  title: "Surrounded by Psychopaths"
+  author: "Thomas Erikson"
+  year: 2017
+  originalTitle: "Omgiven av psykopater"
+advisory:
+  - helse
 description: >-
   The word gets used for everything from bad bosses to exes. A walk through the
   subject of Thomas Erikson's Surrounded by Psychopaths – what psychopathy

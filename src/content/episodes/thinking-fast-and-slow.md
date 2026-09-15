@@ -38,6 +38,10 @@ takeaways:
   - Vi planlegger som om ingenting skal gå galt, hver gang.
   - Kahneman tok selv forbehold om kapittelet om priming. Det bør leseren også.
 coverTheme: "Tenkning og bias"
+book:
+  title: "Thinking, Fast and Slow"
+  author: "Daniel Kahneman"
+  year: 2011
 description: >-
   Nobelprisvinneren Daniel Kahneman om de to måtene hjernen tar beslutninger
   på, og de systematiske feilene som følger. En gjennomgang av ideene i

@@ -34,6 +34,10 @@ takeaways:
   - Kultur og oppvekst former hvordan vi jobber, mer enn vi liker å tro.
   - Boken argumenterer med eksempler, ikke med data. Det er både styrken og problemet.
 coverTheme: "Ekspertise"
+book:
+  title: "Outliers: The Story of Success"
+  author: "Malcolm Gladwell"
+  year: 2008
 description: >-
   Hva skal til for å lykkes stort? Ikke det du tror, mener Malcolm Gladwell. En
   gjennomgang av ideene i Outliers – 10 000 timer, fødselsmåneder, muligheter
@@ -109,4 +113,4 @@ Det som står seg, er hovedideen: at suksess i mindre grad er individuell enn vi
 tror, og at spørsmålet «hvilke muligheter fikk de?» er mer opplysende enn
 «hvor flinke var de?».
 
-*Innholdet er en gjennomgang av hva boken hevder, med kritikken den har møtt.*
+*Gjennomgangen tar med kritikken boken har møtt.*

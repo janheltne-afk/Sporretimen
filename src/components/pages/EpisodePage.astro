@@ -12,6 +12,10 @@ import Comments from '@/components/Comments.astro';
 import SeriesBadge from '@/components/SeriesBadge.astro';
 import TopicTags from '@/components/TopicTags.astro';
 import Interest from '@/components/Interest.astro';
+import Advisory from '@/components/Advisory.astro';
+import BookMeta from '@/components/BookMeta.astro';
+import CommercialLabel from '@/components/CommercialLabel.astro';
+import CorrectionNotice from '@/components/CorrectionNotice.astro';
 import type { CollectionEntry } from 'astro:content';
 import {
   scriptForEpisode,
@@ -158,6 +162,8 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
   >
     <div class="container episode__wrap episode__head">
       <a class="back-link" href={routePath(lang, 'episodes')}>{t('episode.backToAll')}</a>
+
+      {d.commercial && <CommercialLabel lang={lang} commercial={d.commercial} />}
 
       <div class="episode__meta">
         <SeriesBadge lang={lang} format={d.format} link />
@@ -307,6 +313,18 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
             </section>
           )
         }
+
+        {/* Henvisningen til originalverket, og deretter fotnotene:
+            rettighetsforbehold, fagforbehold og rettemelding. */}
+        {d.book && <BookMeta lang={lang} book={d.book} />}
+
+        <div class="episode__advisories">
+          {d.book && <Advisory lang={lang} variant="bok" work={d.book.title} />}
+          {d.advisory.map((v) => (
+            <Advisory lang={lang} variant={v} />
+          ))}
+          <CorrectionNotice lang={lang} subject={d.title} />
+        </div>
       </div>
 
       {
@@ -314,7 +332,13 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
           <aside class="episode__guest card">
             <p class="episode__guest-label">{t('episode.guest')}</p>
             <div class="episode__guest-portrait">
-              <Avatar name={guest.data.name} src={guest.data.image} alt={guest.data.imageAlt} />
+              <Avatar
+                name={guest.data.name}
+                src={guest.data.image}
+                alt={guest.data.imageAlt}
+                credit={guest.data.imageCredit?.credit}
+                creditUrl={guest.data.imageCredit?.licenseUrl}
+              />
             </div>
             <h2>{guest.data.name}</h2>
             <p class="episode__guest-role">{guest.data.role}</p>
@@ -661,6 +685,19 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     margin-top: clamp(2.5rem, 6vw, 4.5rem);
     border-top: 1px solid var(--line);
     background: var(--surface);
+  }
+  .episode__advisories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: clamp(1.8rem, 4vw, 2.5rem);
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+  .episode__correction {
+    margin-top: 1.5rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
   }
   .episode__talks {
     margin-top: clamp(2rem, 4vw, 2.75rem);

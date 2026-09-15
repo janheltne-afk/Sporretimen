@@ -34,6 +34,12 @@ takeaways:
   - Skill mellom en sjef som handler dårlig og en sjef som står i en umulig situasjon.
   - Du kan påvirke rammene rundt deg selv. Du kan sjelden påvirke personligheten til sjefen.
 coverTheme: "Ledelse"
+book:
+  title: "Omgitt av dårlige sjefer"
+  author: "Thomas Erikson"
+  originalTitle: "Omgiven av dåliga chefer"
+advisory:
+  - juss
 description: >-
   De fleste har hatt en. En gjennomgang av temaet i Thomas Eriksons Omgitt av
   dårlige sjefer – hvilke former dårlig ledelse tar, hvorfor fravær ofte er

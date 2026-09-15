@@ -31,6 +31,62 @@ const subtopicsField = z
   )
   .default([]);
 
+/**
+ * Verket en Bøker forklart-episode omtaler.
+ *
+ * Formålet er dobbelt: siden kan vise en ordentlig henvisning til
+ * originalverket, og structured data kan peke på boken som et selvstendig
+ * verk med sin egen forfatter. Sett bare felt du faktisk vet – utgiver og år
+ * skal ikke gjettes.
+ */
+const bookRef = z.object({
+  title: z.string(),
+  author: z.string(),
+  publisher: z.string().optional(),
+  year: z.number().optional(),
+  // Lenke til forlag, forfatter eller bokhandel – ikke til en piratkopi.
+  sourceUrl: z.string().url().optional(),
+  // Originaltittel når episoden bruker en oversatt tittel.
+  originalTitle: z.string().optional(),
+});
+
+/**
+ * Forbehold som vises på siden. Styres av innholdet, ikke av forfatteren:
+ * er det helsestoff, settes 'helse', og komponenten vises automatisk.
+ * Lista er tom på de aller fleste sidene, og skal være det.
+ */
+const advisories = z.array(z.enum(['helse', 'okonomi', 'juss'])).default([]);
+
+/**
+ * Merking av kommersielt innhold. Settes bare når det faktisk foreligger en
+ * avtale. Merket vises øverst på siden, ikke nederst.
+ */
+const commercial = z
+  .object({
+    kind: z.enum(['annonse', 'sponset', 'samarbeid']),
+    // Hvem avtalen er med. Vises i merket.
+    partner: z.string(),
+    // Kort forklaring av hva avtalen innebærer.
+    note: z.string().optional(),
+  })
+  .optional();
+
+/** Opphav til et bilde, slik at ukjent opphav ikke går upåaktet hen. */
+const imageCredit = z
+  .object({
+    // 'egen' = laget av Spørretimen, 'gjest' = levert av gjesten,
+    // 'lisens' = kjøpt/lisensiert, 'cc' = Creative Commons,
+    // 'presse' = pressebilde med dokumentert tillatelse,
+    // 'ukjent' = opphav ikke avklart. Sistnevnte skal ikke publiseres.
+    source: z.enum(['egen', 'gjest', 'lisens', 'cc', 'presse', 'ukjent']),
+    // Navnet som skal krediteres, der det er relevant.
+    credit: z.string().optional(),
+    // Lisensen, f.eks. «CC BY-SA 4.0», med lenke.
+    license: z.string().optional(),
+    licenseUrl: z.string().url().optional(),
+  })
+  .optional();
+
 const platformLinks = z
   .object({
     youtube: z.string().url().optional(),
@@ -87,6 +143,15 @@ const episodes = defineCollection({
       // Kort temalinje på omslaget, f.eks. "Kanada-ekspedisjonen".
       // Utelates → første kategori brukes.
       coverTheme: z.string().optional(),
+      // Verket episoden omtaler. Påkrevd i praksis for formatet
+      // 'boker-forklart' – se sjekken i scripts/sjekk-innhold.mjs.
+      book: bookRef.optional(),
+      // Forbehold som skal vises (helse, økonomi, juss).
+      advisory: advisories,
+      // Kommersiell merking. Utelates når det ikke finnes en avtale.
+      commercial,
+      // Opphav til `image`.
+      imageCredit,
       links: platformLinks,
       // Kilder og referanser vist nederst i episoden.
       sources: z
@@ -123,6 +188,7 @@ const guests = defineCollection({
       intro: z.string(),
       image: z.string().optional(),
       imageAlt: z.string().optional(),
+      imageCredit,
       // Mørkt, behandlet portrett brukt som episodeomslag.
       // Lages av scripts/lag-omslag.py ut fra `image`.
       cover: z.string().optional(),
@@ -156,6 +222,19 @@ const scripts = defineCollection({
       episode: reference('episodes'),
       // 'sporsmal' = kun spørsmål, 'transkribert' = svar er lagt inn.
       kind: z.enum(['sporsmal', 'transkribert']).default('sporsmal'),
+      /**
+       * Hvordan teksten er blitt til:
+       *   'manuell'    – skrevet eller kontrollert av et menneske
+       *   'redigert'   – automatisk transkribert, deretter gjennomgått
+       *   'automatisk' – automatisk transkribert, ikke kontrollert
+       * Settes den til 'automatisk', vises et forbehold om at teksten kan
+       * inneholde feil. Utelates feltet, sier siden ingenting – vi påstår
+       * ikke noe vi ikke vet.
+       */
+      transcriptSource: z.enum(['manuell', 'redigert', 'automatisk']).optional(),
+      // Verket manuset omtaler, hvis det handler om en bok.
+      book: bookRef.optional(),
+      advisory: advisories,
       // Valgfri arbeidstittel vist øverst på manus-siden.
       worktitle: z.string().optional(),
       // Undertittel vist under tittelen (typisk for transkriberte episoder).
@@ -201,6 +280,8 @@ const resources = defineCollection({
       subtopics: subtopicsField,
       image: z.string().optional(),
       imageAlt: z.string().optional(),
+      imageCredit,
+      advisory: advisories,
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
       order: z.number().default(100),

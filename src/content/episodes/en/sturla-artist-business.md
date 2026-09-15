@@ -35,6 +35,8 @@ takeaways:
   - "The most important advice: get secure in your own music before you let the business steer your choices."
 duration: "About 1 hour 33 min"
 coverTheme: "Life as an artist"
+advisory:
+  - okonomi
 description: >-
   Sturla has been on X Factor, Idol, The Voice and Melodi Grand Prix, and had a
   record deal with Sony. A conversation about life as an artist and the business

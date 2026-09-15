@@ -33,6 +33,10 @@ takeaways:
   - The only way to win an argument is to avoid it.
   - The book is from 1936. The examples are dated, the principles are not.
 coverTheme: "Relationships"
+book:
+  title: "How to Win Friends and Influence People"
+  author: "Dale Carnegie"
+  year: 1936
 description: >-
   The best-selling book about people ever written, from 1936. A walk through the
   ideas in Dale Carnegie's How to Win Friends and Influence People – why
@@ -107,5 +111,4 @@ That criticism puts people on the defensive, that people remember how you made
 them feel, and that genuine interest in others is rarer than it should be – none
 of that is dated. Read it as a reminder of that, not as a technique.
 
-*The content is a walk through what the book argues. Sources are given in the
-episode.*
+*Sources are given in the episode.*

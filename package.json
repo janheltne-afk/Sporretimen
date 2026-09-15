@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "indexnow": "node scripts/indexnow.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "sjekk-innhold": "node scripts/sjekk-innhold.mjs",
+    "prebuild": "node scripts/sjekk-innhold.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",

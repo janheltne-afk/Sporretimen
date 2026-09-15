@@ -5,6 +5,8 @@ worktitle: "Hvordan sove bedre"
 subtitle: "Døgnrytme, søvntrykk, lys og koffein – det Matthew Walker, Andrew Huberman og Bryan Johnson er enige om"
 description: "Hvordan sove bedre? Full gjennomgang av døgnrytme, søvntrykk, melatonin, koffein, lys, kveldsrutine og soverom – forklart på norsk og tilpasset norske årstider."
 updated: 2026-08-12
+advisory:
+  - helse
 ---
 
 Dette er en Lær noe nytt-episode om **søvn** – nærmere bestemt hvordan du kan sove

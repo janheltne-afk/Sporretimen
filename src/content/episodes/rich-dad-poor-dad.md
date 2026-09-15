@@ -36,6 +36,12 @@ takeaways:
   - Økonomisk forståelse er en ferdighet, ikke noe man er født med.
   - Boken er omdiskutert, og rådene er vagere enn de virker.
 coverTheme: "Eiendeler og gjeld"
+book:
+  title: "Rich Dad Poor Dad"
+  author: "Robert T. Kiyosaki"
+  year: 1997
+advisory:
+  - okonomi
 description: >-
   Den mest solgte personlige økonomiboken noensinne, og en av de mest
   omdiskuterte. En gjennomgang av ideene i Rich Dad Poor Dad – eiendeler mot
@@ -117,5 +123,4 @@ alene ikke er en plan.
 Les den som en inngangsport som får deg til å begynne å tenke – ikke som en
 oppskrift du følger.
 
-*Innholdet er en gjennomgang av hva boken hevder, med kritikken den har møtt,
-ikke individuell økonomisk rådgivning.*
+*Gjennomgangen tar med kritikken boken har møtt.*

@@ -33,6 +33,12 @@ takeaways:
   - "Gode verdier er noe du kontrollerer selv. Dårlige verdier avhenger av andre."
   - Ideene er gamle. Innpakningen er det nye.
 coverTheme: "Verdier"
+book:
+  title: "The Subtle Art of Not Giving a F*ck"
+  author: "Mark Manson"
+  year: 2016
+advisory:
+  - helse
 description: >-
   En bok som selger på tittelen og handler om verdier. En gjennomgang av ideene
   i Mark Mansons The Subtle Art of Not Giving a F*ck – å velge hva man bryr seg
@@ -95,5 +101,3 @@ betyr at de ikke helt passer noen.
 
 Det som står seg, er tilgjengeligheten. For den som aldri har møtt disse
 ideene, er dette en inngang som faktisk blir lest.
-
-*Innholdet er en gjennomgang av hva boken hevder. Ikke råd om psykisk helse.*

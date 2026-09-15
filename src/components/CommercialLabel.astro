@@ -1,0 +1,61 @@
+---
+/**
+ * Merking av kommersielt innhold.
+ *
+ * Står øverst på siden, før innholdet – ikke nederst i bunnteksten. Vises
+ * bare når `commercial` er satt i frontmatter, altså når det faktisk
+ * foreligger en avtale. Vanlig redaksjonell omtale av et produkt er ikke
+ * reklame og skal ikke merkes som det.
+ */
+import { type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  commercial: { kind: 'annonse' | 'sponset' | 'samarbeid'; partner: string; note?: string };
+}
+const { lang, commercial } = Astro.props;
+const en = lang === 'en';
+
+const labels = {
+  annonse: { no: 'Annonse', en: 'Advertisement' },
+  sponset: { no: 'Sponset innhold', en: 'Sponsored content' },
+  samarbeid: { no: 'Kommersielt samarbeid', en: 'Commercial partnership' },
+};
+const label = labels[commercial.kind][en ? 'en' : 'no'];
+---
+
+<aside class="commercial" role="note">
+  <p class="commercial__tag">{label}</p>
+  <p class="commercial__body">
+    {en ? 'In collaboration with' : 'I samarbeid med'} <strong>{commercial.partner}</strong>.
+    {commercial.note && <span> {commercial.note}</span>}
+  </p>
+</aside>
+
+<style>
+  /* Tydelig nok til å ses, rolig nok til ikke å se ut som en annonse i seg
+     selv. Kantlinjen i aksentfargen skiller den fra redaksjonelt innhold. */
+  .commercial {
+    margin-bottom: 1.4rem;
+    padding: 0.9rem 1.15rem;
+    background: var(--accent-soft, var(--surface-2));
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+  }
+  .commercial__tag {
+    margin: 0 0 0.25rem;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+  }
+  .commercial__body {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .commercial__body strong {
+    color: var(--ink);
+  }
+</style>

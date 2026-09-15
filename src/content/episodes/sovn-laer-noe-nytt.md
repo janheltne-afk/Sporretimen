@@ -36,6 +36,8 @@ takeaways:
   - Soverommet skal være mørkt, kjølig og stille.
 duration: "Cirka 44 min"
 coverTheme: "Søvn"
+advisory:
+  - helse
 description: >-
   Hvordan sove bedre? En gjennomgang av det Matthew Walker, Andrew Huberman og
   Bryan Johnson er enige om - døgnrytme, søvntrykk, lys, koffein og kveldsrutine,

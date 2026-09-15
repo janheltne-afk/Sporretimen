@@ -33,6 +33,10 @@ takeaways:
   - The people most confident they can detect lies are no better than anyone else.
   - What works is the content of the story, not the behaviour of the person telling it.
 coverTheme: "Lying"
+book:
+  title: "Surrounded by Liars"
+  author: "Thomas Erikson"
+  originalTitle: "Omgitt av løgnere"
 description: >-
   Everyone thinks they can tell. Almost nobody can. A walk through the subject
   of Thomas Erikson's Surrounded by Liars – what the research says about lie

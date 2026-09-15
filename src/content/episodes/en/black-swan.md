@@ -37,6 +37,12 @@ takeaways:
   - We construct explanations afterwards and believe we could have seen it coming. We could not.
   - The aim is not to forecast better, but to arrange things so you can survive being wrong.
 coverTheme: "Risk"
+book:
+  title: "The Black Swan"
+  author: "Nassim Nicholas Taleb"
+  year: 2007
+advisory:
+  - okonomi
 description: >-
   Why is it always the thing nobody saw coming that changes everything? A walk
   through the ideas in Nassim Nicholas Taleb's The Black Swan – Mediocristan and
@@ -123,5 +129,4 @@ surprises anyone, which infuriates Taleb himself.
 What holds up is the distinction between the two kinds of randomness, and the
 advice to build to survive rather than to build to be right.
 
-*The content is a walk through what the book argues, together with the criticism
-it has met. Not individual financial advice.*
+*The walk-through includes the criticism the book has met.*

@@ -33,6 +33,9 @@ takeaways:
   - De som er sikrest på at de kan avdekke løgn, er ikke bedre enn andre.
   - Det som virker er innholdet i historien, ikke oppførselen til den som forteller den.
 coverTheme: "Løgn"
+book:
+  title: "Omgitt av løgnere"
+  author: "Thomas Erikson"
 description: >-
   Alle tror de merker det. Nesten ingen gjør det. En gjennomgang av temaet i
   Thomas Eriksons Omgitt av løgnere – hva forskningen sier om løgnavsløring,

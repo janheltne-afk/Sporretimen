@@ -11,6 +11,8 @@ topic: psykologi-og-beslutninger
 subtopics:
   - motivasjon-og-fokus
 order: 11
+advisory:
+  - helse
 ---
 
 **Johann Hari** is a British journalist and author. In *Stolen Focus: Why You Can't

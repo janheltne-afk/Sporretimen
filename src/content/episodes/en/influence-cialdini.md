@@ -36,6 +36,10 @@ takeaways:
   - Uncertain people look at what others are doing. Everyone who sells anything knows this.
   - Knowing the mechanisms is the best defence against them.
 coverTheme: "Persuasion"
+book:
+  title: "Influence: The Psychology of Persuasion"
+  author: "Robert B. Cialdini"
+  year: 1984
 description: >-
   Social psychologist Robert Cialdini on the few mechanisms that make people say
   yes. A walk through the ideas in Influence – reciprocity, commitment, social
@@ -101,5 +105,5 @@ to use the mechanisms as to those who want to resist them. Cialdini has answered
 by distinguishing between *using* a principle that is genuinely present – the
 item really is scarce – and *fabricating* it.
 
-*The content is a walk through what the book argues, with the caveats the
-research has acquired since. Sources are given in the episode.*
+*The walk-through includes the caveats the research has acquired since.
+Sources are given in the episode.*

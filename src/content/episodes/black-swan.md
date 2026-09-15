@@ -37,6 +37,12 @@ takeaways:
   - Vi lager forklaringer i etterkant og tror vi kunne sett det komme. Det kunne vi ikke.
   - Poenget er ikke å spå bedre, men å ordne seg slik at man tåler å tape.
 coverTheme: "Risiko"
+book:
+  title: "The Black Swan"
+  author: "Nassim Nicholas Taleb"
+  year: 2007
+advisory:
+  - okonomi
 description: >-
   Hvorfor er det alltid det ingen så komme som endrer alt? En gjennomgang av
   ideene i Nassim Nicholas Talebs The Black Swan – Middelmådistan og
@@ -120,5 +126,4 @@ alt som overrasker noen, noe Taleb selv er rasende over.
 Det som likevel står seg, er skillet mellom de to slags tilfeldighet, og rådet om
 å bygge for å tåle framfor å bygge for å treffe.
 
-*Innholdet er en gjennomgang av hva boken hevder, med kritikken den har møtt.
-Ikke individuell økonomisk rådgivning.*
+*Gjennomgangen tar med kritikken boken har møtt.*

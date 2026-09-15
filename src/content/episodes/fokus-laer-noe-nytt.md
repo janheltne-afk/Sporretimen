@@ -26,6 +26,8 @@ takeaways:
   - "Bailey peker på håndverket: å styre oppmerksomheten er noe man kan øve på."
   - Spredt fokus er ikke det motsatte av å jobbe – hjernen trenger begge deler.
 coverTheme: "Fokus"
+advisory:
+  - helse
 description: >-
   Hvorfor er det blitt så vanskelig å konsentrere seg? En gjennomgang av to bøker
   om oppmerksomhet – Stolen Focus av Johann Hari og Hyperfocus av Chris Bailey –

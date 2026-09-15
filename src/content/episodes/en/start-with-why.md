@@ -35,6 +35,10 @@ takeaways:
   - A clear why works as a filter for what to say no to.
   - The brain explanation in the book is a heavy simplification. The advice may still be useful.
 coverTheme: "Leadership"
+book:
+  title: "Start With Why"
+  author: "Simon Sinek"
+  year: 2009
 description: >-
   Why do some people and companies manage to inspire, while others merely
   inform? A walk through the ideas in Simon Sinek's Start With Why – the golden
@@ -128,5 +132,4 @@ why you do something makes it easier to say no. And that a message which has to
 be bought with a discount every time is not a message. You can take that away
 regardless of what happens in the limbic system.
 
-*The content is a walk through what the book argues, together with the criticism
-it has met.*
+*The walk-through includes the criticism the book has met.*

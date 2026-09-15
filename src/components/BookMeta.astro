@@ -1,0 +1,94 @@
+---
+/**
+ * Henvisningen til originalverket på en Bøker forklart-side.
+ *
+ * Står nederst, etter innholdet: forfatter, år, utgiver og en lenke videre
+ * til forlag eller bokhandel. Poenget er at leseren skal kunne finne boken,
+ * ikke slippe å lese den.
+ */
+import { type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  book: {
+    title: string;
+    author: string;
+    publisher?: string;
+    year?: number;
+    sourceUrl?: string;
+    originalTitle?: string;
+  };
+}
+const { lang, book } = Astro.props;
+const en = lang === 'en';
+
+const facts = [
+  book.originalTitle && `${en ? 'Original title' : 'Originaltittel'}: ${book.originalTitle}`,
+  book.publisher,
+  book.year && String(book.year),
+].filter(Boolean) as string[];
+---
+
+<aside class="bookmeta">
+  <p class="bookmeta__label">{en ? 'The original work' : 'Originalverket'}</p>
+  <p class="bookmeta__title">
+    <cite>{book.title}</cite>
+    <span class="bookmeta__author">{book.author}</span>
+  </p>
+  {facts.length > 0 && <p class="bookmeta__facts">{facts.join(' · ')}</p>}
+  {
+    book.sourceUrl && (
+      <p class="bookmeta__link">
+        <a href={book.sourceUrl} target="_blank" rel="noopener">
+          {en ? 'Find the book' : 'Finn boken'} ↗
+        </a>
+      </p>
+    )
+  }
+</aside>
+
+<style>
+  .bookmeta {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+    padding: 1.4rem 1.6rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .bookmeta__label {
+    margin: 0 0 0.6rem;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .bookmeta__title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .bookmeta__title cite {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .bookmeta__author {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .bookmeta__facts {
+    margin: 0.5rem 0 0;
+    font-size: 0.84rem;
+    color: var(--ink-faint);
+  }
+  .bookmeta__link {
+    margin: 0.85rem 0 0;
+    font-size: 0.9rem;
+  }
+  .bookmeta__link a {
+    color: var(--ink);
+  }
+</style>

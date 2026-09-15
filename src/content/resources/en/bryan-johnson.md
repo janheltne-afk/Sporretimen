@@ -15,6 +15,8 @@ topic: helse
 subtopics:
   - sovn
 order: 10
+advisory:
+  - helse
 ---
 
 **Bryan Johnson** is an American entrepreneur who has turned his own body into a

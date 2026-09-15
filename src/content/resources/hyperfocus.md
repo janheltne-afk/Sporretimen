@@ -14,6 +14,8 @@ subtopics:
   - motivasjon-og-fokus
   - studieteknikk
 order: 12
+advisory:
+  - helse
 ---
 
 **Chris Bailey** er en kanadisk forfatter som skriver om produktivitet og

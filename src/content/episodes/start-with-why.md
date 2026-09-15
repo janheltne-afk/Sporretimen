@@ -35,6 +35,10 @@ takeaways:
   - Et tydelig hvorfor fungerer som filter for hva man skal si nei til.
   - Hjerneforklaringen i boken er en kraftig forenkling. Rådet kan være nyttig likevel.
 coverTheme: "Ledelse"
+book:
+  title: "Start With Why"
+  author: "Simon Sinek"
+  year: 2009
 description: >-
   Hvorfor klarer noen mennesker og selskaper å inspirere, mens andre bare
   informerer? En gjennomgang av ideene i Simon Sineks Start With Why – den
@@ -127,4 +131,4 @@ vite hvorfor man gjør noe gjør det lettere å si nei. Og at et budskap som må
 kjøpes med rabatt hver gang, ikke er et budskap. Det kan man ta med seg uansett
 hva som skjer i det limbiske systemet.
 
-*Innholdet er en gjennomgang av hva boken hevder, med kritikken den har møtt.*
+*Gjennomgangen tar med kritikken boken har møtt.*

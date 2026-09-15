@@ -26,6 +26,8 @@ takeaways:
   - "Bailey points at the craft: steering your attention is something you can practise."
   - Scatterfocus is not the opposite of working – the brain needs both.
 coverTheme: "Focus"
+advisory:
+  - helse
 description: >-
   Why has concentrating become so hard? A walk through two books about attention –
   Stolen Focus by Johann Hari and Hyperfocus by Chris Bailey – and what they say

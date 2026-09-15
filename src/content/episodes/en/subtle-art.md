@@ -33,6 +33,12 @@ takeaways:
   - "Good values are things you control yourself. Bad values depend on other people."
   - The ideas are old. The packaging is what is new.
 coverTheme: "Values"
+book:
+  title: "The Subtle Art of Not Giving a F*ck"
+  author: "Mark Manson"
+  year: 2016
+advisory:
+  - helse
 description: >-
   A book that sells on its title and is really about values. A walk through the
   ideas in Mark Manson's The Subtle Art of Not Giving a F*ck – choosing what to
@@ -97,5 +103,3 @@ it does not quite fit anyone.
 
 What holds up is the accessibility. For anyone who has never met these ideas,
 this is a doorway that actually gets read.
-
-*The content is a walk through what the book argues. Not mental health advice.*

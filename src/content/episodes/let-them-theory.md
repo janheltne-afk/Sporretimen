@@ -33,6 +33,12 @@ takeaways:
   - Misunnelse er et dårlig følelsesliv og en utmerket pekepinn på hva du vil.
   - Noen situasjoner skal ikke slippes. Sikkerhet og overtramp er ikke blant det du «lar».
 coverTheme: "Relasjoner"
+book:
+  title: "The Let Them Theory"
+  author: "Mel Robbins"
+  year: 2024
+advisory:
+  - helse
 description: >-
   To ord som ble en bestselger. En gjennomgang av ideene i Mel Robbins' The Let
   Them Theory – hva «la dem» og «la meg» faktisk betyr, hvor det kommer fra, og
@@ -110,5 +116,4 @@ markedsføringsspråk – dette er ikke forskning, det er et grep. Men grepet er
 kort nok til å huskes i det øyeblikket man trenger det, og det er mer enn man kan
 si om mye annet.
 
-*Innholdet er en gjennomgang av hva boken hevder. Ikke råd om psykisk helse
-eller om en konkret relasjon.*
+*Dette er ikke råd om en konkret relasjon.*

@@ -37,6 +37,13 @@ takeaways:
   - Erikson fikk Årets forviller i Sverige i 2018 for å spre en modell uten vitenskapelig grunnlag.
   - "Det brukbare i boken er en enkel påminnelse: folk vil bli snakket til på ulike måter."
 coverTheme: "Personlighet"
+book:
+  title: "Omgitt av idioter"
+  author: "Thomas Erikson"
+  year: 2014
+  originalTitle: "Omgiven av idioter"
+advisory:
+  - helse
 description: >-
   Fire farger, og et av Nordens mest solgte bokkonsepter. En gjennomgang av
   ideene i Thomas Eriksons Omgitt av idioter – hva modellen sier, hvorfor den

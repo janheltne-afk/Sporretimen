@@ -5,6 +5,8 @@ worktitle: "Hvordan sove bedre – kort forklart"
 subtitle: "Prioriteringsrekkefølgen, den siste timen før leggetid og de norske årstidene"
 description: "Hvordan sove bedre, kort forklart: prioriteringsrekkefølgen fra nok søvn og fast oppståelsestid til lys, kveldsrutine og soverom – og hva som gjelder i norsk vinter og sommer."
 updated: 2026-08-12
+advisory:
+  - helse
 ---
 
 Dette er kortversjonen av Lær noe nytt-episoden om søvn: hva du bør prioritere, i

@@ -37,6 +37,13 @@ takeaways:
   - Erikson received Sweden's Misleader of the Year award in 2018 for spreading a model without scientific support.
   - "What is usable in the book is a simple reminder: people want to be spoken to in different ways."
 coverTheme: "Personality"
+book:
+  title: "Surrounded by Idiots"
+  author: "Thomas Erikson"
+  year: 2014
+  originalTitle: "Omgiven av idioter"
+advisory:
+  - helse
 description: >-
   Four colours, and one of the best-selling book concepts in the Nordics. A walk
   through the ideas in Thomas Erikson's Surrounded by Idiots – what the model

@@ -35,6 +35,8 @@ takeaways:
   - Gode studieteknikker, som minnepalass, gjør et krevende studium mer overkommelig.
 duration: "Cirka 1 t 20 min"
 coverTheme: "Yrket som lege"
+advisory:
+  - helse
 description: >-
   Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,
   fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger.

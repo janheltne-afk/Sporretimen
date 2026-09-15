@@ -35,6 +35,8 @@ takeaways:
   - Reis som én samlet gruppe, ikke som to.
 duration: "Cirka 1 time og 10 min"
 coverTheme: "Kanada-ekspedisjonen"
+advisory:
+  - helse
 description: >-
   Håvard Hasund padlet 1500 kilometer gjennom Nord-Canada på 47 dager. En samtale
   om planleggingen, sikkerheten, bjørnemøtene og hva som faktisk skjedde der ute.

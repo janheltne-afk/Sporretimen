@@ -1,0 +1,263 @@
+---
+/**
+ * /redaksjonelle-prinsipper – hvordan Spørretimen jobber.
+ *
+ * Skrevet i vanlig norsk, ikke juridisk språk. Den skal kunne leses av en
+ * som lurer på om innholdet er til å stole på, ikke bare av en jurist.
+ * Vær Varsom-siden ligger ved siden av og går på presseetikken; denne går på
+ * praksis, rettigheter, merking og retting.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site, canonicalUrl, breadcrumbList } from '@/data/site';
+import { path as routePath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const en = lang === 'en';
+
+const mail = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: en ? 'Editorial principles' : 'Redaksjonelle prinsipper',
+    url: canonicalUrl(routePath(lang, 'principles')),
+    publisher: { '@type': 'Organization', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: en ? 'Editorial principles' : 'Redaksjonelle prinsipper', path: routePath(lang, 'principles') },
+  ]),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={en ? 'Editorial principles' : 'Redaksjonelle prinsipper'}
+  description={en
+    ? 'How Spørretimen works: how we separate fact, guest statements, analysis and opinion, how we handle sources and third-party material, how commercial content is labelled, and how to report an error.'
+    : 'Slik jobber Spørretimen: hvordan vi skiller fakta, gjesters uttalelser, analyse og mening, hvordan vi bruker kilder og omtaler andres verk, hvordan kommersielt innhold merkes, og hvordan du melder en feil.'}
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow={en ? 'Editorial principles' : 'Redaksjonelle prinsipper'}
+    title={en ? 'How we work' : 'Slik jobber vi'}
+    lead={en
+      ? 'Spørretimen wants to make complicated subjects easier to understand. This page explains how the content is made, and what you can expect from it.'
+      : 'Spørretimen ønsker å gjøre kompliserte tema forståelige. Denne siden forklarer hvordan innholdet blir laget, og hva du kan forvente av det.'}
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      {
+        en ? (
+          <>
+            <h2>Four things we keep apart</h2>
+            <p>
+              A lot of confusion comes from mixing these up, so we try to keep them
+              visibly separate:
+            </p>
+            <ul>
+              <li><strong>Fact.</strong> Something that can be checked against a source.</li>
+              <li>
+                <strong>What a guest says.</strong> The guest's own account and
+                experience. We write “in the episode he says that …”, not “this is
+                what happened”. The guests speak for themselves, not for
+                Spørretimen.
+              </li>
+              <li><strong>Analysis.</strong> Our reading of what something means.</li>
+              <li><strong>Opinion.</strong> What we think. Marked as such.</li>
+            </ul>
+
+            <h2>Sources</h2>
+            <p>
+              Where content rests on research, statistics, figures or professional
+              knowledge, we try to name the source. We prefer the original
+              publication, public authorities and established professional sources
+              over second-hand accounts.
+            </p>
+            <p>
+              Where research is disputed or has failed to replicate, we say so in the
+              episode rather than presenting the most striking version of a finding.
+            </p>
+
+            <h2>Books and other people's work</h2>
+            <p>
+              Books are covered through our own explanations, analysis and commentary:
+              what the book argues, what is worth taking from it, what is disputed,
+              and who it might suit. We use our own words and our own examples.
+            </p>
+            <p>
+              We do not reproduce books chapter by chapter, and the content is not a
+              substitute for reading the original. Quotations are kept short and
+              attributed. Rights to books and other third-party material belong to
+              the respective rights holders.
+            </p>
+
+            <h2>Images</h2>
+            <p>
+              We use images we have made ourselves, images supplied or approved by the
+              people in them, and licensed images. Where a credit is required, it is
+              shown with the image. We do not publish images whose origin we have not
+              established.
+            </p>
+
+            <h2>Commercial content</h2>
+            <p>
+              Spørretimen has no sponsors or paid partnerships today. Should that
+              change, commercial content will be labelled clearly and visibly, before
+              or alongside the content itself – not hidden in a footer.
+            </p>
+            <p>
+              An ordinary editorial mention of a book, a tool or a service is not
+              advertising, and is not labelled as such. If there is no agreement, we
+              do not claim there is one.
+            </p>
+
+            <h2>Transcripts</h2>
+            <p>
+              Episode transcripts are published so the content can be read and
+              searched. Where a transcript is automatically generated and not
+              checked, the page says so. Language is tidied for readability, but not
+              in a way that changes what a guest meant.
+            </p>
+
+            <h2>Health, money and law</h2>
+            <p>
+              Episodes about health, personal finance or legal questions are general
+              information, not individual advice. Where that matters, the page says
+              so. For your own situation you should speak to a qualified
+              professional.
+            </p>
+
+            <h2>Errors</h2>
+            <p>
+              We try to get things right, but we do not promise that everything is
+              correct. Errors happen, and we would rather hear about them than not.
+              Write to{' '}
+              <a href={mail('Correction – Spørretimen')}>{site.email}</a>, and tell us
+              which page it concerns.
+            </p>
+            <p>
+              If you are named or discussed in an episode and think something is
+              wrong or unreasonable, get in touch. You can ask for a correction or a
+              right of reply – see{' '}
+              <a href={routePath(lang, 'ethics')}>press ethics and the content</a>.
+            </p>
+
+            <h2>Who is responsible</h2>
+            <p>
+              Spørretimen is a personal project run by {site.host}, with no connection
+              to his employer. Questions about the content can be sent to{' '}
+              <a href={mail('Spørretimen')}>{site.email}</a>.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>Fire ting vi holder fra hverandre</h2>
+            <p>
+              Mye forvirring kommer av at disse blandes, så vi forsøker å holde dem
+              tydelig atskilt:
+            </p>
+            <ul>
+              <li><strong>Fakta.</strong> Noe som kan etterprøves mot en kilde.</li>
+              <li>
+                <strong>Det en gjest sier.</strong> Gjestens egen fortelling og
+                erfaring. Vi skriver «i episoden forteller han at …», ikke «dette
+                skjedde». Gjestene snakker for seg selv, ikke for Spørretimen.
+              </li>
+              <li><strong>Analyse.</strong> Vår lesning av hva noe betyr.</li>
+              <li><strong>Mening.</strong> Det vi selv synes. Det skal være merkbart.</li>
+            </ul>
+
+            <h2>Kilder</h2>
+            <p>
+              Der innholdet bygger på forskning, statistikk, tall eller fagkunnskap,
+              forsøker vi å oppgi kilden. Vi foretrekker originalpublikasjonen,
+              offentlige myndigheter og etablerte fagkilder framfor
+              annenhåndsgjengivelser.
+            </p>
+            <p>
+              Er forskningen omdiskutert eller ikke gjenskapt, sier vi det i episoden
+              framfor å gjengi den mest slående versjonen av et funn.
+            </p>
+
+            <h2>Bøker og andres verk</h2>
+            <p>
+              Bøker omtales gjennom våre egne forklaringer, analyser og kommentarer:
+              hva boken hevder, hva som er verdt å ta med seg, hva som er
+              omdiskutert, og hvem den kan passe for. Vi bruker egne ord og egne
+              eksempler.
+            </p>
+            <p>
+              Vi gjengir ikke bøker kapittel for kapittel, og innholdet erstatter
+              ikke å lese originalen. Sitater holdes korte og tilskrives forfatter og
+              verk. Rettigheter til bøker og annet tredjeparts materiale tilhører de
+              respektive rettighetshaverne.
+            </p>
+
+            <h2>Bilder</h2>
+            <p>
+              Vi bruker bilder vi har laget selv, bilder som er levert eller godkjent
+              av personene på dem, og lisensierte bilder. Der kreditering er
+              påkrevd, står den ved bildet. Vi publiserer ikke bilder vi ikke har
+              avklart opphavet til.
+            </p>
+
+            <h2>Kommersielt innhold</h2>
+            <p>
+              Spørretimen har ingen sponsorer eller betalte samarbeid i dag. Skulle
+              det endre seg, blir kommersielt innhold merket tydelig og synlig, før
+              eller samtidig med innholdet – ikke skjult i bunnteksten.
+            </p>
+            <p>
+              Vanlig redaksjonell omtale av en bok, et verktøy eller en tjeneste er
+              ikke reklame, og merkes ikke som det. Finnes det ingen avtale, påstår
+              vi ikke at det gjør det.
+            </p>
+
+            <h2>Transkripsjoner</h2>
+            <p>
+              Manus og transkripsjoner publiseres slik at innholdet kan leses og
+              søkes i. Der en transkripsjon er automatisk generert og ikke
+              kontrollert, står det på siden. Språket vaskes for lesbarhet, men ikke
+              slik at det endrer hva en gjest mente.
+            </p>
+
+            <h2>Helse, økonomi og juss</h2>
+            <p>
+              Episoder om helse, privatøkonomi eller juridiske spørsmål er generell
+              informasjon, ikke individuell rådgivning. Der det har betydning, står
+              det på siden. For din egen situasjon bør du snakke med kvalifisert
+              fagperson.
+            </p>
+
+            <h2>Feil</h2>
+            <p>
+              Vi forsøker å få ting riktig, men vi lover ikke at alt er korrekt. Feil
+              forekommer, og vi vil heller høre om dem enn ikke. Skriv til{' '}
+              <a href={mail('Rettelse – Spørretimen')}>{site.email}</a>, og si hvilken
+              side det gjelder.
+            </p>
+            <p>
+              Er du navngitt eller omtalt i en episode og mener noe er feil eller
+              urimelig, ta kontakt. Du kan be om retting eller tilsvar – se{' '}
+              <a href={routePath(lang, 'ethics')}>Vær Varsom-plakaten og innholdet</a>.
+            </p>
+
+            <h2>Hvem som er ansvarlig</h2>
+            <p>
+              Spørretimen er et personlig prosjekt drevet av {site.host}, uten
+              tilknytning til arbeidsgiveren hans. Spørsmål om innholdet kan sendes
+              til <a href={mail('Spørretimen')}>{site.email}</a>.
+            </p>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

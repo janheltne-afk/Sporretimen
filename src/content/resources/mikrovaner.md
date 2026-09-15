@@ -14,6 +14,8 @@ subtopics:
   - vaner
 featured: true
 order: 7
+advisory:
+  - helse
 ---
 
 **Mikrovaner** (originaltittel *Atomic Habits*) er James Clears bok om hvordan vaner

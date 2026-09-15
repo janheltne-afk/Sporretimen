@@ -34,6 +34,10 @@ takeaways:
   - Concentration is a trainable skill – partly by not filling every pause with a screen.
   - The book suits people who control their own time. Not everyone does.
 coverTheme: "Focus"
+book:
+  title: "Deep Work"
+  author: "Cal Newport"
+  year: 2016
 description: >-
   Why has it become so hard to concentrate on one thing – and why does it pay so
   well for those who manage it? A walk through the ideas in Cal Newport's Deep
@@ -105,5 +109,4 @@ What holds up is the distinction. Knowing the difference between deep and
 shallow, and noticing how much of the day goes to the latter, is worth the book
 on its own.
 
-*The content is a walk through what the book argues. Sources are given in the
-episode.*
+*Sources are given in the episode.*

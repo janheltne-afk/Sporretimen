@@ -33,6 +33,12 @@ takeaways:
   - Envy is a poor feeling and an excellent indicator of what you want.
   - Some situations should not be released. Safety and mistreatment are not among the things you “let”.
 coverTheme: "Relationships"
+book:
+  title: "The Let Them Theory"
+  author: "Mel Robbins"
+  year: 2024
+advisory:
+  - helse
 description: >-
   Two words that became a bestseller. A walk through the ideas in Mel Robbins's
   The Let Them Theory – what “let them” and “let me” actually mean, where they
@@ -109,5 +115,4 @@ language – this is not research, it is a device. But the device is short enoug
 to remember at the moment you need it, which is more than can be said for a
 great deal else.
 
-*The content is a walk through what the book argues. Not advice on mental health
-or on any specific relationship.*
+*This is not advice about any specific relationship.*

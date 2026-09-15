@@ -36,6 +36,8 @@ takeaways:
   - The biggest difference between city and countryside is the volume of callouts – the underlying job is the same.
 duration: "About 53 min"
 coverTheme: "The paramedic profession"
+advisory:
+  - helse
 description: >-
   Håvard Hasund has worked as a paramedic both in Oslo and in rural Sunnmøre. A
   conversation about the training, the placements, the year on dispatch and the

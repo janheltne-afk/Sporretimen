@@ -34,6 +34,10 @@ takeaways:
   - Konsentrasjon er en ferdighet som trenes – blant annet ved å la være å fylle hver pause med en skjerm.
   - Boken passer best for dem som styrer egen tid. Det gjør ikke alle.
 coverTheme: "Fokus"
+book:
+  title: "Deep Work"
+  author: "Cal Newport"
+  year: 2016
 description: >-
   Hvorfor er det blitt så vanskelig å konsentrere seg om én ting – og hvorfor
   lønner det seg så godt for dem som klarer det? En gjennomgang av ideene i Cal
@@ -103,4 +107,4 @@ oppmerksomhet og avbrytelser, og lener seg på den lite.
 Det som står seg, er skillet. Å vite forskjellen på dypt og grunt, og å legge
 merke til hvor mye av dagen som går til det siste, er verdt boken alene.
 
-*Innholdet er en gjennomgang av hva boken hevder. Kilder oppgis i episoden.*
+*Kilder oppgis i episoden.*

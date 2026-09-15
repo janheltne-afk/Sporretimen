@@ -35,6 +35,12 @@ takeaways:
   - De fleste er defensive investorer, og bør innrette seg etter det.
   - Graham konkluderte selv med at indeksfond passer folk flest best.
 coverTheme: "Verdiinvestering"
+book:
+  title: "The Intelligent Investor"
+  author: "Benjamin Graham"
+  year: 1949
+advisory:
+  - okonomi
 description: >-
   Boken Warren Buffett kaller den beste om investering, fra 1949. En
   gjennomgang av ideene i The Intelligent Investor – Mr. Market,
@@ -118,5 +124,4 @@ flest, fordi markedet var blitt mer effektivt. Et bredt indeksfond, kjøpt
 regelmessig over lang tid, ville gi de fleste et bedre resultat. Det er verdt å
 ha med seg når man leser en 500 siders bok om aksjeanalyse.
 
-*Innholdet er en gjennomgang av hva boken hevder, ikke individuell økonomisk
-rådgivning eller en anbefaling om å kjøpe eller selge noe.*
+*Dette er ikke en anbefaling om å kjøpe eller selge noe.*

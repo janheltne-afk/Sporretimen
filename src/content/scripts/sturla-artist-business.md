@@ -5,6 +5,8 @@ worktitle: "Sturla om livet som artist og businessen rundt"
 subtitle: "Fra X Factor og Sony-kontrakt til Tono, Gramo og booking av egne konserter"
 description: "Hvordan tjener en norsk artist penger? Sturla forteller om veien gjennom X Factor, Idol, The Voice og Melodi Grand Prix, platekontrakten med Sony, og hvordan Tono, Gramo og konsertbooking faktisk fungerer."
 updated: 2026-08-24
+advisory:
+  - okonomi
 ---
 
 I denne episoden møter Jan Sindre artisten **Sturla** – oppvokst i Orkanger, nå

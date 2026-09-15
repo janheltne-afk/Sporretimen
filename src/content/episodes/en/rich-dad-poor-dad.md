@@ -36,6 +36,12 @@ takeaways:
   - Financial literacy is a skill, not something you are born with.
   - The book is disputed, and its advice is vaguer than it seems.
 coverTheme: "Assets and liabilities"
+book:
+  title: "Rich Dad Poor Dad"
+  author: "Robert T. Kiyosaki"
+  year: 1997
+advisory:
+  - okonomi
 description: >-
   The best-selling personal finance book of all time, and one of the most
   disputed. A walk through the ideas in Rich Dad Poor Dad – assets versus
@@ -117,5 +123,4 @@ train, and that a higher salary alone is not a plan.
 
 Read it as a doorway that gets you thinking – not as a recipe to follow.
 
-*The content is a walk through what the book argues, together with the
-criticism it has met – not individual financial advice.*
+*The walk-through includes the criticism the book has met.*

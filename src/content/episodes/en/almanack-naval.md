@@ -38,6 +38,13 @@ takeaways:
   - Set an hourly rate, and refuse anything cheaper than it.
   - The advice comes from one very fortunate person, and should be read with that in mind.
 coverTheme: "Wealth and freedom"
+book:
+  title: "The Almanack of Naval Ravikant"
+  author: "Eric Jorgenson"
+  year: 2020
+  sourceUrl: https://www.navalmanack.com/
+advisory:
+  - okonomi
 description: >-
   Investor Naval Ravikant's thinking on wealth, leverage and happiness, compiled
   by Eric Jorgenson. A walk through the ideas – specific knowledge,
@@ -133,6 +140,3 @@ succeeded extremely well in Silicon Valley in a very particular period. We hear
 nothing from the many who followed the same principles and got nowhere, and the
 book does not discuss luck at all. Read it as a well-phrased way of thinking –
 not as a recipe that produces the same outcome.
-
-*The content is a walk through what the book argues, not individual financial
-advice.*

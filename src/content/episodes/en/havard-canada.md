@@ -35,6 +35,8 @@ takeaways:
   - Travel as one group, not as two.
 duration: "About 1 hour 10 min"
 coverTheme: "The Canada expedition"
+advisory:
+  - helse
 description: >-
   Håvard Hasund paddled 1,500 kilometres through northern Canada in 47 days. A
   conversation about the planning, the safety, the bear encounters and what

@@ -38,6 +38,13 @@ takeaways:
   - Sett en timepris, og nekt å gjøre noe som er billigere enn den.
   - Rådene kommer fra én svært heldig person, og bør leses med det i minne.
 coverTheme: "Formue og frihet"
+book:
+  title: "The Almanack of Naval Ravikant"
+  author: "Eric Jorgenson"
+  year: 2020
+  sourceUrl: https://www.navalmanack.com/
+advisory:
+  - okonomi
 description: >-
   Investoren Naval Ravikants tanker om formue, gearing og lykke, samlet av Eric
   Jorgenson. En gjennomgang av ideene – spesifikk kunnskap, ansvar, de fire
@@ -131,6 +138,3 @@ lyktes ekstremt godt i Silicon Valley i en helt spesiell periode. Vi hører ikke
 fra de mange som fulgte samme prinsipper og ikke kom noe sted, og boken drøfter
 ikke flaks i det hele tatt. Les det som en velformulert måte å tenke på – ikke
 som en oppskrift som gir samme utfall.
-
-*Innholdet er en gjennomgang av hva boken hevder, ikke individuell økonomisk
-rådgivning.*

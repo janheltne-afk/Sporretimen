@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CorrectionNotice from '@/components/CorrectionNotice.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import type { CollectionEntry } from 'astro:content';
@@ -134,10 +135,20 @@ const jsonLd = [personJsonLd, breadcrumb];
         }
       </div>
     </section>
+
+    <section class="section-tight">
+      <div class="container container-narrow">
+        <CorrectionNotice lang={lang} subject={d.name} class="guest-correction" />
+      </div>
+    </section>
   </article>
 </BaseLayout>
 
 <style>
+  .guest-correction {
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
   .guest-page {
     padding-top: clamp(1.2rem, 4vw, 2rem);
   }

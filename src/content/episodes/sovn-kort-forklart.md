@@ -21,6 +21,8 @@ takeaways:
   - Søvn handler i stor grad om å gjøre forskjellen på dag og natt tydelig.
 duration: "Cirka 5 min"
 coverTheme: "Søvn"
+advisory:
+  - helse
 description: >-
   Det viktigste om søvn på fem minutter - prioriteringsrekkefølgen, kveldsrutinen
   og de norske sesongene. Kortversjonen av Lær noe nytt-episoden om søvn.

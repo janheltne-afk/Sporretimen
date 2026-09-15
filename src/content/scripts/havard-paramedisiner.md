@@ -5,6 +5,8 @@ worktitle: "Hvordan er det egentlig å være paramedisiner?"
 subtitle: "Håvard Hasund om paramedisinstudiet, praksis, AMK-telefonen og forskjellen på ambulanse i Oslo og på Sunnmøre"
 description: "Hvordan blir man paramedisiner? Håvard Hasund forteller om utdanningen på OsloMet, praksis i ambulansen, året som medisinsk operatør på AMK og forskjellene mellom by og bygd."
 updated: 2026-08-09
+advisory:
+  - helse
 ---
 
 I denne episoden av Spørretimen møter Jan Sindre paramedisiner **Håvard Hasund**.

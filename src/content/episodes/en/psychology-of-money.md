@@ -39,6 +39,12 @@ takeaways:
   - The best return money gives is control over your own time.
   - Volatility is the price of returns – not a fee you can avoid.
 coverTheme: "Money and behaviour"
+book:
+  title: "The Psychology of Money"
+  author: "Morgan Housel"
+  year: 2020
+advisory:
+  - okonomi
 description: >-
   Money is not a sum – it is behaviour. A walk through the ideas in Morgan
   Housel's The Psychology of Money: luck and risk, compounding, why keeping
@@ -119,5 +125,4 @@ can be read on their own. It is not an investment manual and gives no concrete
 advice on what to buy. Its strength is that it describes the behaviour that
 decides whether a plan survives.
 
-*The content is a walk through what the book argues, not individual financial
-advice. Sources are given in the episode.*
+*Sources are given in the episode.*

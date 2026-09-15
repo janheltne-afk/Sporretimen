@@ -38,6 +38,10 @@ takeaways:
   - We plan as if nothing will go wrong, every time.
   - Kahneman himself added a caveat to the chapter on priming. So should the reader.
 coverTheme: "Thinking and bias"
+book:
+  title: "Thinking, Fast and Slow"
+  author: "Daniel Kahneman"
+  year: 2011
 description: >-
   Nobel laureate Daniel Kahneman on the two ways the brain makes decisions, and
   the systematic errors that follow. A walk through the ideas in Thinking, Fast
@@ -130,5 +134,4 @@ for avoiding the errors, and Kahneman is clear that he does not believe you can
 think your way out of them. What he does think is possible is recognising the
 situations where the errors are likely, and building in a check there.
 
-*The content is a walk through what the book argues, with the caveats the
-research has acquired since. Not health or financial advice.*
+*The walk-through includes the caveats the research has acquired since.*

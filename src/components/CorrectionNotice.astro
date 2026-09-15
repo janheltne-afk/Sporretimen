@@ -1,0 +1,52 @@
+---
+/**
+ * «Oppdaget en feil?»
+ *
+ * Står på sider om navngitte personer og på faktabasert innhold. Det er den
+ * enkleste og mest effektive rettemekanismen som finnes: en synlig adresse.
+ */
+import { site } from '@/data/site';
+import { path as routePath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  /** Hva rettelsen gjelder, brukt i emnefeltet. */
+  subject?: string;
+  class?: string;
+}
+const { lang, subject, class: className = '' } = Astro.props;
+const en = lang === 'en';
+const mailSubject = en
+  ? `Correction${subject ? `: ${subject}` : ''}`
+  : `Rettelse${subject ? `: ${subject}` : ''}`;
+---
+
+<p class:list={['correction', className]}>
+  <strong>{en ? 'Spotted an error?' : 'Oppdaget en feil?'}</strong>{' '}
+  {en ? 'Please email us at' : 'Send oss gjerne en e-post på'}{' '}
+  <a href={`mailto:${site.email}?subject=${encodeURIComponent(mailSubject)}`}>{site.email}</a>.{' '}
+  <a href={routePath(lang, 'principles')}>
+    {en ? 'How we work' : 'Slik jobber vi'}
+  </a>.
+</p>
+
+<style>
+  .correction {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--ink-faint);
+  }
+  .correction strong {
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .correction a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+  }
+  .correction a:hover {
+    color: var(--ink);
+  }
+</style>

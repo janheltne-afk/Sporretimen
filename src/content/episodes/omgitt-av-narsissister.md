@@ -32,6 +32,13 @@ takeaways:
   - Ordet er blitt en merkelapp vi setter på folk vi har vondt av å være nær.
   - Å beskrive atferd er nyttig. Å diagnostisere noen du er i konflikt med, er det ikke.
 coverTheme: "Narsissisme"
+book:
+  title: "Omgitt av narsissister"
+  author: "Thomas Erikson"
+  year: 2021
+  originalTitle: "Omgiven av narcissister"
+advisory:
+  - helse
 description: >-
   Et klinisk begrep som er blitt et hverdagsord. En gjennomgang av temaet i
   Thomas Eriksons Omgitt av narsissister – skillet mellom trekk og diagnose,

@@ -36,6 +36,8 @@ takeaways:
   - Den største forskjellen på by og bygd er oppdragsmengden – grunnjobben er den samme.
 duration: "Cirka 53 min"
 coverTheme: "Yrket som paramedisiner"
+advisory:
+  - helse
 description: >-
   Håvard Hasund har jobbet som paramedisiner i både Oslo og på Sunnmøre. En
   samtale om utdanningen, praksisen, året på AMK og de store forskjellene mellom

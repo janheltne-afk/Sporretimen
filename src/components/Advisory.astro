@@ -1,0 +1,77 @@
+---
+/**
+ * Forbehold og rettighetsopplysninger, samlet i én komponent.
+ *
+ * Bevisst diskret: dette er en fotnote, ikke en advarsel. Komponenten vises
+ * bare der varianten er relevant, styrt av `advisory` og `book` i
+ * frontmatter – ikke lagt inn for hånd på hver side.
+ *
+ * Variantene:
+ *   bok        – selvstendig omtale, erstatter ikke originalverket
+ *   helse      – generell informasjon, ikke individuell medisinsk rådgivning
+ *   okonomi    – informasjon og analyse, ikke personlig investeringsrådgivning
+ *   juss       – generell informasjon, ikke individuell juridisk rådgivning
+ *   transkript – automatisk transkribert, kan inneholde feil
+ */
+import { path as routePath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+  variant: 'bok' | 'helse' | 'okonomi' | 'juss' | 'transkript';
+  /** Tittelen på verket, for bok-varianten. */
+  work?: string;
+  class?: string;
+}
+const { lang, variant, work, class: className = '' } = Astro.props;
+const en = lang === 'en';
+
+const texts = {
+  bok: en
+    ? `This is an independent commentary on, and explanation of, selected ideas from ${work ?? 'the book'}. It does not replace the original work. Rights to the book belong to the respective rights holders.`
+    : `Dette er en selvstendig omtale og forklaring av utvalgte ideer fra ${work ?? 'boken'}. Innholdet erstatter ikke originalverket. Rettigheter til boken tilhører respektive rettighetshavere.`,
+  helse: en
+    ? 'The content is general information and is not individual medical advice. For questions about your own health, contact a qualified health professional.'
+    : 'Innholdet er generell informasjon og er ikke individuell medisinsk rådgivning. Ved spørsmål om egen helse bør du kontakte kvalifisert helsepersonell.',
+  okonomi: en
+    ? 'The content is general information and analysis, not personal investment advice.'
+    : 'Innholdet er generell informasjon og analyse, ikke personlig investeringsrådgivning.',
+  juss: en
+    ? 'This is general information and not individual legal advice.'
+    : 'Dette er generell informasjon og ikke individuell juridisk rådgivning.',
+  transkript: en
+    ? 'The transcript is automatically generated and may contain errors.'
+    : 'Transkripsjonen er automatisk generert og kan inneholde feil.',
+};
+---
+
+<p class:list={['advisory', `advisory--${variant}`, className]}>
+  {texts[variant]}
+  {
+    variant === 'bok' && (
+      <>
+        {' '}
+        <a href={routePath(lang, 'principles')}>
+          {en ? 'Editorial principles' : 'Redaksjonelle prinsipper'}
+        </a>.
+      </>
+    )
+  }
+</p>
+
+<style>
+  .advisory {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink-faint);
+    max-width: 68ch;
+  }
+  .advisory a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+  }
+  .advisory a:hover {
+    color: var(--ink);
+  }
+</style>

@@ -39,6 +39,12 @@ takeaways:
   - Den beste avkastningen penger gir, er kontroll over egen tid.
   - Volatilitet er prisen for avkastning – ikke et gebyr du kan slippe unna.
 coverTheme: "Penger og atferd"
+book:
+  title: "The Psychology of Money"
+  author: "Morgan Housel"
+  year: 2020
+advisory:
+  - okonomi
 description: >-
   Økonomi er ikke et regnestykke – det er atferd. En gjennomgang av ideene i
   Morgan Housels The Psychology of Money: flaks og risiko, renters rente,
@@ -119,5 +125,4 @@ hver for seg. Den er ingen investeringsmanual og gir ingen konkrete råd om hva
 du skal kjøpe. Styrken er at den beskriver atferden som avgjør om en plan
 overlever.
 
-*Innholdet er en gjennomgang av hva boken hevder, ikke individuell økonomisk
-rådgivning. Kilder oppgis i episoden.*
+*Kilder oppgis i episoden.*

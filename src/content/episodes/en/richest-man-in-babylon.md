@@ -32,6 +32,12 @@ takeaways:
   - Protect the principal first. Returns without risk do not exist.
   - The advice is simple on purpose. The difficulty is in following it.
 coverTheme: "Saving"
+book:
+  title: "The Richest Man in Babylon"
+  author: "George S. Clason"
+  year: 1926
+advisory:
+  - okonomi
 description: >-
   Hundred-year-old advice on saving, debt and putting money to work, told as
   parables from Babylon. A walk through the seven cures in The Richest Man in
@@ -105,6 +111,3 @@ Clason used the scenery to make the advice memorable.
 Because the advice is simple enough to remember, and because the hard part is
 not understanding it. The hard part is actually doing it, every month, for many
 years. That has not changed in a hundred years.
-
-*The content is a walk through what the book argues, not individual financial
-advice.*

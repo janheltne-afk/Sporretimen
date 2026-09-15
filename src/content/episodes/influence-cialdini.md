@@ -37,6 +37,10 @@ takeaways:
   - Usikre mennesker ser på hva andre gjør. Det vet alle som selger noe.
   - Å kjenne mekanismene er det beste forsvaret mot dem.
 coverTheme: "Påvirkning"
+book:
+  title: "Influence: The Psychology of Persuasion"
+  author: "Robert B. Cialdini"
+  year: 1984
 description: >-
   Sosialpsykologen Robert Cialdini om de få mekanismene som får mennesker til
   å si ja. En gjennomgang av ideene i Influence – gjensidighet, forpliktelse,

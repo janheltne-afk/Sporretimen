@@ -35,6 +35,8 @@ takeaways:
   - Good study techniques, such as the memory palace, make a demanding degree more manageable.
 duration: "About 1 h 20 min"
 coverTheme: "The medical profession"
+advisory:
+  - helse
 description: >-
   What is it like to be a doctor? John Erik talks about studying medicine in
   Poland, everyday life as a GP, meeting patients, responsibility, and advice for

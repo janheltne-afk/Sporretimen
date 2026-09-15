@@ -52,6 +52,7 @@ const routes = {
   about: { no: '/om', en: '/en/about' },
   contact: { no: '/kontakt', en: '/en/contact' },
   ethics: { no: '/var-varsom', en: '/en/editorial-standards' },
+  principles: { no: '/redaksjonelle-prinsipper', en: '/en/editorial-principles' },
   suggestGuest: { no: '/foresla-gjest', en: '/en/suggest-a-guest' },
   beGuest: { no: '/bli-gjest', en: '/en/be-a-guest' },
   partner: { no: '/samarbeid', en: '/en/collaborate' },

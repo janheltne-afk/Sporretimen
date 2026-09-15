@@ -37,6 +37,10 @@ takeaways:
   - "«Det stemmer» betyr at de føler seg forstått. «Du har rett» betyr at de vil at du skal gi deg."
   - Teknikkene er enkle å beskrive og vanskelige å gjøre under press.
 coverTheme: "Forhandling"
+book:
+  title: "Never Split the Difference"
+  author: "Chris Voss og Tahl Raz"
+  year: 2016
 description: >-
   En tidligere gisselforhandler i FBI om hvorfor man aldri bør møtes på midten.
   En gjennomgang av ideene i Chris Voss' Never Split the Difference – taktisk

@@ -32,6 +32,13 @@ takeaways:
   - The word has become a label we attach to people it hurts to be close to.
   - Describing behaviour is useful. Diagnosing someone you are in conflict with is not.
 coverTheme: "Narcissism"
+book:
+  title: "Surrounded by Narcissists"
+  author: "Thomas Erikson"
+  year: 2021
+  originalTitle: "Omgiven av narcissister"
+advisory:
+  - helse
 description: >-
   A clinical concept that became an everyday word. A walk through the subject of
   Thomas Erikson's Surrounded by Narcissists – the line between traits and

@@ -34,6 +34,12 @@ takeaways:
   - Distinguish a boss who acts badly from a boss in an impossible situation.
   - You can influence the framework around you. You can rarely influence your boss's personality.
 coverTheme: "Leadership"
+book:
+  title: "Surrounded by Bad Bosses"
+  author: "Thomas Erikson"
+  originalTitle: "Omgiven av dåliga chefer"
+advisory:
+  - juss
 description: >-
   Most people have had one. A walk through the subject of Thomas Erikson's
   Surrounded by Bad Bosses – the forms bad leadership takes, why absence is

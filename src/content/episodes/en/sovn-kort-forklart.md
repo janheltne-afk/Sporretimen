@@ -21,6 +21,8 @@ takeaways:
   - Sleep is largely about making the difference between day and night obvious.
 duration: "About 5 min"
 coverTheme: "Sleep"
+advisory:
+  - helse
 description: >-
   The essentials of sleep in five minutes - what to prioritise, the evening
   routine and the Norwegian seasons. The short version of the Learn something new

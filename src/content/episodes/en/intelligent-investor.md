@@ -35,6 +35,12 @@ takeaways:
   - Most people are defensive investors, and should arrange things accordingly.
   - Graham himself concluded that index funds suit most people best.
 coverTheme: "Value investing"
+book:
+  title: "The Intelligent Investor"
+  author: "Benjamin Graham"
+  year: 1949
+advisory:
+  - okonomi
 description: >-
   The book Warren Buffett calls the best on investing, from 1949. A walk
   through the ideas in The Intelligent Investor – Mr. Market, the margin of
@@ -120,5 +126,4 @@ the market had become more efficient. A broad index fund, bought regularly
 over a long time, would give most people a better result. That is worth
 keeping in mind when reading a 500-page book on stock analysis.
 
-*The content is a walk through what the book argues, not individual financial
-advice or a recommendation to buy or sell anything.*
+*This is not a recommendation to buy or sell anything.*

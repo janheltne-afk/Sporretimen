@@ -32,6 +32,12 @@ takeaways:
   - Sikre hovedstolen først. Avkastning uten risiko finnes ikke.
   - Rådene er enkle med vilje. Vanskeligheten ligger i å følge dem.
 coverTheme: "Sparing"
+book:
+  title: "The Richest Man in Babylon"
+  author: "George S. Clason"
+  year: 1926
+advisory:
+  - okonomi
 description: >-
   Hundre år gamle råd om sparing, gjeld og det å la pengene arbeide, fortalt
   som lignelser fra Babylon. En gjennomgang av de syv rådene i The Richest Man
@@ -103,6 +109,3 @@ brukte kulissene for å gjøre rådene minneverdige.
 Fordi rådene er enkle nok til å huskes, og fordi det vanskelige ikke er å
 forstå dem. Det vanskelige er å faktisk gjøre det, hver måned, i mange år. Det
 har ikke endret seg på hundre år.
-
-*Innholdet er en gjennomgang av hva boken hevder, ikke individuell økonomisk
-rådgivning.*

@@ -10,25 +10,61 @@ interface Props {
   alt?: string;
   name: string;
   ratio?: string;
+  /**
+   * Fotokreditering, vist som «Foto: …» under bildet. Settes fra
+   * `imageCredit` i frontmatter, og vises bare når kreditering faktisk er
+   * påkrevd – egne bilder og bilder levert av gjesten trenger den ikke.
+   */
+  credit?: string;
+  creditUrl?: string;
   class?: string;
 }
-const { src, alt, name, ratio = '1 / 1', class: className = '' } = Astro.props;
+const {
+  src,
+  alt,
+  name,
+  ratio = '1 / 1',
+  credit,
+  creditUrl,
+  class: className = '',
+} = Astro.props;
 const [bg, fg] = placeholderColor(name);
 ---
 
-<div class:list={['avatar', className]} style={`--ratio:${ratio}`}>
+<figure class:list={['avatar-figure', className]}>
+  <div class="avatar" style={`--ratio:${ratio}`}>
+    {
+      src ? (
+        <img src={src} alt={alt ?? `Portrett av ${name}`} loading="lazy" decoding="async" />
+      ) : (
+        <div class="avatar__ph" style={`--ph-bg:${bg}; --ph-fg:${fg}`} aria-hidden="true">
+          <span>{initials(name)}</span>
+        </div>
+      )
+    }
+  </div>
   {
-    src ? (
-      <img src={src} alt={alt ?? `Portrett av ${name}`} loading="lazy" decoding="async" />
-    ) : (
-      <div class="avatar__ph" style={`--ph-bg:${bg}; --ph-fg:${fg}`} aria-hidden="true">
-        <span>{initials(name)}</span>
-      </div>
+    credit && (
+      <figcaption class="avatar__credit">
+        Foto: {creditUrl ? <a href={creditUrl} target="_blank" rel="noopener">{credit}</a> : credit}
+      </figcaption>
     )
   }
-</div>
+</figure>
 
 <style>
+  .avatar-figure {
+    margin: 0;
+  }
+  .avatar__credit {
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-faint);
+  }
+  .avatar__credit a {
+    color: inherit;
+  }
   .avatar {
     position: relative;
     aspect-ratio: var(--ratio);

@@ -16,6 +16,8 @@ topic: helse
 subtopics:
   - sovn
 order: 10
+advisory:
+  - helse
 ---
 
 **Bryan Johnson** er en amerikansk gründer som har gjort sin egen kropp til et

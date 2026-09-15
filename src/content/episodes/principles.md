@@ -36,6 +36,10 @@ takeaways:
   - Uenighet er ikke problemet. Uenighet som ikke sies høyt, er problemet.
   - Kulturen boken beskriver er ekstrem, og mange trives ikke i den.
 coverTheme: "Prinsipper og beslutninger"
+book:
+  title: "Principles: Life and Work"
+  author: "Ray Dalio"
+  year: 2017
 description: >-
   Grunnleggeren av verdens største hedgefond om hvordan han bestemmer seg. En
   gjennomgang av ideene i Ray Dalios Principles – nedskrevne regler, radikal
@@ -131,5 +135,5 @@ og krever ingen hedgefond. Det samme gjelder femtrinnsprosessen, og ideen om
 at uenighet som ikke sies høyt, er dyrere enn uenighet som gjør det. Resten er
 verdt å lese som en beskrivelse av ett bestemt sted, ikke som en oppskrift.
 
-*Innholdet er en gjennomgang av hva boken hevder, med kritikken den har møtt.
-Ikke råd om ledelse, investering eller arbeidsliv i en konkret situasjon.*
+*Gjennomgangen tar med kritikken boken har møtt. Dette er ikke råd for en
+konkret situasjon.*

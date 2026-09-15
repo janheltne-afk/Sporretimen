@@ -14,6 +14,8 @@ subtopics:
   - sovn
 featured: true
 order: 8
+advisory:
+  - helse
 ---
 
 **Matthew Walker** er søvnforsker og professor i nevrovitenskap og psykologi ved

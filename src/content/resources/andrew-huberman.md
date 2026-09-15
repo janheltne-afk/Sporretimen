@@ -15,6 +15,8 @@ subtopics:
   - sovn
 featured: true
 order: 9
+advisory:
+  - helse
 ---
 
 **Andrew Huberman** er nevroforsker og professor ved Stanford, og står bak

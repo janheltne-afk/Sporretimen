@@ -37,6 +37,10 @@ takeaways:
   - "“That's right” means they feel understood. “You're right” means they want you to stop."
   - The techniques are easy to describe and hard to execute under pressure.
 coverTheme: "Negotiation"
+book:
+  title: "Never Split the Difference"
+  author: "Chris Voss og Tahl Raz"
+  year: 2016
 description: >-
   A former FBI hostage negotiator on why you should never meet in the middle. A
   walk through the ideas in Chris Voss's Never Split the Difference – tactical
