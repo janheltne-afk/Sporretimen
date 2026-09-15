@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/okonomi", "destination": "/temaer/okonomi/", "permanent": true },
+    { "source": "/okonomi/", "destination": "/temaer/okonomi/", "permanent": true },
+    { "source": "/en/economics", "destination": "/en/topics/okonomi/", "permanent": true },
+    { "source": "/en/economics/", "destination": "/en/topics/okonomi/", "permanent": true }
+  ]
+}
