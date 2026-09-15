@@ -1,0 +1,232 @@
+---
+/**
+ * /temaer – biblioteket over alt Spørretimen dekker.
+ *
+ * Temaer uten innhold vises ikke. Registeret kan gjerne være større enn det
+ * som er publisert, men en tom temaside er et blindspor for både besøkende og
+ * søkemotorer.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import TopicIcon from '@/components/TopicIcon.astro';
+import Interest from '@/components/Interest.astro';
+import { topics } from '@/data/topics';
+import { topicCounts } from '@/lib/content';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { topicPath, path as routePath, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const counts = await topicCounts(lang);
+const shown = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: en ? 'Topics' : 'Temaer',
+    url: canonicalUrl(routePath(lang, 'topics')),
+    hasPart: shown.map((topic) => ({
+      '@type': 'CollectionPage',
+      name: topic.label[lang],
+      description: topic.blurb[lang],
+      url: canonicalUrl(topicPath(lang, topic.id)),
+    })),
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: en ? 'Topics' : 'Temaer', path: routePath(lang, 'topics') },
+  ]),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={en ? 'Topics' : 'Temaer'}
+  description={en
+    ? 'Everything Spørretimen covers, by topic: economics, technology and AI, psychology and decisions, learning, work and business, society, health, culture and the outdoors.'
+    : 'Alt Spørretimen dekker, sortert på tema: økonomi, teknologi og AI, psykologi og beslutninger, læring, arbeidsliv og næringsliv, samfunn, helse, kultur og friluftsliv.'}
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    wide
+    eyebrow={en ? 'Topics' : 'Temaer'}
+    title={en ? 'What Spørretimen covers' : 'Det Spørretimen dekker'}
+    lead={en
+      ? 'Every subject has its own page, with the episodes, the explainers and the resources that belong to it. Pick a topic, or go straight to a subtopic.'
+      : 'Hvert tema har sin egen side, med episodene, forklaringene og ressursene som hører til. Velg et tema, eller gå rett til et undertema.'}
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="topic-grid">
+        {
+          shown.map((topic) => (
+            <li class="topic-card card reveal">
+              <a class="topic-card__head" href={topicPath(lang, topic.id)}>
+                <span class="topic-card__icon">
+                  <TopicIcon name={topic.icon} size={24} />
+                </span>
+                <span>
+                  <h2 class="topic-card__title">{topic.label[lang]}</h2>
+                  <span class="topic-card__count">
+                    {counts.get(topic.id)} {en ? 'items' : 'oppføringer'}
+                  </span>
+                </span>
+              </a>
+              <p class="topic-card__blurb">{topic.blurb[lang]}</p>
+              <ul class="topic-card__subs">
+                {topic.subtopics.map((sub) => (
+                  <li>
+                    <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section interest-block">
+    <div class="container container-narrow text-center">
+      <p class="eyebrow">{en ? 'Help us choose' : 'Hjelp oss å velge'}</p>
+      <h2>{t('interest.moreHeading')}</h2>
+      <p class="lead mx-auto">{t('interest.moreIntro')}</p>
+      <ul class="interest-list">
+        {
+          topics.map((topic) => (
+            <li class="interest-list__item">
+              <span class="interest-list__label">{topic.label[lang]}</span>
+              <Interest lang={lang} kind="topic" slug={topic.id} compact />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .topic-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem 1.6rem 1.75rem;
+  }
+  .topic-card__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .topic-card__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .topic-card__head:hover .topic-card__icon {
+    color: var(--accent-strong);
+    border-color: var(--accent);
+  }
+  .topic-card__title {
+    margin: 0 0 0.15rem;
+    font-size: 1.3rem;
+    transition: color 0.2s ease;
+  }
+  .topic-card__head:hover .topic-card__title {
+    color: var(--accent-strong);
+  }
+  .topic-card__count {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .topic-card__blurb {
+    margin: 1.05rem 0 1.2rem;
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+  /* Undertemaene står som en liste med hårfine skiller, ikke som knapper.
+     De er en innholdsfortegnelse, ikke en handling. */
+  .topic-card__subs {
+    list-style: none;
+    margin: auto 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .topic-card__subs li {
+    border-top: 1px solid var(--line);
+  }
+  .topic-card__subs a {
+    display: block;
+    padding: 0.62rem 0;
+    font-size: 0.89rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+  .topic-card__subs a:hover {
+    color: var(--accent-strong);
+    padding-left: 0.3rem;
+  }
+
+  .interest-block {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .interest-block h2 {
+    max-width: 24ch;
+    margin-inline: auto;
+  }
+  .interest-block .lead {
+    max-width: 52ch;
+  }
+  .interest-list {
+    list-style: none;
+    margin: 2.2rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 0.75rem;
+    text-align: left;
+  }
+  .interest-list__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.05rem 1.15rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .interest-list__label {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+</style>

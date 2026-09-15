@@ -1,0 +1,354 @@
+---
+/**
+ * En temaside – /temaer/okonomi/ – eller en undertemaside når `subtopicId`
+ * er satt: /temaer/okonomi/makrookonomi/.
+ *
+ * Samme mal for begge nivåene. Forskjellen er hva som filtreres og hvilke
+ * brødsmuler som vises, ikke hvordan siden ser ut.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import EpisodeCard from '@/components/EpisodeCard.astro';
+import ResourceCard from '@/components/ResourceCard.astro';
+import TopicIcon from '@/components/TopicIcon.astro';
+import Interest from '@/components/Interest.astro';
+import { topicById } from '@/data/topics';
+import {
+  episodesForTopic,
+  episodesForSubtopic,
+  resourcesForTopic,
+  resourcesForSubtopic,
+  getSeriesEpisodes,
+} from '@/lib/content';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { topicPath, path as routePath, type Locale } from '@/i18n/config';
+import { seriesById } from '@/i18n/taxonomy';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+  topicId: string;
+  subtopicId?: string;
+}
+const { lang, topicId, subtopicId } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+const topic = topicById(topicId)!;
+const subtopic = subtopicId ? topic.subtopics.find((s) => s.id === subtopicId) : undefined;
+
+const heading = subtopic ? subtopic.label[lang] : topic.label[lang];
+const blurb = subtopic ? subtopic.blurb[lang] : topic.blurb[lang];
+const here = topicPath(lang, topic.id, subtopic?.id);
+
+const episodes = subtopic
+  ? await episodesForSubtopic(lang, subtopic.id)
+  : await episodesForTopic(lang, topic.id);
+const resources = subtopic
+  ? await resourcesForSubtopic(lang, subtopic.id)
+  : await resourcesForTopic(lang, topic.id);
+
+// Delt i de to sporene, slik at samtaler og forklaringer ikke blandes i én
+// lang liste. Rekkefølgen er nyeste først innenfor hver bolk.
+const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
+const explained = await getSeriesEpisodes(lang, 'sporretimen-forklart', episodes);
+const seriesConv = seriesById(lang, 'sporretimen')!;
+const seriesExpl = seriesById(lang, 'sporretimen-forklart')!;
+
+// Søsken: de andre undertemaene, som navigasjon videre på samme nivå.
+const siblings = topic.subtopics.filter((s) => s.id !== subtopic?.id);
+
+const crumbs = [
+  { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+  { name: en ? 'Topics' : 'Temaer', path: routePath(lang, 'topics') },
+  { name: topic.label[lang], path: topicPath(lang, topic.id) },
+  ...(subtopic ? [{ name: subtopic.label[lang], path: here }] : []),
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: heading,
+    description: blurb,
+    url: canonicalUrl(here),
+    ...(subtopic
+      ? { isPartOf: { '@type': 'CollectionPage', name: topic.label[lang], url: canonicalUrl(topicPath(lang, topic.id)) } }
+      : {}),
+    ...(episodes.length
+      ? {
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: episodes.length,
+            itemListElement: episodes.map((ep, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: ep.data.title,
+              url: canonicalUrl(`${routePath(lang, 'episodes')}${ep.id.replace(/^en\//, '')}/`),
+            })),
+          },
+        }
+      : {}),
+  },
+  breadcrumbList(crumbs),
+];
+
+const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` : heading;
+---
+
+<BaseLayout lang={lang} title={metaTitle} description={blurb} jsonLd={jsonLd}>
+  <div
+    data-content-meta
+    data-topic={topic.id}
+    data-subtopic={subtopic?.id}
+    data-lang={lang}
+    hidden
+  >
+  </div>
+
+  <PageHeader
+    wide
+    eyebrow={subtopic ? topic.label[lang] : en ? 'Topic' : 'Tema'}
+    title={heading}
+    lead={blurb}
+  />
+
+  <section class="section-tight">
+    <div class="container">
+      <nav class="crumbs" aria-label={en ? 'Breadcrumb' : 'Brødsmulesti'}>
+        <a href={routePath(lang, 'topics')}>{t('topic.all')}</a>
+        <span aria-hidden="true">/</span>
+        {
+          subtopic ? (
+            <>
+              <a href={topicPath(lang, topic.id)}>{topic.label[lang]}</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{subtopic.label[lang]}</span>
+            </>
+          ) : (
+            <span aria-current="page">{topic.label[lang]}</span>
+          )
+        }
+      </nav>
+
+      {
+        siblings.length > 0 && (
+          <div class="subnav">
+            <span class="subnav__label">
+              <TopicIcon name={topic.icon} size={17} />
+              {t('topic.subtopics')}
+            </span>
+            <ul>
+              {siblings.map((sub) => (
+                <li>
+                  <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    episodes.length === 0 && (
+      <section class="section">
+        <div class="container container-narrow">
+          <p class="muted empty">{t('topic.empty')}</p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    explained.length > 0 && (
+      <section class="section" aria-labelledby="explained-heading">
+        <div class="container">
+          <div class="row-head">
+            <div>
+              <p class="eyebrow">{seriesExpl.label}</p>
+              <h2 id="explained-heading">{en ? 'Explained' : 'Forklart'}</h2>
+            </div>
+            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'explained')}>
+              {en ? 'All of Explained' : 'Alt i Forklart'}
+            </a>
+          </div>
+          <div class="grid grid-3">
+            {explained.map((ep) => (
+              <EpisodeCard lang={lang} episode={ep} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    conversations.length > 0 && (
+      <section class="section" aria-labelledby="conversations-heading">
+        <div class="container">
+          <div class="row-head">
+            <div>
+              <p class="eyebrow">{seriesConv.label}</p>
+              <h2 id="conversations-heading">{en ? 'Conversations' : 'Samtaler'}</h2>
+            </div>
+            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'conversations')}>
+              {en ? 'All conversations' : 'Alle samtaler'}
+            </a>
+          </div>
+          <div class="grid grid-3">
+            {conversations.map((ep) => (
+              <EpisodeCard lang={lang} episode={ep} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    resources.length > 0 && (
+      <section class="section resources" aria-labelledby="resources-heading">
+        <div class="container">
+          <div class="row-head">
+            <div>
+              <p class="eyebrow">{en ? 'Resources' : 'Ressurser'}</p>
+              <h2 id="resources-heading">{t('topic.resources')}</h2>
+            </div>
+            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'resources')}>
+              {t('resource.all')}
+            </a>
+          </div>
+          <div class="grid grid-3">
+            {resources.map((r) => (
+              <ResourceCard lang={lang} resource={r} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section interest-block">
+    <div class="container container-narrow text-center">
+      <h2>{t('interest.moreHeading')}</h2>
+      <p class="lead mx-auto">{t('interest.moreIntro')}</p>
+      <Interest
+        lang={lang}
+        kind="topic"
+        slug={subtopic?.id ?? topic.id}
+        class="interest-block__btn"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: baseline;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  .crumbs a {
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+  .crumbs a:hover {
+    color: var(--accent-strong);
+  }
+  .crumbs [aria-current='page'] {
+    color: var(--ink);
+  }
+
+  .subnav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1rem;
+    margin-top: 1.4rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+  .subnav__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .subnav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .subnav a {
+    display: inline-block;
+    padding: 0.36rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .subnav a:hover {
+    border-color: var(--line-strong);
+    color: var(--ink);
+  }
+
+  .row-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: clamp(1.8rem, 3.5vw, 2.75rem);
+    padding-bottom: 1.35rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .row-head h2 {
+    margin: 0;
+  }
+  .row-head .eyebrow {
+    margin-bottom: 0.55rem;
+  }
+
+  .resources {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+  .empty {
+    padding: 2rem 0;
+  }
+  .interest-block {
+    border-top: 1px solid var(--line);
+  }
+  .interest-block h2 {
+    max-width: 24ch;
+    margin-inline: auto;
+  }
+  .interest-block .lead {
+    max-width: 52ch;
+  }
+  .interest-block__btn {
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+
+  @media (max-width: 560px) {
+    .row-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+  }
+</style>

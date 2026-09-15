@@ -1,0 +1,26 @@
+---
+import TopicPage from '@/components/pages/TopicPage.astro';
+import { topics } from '@/data/topics';
+import { episodesForSubtopic, resourcesForSubtopic } from '@/lib/content';
+
+/** Undertemaer med minst én oppføring. */
+export async function getStaticPaths() {
+  const paths = [];
+  for (const topic of topics) {
+    for (const sub of topic.subtopics) {
+      const [eps, res] = await Promise.all([
+        episodesForSubtopic('en', sub.id),
+        resourcesForSubtopic('en', sub.id),
+      ]);
+      if (eps.length + res.length > 0) {
+        paths.push({ params: { topic: topic.id, subtopic: sub.id } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { topic, subtopic } = Astro.params;
+---
+
+<TopicPage lang="en" topicId={topic!} subtopicId={subtopic!} />

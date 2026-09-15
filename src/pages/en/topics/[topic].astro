@@ -1,0 +1,20 @@
+---
+import TopicPage from '@/components/pages/TopicPage.astro';
+import { topics } from '@/data/topics';
+import { topicCounts } from '@/lib/content';
+
+/**
+ * Bare temaer med innhold får en side. Et tomt tema er et blindspor, og
+ * søkemotorene skal ikke lokkes til en side uten noe på.
+ */
+export async function getStaticPaths() {
+  const counts = await topicCounts('en');
+  return topics
+    .filter((topic) => (counts.get(topic.id) ?? 0) > 0)
+    .map((topic) => ({ params: { topic: topic.id } }));
+}
+
+const { topic } = Astro.params;
+---
+
+<TopicPage lang="en" topicId={topic!} />
