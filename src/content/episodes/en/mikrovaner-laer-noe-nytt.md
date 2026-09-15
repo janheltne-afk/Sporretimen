@@ -43,8 +43,8 @@ description: >-
 image: /images/episoder/mikrovaner-laer-noe-nytt.jpg
 imageAlt: "Spørretimen Learn something new: atomic habits – small habits, large results"
 links:
-  youtube: https://youtu.be/IMNoHvKTgIM
-  spotify: https://open.spotify.com/episode/3Hx3D5Zu4V7AZkmPPsKTCV
+  youtube: https://youtu.be/jhpxM8EONhk
+  spotify: https://open.spotify.com/episode/41Wre1WIAp4dfvTxWrp0Mv
 sources:
   - title: "James Clear – Atomic Habits"
 related:

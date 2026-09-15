@@ -24,7 +24,14 @@ const jsonLd = [
     name: series.label,
     description: series.blurb,
     url: canonicalUrl(routePath(lang, 'explained')),
-    isPartOf: { '@type': 'PodcastSeries', name: 'Spørretimen', url: canonicalUrl(routePath(lang, 'home')) },
+    mainEntity: {
+      '@type': 'PodcastSeries',
+      name: series.label,
+      description: series.blurb,
+      url: canonicalUrl(routePath(lang, 'explained')),
+      sameAs: Object.values(series.channels),
+      author: { '@type': 'Person', name: 'Jan Sindre Heltne', url: canonicalUrl(routePath(lang, 'profile')) },
+    },
   },
   breadcrumbList([
     { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },

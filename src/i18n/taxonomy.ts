@@ -17,11 +17,19 @@ type Text = Record<Locale, string>;
  * De to innholdssporene. Serien utledes av formatet – `samtale` hører til
  * Spørretimen, alt annet til Spørretimen Forklart – så den lagres ikke i
  * frontmatter. Ett sted å endre, ingen mulighet for at de spriker.
+ *
+ * `channels` er seriens egne kanaler. Brukes i bunnteksten, i sameAs og som
+ * partOfSeries på episodene.
  */
 export const seriesList = [
   {
     id: 'sporretimen',
     label: { no: 'Spørretimen', en: 'Spørretimen' } as Text,
+    channels: {
+      youtube: 'https://www.youtube.com/@Spørretimen',
+      spotify: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa',
+      apple: 'https://podcasts.apple.com/no/podcast/sp%C3%B8rretimen/id6795102836',
+    },
     kicker: { no: 'Samtalene', en: 'The conversations' } as Text,
     blurb: {
       no: 'Lange samtaler med mennesker med interessante erfaringer, historier, yrker og kunnskap.',
@@ -31,6 +39,11 @@ export const seriesList = [
   {
     id: 'sporretimen-forklart',
     label: { no: 'Spørretimen Forklart', en: 'Spørretimen Explained' } as Text,
+    // Egen kanal og eget show – de to seriene er to podkaster, ikke én.
+    channels: {
+      youtube: 'https://www.youtube.com/@Spørretimenforklart',
+      spotify: 'https://open.spotify.com/show/1MxYZUg9LqXJxyZnFUkIIz',
+    },
     kicker: { no: 'Ideene', en: 'The ideas' } as Text,
     blurb: {
       no: 'Økonomi, teknologi, psykologi, bøker og andre temaer forklart forståelig.',
@@ -49,7 +62,7 @@ export function seriesOf(format: string): SeriesId {
 export function seriesById(lang: Locale, id: string) {
   const s = seriesList.find((x) => x.id === id);
   if (!s) return undefined;
-  return { id: s.id, label: s.label[lang], kicker: s.kicker[lang], blurb: s.blurb[lang] };
+  return { id: s.id, label: s.label[lang], kicker: s.kicker[lang], blurb: s.blurb[lang], channels: s.channels };
 }
 
 export const formats = [

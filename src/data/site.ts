@@ -91,6 +91,9 @@ export const nav: { label: string; href: string }[] = [
 export const socials: { label: string; url: string | null; handle?: string }[] = [
   { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
+  // Spørretimen Forklart har egen kanal og eget show.
+  { label: 'YouTube – Forklart', url: 'https://www.youtube.com/@Spørretimenforklart', handle: '@Spørretimenforklart' },
+  { label: 'Spotify – Forklart', url: 'https://open.spotify.com/show/1MxYZUg9LqXJxyZnFUkIIz' },
   {
     label: 'Apple Podcasts',
     url: 'https://podcasts.apple.com/no/podcast/sp%C3%B8rretimen/id6795102836',

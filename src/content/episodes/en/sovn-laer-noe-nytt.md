@@ -43,8 +43,8 @@ description: >-
 image: /images/episoder/sovn-laer-noe-nytt.jpg
 imageAlt: "Spørretimen Learn something new: sleep – how to sleep better"
 links:
-  youtube: https://youtu.be/_dRfc0M_b34
-  spotify: https://open.spotify.com/episode/6gxALpHNof3c3hXMwv5GRX
+  youtube: https://youtu.be/XuqW2rS8oKU
+  spotify: https://open.spotify.com/episode/4kXPuEUYfsrOGIgbFHldbk
 sources:
   - title: "Matthew Walker – Why We Sleep"
   - title: "Andrew Huberman – Huberman Lab, the episode on sleep"

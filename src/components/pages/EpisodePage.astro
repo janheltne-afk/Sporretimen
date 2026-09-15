@@ -85,7 +85,12 @@ const episodeJsonLd = {
   ...(d.publishDate ? { datePublished: d.publishDate.toISOString() } : {}),
   ...(d.image ? { image: absoluteUrl(d.image) } : {}),
   ...(keywords.length ? { keywords: keywords.join(', ') } : {}),
-  partOfSeries: { '@type': 'PodcastSeries', name: site.name, url: canonicalUrl(routePath(lang, 'home')) },
+  partOfSeries: {
+    '@type': 'PodcastSeries',
+    name: series.label,
+    url: canonicalUrl(routePath(lang, seriesId === 'sporretimen' ? 'conversations' : 'explained')),
+    sameAs: Object.values(series.channels),
+  },
   author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
   ...(guest
     ? {

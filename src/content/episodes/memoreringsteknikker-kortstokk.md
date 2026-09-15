@@ -35,8 +35,8 @@ description: >-
 image: /images/episoder/memorering-laer-noe-nytt.jpg
 imageAlt: "Spørretimen Lær noe nytt: Memoreringsteknikker – lær å memorere en kortstokk"
 links:
-  youtube: https://youtu.be/JMAWf7hJT-o
-  spotify: https://open.spotify.com/episode/6NKXd3VkGM9MKhIySnpAtC
+  youtube: https://youtu.be/LJEGXeL5cy8
+  spotify: https://open.spotify.com/episode/2XqUwS6y5TqNIZ17SDl8a2
 featured: true
 popularityScore: 8
 related:
