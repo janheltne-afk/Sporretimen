@@ -94,6 +94,31 @@ sa, river den, og later som du har vunnet.
 > — Jeg mener fartsgrensen bør senkes i boligfelt.
 > — Så du vil at alle skal kjøre i gangfart overalt?
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Stråmannen, satt opp mot hverandre</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Det som ble sagt</p>
+      <h4>Senk farten i boligfelt</h4>
+      <ul>
+        <li>Gjelder ett bestemt sted</li>
+        <li>Sier ingenting om andre veier</li>
+        <li>Ingen tallfesting</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Det som ble besvart</p>
+      <h4>Gangfart overalt</h4>
+      <ul>
+        <li>Gjelder alle veier</li>
+        <li>Et ytterpunkt ingen foreslo</li>
+        <li>Lett å avvise</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Stråmannen flytter påstanden til et sted den aldri var, og river den der. Legg merke til at den høyre versjonen er lettere å være uenig i – det er hele hensikten.</figcaption>
+</figure>
+
 Det siste er ikke det som ble sagt. Og her er poenget som ofte glemmes:
 stråmannen er som regel ikke ond vilje. Vi hører det vi forventer å høre, og
 lager en versjon av motparten som er lettere å være uenig med.
@@ -112,10 +137,20 @@ Men her må man være presis, for **ad hominem er ikke alltid en feilslutning.**
 Den er det når egenskapen er irrelevant for påstanden. Er den relevant, er den
 et legitimt poeng:
 
-- «Han tar feil om klima fordi han er en dårlig far» – feilslutning.
-- «Rapporten er betalt av bransjen den vurderer» – *ikke* en feilslutning. Det
-  er relevant informasjon om troverdighet, og noe enhver journalist skal
-  opplyse om.
+<figure class="fig fig--matrix">
+  <p class="fig__title">Når personen er relevant, og når hen ikke er det</p>
+  <table>
+    <thead>
+      <tr><th scope="col">Påstand om personen</th><th scope="col">Har det med saken å gjøre?</th><th scope="col">Dom</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">«Han er en dårlig far»</th><td>Nei. Farsrollen sier ingenting om klimaforskning.</td><td>Feilslutning</td></tr>
+      <tr><th scope="row">«Rapporten er betalt av bransjen den vurderer»</th><td>Ja. Interessekonflikt påvirker hvor mye vekt en vurdering fortjener.</td><td>Gyldig poeng</td></tr>
+      <tr><th scope="row">«Hun har aldri jobbet i feltet»</th><td>Kommer an på. Relevant for erfaringsbasert kunnskap, mindre for et regnestykke.</td><td>Vurderes</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Samme grep, tre ulike utfall. Testen er aldri «angriper de personen?», men «har egenskapen noe med påstanden å gjøre?».</figcaption>
+</figure>
 
 Skillet går på om egenskapen har noe med saken å gjøre.
 
@@ -131,6 +166,17 @@ ikke ut brubæreevnen selv. Feilslutningen oppstår i tre tilfeller:
 - **Ingen reell autoritet.** Titler som høres tunge ut uten å bety noe.
 - **Enighet finnes ikke.** Én forsker presenteres som «forskningen viser», mens
   fagfeltet er delt.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Tre spørsmål før du stoler på en autoritet</p>
+  <ol>
+    <li><span class="fig__box"><b>Er personen ekspert på akkurat dette?</b><small>Ikke på noe i nærheten – på akkurat denne påstanden.</small></span></li>
+    <li><span class="fig__box"><b>Er autoriteten reell?</b><small>Hva ligger bak tittelen? Utdanning, publikasjoner, praksis?</small></span></li>
+    <li><span class="fig__box"><b>Er fagfeltet enig?</b><small>Én forsker er ikke «forskningen». Er dette bredden eller et ytterpunkt?</small></span></li>
+    <li><span class="fig__box"><b>Tre ja gir god grunn til å stole på det</b><small>Ett nei betyr ikke at påstanden er feil – bare at autoriteten ikke avgjør den.</small></span></li>
+  </ol>
+  <figcaption>Å vise til eksperter er normal tenkning. Feilslutningen oppstår først når ett av de tre første svarene er nei, og man likevel bruker autoriteten som argument.</figcaption>
+</figure>
 
 Tommelfingerregel: se etter om personen er ekspert på *akkurat dette*, og om
 hen representerer bredden i feltet eller et ytterpunkt.
@@ -153,6 +199,23 @@ Her er nyansen som stort sett mangler: **et skråplan er bare en feilslutning
 når årsakskjeden ikke er begrunnet.** Kan du vise at hvert steg faktisk følger
 av det forrige, er det et helt gyldig argument – og den typen resonnement
 brukes daglig i jus, sikkerhetsarbeid og politikk.
+
+<figure class="fig fig--flow">
+  <p class="fig__title">To skråplan, samme form</p>
+  <p class="fig__row">Leddene holder</p>
+  <ol>
+    <li><span class="fig__box"><b>A</b><small>Steget er begrunnet</small></span></li>
+    <li><span class="fig__box"><b>B</b><small>Steget er begrunnet</small></span></li>
+    <li><span class="fig__box"><b>C</b><small>Gyldig argument</small></span></li>
+  </ol>
+  <p class="fig__row">Leddene holder ikke</p>
+  <ol>
+    <li><span class="fig__box"><b>A</b><small>Steget er begrunnet</small></span></li>
+    <li><span class="fig__box"><b>?</b><small>Ingen begrunnelse</small></span></li>
+    <li><span class="fig__box"><b>Z</b><small>Feilslutning</small></span></li>
+  </ol>
+  <figcaption>Formen er identisk. Forskjellen ligger i om hvert ledd faktisk følger av det forrige, eller om det bare påstås at det gjør det.</figcaption>
+</figure>
 
 Spørsmålet er aldri «bruker de skråplan?», men «holder leddene i kjeden?».
 
@@ -230,6 +293,11 @@ forsiktige – og når angrepet er over, er man tilbake i borgen.
 ## Feilslutningsfeilslutningen
 
 Den viktigste, og den som gjør hele lista farlig å lære seg.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Et dårlig argument for noe riktig er fortsatt et dårlig argument – og påstanden er fortsatt riktig.</p>
+  <p class="fig__example"><b>Eksempel:</b> «Jorda er rund fordi bestemor sa det.» Argumentet holder ikke. Jorda er rund likevel.</p>
+</figure>
 
 **At et argument er dårlig, betyr ikke at konklusjonen er feil.** Bruker noen
 en stråmann for å forsvare et standpunkt, kan standpunktet likevel være

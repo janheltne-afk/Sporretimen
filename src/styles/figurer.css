@@ -1,0 +1,468 @@
+/**
+ * Figurer i forklaringsinnhold.
+ *
+ * Et lite, fast vokabular som brukes i Markdown-filene. Poenget er at selve
+ * figuren er semantisk HTML – lister, tabeller, definisjonslister – slik at
+ * den gir mening for skjermlesere og i utdrag, mens utseendet ligger her.
+ * Endrer du noe i denne fila, endrer du alle figurene på nettstedet.
+ *
+ * Vokabularet:
+ *   .fig--compare   to eller tre spalter satt opp mot hverandre
+ *   .fig--flow      steg med piler mellom
+ *   .fig--cycle     en runddans av tre til fire ledd
+ *   .fig--scale     en akse med merker på
+ *   .fig--rings     konsentriske ringer, innerst er kjernen
+ *   .fig--matrix    to ganger to
+ *   .fig--chart     kurve, tegnet som SVG
+ *   .fig--rule      en regel med eksempel under
+ *
+ * Alle skal ha <figcaption> med en setning som forklarer hva man ser.
+ */
+
+.fig {
+  margin: clamp(1.8rem, 4vw, 2.6rem) 0;
+}
+.fig figcaption,
+figcaption.fig__caption {
+  margin-top: 0.85rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 62ch;
+}
+/* Overskriften over selve figuren, når den trengs. */
+.fig__title {
+  margin: 0 0 0.9rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------------- sammenligning */
+
+.fig--compare .fig__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.fig--compare .fig__col {
+  background: var(--surface);
+  padding: 1.25rem 1.3rem 1.4rem;
+}
+/* Den ene siden kan markeres som «dette er poenget». */
+.fig--compare .fig__col[data-accent] {
+  background: var(--accent-soft);
+}
+.fig--compare .fig__col h4 {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.fig--compare .fig__lead {
+  margin: 0 0 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.fig--compare ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.fig--compare li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.fig--compare li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* -------------------------------------------------------------------- flyt */
+
+.fig--flow ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.55rem;
+}
+.fig--flow li {
+  flex: 1 1 150px;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.fig--flow .fig__box {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.fig--flow .fig__box b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+.fig--flow .fig__box small {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+/* Pila settes med ::after på alle unntatt siste ledd. */
+.fig--flow li:not(:last-child)::after {
+  content: '→';
+  flex: none;
+  color: var(--line-strong);
+  font-size: 1.1rem;
+}
+/* Går den nedover i stedet, peker pila nedover. Strammere enn den vannrette:
+   loddrett flyt blir fort en lang søyle med luft i. */
+.fig--flow[data-dir='ned'] ol {
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.fig--flow[data-dir='ned'] li {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+  /* Snus retningen, gjelder flex-basis høyden. Uten dette blir hver boks
+     150 piksler høy uansett hvor lite tekst den har i seg. */
+  flex: 0 0 auto;
+}
+.fig--flow[data-dir='ned'] .fig__box {
+  padding: 0.7rem 0.95rem;
+}
+.fig--flow[data-dir='ned'] li:not(:last-child)::after {
+  content: '↓';
+  align-self: center;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* Flere rader i samme flytfigur kan merkes, f.eks. «holder» / «holder ikke». */
+.fig--flow .fig__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.fig--flow .fig__row + ol {
+  margin-bottom: 1.1rem;
+}
+
+/* ------------------------------------------------------------------ syklus */
+
+.fig--cycle ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 0.55rem;
+}
+.fig--cycle li {
+  position: relative;
+  padding: 1rem 1.05rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.fig--cycle .fig__step {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent-strong);
+  margin-bottom: 0.3rem;
+}
+.fig--cycle b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.02rem;
+  margin-bottom: 0.2rem;
+}
+.fig--cycle small {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--ink-faint);
+}
+/* En liten pil som viser at det går rundt. */
+.fig--cycle .fig__loop {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------- skala */
+
+.fig--scale .fig__axis {
+  position: relative;
+  height: 1px;
+  background: var(--line-strong);
+  margin: 2.6rem 0.5rem 0;
+}
+.fig--scale .fig__mark {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  width: max-content;
+  max-width: 11rem;
+}
+.fig--scale .fig__mark::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 10px;
+  background: var(--line-strong);
+  margin: -5px auto 0.5rem;
+}
+.fig--scale .fig__mark b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.fig--scale .fig__mark small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+.fig--scale .fig__ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5.2rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ------------------------------------------------------------------ ringer */
+
+.fig--rings .fig__rings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.fig--rings .fig__ring {
+  width: 100%;
+  max-width: 34rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  text-align: center;
+}
+.fig--rings .fig__ring:first-child {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.fig--rings .fig__ring:last-child {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.fig--rings .fig__ring + .fig__ring {
+  border-top: 0;
+}
+/* Kjernen er den som betyr noe, og skal se slik ut. */
+.fig--rings .fig__ring[data-core] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.fig--rings .fig__ring b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.fig--rings .fig__ring small {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ matrise */
+
+.fig--matrix table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.fig--matrix th,
+.fig--matrix td {
+  border: 1px solid var(--line);
+  padding: 0.85rem 0.95rem;
+  text-align: left;
+  vertical-align: top;
+}
+.fig--matrix thead th {
+  background: var(--surface-2);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.fig--matrix tbody th {
+  background: var(--surface);
+  font-family: var(--font-display);
+  font-weight: 500;
+  width: 9rem;
+}
+.fig--matrix td {
+  color: var(--ink-soft);
+}
+
+/* -------------------------------------------------------------------- kurve */
+
+.fig--chart .fig__plot {
+  width: 100%;
+  height: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.fig--chart .fig__grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.fig--chart .fig__axisline {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+.fig--chart .fig__line {
+  fill: none;
+  stroke: var(--accent-strong);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fig--chart .fig__line--muted {
+  stroke: var(--ink-faint);
+  stroke-dasharray: 4 4;
+  stroke-width: 1.5;
+}
+.fig--chart .fig__label {
+  fill: var(--ink-faint);
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+.fig--chart .fig__label--strong {
+  fill: var(--ink);
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------------- regel */
+
+.fig--rule {
+  padding: 1.1rem 1.3rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.fig--rule .fig__claim {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.fig--rule .fig__example {
+  margin: 0.7rem 0 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.fig--rule .fig__example b {
+  color: var(--ink);
+}
+
+/* .prose setter padding, marger og punkttegn på alle lister. Figurene har
+   sitt eget oppsett, så det nullstilles her – ellers legger prose-reglene
+   seg oppå og innrykket blir feil. */
+.prose .fig :is(ul, ol) {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.prose .fig li {
+  margin: 0;
+  padding-left: 0;
+}
+.prose .fig--compare li {
+  padding-left: 0.95rem;
+}
+.prose .fig > figcaption,
+.prose .fig table {
+  margin: 0;
+}
+.prose .fig p {
+  margin: 0;
+}
+.prose .fig--rule .fig__example {
+  margin-top: 0.7rem;
+}
+.prose .fig .fig__title {
+  margin-bottom: 0.9rem;
+}
+.prose .fig > figcaption {
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 560px) {
+  .fig--flow li:not(:last-child)::after {
+    content: '↓';
+    align-self: center;
+  }
+  .fig--flow li {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+  }
+  .fig--scale .fig__mark {
+    max-width: 7rem;
+  }
+  .fig--scale .fig__mark small {
+    display: none;
+  }
+}
