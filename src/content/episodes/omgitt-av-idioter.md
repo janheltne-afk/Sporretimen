@@ -76,7 +76,21 @@ tittelen har et ganske tydelig svar.
   alle skal ha det bra.
 - **Blå.** Analytisk, nøyaktig, forsiktig. Vil ha tallene, og vil ha dem riktig.
 
-Praktisk går boken gjennom hvordan man snakker til hver farge: kort og direkte
+Praktisk går boken gjennom hvordan man snakker til hver farge
+
+<figure class="fig fig--matrix">
+  <p class="fig__title">De fire fargene, slik boka setter dem opp</p>
+  <table>
+    <thead><tr><th scope="col">Farge</th><th scope="col">Kjennetegn</th><th scope="col">Bokas råd om hvordan du snakker til dem</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Rød</th><td>Rask, direkte, resultatorientert</td><td>Kort og direkte. Konklusjonen først.</td></tr>
+      <tr><th scope="row">Gul</th><td>Utadvendt, entusiastisk, snakkesalig</td><td>Lytt. La dem snakke.</td></tr>
+      <tr><th scope="row">Grønn</th><td>Rolig, lojal, samarbeidsvillig</td><td>Ikke overrask. Varsle endringer.</td></tr>
+      <tr><th scope="row">Blå</th><td>Analytisk, nøyaktig, forsiktig</td><td>Gi dokumentasjon og tall.</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Dette er modellen slik den presenteres. Om den beskriver personlighet – eller bare er lett å kjenne seg igjen i – er spørsmålet resten av episoden handler om.</figcaption>
+</figure>: kort og direkte
 til rød, lytt og la gul snakke, ikke overrask grønn, og gi blå dokumentasjon.
 
 ## Hvor modellen kommer fra
@@ -109,7 +123,24 @@ kjenne seg igjen i.
 Personlighetspsykologien har landet på **femfaktormodellen** – ofte kalt Big
 Five: åpenhet, planmessighet, utadvendthet, omgjengelighet og nevrotisisme.
 
-Den avgjørende forskjellen er ikke antallet. Det er at femfaktormodellen måler
+Den avgjørende forskjellen er ikke antallet.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Typer mot grader</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Fargemodellen</p>
+      <h4>Fire typer</h4>
+      <ul><li>Du «er» en farge</li><li>Fire bokser, alle havner i én</li><li>Nesten hundre år gammel ramme</li><li>Lett å huske</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Femfaktormodellen</p>
+      <h4>Fem grader</h4>
+      <ul><li>Du skårer et sted på hver skala</li><li>De fleste ligger på midten</li><li>Det fagfeltet faktisk bruker</li><li>Vanskeligere å huske, mer presis</li></ul>
+    </div>
+  </div>
+  <figcaption>Å si at noen «er rød» er omtrent som å dele befolkningen i «høye» og «lave» og behandle det som to arter.</figcaption>
+</figure> Det er at femfaktormodellen måler
 **grader** på fem skalaer, ikke **typer**. Folk fordeler seg langs kontinuumer
 med de fleste på midten, ikke i fire bokser. Å si at noen «er rød» er omtrent som
 å dele befolkningen i «høye» og «lave» og behandle det som to arter.

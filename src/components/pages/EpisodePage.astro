@@ -558,7 +558,10 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
   }
   .episode__layout {
     display: grid;
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr), ikke 1fr: et 1fr-spor har min-content som minstemål, så
+       ett bredt element – en tabell, en figur – drar hele sporet bredere enn
+       skjermen og gir sidelengs rulling på hele siden. */
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3.5rem);
   }
   .episode__content {

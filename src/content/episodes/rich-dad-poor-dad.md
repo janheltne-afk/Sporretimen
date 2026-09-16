@@ -76,6 +76,20 @@ vedlikehold og kommunale avgifter, tar penger ut av lomma hver måned. En bil
 gjør det samme. Etter Kiyosakis definisjon er de dermed gjeld, uansett hvor mye
 de er verdt på papiret.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Kiyosakis test – hvilken vei går pengene?</p>
+  <table>
+    <thead><tr><th scope="col">Ting</th><th scope="col">Hva den gjør med lomma di hver måned</th><th scope="col">Etter hans definisjon</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Utleiebolig med positiv kontantstrøm</th><td>Putter penger inn</td><td>Eiendel</td></tr>
+      <tr><th scope="row">Boligen du bor i, med lån</th><td>Tar penger ut – renter, forsikring, vedlikehold, avgifter</td><td>Gjeld</td></tr>
+      <tr><th scope="row">Bilen</th><td>Tar penger ut, og faller i verdi</td><td>Gjeld</td></tr>
+      <tr><th scope="row">Aksjer med utbytte</th><td>Putter penger inn</td><td>Eiendel</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Dette er ikke regnskapsspråk – der er boligen en eiendel og lånet en gjeld, hver for seg. Kiyosaki bruker ordene på sin egen måte, og det er noe av det fagfolk reagerer på. Poenget hans er praktisk: se på kontantstrømmen, ikke på merkelappen.</figcaption>
+</figure>
+
 Merk at dette **ikke** er den regnskapsmessige definisjonen. I et regnskap er
 boligen en eiendel og lånet en gjeld, hver for seg. Kiyosaki bruker ordene på
 sin egen måte, og det er en av tingene fagfolk reagerer på. Poenget hans er

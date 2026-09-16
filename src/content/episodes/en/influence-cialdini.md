@@ -81,6 +81,22 @@ that they can be triggered deliberately.
 - **Scarcity.** What is hard to get seems worth more. “Only three left” and
   “offer ends tonight” are loss aversion in practice.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">The six, and how each one feels</p>
+  <table>
+    <thead><tr><th scope="col">Principle</th><th scope="col">How you meet it</th><th scope="col">How you recognise it</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Reciprocity</th><td>Free sample, a pen in the post</td><td>You were given something you did not ask for</td></tr>
+      <tr><th scope="row">Commitment</th><td>“Could you just confirm you are interested?”</td><td>A small yes early, a large yes later</td></tr>
+      <tr><th scope="row">Social proof</th><td>“Best seller”, a full restaurant</td><td>You are uncertain, and look at what others do</td></tr>
+      <tr><th scope="row">Liking</th><td>Compliments, shared interests</td><td>You like the seller better than the product</td></tr>
+      <tr><th scope="row">Authority</th><td>Titles, uniforms, white coats</td><td>You do not check whether the expertise is relevant</td></tr>
+      <tr><th scope="row">Scarcity</th><td>“Only three left”, “ends tonight”</td><td>You feel a time pressure that does not come from you</td></tr>
+    </tbody>
+  </table>
+  <figcaption>The common thread down the right-hand column: you feel a pressure to say yes that does not come from the matter itself. That is the shortcut firing, not your judgement.</figcaption>
+</figure>
+
 In the revised 2021 edition Cialdini added a seventh: **unity** – that we say
 yes to those we experience as part of *us*.
 

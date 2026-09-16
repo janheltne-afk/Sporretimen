@@ -52,6 +52,11 @@ Det er den enkleste regelen i **Trachtenberg-systemet**, og et greit sted å beg
 Men systemet er langt større enn 11-gangen. Det er et helt oppsett for å regne i
 hodet, der gangetabellen byttes ut med korte oppskrifter du følger siffer for siffer.
 
+<figure class="fig fig--rule">
+  <p class="fig__claim">× 11: legg hvert siffer sammen med sifferet til høyre for det.</p>
+  <p class="fig__example"><b>3 425 × 11:</b> Med en null foran blir tallet 03425. Fra høyre: 5 + 0 = <b>5</b>. 2 + 5 = <b>7</b>. 4 + 2 = <b>6</b>. 3 + 4 = <b>7</b>. 0 + 3 = <b>3</b>. Lest ovenfra: <b>37 675</b>. Ingen gangetabell brukt underveis.</p>
+</figure>
+
 ## Slik leser du reglene
 
 Alle reglene bruker det samme maskineriet, og det er verdt å ha klart før du ser på
@@ -65,6 +70,18 @@ dem enkeltvis:
 - **«Halve»** betyr halvparten rundet ned. Halve 7 er 3.
 - **Blir resultatet tosifret**, skriver du siste siffer og tar resten i mente til
   neste posisjon, akkurat som i vanlig oppstilt regning.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Maskineriet som går igjen i alle reglene</p>
+  <ol>
+    <li><span class="fig__box"><b>Skriv en null foran</b><small>344 blir 0344. Nullen er en egen posisjon du også regner på, og det er den som gir svaret sitt første siffer.</small></span></li>
+    <li><span class="fig__box"><b>Start ytterst til høyre</b><small>Ett siffer om gangen, mot venstre. Aldri to i hodet samtidig.</small></span></li>
+    <li><span class="fig__box"><b>Finn naboen</b><small>Naboen er alltid sifferet til høyre for det du står på. Det ytterste til høyre har ingen – der regner du med 0.</small></span></li>
+    <li><span class="fig__box"><b>Bruk regelen for gangetallet</b><small>Dobling, halvering, eller «det du mangler opp til 9 eller 10». Halve betyr alltid rundet ned: halve 7 er 3.</small></span></li>
+    <li><span class="fig__box"><b>Skriv siste siffer, ta resten i mente</b><small>Blir svaret tosifret, går menten videre til neste posisjon – akkurat som i vanlig oppstilt regning.</small></span></li>
+  </ol>
+  <figcaption>Alle de ti reglene lenger nede bruker akkurat dette oppsettet. Det eneste som endrer seg fra gangetall til gangetall, er hva du gjør i det fjerde leddet.</figcaption>
+</figure>
 
 ## Reglene, siffer for siffer
 
@@ -123,6 +140,20 @@ ledende nullen på plass, altså 0344:
 Lest ovenfra: **2 064**. Ingen gangetabell underveis – bare halvering, tillegg og
 mente.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">344 × 6, posisjon for posisjon</p>
+  <table>
+    <thead><tr><th scope="col">Posisjon</th><th scope="col">Siffer</th><th scope="col">Nabo</th><th scope="col">Regnestykke</th><th scope="col">Skriver</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1 (ytterst t.h.)</th><td>4</td><td>ingen → 0</td><td>4 + 0, partall</td><td>4</td></tr>
+      <tr><th scope="row">2</th><td>4</td><td>4</td><td>4 + 2, partall</td><td>6</td></tr>
+      <tr><th scope="row">3</th><td>3</td><td>4</td><td>3 + 2 + 5, oddetall → 10</td><td>0, én i mente</td></tr>
+      <tr><th scope="row">4 (ledende null)</th><td>0</td><td>3</td><td>0 + 1 + mente</td><td>2</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Regelen for 6 er «sifferet selv, pluss halve naboen, pluss 5 hvis sifferet er oddetall». Lest nedenfra og opp gir kolonnen til høyre <b>2 064</b>. Det største du har måttet holde i hodet underveis, er tallet 10.</figcaption>
+</figure>
+
 ## Når ingen enkeltregel passer
 
 Sifferreglene dekker 2 til 12. For alt annet har systemet en **generell metode**,
@@ -139,6 +170,16 @@ Og det har en **sifferkontroll**: du legger sammen sifrene i hvert tall, reduser
 til ett siffer, og sammenligner med svaret ditt behandlet på samme måte. Stemmer
 det ikke, har du gjort en feil. Men merk at det motsatte ikke holder – kontrollen
 fanger de fleste feil, ikke alle. Den er en test, ikke et bevis.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Sifferkontrollen</p>
+  <ol>
+    <li><span class="fig__box"><b>Legg sammen sifrene i hvert tall</b><small>344 gir 3 + 4 + 4 = 11, og 11 gir 1 + 1 = 2. Gangetallet 6 er allerede ett siffer.</small></span></li>
+    <li><span class="fig__box"><b>Gjør det samme med de to kontrolltallene</b><small>2 × 6 = 12, og 12 gir 1 + 2 = 3.</small></span></li>
+    <li><span class="fig__box"><b>Behandle svaret ditt likt</b><small>2 064 gir 2 + 0 + 6 + 4 = 12, som gir 3. Samme tall – svaret består kontrollen.</small></span></li>
+  </ol>
+  <figcaption>Kontrollen er rask nok til at den er verdt å gjøre hver gang. Men den fanger de fleste feil, ikke alle: bytter du om på to siffer i svaret, blir sifferssummen den samme. Det er en test, ikke et bevis.</figcaption>
+</figure>
 
 ## Hvorfor virker det?
 

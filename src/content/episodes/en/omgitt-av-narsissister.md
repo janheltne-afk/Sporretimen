@@ -87,6 +87,23 @@ accounts.
   offended. This form does not look self-assured at all, and is therefore rarely
   spotted.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Two forms, one core</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Grandiose</p>
+      <h4>What people picture</h4>
+      <ul><li>Self-assured, dominant</li><li>Demands attention</li><li>Meets criticism with aggression</li><li>Easy to spot</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Vulnerable</p>
+      <h4>The one rarely spotted</h4>
+      <ul><li>Insecure, sensitive, withdrawn</li><li>Easily offended</li><li>Meets criticism with collapse</li><li>Does not look self-assured at all</li></ul>
+    </div>
+  </div>
+  <figcaption>The core is the same in both: a fragile self-image that has to be propped up from outside. That is not high self-esteem – it is self-esteem that tolerates very little.</figcaption>
+</figure>
+
 The common denominator is not high self-esteem. It is self-esteem that tolerates
 very little, and has to be propped up from outside.
 

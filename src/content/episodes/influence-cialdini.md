@@ -82,6 +82,22 @@ utløses med vilje.
 - **Knapphet.** Det som er vanskelig å få, virker mer verdt. «Kun tre igjen» og
   «tilbudet går ut i kveld» er tapsaversjon i praksis.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">De seks, med hvordan de kjennes</p>
+  <table>
+    <thead><tr><th scope="col">Prinsipp</th><th scope="col">Slik møter du det</th><th scope="col">Slik kjenner du det igjen</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Gjensidighet</th><td>Gratis smaksprøve, kulepenn i posten</td><td>Du fikk noe du ikke ba om</td></tr>
+      <tr><th scope="row">Forpliktelse</th><td>«Kan du bare bekrefte at du er interessert?»</td><td>En liten ja tidlig, en stor ja senere</td></tr>
+      <tr><th scope="row">Sosialt bevis</th><td>«Mest solgt», fulle restauranter</td><td>Du er usikker, og ser på hva andre gjør</td></tr>
+      <tr><th scope="row">Sympati</th><td>Komplimenter, felles interesser</td><td>Du liker selgeren bedre enn produktet</td></tr>
+      <tr><th scope="row">Autoritet</th><td>Titler, uniformer, hvite frakker</td><td>Du sjekker ikke om ekspertisen er relevant</td></tr>
+      <tr><th scope="row">Knapphet</th><td>«Kun tre igjen», «går ut i kveld»</td><td>Du kjenner et tidspress som ikke kommer fra deg</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Fellesnevneren i høyre spalte: du kjenner et trykk til å si ja som ikke kommer fra selve saken. Det er snarveien som er aktivert, ikke vurderingen din.</figcaption>
+</figure>
+
 I den reviderte utgaven fra 2021 la Cialdini til et syvende: **samhørighet** –
 at vi sier ja til dem vi opplever som en del av *oss*.
 

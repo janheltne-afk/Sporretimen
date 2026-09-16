@@ -84,6 +84,20 @@ Warren Buffetts formue er ikke først og fremst et resultat av at avkastningen
 hans var høyest. Den er et resultat av at han har investert i over åtti år.
 Regnestykket er brutalt enkelt: å doble tiden gjør mer enn å doble avkastningen.
 
+<figure class="fig fig--chart">
+  <p class="fig__title">Tid slår avkastning</p>
+  <svg class="fig__plot" viewBox="0 0 520 230" role="img" aria-label="To kurver for renters rente. Den ene har høy avkastning over kort tid og stiger bratt i begynnelsen, men stopper tidlig. Den andre har lavere avkastning over lang tid og ender langt høyere.">
+    <line class="fig__axisline" x1="45" y1="200" x2="495" y2="200" />
+    <line class="fig__axisline" x1="45" y1="18" x2="45" y2="200" />
+    <path class="fig__line fig__line--muted" d="M45 200 C 90 180, 120 150, 155 120" />
+    <path class="fig__line" d="M45 200 C 180 196, 300 170, 380 120 C 440 80, 470 46, 495 28" />
+    <text class="fig__label" x="160" y="114">Høy avkastning, kort tid</text>
+    <text class="fig__label fig__label--strong" x="490" y="24" text-anchor="end">Lavere avkastning, lang tid</text>
+    <text class="fig__label" x="270" y="219" text-anchor="middle">Tid →</text>
+  </svg>
+  <figcaption>Buffetts formue kommer ikke først og fremst av at avkastningen var høyest, men av at han har investert i over åtti år. Å doble tiden gjør mer enn å doble avkastningen.</figcaption>
+</figure>
+
 Det er også grunnen til at det viktigste spørsmålet ikke er «hva skal jeg
 kjøpe», men «hvordan kan jeg klare å stå i dette lenge nok».
 
@@ -92,6 +106,23 @@ kjøpe», men «hvordan kan jeg klare å stå i dette lenge nok».
 De to krever motsatte egenskaper. Å bygge opp noe krever risiko, optimisme og
 at du satser. Å beholde det krever ydmykhet, forsiktighet og at du regner med
 at noe går galt.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">To ferdigheter som trekker i hver sin retning</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Å bli rik</p>
+      <h4>Krever at du satser</h4>
+      <ul><li>Risiko</li><li>Optimisme</li><li>Å tåle å ta feil</li><li>Å gå inn i noe usikkert</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Å forbli rik</p>
+      <h4>Krever at du lar være</h4>
+      <ul><li>Ydmykhet</li><li>Forsiktighet</li><li>Å regne med at noe går galt</li><li>Å ikke gjøre noe</li></ul>
+    </div>
+  </div>
+  <figcaption>Egenskapene som fikk noen dit, er ikke de samme som holder dem der. Det er derfor historiene om store gevinster som forsvant igjen, er så mange.</figcaption>
+</figure>
 
 Derfor er det så mange historier om folk som tjente store penger og mistet dem
 igjen. Ferdigheten som fikk dem dit, er ikke den som holder dem der.

@@ -64,6 +64,23 @@ likes you slightly less. Carnegie opens with stories of criminals who insisted
 to the end that they had acted rightly, and the point is that if they will not
 take criticism, neither will your colleague.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">What criticism does, and what it does not</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">What you hope happens</p>
+      <h4>Changed behaviour</h4>
+      <ul><li>The person sees the mistake</li><li>Takes it on board</li><li>Does it differently next time</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">What actually happens</p>
+      <h4>Defence</h4>
+      <ul><li>The person justifies what they did</li><li>Looks for reasons you are wrong</li><li>Likes you slightly less</li></ul>
+    </div>
+  </div>
+  <figcaption>Carnegie opens with stories of criminals who insisted to the end that they had acted rightly. The point is simple: if they will not take criticism, neither will your colleague.</figcaption>
+</figure>
+
 The alternative is not to let everything pass. It is to start with what is
 genuinely good, to talk about your own mistakes before others', and to let the
 other person save face.

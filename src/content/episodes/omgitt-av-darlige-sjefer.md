@@ -74,6 +74,21 @@ personlighetstyper.
 - **Den som tar æren.** Videreformidler andres arbeid som sitt eget. Tar knekken
   på lojalitet raskere enn nesten alt annet.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Fem former, og hva de gjør</p>
+  <table>
+    <thead><tr><th scope="col">Form</th><th scope="col">Hvordan det ser ut</th><th scope="col">Hva det gjør med folk</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Fraværende</th><td>Svarer ikke, tar ikke beslutninger</td><td>Ingenting løses, og det er ikke noe konkret å klage på</td></tr>
+      <tr><th scope="row">Detaljstyrende</th><td>Overvåker, korrigerer, overtar</td><td>Leses som mistillit, uansett hensikt</td></tr>
+      <tr><th scope="row">Uforutsigbar</th><td>Skifter retning, prioritet og humør</td><td>Folk slutter å ta initiativ</td></tr>
+      <tr><th scope="row">Konfliktsky</th><td>Lar dårlig atferd stå</td><td>I praksis å ta parti med den som oppfører seg verst</td></tr>
+      <tr><th scope="row">Tar æren</th><td>Videreformidler andres arbeid som sitt</td><td>Tar knekken på lojalitet raskere enn noe annet</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Den øverste er trolig den vanligste, og forskning på destruktiv ledelse tyder på at den gjør minst like mye skade som den aggressive.</figcaption>
+</figure>
+
 ## Hvorfor det skjer
 
 En stor del av forklaringen er hvordan folk blir ledere. De færreste søker seg

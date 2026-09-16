@@ -76,6 +76,33 @@ In **Extremistan**, that does not hold. Wealth, book sales, city size, returns,
 epidemics. Add Jeff Bezos to the same sample and the average is useless. Here a
 handful of events account for nearly the whole result.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Two kinds of randomness</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Mediocristan</p>
+      <h4>Normally distributed</h4>
+      <ul>
+        <li>Height, weight, calorie intake</li>
+        <li>No single value shifts the average appreciably</li>
+        <li>The tallest human alive, in a sample of a thousand, changes almost nothing</li>
+        <li>Standard deviation and risk models work</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Extremistan</p>
+      <h4>A few decide everything</h4>
+      <ul>
+        <li>Wealth, book sales, returns, epidemics</li>
+        <li>One value can dominate the whole sample</li>
+        <li>Add Bezos to the same sample and the average is useless</li>
+        <li>The same tools give false confidence</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>The mistake is not using models. It is using Mediocristan's models on something that belongs in Extremistan – and then believing the numbers mean something.</figcaption>
+</figure>
+
 The mistake, Taleb argues, is that we use Mediocristan's tools – standard
 deviation, the normal distribution, risk models – on things that live in
 Extremistan. That produces a false confidence worse than no model at all.

@@ -73,6 +73,33 @@ the words on a sign before you have decided to read them, and answers 4 to
 multiply 17 by 24, to fill in a form, or to keep your composure in a difficult
 conversation. It is effortful, and so we economise on it.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">The two systems</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">System 1</p>
+      <h4>Fast and automatic</h4>
+      <ul>
+        <li>Takes no effort</li>
+        <li>Always on</li>
+        <li>Recognises faces, reads signs, answers 4 to 2 + 2</li>
+        <li>Answers even when it cannot</li>
+      </ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">System 2</p>
+      <h4>Slow and deliberate</h4>
+      <ul>
+        <li>Takes concentration</li>
+        <li>Switched on when needed, and preferably not</li>
+        <li>Multiplies 17 by 24, fills in the form</li>
+        <li>Is rarely asked to check System 1</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Both are necessary. The trouble starts when the fast system answers a question it cannot answer, so quickly and so confidently that the slow one is never asked.</figcaption>
+</figure>
+
 The problem is not that System 1 exists. The problem is that it answers
 questions it cannot really answer, and that the answer arrives so quickly and
 so confidently that System 2 is rarely asked to check.
@@ -101,6 +128,20 @@ outcomes by how much they end up with, but by the change from where they stand
 now. And the curve is steeper going down than going up. That is why the same
 money means different things depending on whether it is experienced as a gain
 or a loss.
+
+<figure class="fig fig--chart">
+  <p class="fig__title">Prospect theory – the curve is steeper going down</p>
+  <svg class="fig__plot" viewBox="0 0 520 260" role="img" aria-label="The value curve in prospect theory. From the reference point it rises gently to the right for gains, and falls more steeply to the left for losses. A loss of a hundred is felt about twice as strongly as a gain of a hundred.">
+    <line class="fig__axisline" x1="40" y1="130" x2="490" y2="130" />
+    <line class="fig__axisline" x1="265" y1="20" x2="265" y2="245" />
+    <path class="fig__line" d="M40 240 C 150 232, 230 200, 265 130 C 300 78, 380 58, 490 50" />
+    <text class="fig__label" x="497" y="46" text-anchor="end">Felt value</text>
+    <text class="fig__label fig__label--strong" x="420" y="146">Gain →</text>
+    <text class="fig__label fig__label--strong" x="50" y="146">← Loss</text>
+    <text class="fig__label" x="272" y="34">The reference point is where you stand now</text>
+  </svg>
+  <figcaption>Outcomes are judged not by how much you end up with, but by the change from where you stand. And the fall stings more than the rise pleases – about twice as much.</figcaption>
+</figure>
 
 ## Two selves
 

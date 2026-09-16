@@ -83,7 +83,17 @@ befolkningen er et tall som brukes ofte, med høyere forekomst i fengselspopulas
 og noe forhøyet i enkelte yrkesgrupper. Påstander om at mange prosent av
 ledere er psykopater sirkulerer mye og hviler på tynt materiale.
 
-Til sammenligning har svært mange mennesker **enkelttrekk** – lav empati i en
+Til sammenligning har svært mange mennesker
+
+<figure class="fig fig--scale">
+  <p class="fig__title">Trekk og tilstand er ikke det samme</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:12%"><b>Enkelttrekk</b><small>Svært mange. Lav empati i en periode, høy selvtillit, en episode med løgn.</small></div>
+    <div class="fig__mark" style="left:88%"><b>Klinisk vurdering</b><small>Omtrent én prosent. Krever opplæring, intervju og gjennomgang av dokumentasjon.</small></div>
+  </div>
+  <p class="fig__ends"><span>Vanlig</span><span>Sjelden</span></p>
+  <figcaption>Å ha trekk er ikke å ha tilstanden, og avstanden mellom de to er hele poenget. Psykopati er heller ikke en egen diagnose i DSM-5 – der finnes antisosial personlighetsforstyrrelse, som overlapper uten å være det samme.</figcaption>
+</figure> **enkelttrekk** – lav empati i en
 periode, høy selvtillit, en episode med løgn. Å ha trekk er ikke å ha tilstanden.
 
 ## Mønsteret boken beskriver

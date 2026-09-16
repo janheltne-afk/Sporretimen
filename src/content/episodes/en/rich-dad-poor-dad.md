@@ -77,6 +77,20 @@ insurance, maintenance and council charges, takes money out of your pocket
 every month. A car does the same. By Kiyosaki's definition they are therefore
 liabilities, whatever they are worth on paper.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Kiyosaki's test – which way do the money flow?</p>
+  <table>
+    <thead><tr><th scope="col">The thing</th><th scope="col">What it does to your pocket each month</th><th scope="col">By his definition</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">A rental property with positive cash flow</th><td>Puts money in</td><td>Asset</td></tr>
+      <tr><th scope="row">The home you live in, with a mortgage</th><td>Takes money out – interest, insurance, maintenance, tax</td><td>Liability</td></tr>
+      <tr><th scope="row">The car</th><td>Takes money out, and loses value</td><td>Liability</td></tr>
+      <tr><th scope="row">Dividend-paying shares</th><td>Put money in</td><td>Asset</td></tr>
+    </tbody>
+  </table>
+  <figcaption>This is not accounting language – there the home is an asset and the mortgage a liability, separately. Kiyosaki uses the words his own way, and that is part of what professionals object to. His point is a practical one: look at the cash flow, not at the label.</figcaption>
+</figure>
+
 Note that this is **not** the accounting definition. In a set of accounts the
 house is an asset and the mortgage is a liability, separately. Kiyosaki uses
 the words in his own way, and that is one of the things professionals object

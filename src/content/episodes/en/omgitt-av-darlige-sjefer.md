@@ -75,6 +75,21 @@ without reducing it to personality types.
 - **The one who takes the credit.** Passes on others' work as their own.
   Destroys loyalty faster than almost anything else.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Five forms, and what they do</p>
+  <table>
+    <thead><tr><th scope="col">Form</th><th scope="col">What it looks like</th><th scope="col">What it does to people</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Absent</th><td>Does not reply, does not decide</td><td>Nothing gets resolved, and there is nothing concrete to complain about</td></tr>
+      <tr><th scope="row">Micromanaging</th><td>Monitors, corrects, takes over</td><td>Read as distrust, whatever the intention</td></tr>
+      <tr><th scope="row">Unpredictable</th><td>Changes direction, priority and mood</td><td>People stop taking initiative</td></tr>
+      <tr><th scope="row">Conflict-avoidant</th><td>Lets bad behaviour stand</td><td>In practice, siding with whoever behaves worst</td></tr>
+      <tr><th scope="row">Takes the credit</th><td>Passes off others' work as their own</td><td>Kills loyalty faster than anything else</td></tr>
+    </tbody>
+  </table>
+  <figcaption>The first is probably the most common, and research on destructive leadership suggests it does at least as much damage as the aggressive kind.</figcaption>
+</figure>
+
 ## Why it happens
 
 A large part of the explanation is how people become managers. Very few seek out

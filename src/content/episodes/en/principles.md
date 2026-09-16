@@ -119,6 +119,18 @@ The practical core, usable independently of the rest:
 The point is that people are good at different steps, and that most skip
 step 3.
 
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">The five-step process</p>
+  <ol>
+    <li><span class="fig__box"><b>1. Set clear goals</b><small>What is actually to be achieved?</small></span></li>
+    <li><span class="fig__box"><b>2. Identify the problems</b><small>What stands in the way. Do not tolerate them.</small></span></li>
+    <li><span class="fig__box"><b>3. Diagnose the cause</b><small>Not the symptom. This is the step most people skip.</small></span></li>
+    <li><span class="fig__box"><b>4. Design a plan</b><small>To remove the cause, not to dampen the symptom.</small></span></li>
+    <li><span class="fig__box"><b>5. Push it through</b><small>Without this, the first four are an exercise.</small></span></li>
+  </ol>
+  <figcaption>Dalio's point is that people are good at different steps – some see problems, others make plans – and that step three is the one most often left out.</figcaption>
+</figure>
+
 ## The criticism
 
 Bridgewater's culture has been described by former employees as everything

@@ -105,6 +105,20 @@ Leverage is what multiplies it, and it comes in four kinds:
 - **Media** – something you make once, read or heard an unlimited number of
   times.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Four kinds of leverage</p>
+  <table>
+    <thead><tr><th scope="col">Kind</th><th scope="col">What it is</th><th scope="col">Needs permission?</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Labour</th><td>People working for you</td><td>Yes – someone has to give you the job</td></tr>
+      <tr><th scope="row">Capital</th><td>Money at work</td><td>Yes – someone has to give you the money</td></tr>
+      <tr><th scope="row">Code</th><td>Software that does the job while you sleep</td><td>No</td></tr>
+      <tr><th scope="row">Media</th><td>Something you make once, read an unlimited number of times</td><td>No</td></tr>
+    </tbody>
+  </table>
+  <figcaption>The bottom two are the most important change of our era: nobody has to approve your writing code or making things.</figcaption>
+</figure>
+
 The last two he calls permissionless leverage: nobody has to approve your
 writing code or making things. That is the most important change of our era.
 

@@ -82,7 +82,24 @@ det neste du gjør.
 
 ## Gode og dårlige verdier
 
-Manson foreslår en test. Gode verdier er basert på virkeligheten, sosialt
+Manson foreslår en test.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Mansons test på en verdi</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Gode verdier</p>
+      <h4>Du kontrollerer dem selv</h4>
+      <ul><li>Ærlighet</li><li>Nysgjerrighet</li><li>Å stå for noe</li><li>Basert på virkeligheten</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Dårlige verdier</p>
+      <h4>De avhenger av andre</h4>
+      <ul><li>Popularitet</li><li>Alltid å ha rett</li><li>Å bli likt av alle</li><li>Avhengige av noe utenfor deg</li></ul>
+    </div>
+  </div>
+  <figcaption>Mye ulykke, mener Manson, er å måle seg etter noe i høyre spalte – der du uansett ikke har hånda på rattet.</figcaption>
+</figure> Gode verdier er basert på virkeligheten, sosialt
 konstruktive og noe du selv kontrollerer: ærlighet, nysgjerrighet, å stå for
 noe. Dårlige verdier er overtroiske, destruktive eller avhengige av andre:
 popularitet, å alltid ha rett, å bli likt av alle. Mye ulykke, mener han, er

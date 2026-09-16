@@ -53,6 +53,11 @@ start. But the system is far larger than the eleven times table. It is a complet
 setup for arithmetic in your head, in which the times tables are replaced by short
 recipes you follow digit by digit.
 
+<figure class="fig fig--rule">
+  <p class="fig__claim">× 11: add each digit to the digit on its right.</p>
+  <p class="fig__example"><b>3,425 × 11:</b> with a zero in front the number is 03425. From the right: 5 + 0 = <b>5</b>. 2 + 5 = <b>7</b>. 4 + 2 = <b>6</b>. 3 + 4 = <b>7</b>. 0 + 3 = <b>3</b>. Read from the top: <b>37,675</b>. No times table used anywhere.</p>
+</figure>
+
 ## How to read the rules
 
 All the rules use the same machinery, and it is worth having that clear before
@@ -67,6 +72,18 @@ looking at them one by one:
 - **“Half”** means half, rounded down. Half of 7 is 3.
 - **If the result has two digits**, write down the last digit and carry the rest to
   the next position, exactly as in ordinary long multiplication.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">The machinery that recurs in every rule</p>
+  <ol>
+    <li><span class="fig__box"><b>Write a zero in front</b><small>344 becomes 0344. The zero is a position of its own that you also calculate on, and it is what gives the answer its first digit.</small></span></li>
+    <li><span class="fig__box"><b>Start at the far right</b><small>One digit at a time, moving left. Never two in your head at once.</small></span></li>
+    <li><span class="fig__box"><b>Find the neighbour</b><small>The neighbour is always the digit to the right of the one you are on. The rightmost has none – there you use 0.</small></span></li>
+    <li><span class="fig__box"><b>Apply the rule for the multiplier</b><small>Doubling, halving, or “what you are short of 9 or 10”. Half always means rounded down: half of 7 is 3.</small></span></li>
+    <li><span class="fig__box"><b>Write the last digit, carry the rest</b><small>If the answer is two digits, the carry goes on to the next position – exactly as in ordinary long multiplication.</small></span></li>
+  </ol>
+  <figcaption>All ten rules below use precisely this setup. The only thing that changes from multiplier to multiplier is what you do in the fourth step.</figcaption>
+</figure>
 
 ## The rules, digit by digit
 
@@ -125,6 +142,20 @@ the leading zero in place, so 0344:
 Read from the top: **2,064**. No times tables anywhere – only halving, addition and
 carrying.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">344 × 6, position by position</p>
+  <table>
+    <thead><tr><th scope="col">Position</th><th scope="col">Digit</th><th scope="col">Neighbour</th><th scope="col">Calculation</th><th scope="col">Write</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1 (rightmost)</th><td>4</td><td>none → 0</td><td>4 + 0, even</td><td>4</td></tr>
+      <tr><th scope="row">2</th><td>4</td><td>4</td><td>4 + 2, even</td><td>6</td></tr>
+      <tr><th scope="row">3</th><td>3</td><td>4</td><td>3 + 2 + 5, odd → 10</td><td>0, carry one</td></tr>
+      <tr><th scope="row">4 (leading zero)</th><td>0</td><td>3</td><td>0 + 1 + carry</td><td>2</td></tr>
+    </tbody>
+  </table>
+  <figcaption>The rule for 6 is “the digit itself, plus half the neighbour, plus 5 if the digit is odd”. Read from the bottom up, the right-hand column gives <b>2,064</b>. The largest thing you have had to hold in your head along the way is the number 10.</figcaption>
+</figure>
+
 ## When no single rule fits
 
 The digit rules cover 2 to 12. For everything else the system has a **general
@@ -141,6 +172,16 @@ And it has a **digit-sum check**: you add up the digits in each number, reduce t
 single digit, and compare with your answer treated the same way. If they do not
 match, you have made a mistake. But note that the reverse does not hold – the check
 catches most errors, not all. It is a test, not a proof.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">The digit-sum check</p>
+  <ol>
+    <li><span class="fig__box"><b>Add up the digits in each number</b><small>344 gives 3 + 4 + 4 = 11, and 11 gives 1 + 1 = 2. The multiplier 6 is already a single digit.</small></span></li>
+    <li><span class="fig__box"><b>Do the same with the two check numbers</b><small>2 × 6 = 12, and 12 gives 1 + 2 = 3.</small></span></li>
+    <li><span class="fig__box"><b>Treat your answer the same way</b><small>2,064 gives 2 + 0 + 6 + 4 = 12, which gives 3. The same number – the answer passes the check.</small></span></li>
+  </ol>
+  <figcaption>The check is quick enough to be worth doing every time. But it catches most errors, not all: swap two digits in the answer and the digit sum is unchanged. It is a test, not a proof.</figcaption>
+</figure>
 
 ## Why does it work?
 

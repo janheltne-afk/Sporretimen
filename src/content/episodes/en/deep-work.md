@@ -64,6 +64,33 @@ something that takes everything you have – and that creates value hard to
 replicate. **Shallow work** is the rest: email, meetings, updates, logistics.
 Necessary, but easy to do, and easy to replace.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Deep and shallow work</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Deep</p>
+      <h4>Hard to replace</h4>
+      <ul>
+        <li>Full concentration, without interruption</li>
+        <li>Demands everything you have</li>
+        <li>Creates value that is hard to copy</li>
+        <li>Getting rarer – and therefore worth more</li>
+      </ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Shallow</p>
+      <h4>Necessary, but easy</h4>
+      <ul>
+        <li>Email, meetings, updates, logistics</li>
+        <li>Can be done while being interrupted</li>
+        <li>Easy to replace</li>
+        <li>Fills most of the day for most people</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Most people spend the bulk of the day in the right-hand column and believe that is the job. Newport's claim is that it is not.</figcaption>
+</figure>
+
 Newport's point is that most knowledge workers spend the bulk of the day on the
 shallow and believe that is the job. It is not.
 
@@ -83,6 +110,17 @@ Newport insists there is no single correct recipe:
 - **Rhythmic** – a fixed block every day, same time. The one most people can
   manage.
 - **Journalistic** – deep work in whatever gap appears. Takes practice.
+
+<figure class="fig fig--cycle">
+  <p class="fig__title">Four rhythms – pick the one that fits your life</p>
+  <ol>
+    <li><span class="fig__step">1</span><b>Monastic</b><small>Cut all shallow work, permanently. Few can.</small></li>
+    <li><span class="fig__step">2</span><b>Bimodal</b><small>Long stretches deep, the rest open.</small></li>
+    <li><span class="fig__step">3</span><b>Rhythmic</b><small>One fixed block every day, same time. The one most people manage.</small></li>
+    <li><span class="fig__step">4</span><b>Journalistic</b><small>Deep work in whatever gap appears. Takes practice.</small></li>
+  </ol>
+  <figcaption>Newport insists there is no single right recipe. The question is which of the four can actually be carried out in your week.</figcaption>
+</figure>
 
 Common to all are **rituals**: same place, same start, same rules, so that
 getting going does not take willpower.

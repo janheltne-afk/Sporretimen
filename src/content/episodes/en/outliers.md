@@ -66,6 +66,18 @@ falls on 1 January, so those born early in the year are nearly a full year older
 than the youngest in the same cohort. They are bigger, get selected, get better
 coaches and more ice time – and the advantage compounds.
 
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">The Matthew effect, step by step</p>
+  <ol>
+    <li><span class="fig__box"><b>Born in January</b><small>The age cut-off falls on 1 January</small></span></li>
+    <li><span class="fig__box"><b>Almost a year older than the youngest in the cohort</b><small>Bigger, stronger, better coordinated</small></span></li>
+    <li><span class="fig__box"><b>Gets picked</b><small>Ends up on the team that invests in its players</small></span></li>
+    <li><span class="fig__box"><b>Better coaches, more ice time</b><small>Gets more practice than the others</small></span></li>
+    <li><span class="fig__box"><b>Actually becomes better</b><small>The advantage was arbitrary. The result is real.</small></span></li>
+  </ol>
+  <figcaption>The original advantage was an accident of the calendar. The point is that it grows at every step, because it buys more practice.</figcaption>
+</figure>
+
 That is the **Matthew effect**: to those who have, more will be given. Small
 accidental early advantages become large advantages later, because they buy more
 practice.
@@ -76,6 +88,11 @@ The book's most famous idea. Gladwell takes the psychologist K. Anders
 Ericsson's studies of violinists, in which the best had practised around 10,000
 hours by their early twenties, and uses the Beatles' nights in Hamburg and Bill
 Gates's access to a computer as a teenager as illustrations.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">10,000 hours is not a threshold. It was an average.</p>
+  <p class="fig__example"><b>Ericsson himself, in <i>Peak</i> (2016):</b> the number varies enormously between fields, and what matters is <i>deliberate</i> practice with feedback – not hours logged.</p>
+</figure>
 
 This has to be said plainly: **Ericsson believed Gladwell had misread him.** In
 his own book *Peak* he writes that 10,000 was an average, not a threshold; that

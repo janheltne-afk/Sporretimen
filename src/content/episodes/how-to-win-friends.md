@@ -64,6 +64,23 @@ seg, ikke til å endre seg. Den som blir kritisert, rettferdiggjør det de gjord
 det siste mente de hadde handlet rett, og poenget er at hvis de ikke tar
 kritikk, tar heller ikke kollegaen din det.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Hva kritikk gjør, og hva den ikke gjør</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Det du håper skjer</p>
+      <h4>Endret atferd</h4>
+      <ul><li>Personen ser feilen</li><li>Tar det til seg</li><li>Gjør det annerledes neste gang</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Det som faktisk skjer</p>
+      <h4>Forsvar</h4>
+      <ul><li>Personen rettferdiggjør det de gjorde</li><li>Leter etter grunner til at du tar feil</li><li>Liker deg litt mindre</li></ul>
+    </div>
+  </div>
+  <figcaption>Carnegie åpner med historier om forbrytere som til det siste mente de hadde handlet rett. Poenget er enkelt: tar ikke de kritikk, gjør heller ikke kollegaen din det.</figcaption>
+</figure>
+
 Alternativet er ikke å la alt passere. Det er å begynne med det som faktisk er
 bra, snakke om egne feil før andres, og la den andre redde ansikt.
 

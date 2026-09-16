@@ -68,6 +68,22 @@ A coin flip gives 50. So we are marginally better than chance, and the small
 edge comes mostly from being better at recognising truth than at recognising
 lies.
 
+<figure class="fig fig--chart">
+  <p class="fig__title">How good we are at detecting lies</p>
+  <svg class="fig__plot" viewBox="0 0 520 150" role="img" aria-label="An axis from 0 to 100 per cent. A coin flip sits at 50 per cent. People sit at 54 per cent, barely above it. Police officers, customs officers and psychologists sit in roughly the same place.">
+    <line class="fig__axisline" x1="40" y1="95" x2="490" y2="95" />
+    <line class="fig__grid" x1="265" y1="55" x2="265" y2="105" />
+    <line class="fig__axisline" x1="283" y1="45" x2="283" y2="105" />
+    <text class="fig__label" x="40" y="118">0 %</text>
+    <text class="fig__label" x="255" y="118">50 %</text>
+    <text class="fig__label" x="478" y="118">100 %</text>
+    <text class="fig__label" x="255" y="46" text-anchor="end">Coin flip</text>
+    <text class="fig__label fig__label--strong" x="292" y="38">People: 54 %</text>
+    <text class="fig__label" x="292" y="56">Police, customs officers and psychologists too</text>
+  </svg>
+  <figcaption>Bond and DePaulo's meta-analysis of more than 200 studies. Four percentage points above a coin flip, and the small edge comes mostly from our being better at recognising truth than lies.</figcaption>
+</figure>
+
 Worse: this holds for people who believe they are good at it too. Police
 officers, customs officers, judges and psychologists are right about as often as
 everyone else. What they have more of is **confidence** – and in some studies
@@ -110,6 +126,23 @@ stop watching the person, and look at the **content**.
 - **Check against something external.** Times, receipts, other witnesses.
 - **Hold back what you know.** Produce it late, and see whether the story
   collides with it.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Where to look</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Does not work</p>
+      <h4>The person</h4>
+      <ul><li>Avoiding eye contact</li><li>Restless hands</li><li>Sweating, hesitation</li><li>All of this signals discomfort, not lying</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Works somewhat</p>
+      <h4>The content</h4>
+      <ul><li>Ask for a lot of detail</li><li>Ask for the story backwards</li><li>Ask unexpected questions</li><li>Check against times, receipts, witnesses</li></ul>
+    </div>
+  </div>
+  <figcaption>Anyone suspected of something serious gets nervous, guilty or innocent. The nervousness comes from the situation, not from the truth value.</figcaption>
+</figure>
 
 The common thread is that you are looking for **contradictions and
 verifiability**, not for nervous tells.

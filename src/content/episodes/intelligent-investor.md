@@ -71,6 +71,23 @@ en **investering** forutsetter grundig analyse, sikring av hovedstolen og en
 rimelig forventet avkastning. Alt som ikke oppfyller de tre kravene, er
 **spekulasjon**.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Grahams tre krav</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Investering</p>
+      <h4>Alle tre må være oppfylt</h4>
+      <ul><li>Grundig analyse</li><li>Sikring av hovedstolen</li><li>Rimelig forventet avkastning</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Spekulasjon</p>
+      <h4>Alt annet</h4>
+      <ul><li>Kan være helt i orden</li><li>Forutsetter at du vet at det er det du gjør</li><li>Og at beløpet tåler å tapes</li></ul>
+    </div>
+  </div>
+  <figcaption>Feilen er ikke å spekulere. Feilen er å spekulere mens man tror man investerer.</figcaption>
+</figure>
+
 Det er ingen moralsk dom – Graham mener spekulasjon kan være i orden, så lenge
 du vet at det er det du gjør, og har satt av en sum du kan tåle å tape. Feilen
 er å spekulere mens du tror du investerer.
@@ -89,6 +106,16 @@ selge når han er euforisk. Det du **ikke** bør gjøre, er å la humøret hans
 avgjøre hva du tror bedriften er verdt.
 
 ## Sikkerhetsmargin
+
+<figure class="fig fig--scale">
+  <p class="fig__title">Sikkerhetsmarginen</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:18%"><b>Det du betaler</b><small>Kursen i markedet i dag</small></div>
+    <div class="fig__mark" style="left:72%"><b>Det du tror det er verdt</b><small>Din egen vurdering av verdien</small></div>
+  </div>
+  <p class="fig__ends"><span>Lav pris</span><span>Høy pris</span></p>
+  <figcaption>Avstanden mellom de to er marginen. Den er ikke en bonus – den er der fordi analysen din kan være feil, fremtiden kan skuffe, og uventede ting skjer. Marginen er det som gjør at du fortsatt klarer deg når du tar feil.</figcaption>
+</figure>
 
 Grahams eget svar på hva investering koker ned til, hvis han måtte velge tre
 ord: *margin of safety*. Betal tydelig mindre enn det du tror noe er verdt.

@@ -116,6 +116,18 @@ Den praktiske kjernen, som kan brukes uavhengig av resten:
 
 Poenget er at folk er gode på ulike trinn, og at de fleste hopper over trinn 3.
 
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Femtrinnsprosessen</p>
+  <ol>
+    <li><span class="fig__box"><b>1. Sett tydelige mål</b><small>Hva skal egentlig oppnås?</small></span></li>
+    <li><span class="fig__box"><b>2. Finn problemene</b><small>Det som står i veien. Ikke tål dem.</small></span></li>
+    <li><span class="fig__box"><b>3. Diagnostiser årsaken</b><small>Ikke symptomet. Det er her de fleste hopper over.</small></span></li>
+    <li><span class="fig__box"><b>4. Lag en plan</b><small>For å fjerne årsaken, ikke dempe symptomet.</small></span></li>
+    <li><span class="fig__box"><b>5. Gjennomfør</b><small>Uten dette er de fire første en øvelse.</small></span></li>
+  </ol>
+  <figcaption>Dalios poeng er at folk er gode på ulike trinn – noen ser problemer, andre lager planer – og at trinn tre er det som oftest utelates.</figcaption>
+</figure>
+
 ## Kritikken
 
 Bridgewaters kultur er beskrevet av tidligere ansatte som alt fra befriende

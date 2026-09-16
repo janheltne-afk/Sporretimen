@@ -465,4 +465,36 @@ figcaption.fig__caption {
   .fig--scale .fig__mark small {
     display: none;
   }
+  /* En tabellkolonne kan ikke bli smalere enn det lengste ordet i den, så en
+     matrise med mange kolonner har en minstebredde som ikke lar seg presse. På
+     små skjermer får tabellen rulle sidelengs i stedet for å dytte hele siden
+     bredere – figcaption og resten av teksten blir stående som den skal. */
+  /* .prose setter sin egen skriftstørrelse og luft på tabeller, så disse må
+     være like spesifikke for å nå fram. */
+  .fig--matrix table,
+  .prose .fig--matrix table {
+    display: block;
+    overflow-x: auto;
+    font-size: 0.82rem;
+  }
+  .fig--matrix :is(th, td),
+  .prose .fig--matrix table :is(th, td) {
+    padding: 0.6rem 0.65rem;
+  }
+  .fig--matrix tbody th {
+    width: auto;
+  }
+  /* En tabell som ruller uten å si fra, ser ut som en tabell som er kuttet.
+     Hintet ligger rett over bildeteksten, på sidens språk. */
+  .fig--matrix table + figcaption::before {
+    content: '↔ Tabellen kan rulles sideveis';
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+  }
+  :lang(en) .fig--matrix table + figcaption::before {
+    content: '↔ The table scrolls sideways';
+  }
 }

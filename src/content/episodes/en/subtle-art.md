@@ -84,6 +84,23 @@ past. Responsibility is about the next thing you do.
 
 ## Good and bad values
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Manson's test for a value</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Good values</p>
+      <h4>You control them yourself</h4>
+      <ul><li>Honesty</li><li>Curiosity</li><li>Standing for something</li><li>Based in reality</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Bad values</p>
+      <h4>They depend on other people</h4>
+      <ul><li>Popularity</li><li>Always being right</li><li>Being liked by everyone</li><li>Dependent on something outside you</li></ul>
+    </div>
+  </div>
+  <figcaption>A lot of unhappiness, Manson argues, is measuring yourself against something in the right-hand column – where you have no hand on the wheel anyway.</figcaption>
+</figure>
+
 Manson proposes a test. Good values are reality-based, socially constructive and
 within your own control: honesty, curiosity, standing for something. Bad values
 are superstitious, destructive or dependent on others: popularity, always being

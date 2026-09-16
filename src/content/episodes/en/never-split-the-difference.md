@@ -83,6 +83,16 @@ and concrete:
 - **The accusation audit.** Say the worst they might think of you before they
   say it themselves. It takes the sting out.
 
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Tactical empathy, three tools</p>
+  <ol>
+    <li><span class="fig__box"><b>Mirroring</b><small>Repeat the last few words the other person said, as a question. People elaborate, almost without noticing.</small></span></li>
+    <li><span class="fig__box"><b>Labelling</b><small>“It sounds like you are worried about …” Right or wrong – they correct you, and you have learned something.</small></span></li>
+    <li><span class="fig__box"><b>Accusation audit</b><small>Say the worst thing they could think about you before they say it themselves. It takes the sting out.</small></span></li>
+  </ol>
+  <figcaption>Empathy here does not mean agreeing or being nice. It means understanding what the other person feels and why – and showing that you have understood it.</figcaption>
+</figure>
+
 ## Calibrated questions
 
 Open questions beginning with *how* or *what*, which cannot be answered yes or
@@ -107,6 +117,18 @@ For straight price negotiations the book has a recipe: decide your target, open
 at 65 per cent of it, and move up in shrinking steps – 85, 95, 100 – with an
 odd final number and ideally something non-monetary at the end. The point is
 that shrinking steps signal you are approaching your limit.
+
+<figure class="fig fig--scale">
+  <p class="fig__title">The Ackerman model</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:2%"><b>65 %</b><small>The opening offer</small></div>
+    <div class="fig__mark" style="left:35%"><b>85 %</b><small>+20</small></div>
+    <div class="fig__mark" style="left:68%"><b>95 %</b><small>+10</small></div>
+    <div class="fig__mark" style="left:96%"><b>100 %</b><small>+5, an odd final number</small></div>
+  </div>
+  <p class="fig__ends"><span>Opening</span><span>Your target</span></p>
+  <figcaption>The steps shrink all the way. That is the signal: each time you give less than last time, the other side reads it as your approaching your limit.</figcaption>
+</figure>
 
 ## The criticism
 

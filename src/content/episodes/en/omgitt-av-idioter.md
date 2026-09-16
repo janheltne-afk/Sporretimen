@@ -83,6 +83,20 @@ Practically, the book walks through how to talk to each colour: short and direct
 to red, listen and let yellow talk, do not surprise green, and give blue the
 documentation.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">The four colours, as the book sets them out</p>
+  <table>
+    <thead><tr><th scope="col">Colour</th><th scope="col">Marks</th><th scope="col">The book's advice on talking to them</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Red</th><td>Fast, direct, results-driven</td><td>Short and direct. Conclusion first.</td></tr>
+      <tr><th scope="row">Yellow</th><td>Outgoing, enthusiastic, talkative</td><td>Listen. Let them talk.</td></tr>
+      <tr><th scope="row">Green</th><td>Calm, loyal, cooperative</td><td>No surprises. Flag changes in advance.</td></tr>
+      <tr><th scope="row">Blue</th><td>Analytical, precise, cautious</td><td>Give them documentation and numbers.</td></tr>
+    </tbody>
+  </table>
+  <figcaption>This is the model as presented. Whether it describes personality – or is merely easy to recognise yourself in – is the question the rest of the episode is about.</figcaption>
+</figure>
+
 ## Where the model comes from
 
 Erikson uses **DISA**, a variant of what is internationally called **DISC**. It
@@ -115,6 +129,23 @@ impossible not to recognise yourself in.
 Personality psychology has settled on the **five-factor model** – often called
 the Big Five: openness, conscientiousness, extraversion, agreeableness and
 neuroticism.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Types against degrees</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">The colour model</p>
+      <h4>Four types</h4>
+      <ul><li>You “are” a colour</li><li>Four boxes, everyone lands in one</li><li>A frame nearly a hundred years old</li><li>Easy to remember</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">The five-factor model</p>
+      <h4>Five degrees</h4>
+      <ul><li>You score somewhere on each scale</li><li>Most people sit in the middle</li><li>What the field actually uses</li><li>Harder to remember, more accurate</li></ul>
+    </div>
+  </div>
+  <figcaption>Saying someone “is red” is rather like dividing the population into “tall” and “short” and treating them as two species.</figcaption>
+</figure>
 
 The decisive difference is not the number. It is that the five-factor model
 measures **degrees** on five scales, not **types**. People are distributed along

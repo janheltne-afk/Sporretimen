@@ -76,6 +76,15 @@ Without it the theory is just resignation. Let them leave the party without you,
 whether to keep the friendship going or let it go. Robbins is clear that it is
 the second sentence that makes this an action rather than a shrug.
 
+<figure class="fig fig--flow">
+  <p class="fig__title">Two sentences, and the second is the one that matters</p>
+  <ol>
+    <li><span class="fig__box"><b>Let them</b><small>Put down what you do not control: other people's behaviour, opinions and feelings.</small></span></li>
+    <li><span class="fig__box"><b>Let me</b><small>Decide what you do now. Without this, the first is only resignation.</small></span></li>
+  </ol>
+  <figcaption>Let them leave the party without you – let me find people I enjoy. It is the second sentence that makes this an action rather than a shrug.</figcaption>
+</figure>
+
 ## Where it helps most
 
 - **Adult friendship.** Closeness comes from proximity and repetition, and as an

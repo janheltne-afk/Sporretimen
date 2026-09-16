@@ -76,6 +76,15 @@ finne folk jeg trives med. La dem ikke ta kontakt, **la meg** velge om jeg vil
 holde vennskapet i gang eller la det slippe. Robbins er tydelig på at det er den
 andre setningen som gjør dette til en handling og ikke en skulderstrekning.
 
+<figure class="fig fig--flow">
+  <p class="fig__title">To setninger, og den andre er den viktige</p>
+  <ol>
+    <li><span class="fig__box"><b>La dem</b><small>Slipp taket i det du ikke styrer: andres oppførsel, meninger og følelser.</small></span></li>
+    <li><span class="fig__box"><b>La meg</b><small>Bestem hva du gjør nå. Uten denne blir det første bare oppgitthet.</small></span></li>
+  </ol>
+  <figcaption>La dem gå fra festen uten deg – la meg finne folk jeg trives med. Det er den andre setningen som gjør dette til en handling framfor en skulderstrekning.</figcaption>
+</figure>
+
 ## Der den gjør mest nytte
 
 - **Voksne vennskap.** Nærhet oppstår av nærvær og gjentakelse, og som voksen

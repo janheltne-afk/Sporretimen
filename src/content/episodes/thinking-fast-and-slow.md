@@ -74,6 +74,33 @@ til å gange 17 med 24, til å fylle ut et skjema, eller til å holde tungen ret
 i munnen i en vanskelig samtale. Det er anstrengende, og derfor sparer vi på
 det.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">De to systemene</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">System 1</p>
+      <h4>Raskt og automatisk</h4>
+      <ul>
+        <li>Krever ingen anstrengelse</li>
+        <li>Alltid på</li>
+        <li>Gjenkjenner ansikter, leser skilt, svarer 4 på 2 + 2</li>
+        <li>Svarer også når det ikke kan</li>
+      </ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">System 2</p>
+      <h4>Tregt og bevisst</h4>
+      <ul>
+        <li>Krever konsentrasjon</li>
+        <li>Slås på ved behov, og helst ikke</li>
+        <li>Ganger 17 med 24, fyller ut skjema</li>
+        <li>Blir sjelden bedt om å kontrollere system 1</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Begge er nødvendige. Problemet oppstår når det raske systemet svarer på et spørsmål det ikke kan besvare, så raskt og så selvsikkert at det trege aldri blir spurt.</figcaption>
+</figure>
+
 Problemet er ikke at system 1 finnes. Problemet er at det svarer på spørsmål
 det egentlig ikke kan svare på, og at svaret kommer så raskt og så selvsikkert
 at system 2 sjelden blir bedt om å sjekke.
@@ -97,6 +124,20 @@ at system 2 sjelden blir bedt om å sjekke.
 ## Prospektteori
 
 Arbeidet som ga Nobelprisen. Kort fortalt: folk vurderer ikke utfall etter hvor
+
+<figure class="fig fig--chart">
+  <p class="fig__title">Prospektteori – kurven er brattere nedover</p>
+  <svg class="fig__plot" viewBox="0 0 520 260" role="img" aria-label="Verdikurven i prospektteori. Fra nullpunktet stiger den slakt oppover mot høyre ved gevinst, og faller brattere nedover mot venstre ved tap. Et tap på hundre oppleves omtrent dobbelt så sterkt som en gevinst på hundre.">
+    <line class="fig__axisline" x1="40" y1="130" x2="490" y2="130" />
+    <line class="fig__axisline" x1="265" y1="20" x2="265" y2="245" />
+    <path class="fig__line" d="M40 240 C 150 232, 230 200, 265 130 C 300 78, 380 58, 490 50" />
+    <text class="fig__label" x="497" y="46" text-anchor="end">Opplevd verdi</text>
+    <text class="fig__label fig__label--strong" x="420" y="146">Gevinst →</text>
+    <text class="fig__label fig__label--strong" x="50" y="146">← Tap</text>
+    <text class="fig__label" x="272" y="34">Nullpunktet er der du står nå</text>
+  </svg>
+  <figcaption>Utfall vurderes ikke etter hvor mye du ender opp med, men etter endringen fra der du står. Og fallet svir mer enn stigningen gleder – omtrent dobbelt så mye.</figcaption>
+</figure>
 mye de ender opp med, men etter endringen fra der de står nå. Og kurven er
 brattere nedover enn oppover. Det er derfor de samme pengene betyr forskjellige
 ting avhengig av om de oppleves som en gevinst eller et tap.

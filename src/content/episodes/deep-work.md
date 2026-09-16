@@ -64,6 +64,33 @@ krever alt du har – og som skaper verdi som er vanskelig å kopiere. **Grunt
 arbeid** er resten: e-post, møter, oppdateringer, logistikk. Nødvendig, men
 lett å gjøre, og lett å erstatte.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Dypt og grunt arbeid</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Dypt</p>
+      <h4>Vanskelig å erstatte</h4>
+      <ul>
+        <li>Full konsentrasjon, uten forstyrrelser</li>
+        <li>Krever alt du har</li>
+        <li>Skaper verdi som er vanskelig å kopiere</li>
+        <li>Blir sjeldnere – og dermed mer verdt</li>
+      </ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Grunt</p>
+      <h4>Nødvendig, men lett</h4>
+      <ul>
+        <li>E-post, møter, oppdateringer, logistikk</li>
+        <li>Kan gjøres mens du er avbrutt</li>
+        <li>Lett å erstatte</li>
+        <li>Fyller mesteparten av dagen for de fleste</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>De fleste bruker mesteparten av dagen i høyre spalte og tror det er jobben. Newports påstand er at det ikke er det.</figcaption>
+</figure>
+
 Newports poeng er at de fleste kunnskapsarbeidere bruker mesteparten av dagen
 på det grunne, og tror det er jobben. Det er det ikke.
 
@@ -82,6 +109,17 @@ Newport insisterer på at det ikke finnes én riktig oppskrift:
 - **Todelt** – lange perioder (dager, uker) dypt, resten åpent.
 - **Rytmisk** – en fast blokk hver dag, samme tid. Den de fleste får til.
 - **Journalistens** – dypt arbeid i hvert hull som dukker opp. Krever trening.
+
+<figure class="fig fig--cycle">
+  <p class="fig__title">Fire rytmer – velg den som passer livet ditt</p>
+  <ol>
+    <li><span class="fig__step">1</span><b>Munkens</b><small>Kutt alt grunt, permanent. Få kan.</small></li>
+    <li><span class="fig__step">2</span><b>Todelt</b><small>Lange perioder dypt, resten åpent.</small></li>
+    <li><span class="fig__step">3</span><b>Rytmisk</b><small>En fast blokk hver dag, samme tid. Den de fleste får til.</small></li>
+    <li><span class="fig__step">4</span><b>Journalistens</b><small>Dypt arbeid i hvert hull som dukker opp. Krever trening.</small></li>
+  </ol>
+  <figcaption>Newport insisterer på at det ikke finnes én riktig oppskrift. Spørsmålet er hvilken av de fire som lar seg gjennomføre i din uke.</figcaption>
+</figure>
 
 Felles for alle er **ritualer**: samme sted, samme start, samme regler, slik at
 det ikke krever viljestyrke å komme i gang.

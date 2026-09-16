@@ -84,6 +84,20 @@ being the highest. It is the result of his having invested for more than eighty
 years. The arithmetic is brutally simple: doubling the time does more than
 doubling the return.
 
+<figure class="fig fig--chart">
+  <p class="fig__title">Time beats returns</p>
+  <svg class="fig__plot" viewBox="0 0 520 230" role="img" aria-label="Two compounding curves. One has a high return over a short period and climbs steeply at first, but stops early. The other has a lower return over a long period and ends far higher.">
+    <line class="fig__axisline" x1="45" y1="200" x2="495" y2="200" />
+    <line class="fig__axisline" x1="45" y1="18" x2="45" y2="200" />
+    <path class="fig__line fig__line--muted" d="M45 200 C 90 180, 120 150, 155 120" />
+    <path class="fig__line" d="M45 200 C 180 196, 300 170, 380 120 C 440 80, 470 46, 495 28" />
+    <text class="fig__label" x="160" y="114">High return, short time</text>
+    <text class="fig__label fig__label--strong" x="490" y="24" text-anchor="end">Lower return, long time</text>
+    <text class="fig__label" x="270" y="219" text-anchor="middle">Time →</text>
+  </svg>
+  <figcaption>Buffett's fortune comes first of all not from the returns being the highest, but from his having invested for over eighty years. Doubling the time does more than doubling the return.</figcaption>
+</figure>
+
 That is also why the most important question is not "what should I buy" but
 "how can I manage to stay in this long enough".
 
@@ -92,6 +106,23 @@ That is also why the most important question is not "what should I buy" but
 The two take opposite traits. Building something takes risk, optimism and
 placing bets. Keeping it takes humility, caution and assuming something will go
 wrong.
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Two skills that pull in opposite directions</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Getting wealthy</p>
+      <h4>Requires taking a bet</h4>
+      <ul><li>Risk</li><li>Optimism</li><li>Tolerating being wrong</li><li>Stepping into something uncertain</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Staying wealthy</p>
+      <h4>Requires not taking one</h4>
+      <ul><li>Humility</li><li>Caution</li><li>Assuming something will go wrong</li><li>Doing nothing</li></ul>
+    </div>
+  </div>
+  <figcaption>The qualities that got someone there are not the ones that keep them there. That is why the stories of large gains that vanished again are so numerous.</figcaption>
+</figure>
 
 That is why there are so many stories of people who made large sums and lost
 them again. The skill that got them there is not the one that keeps them there.

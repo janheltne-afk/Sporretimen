@@ -65,7 +65,19 @@ flertall er født i januar, februar og mars. Grunnen: aldersgrensen går ved
 i samme kull. De er større, blir valgt ut, får bedre trenere og mer istid – og
 fordelen vokser.
 
-Det er **Matteus-effekten**: den som har, skal få. Små tilfeldige fordeler
+Det er **Matteus-effekten**
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Matteus-effekten, steg for steg</p>
+  <ol>
+    <li><span class="fig__box"><b>Født i januar</b><small>Aldersgrensen går ved 1. januar</small></span></li>
+    <li><span class="fig__box"><b>Nesten ett år eldre enn de yngste i kullet</b><small>Større, sterkere, mer koordinert</small></span></li>
+    <li><span class="fig__box"><b>Blir valgt ut</b><small>Havner på laget som satser</small></span></li>
+    <li><span class="fig__box"><b>Bedre trenere, mer istid</b><small>Får mer øvelse enn de andre</small></span></li>
+    <li><span class="fig__box"><b>Blir faktisk bedre</b><small>Fordelen var tilfeldig. Resultatet er reelt.</small></span></li>
+  </ol>
+  <figcaption>Den opprinnelige fordelen var en tilfeldighet i kalenderen. Poenget er at den vokser for hvert ledd, fordi den kjøper mer øvelse.</figcaption>
+</figure>: den som har, skal få. Små tilfeldige fordeler
 tidlig blir store fordeler senere, fordi de gir mer øvelse.
 
 ## 10 000 timer
@@ -74,6 +86,11 @@ Bokens mest kjente idé. Gladwell tar utgangspunkt i psykologen K. Anders
 Ericssons studier av fiolinister, der de beste hadde øvd rundt 10 000 timer
 innen tjueårsalderen, og bruker Beatles' netter i Hamburg og Bill Gates'
 tilgang til en datamaskin som tenåring som eksempler.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">10 000 timer er ikke en terskel. Det var et gjennomsnitt.</p>
+  <p class="fig__example"><b>Ericsson selv, i <i>Peak</i> (2016):</b> tallet varierer enormt mellom felt, og det som betyr noe er <i>bevisst</i> øvelse med tilbakemelding – ikke antall timer.</p>
+</figure>
 
 Her må det sies tydelig: **Ericsson mente selv at Gladwell leste ham feil.** I
 sin egen bok *Peak* skriver han at 10 000 var et gjennomsnitt, ikke en terskel;

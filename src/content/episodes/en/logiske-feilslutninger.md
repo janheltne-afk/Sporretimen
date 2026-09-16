@@ -96,6 +96,31 @@ That is not what was said. And here is the point that often gets missed: the
 straw man is usually not bad faith. We hear what we expect to hear, and build a
 version of the other side that is easier to disagree with.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">The straw man, side by side</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">What was said</p>
+      <h4>Lower the limit in residential streets</h4>
+      <ul>
+        <li>Applies to one particular place</li>
+        <li>Says nothing about other roads</li>
+        <li>No figure attached</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">What was answered</p>
+      <h4>Walking pace everywhere</h4>
+      <ul>
+        <li>Applies to every road</li>
+        <li>An extreme nobody proposed</li>
+        <li>Easy to dismiss</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>The straw man moves the claim somewhere it never was, and knocks it down there. Note that the right-hand version is easier to disagree with – that is the whole purpose.</figcaption>
+</figure>
+
 The counter-move is the **steelman**: repeat the other person's position in the
 strongest version you can manage, and ask them to confirm you have understood
 it. Do that, and you quite often find the disagreement is smaller than you
@@ -116,6 +141,21 @@ relevant, it is a legitimate point:
   is relevant information about credibility, and something any journalist is
   expected to disclose.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">When the person is relevant, and when they are not</p>
+  <table>
+    <thead>
+      <tr><th scope="col">Claim about the person</th><th scope="col">Does it bear on the matter?</th><th scope="col">Verdict</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">“He is a bad father”</th><td>No. Fatherhood says nothing about climate science.</td><td>Fallacy</td></tr>
+      <tr><th scope="row">“The report was paid for by the industry it assesses”</th><td>Yes. A conflict of interest affects how much weight an assessment deserves.</td><td>Valid point</td></tr>
+      <tr><th scope="row">“She has never worked in the field”</th><td>It depends. Relevant for experience-based knowledge, less so for a calculation.</td><td>To be judged</td></tr>
+    </tbody>
+  </table>
+  <figcaption>The same move, three different outcomes. The test is never “are they attacking the person?”, but “does the trait have anything to do with the claim?”.</figcaption>
+</figure>
+
 The line is whether the trait has anything to do with the matter at hand.
 
 ## The appeal to authority – which is usually fine
@@ -131,6 +171,17 @@ in three cases:
 - **No real authority.** Titles that sound weighty without meaning anything.
 - **No such agreement.** One researcher presented as “the research shows”, when
   the field is divided.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Three questions before trusting an authority</p>
+  <ol>
+    <li><span class="fig__box"><b>Is the person an expert on this exact thing?</b><small>Not on something nearby – on this particular claim.</small></span></li>
+    <li><span class="fig__box"><b>Is the authority real?</b><small>What sits behind the title? Training, publications, practice?</small></span></li>
+    <li><span class="fig__box"><b>Does the field agree?</b><small>One researcher is not “the research”. Is this the breadth, or one extreme?</small></span></li>
+    <li><span class="fig__box"><b>Three yeses is good reason to trust it</b><small>One no does not make the claim false – only that the authority does not settle it.</small></span></li>
+  </ol>
+  <figcaption>Pointing to experts is ordinary thinking. The fallacy only arises when one of the first three answers is no and the authority is used as an argument anyway.</figcaption>
+</figure>
 
 Rule of thumb: check whether the person is an expert on *this specific thing*,
 and whether they represent the breadth of the field or one extreme of it.
@@ -154,6 +205,23 @@ fallacy when the causal chain is not argued for.** If you can show that each
 step actually follows from the previous one, it is a perfectly valid argument –
 and that kind of reasoning is used daily in law, in safety work and in
 politics.
+
+<figure class="fig fig--flow">
+  <p class="fig__title">Two slippery slopes, the same shape</p>
+  <p class="fig__row">The links hold</p>
+  <ol>
+    <li><span class="fig__box"><b>A</b><small>The step is argued for</small></span></li>
+    <li><span class="fig__box"><b>B</b><small>The step is argued for</small></span></li>
+    <li><span class="fig__box"><b>C</b><small>Valid argument</small></span></li>
+  </ol>
+  <p class="fig__row">The links do not hold</p>
+  <ol>
+    <li><span class="fig__box"><b>A</b><small>The step is argued for</small></span></li>
+    <li><span class="fig__box"><b>?</b><small>No argument given</small></span></li>
+    <li><span class="fig__box"><b>Z</b><small>Fallacy</small></span></li>
+  </ol>
+  <figcaption>The shape is identical. The difference lies in whether each link actually follows from the one before, or whether it is merely asserted that it does.</figcaption>
+</figure>
 
 The question is never “are they using a slippery slope?”, but “do the links
 hold?”.
@@ -239,6 +307,11 @@ learn.
 **A bad argument does not make the conclusion false.** If someone uses a straw
 man to defend a position, the position may still be right – they just have not
 shown it yet.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">A bad argument for something true is still a bad argument – and the claim is still true.</p>
+  <p class="fig__example"><b>Example:</b> “The Earth is round because my grandmother said so.” The argument does not hold. The Earth is round anyway.</p>
+</figure>
 
 An honest warning: people who have just learned about fallacies often become
 unbearable. They start shouting Latin names instead of answering the point, and

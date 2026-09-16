@@ -103,6 +103,20 @@ Gearing er det som mangfoldiggjør den, og det finnes fire slag:
 - **Innhold** – noe du lager én gang, som leses eller høres uendelig mange
   ganger.
 
+<figure class="fig fig--matrix">
+  <p class="fig__title">Fire slags gearing</p>
+  <table>
+    <thead><tr><th scope="col">Type</th><th scope="col">Hva den er</th><th scope="col">Krever tillatelse?</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Arbeidskraft</th><td>Folk som jobber for deg</td><td>Ja – noen må gi deg jobben</td></tr>
+      <tr><th scope="row">Kapital</th><td>Penger som arbeider</td><td>Ja – noen må gi deg pengene</td></tr>
+      <tr><th scope="row">Kode</th><td>Programvare som gjør jobben mens du sover</td><td>Nei</td></tr>
+      <tr><th scope="row">Innhold</th><td>Noe du lager én gang, som leses uendelig mange ganger</td><td>Nei</td></tr>
+    </tbody>
+  </table>
+  <figcaption>De to nederste er den viktigste endringen i vår tid: ingen må godkjenne at du skriver kode eller lager innhold.</figcaption>
+</figure>
+
 De to siste kaller han gearing uten tillatelse: ingen må godkjenne at du
 skriver kode eller lager innhold. Det er den viktigste endringen i vår tid.
 

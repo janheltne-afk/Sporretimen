@@ -82,6 +82,16 @@ konkrete:
 - **Anklagerevisjon.** Si det verste de kan tenke om deg før de sier det
   selv. Det tar brodden av det.
 
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Taktisk empati, tre verktøy</p>
+  <ol>
+    <li><span class="fig__box"><b>Speiling</b><small>Gjenta de siste ordene den andre sa, som et spørsmål. Folk utdyper, nesten uten å merke det.</small></span></li>
+    <li><span class="fig__box"><b>Merking</b><small>«Det høres ut som du er bekymret for …» Riktig eller feil – de korrigerer deg, og du har lært noe.</small></span></li>
+    <li><span class="fig__box"><b>Anklagerevisjon</b><small>Si det verste de kan tenke om deg før de sier det selv. Det tar brodden av det.</small></span></li>
+  </ol>
+  <figcaption>Empati her betyr ikke å være enig eller snill. Det betyr å forstå hva den andre føler og hvorfor – og å vise at du har forstått det.</figcaption>
+</figure>
+
 ## Kalibrerte spørsmål
 
 Åpne spørsmål som begynner med *hvordan* eller *hva*, og som ikke kan besvares
@@ -105,6 +115,18 @@ For rene prisforhandlinger har boken en oppskrift: bestem deg for målet, åpne 
 65 prosent av det, og gå opp i stadig mindre steg – 85, 95, 100 – med et
 uregelmessig sluttall og gjerne noe ikke-monetært på slutten. Poenget er at
 stadig mindre steg signaliserer at du nærmer deg smertegrensen.
+
+<figure class="fig fig--scale">
+  <p class="fig__title">Ackerman-modellen</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:2%"><b>65 %</b><small>Åpningsbudet</small></div>
+    <div class="fig__mark" style="left:35%"><b>85 %</b><small>+20</small></div>
+    <div class="fig__mark" style="left:68%"><b>95 %</b><small>+10</small></div>
+    <div class="fig__mark" style="left:96%"><b>100 %</b><small>+5, ujevnt sluttall</small></div>
+  </div>
+  <p class="fig__ends"><span>Åpning</span><span>Målet ditt</span></p>
+  <figcaption>Stegene krymper hele veien. Det er signalet: hver gang du gir mindre enn sist, leser motparten det som at du nærmer deg grensen din.</figcaption>
+</figure>
 
 ## Kritikken
 

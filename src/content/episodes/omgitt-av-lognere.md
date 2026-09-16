@@ -66,6 +66,22 @@ Myntkast gir 50. Vi er altså marginalt bedre enn tilfeldig, og den lille
 fordelen kommer for det meste av at vi er flinkere til å kjenne igjen sannhet
 enn løgn.
 
+<figure class="fig fig--chart">
+  <p class="fig__title">Hvor gode vi er til å avsløre løgn</p>
+  <svg class="fig__plot" viewBox="0 0 520 150" role="img" aria-label="En akse fra 0 til 100 prosent. Myntkast ligger på 50 prosent. Mennesker ligger på 54 prosent, altså så vidt over. Politi, tollere og psykologer ligger på omtrent samme sted.">
+    <line class="fig__axisline" x1="40" y1="95" x2="490" y2="95" />
+    <line class="fig__grid" x1="265" y1="55" x2="265" y2="105" />
+    <line class="fig__axisline" x1="283" y1="45" x2="283" y2="105" />
+    <text class="fig__label" x="40" y="118">0 %</text>
+    <text class="fig__label" x="255" y="118">50 %</text>
+    <text class="fig__label" x="478" y="118">100 %</text>
+    <text class="fig__label" x="255" y="46" text-anchor="end">Myntkast</text>
+    <text class="fig__label fig__label--strong" x="292" y="38">Mennesker: 54 %</text>
+    <text class="fig__label" x="292" y="56">Også politi, tollere og psykologer</text>
+  </svg>
+  <figcaption>Bond og DePaulos metaanalyse av over 200 studier. Fire prosentpoeng over myntkast, og den lille fordelen kommer for det meste av at vi er flinkere til å kjenne igjen sannhet enn løgn.</figcaption>
+</figure>
+
 Verre: dette gjelder også dem som mener de er gode på det. Politibetjenter,
 tollere, dommere og psykologer treffer omtrent like ofte som alle andre. Det de
 har mer av, er **selvtillit** – og i noen studier er treffsikkerheten lavere hos
@@ -108,7 +124,24 @@ på personen, og se på **innholdet**.
 - **Hold tilbake det du vet.** Legg det fram sent, og se om historien kolliderer
   med det.
 
-Fellesnevneren er at man leter etter **motsigelser og etterprøvbarhet**, ikke
+Fellesnevneren er at man leter etter **motsigelser og etterprøvbarhet**
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Hvor du bør se</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Virker ikke</p>
+      <h4>Personen</h4>
+      <ul><li>Unnvikende blikk</li><li>Urolige hender</li><li>Svetting, nøling</li><li>Alt dette er tegn på ubehag, ikke på løgn</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Virker litt</p>
+      <h4>Innholdet</h4>
+      <ul><li>Be om mange detaljer</li><li>Be om fortellingen baklengs</li><li>Still uventede spørsmål</li><li>Sjekk mot tidspunkter, kvitteringer, vitner</li></ul>
+    </div>
+  </div>
+  <figcaption>Den som blir mistenkt for noe alvorlig, blir nervøs enten hen er skyldig eller uskyldig. Nervøsiteten kommer av situasjonen, ikke av sannhetsverdien.</figcaption>
+</figure>, ikke
 etter nervøse trekk.
 
 ## Og løgndetektoren

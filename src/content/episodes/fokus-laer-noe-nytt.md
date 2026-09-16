@@ -58,5 +58,54 @@ trenger begge deler.
 Vi ser på hva de to er enige om, hvor de trekker i hver sin retning, og hva som
 faktisk er til å bruke i en vanlig arbeidsdag.
 
+## To bøker, to retninger
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Hvor forfatterne leter etter årsaken</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Stolen Focus · Hari</p>
+      <h4>Ser utover</h4>
+      <ul>
+        <li>Årsaken ligger i omgivelsene, ikke i deg</li>
+        <li>Teknologi som er bygget for å holde på deg</li>
+        <li>Arbeidsliv, søvn, kosthold, forurensning</li>
+        <li>Konklusjon: problemet er kollektivt, og selvdisiplin er ikke nok</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Hyperfocus · Bailey</p>
+      <h4>Ser innover</h4>
+      <ul>
+        <li>Årsaken ligger i hvordan oppmerksomhet fungerer</li>
+        <li>Hvor mye av dagen som går på autopilot</li>
+        <li>Hvor mye vi klarer å holde på én gang</li>
+        <li>Konklusjon: dette er et håndverk, og det kan øves opp</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>De motsier ikke hverandre så mye som de svarer på hvert sitt spørsmål. Hari forklarer hvorfor det er blitt vanskeligere; Bailey forklarer hva du gjør med det i morgen tidlig. Leser du bare den ene, får du et halvt svar.</figcaption>
+</figure>
+
+## De to modusene Bailey beskriver
+
+Det som overrasker de fleste i *Hyperfocus*, er at halve boka handler om det motsatte
+av å konsentrere seg.
+
+<figure class="fig fig--cycle">
+  <p class="fig__title">Hjernen trenger begge</p>
+  <ol>
+    <li><span class="fig__step">Modus 1</span><b>Hyperfokus</b><small>All oppmerksomhet på én oppgave. Her blir arbeid gjort, og her merker du at tiden går fort.</small></li>
+    <li><span class="fig__step">Modus 2</span><b>Spredt fokus</b><small>Tankene får vandre med vilje. Det er her ting kobles sammen, og der hvilen ligger.</small></li>
+  </ol>
+  <p class="fig__loop">↻ Og så tilbake til den første</p>
+  <figcaption>Baileys poeng er at den andre ikke er sløsing med tid, men noe hjernen er avhengig av for å knytte sammen det den har tatt inn. Gode idéer kommer sjelden midt i hyperfokuset – de kommer i dusjen etterpå.</figcaption>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Det er lettere å fjerne en forstyrrelse på forhånd enn å motstå den i øyeblikket.</p>
+  <p class="fig__example"><b>Det som ligger under:</b> Begge bøkene ender på samme sted her, selv om de kommer fra hver sin kant. Du taper når du må velge bort noe gang på gang gjennom dagen. Du vinner når valget er tatt én gang, før du satte deg ned.</p>
+</figure>
+
 *Episoden er en gjennomgang av hva bøkene hevder, ikke en fasit om hjernen eller
 helsen din. Kilder oppgis i episoden.*

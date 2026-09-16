@@ -76,6 +76,16 @@ yourself: it requires clinical training, an interview and a review of records.
 Second, psychopathy is not a separate diagnosis in DSM-5 – what exists there is
 *antisocial personality disorder*, which overlaps but is not the same thing.
 
+<figure class="fig fig--scale">
+  <p class="fig__title">A trait and a condition are not the same thing</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:12%"><b>Individual traits</b><small>Very many people. Low empathy for a period, high self-confidence, an episode of lying.</small></div>
+    <div class="fig__mark" style="left:88%"><b>Clinical assessment</b><small>Around one per cent. Requires training, an interview and a review of records.</small></div>
+  </div>
+  <p class="fig__ends"><span>Common</span><span>Rare</span></p>
+  <figcaption>Having traits is not having the condition, and the distance between the two is the whole point. Psychopathy is also not a separate diagnosis in DSM-5 – what exists there is antisocial personality disorder, which overlaps without being the same.</figcaption>
+</figure>
+
 ## How common it is
 
 Estimates vary, and that is part of the point. Around one per cent of the

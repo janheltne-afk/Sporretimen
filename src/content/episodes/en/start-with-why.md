@@ -64,6 +64,16 @@ the middle, **how** you do it – what sets you apart. At the centre, **why** yo
 do it – the purpose, the belief, the reason the organisation exists beyond
 making money.
 
+<figure class="fig fig--rings">
+  <p class="fig__title">The golden circle</p>
+  <div class="fig__rings">
+    <div class="fig__ring"><b>What</b><small>The product, the service, the task. Everyone can answer this.</small></div>
+    <div class="fig__ring"><b>How</b><small>The method. What sets you apart from others.</small></div>
+    <div class="fig__ring" data-core><b>Why</b><small>The purpose. The reason the organisation exists beyond making money.</small></div>
+  </div>
+  <figcaption>Most people communicate from the top down in this figure. Sinek's point is that the few who inspire begin at the bottom – at the core – and work outwards.</figcaption>
+</figure>
+
 Sinek's claim is that almost everyone communicates from the outside in: here is
 the product, here are the features, buy it. The few who inspire do the opposite.
 They begin at the centre.
@@ -76,6 +86,31 @@ too.” Same information, entirely different effect.
 
 The line that sums it up: **people don't buy what you do, they buy why you do
 it.**
+
+<figure class="fig fig--compare">
+  <p class="fig__title">The same information, two orders</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Outside in</p>
+      <h4>The usual way</h4>
+      <ul>
+        <li>We make great computers</li>
+        <li>Beautifully designed, simple to use</li>
+        <li>Want to buy one?</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Inside out</p>
+      <h4>The one that sticks</h4>
+      <ul>
+        <li>We believe in challenging the status quo</li>
+        <li>That is why we make products that are beautifully designed and simple to use</li>
+        <li>We happen to make computers too</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>None of the claims have changed. Only the order – and with it, what the reader is left holding.</figcaption>
+</figure>
 
 ## Manipulation or inspiration
 

@@ -63,6 +63,16 @@ Tre ringer. Ytterst **hva** du gjør – det alle kan svare på. I midten **hvor
 du gjør det – det som skiller deg fra andre. Innerst **hvorfor** du gjør det –
 formålet, troen, grunnen til at organisasjonen finnes utover å tjene penger.
 
+<figure class="fig fig--rings">
+  <p class="fig__title">Den gylne sirkel</p>
+  <div class="fig__rings">
+    <div class="fig__ring"><b>Hva</b><small>Produktet, tjenesten, oppgaven. Alle kan svare på dette.</small></div>
+    <div class="fig__ring"><b>Hvordan</b><small>Framgangsmåten. Det som skiller deg fra andre.</small></div>
+    <div class="fig__ring" data-core><b>Hvorfor</b><small>Formålet. Grunnen til at virksomheten finnes utover å tjene penger.</small></div>
+  </div>
+  <figcaption>De fleste kommuniserer ovenfra og ned i denne figuren. Sineks poeng er at de få som inspirerer, begynner nederst – ved kjernen – og jobber seg utover.</figcaption>
+</figure>
+
 Sineks påstand er at nesten alle kommuniserer utenfra og inn: her er produktet,
 her er egenskapene, kjøp det. De få som inspirerer, gjør det motsatte. De begynner
 innerst.
@@ -75,6 +85,31 @@ informasjon, helt ulik virkning.
 
 Formuleringen som oppsummerer det: **folk kjøper ikke hva du gjør, de kjøper
 hvorfor du gjør det.**
+
+<figure class="fig fig--compare">
+  <p class="fig__title">Samme informasjon, to rekkefølger</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Utenfra og inn</p>
+      <h4>Det vanlige</h4>
+      <ul>
+        <li>Vi lager gode datamaskiner</li>
+        <li>Vakkert design, enkle å bruke</li>
+        <li>Vil du kjøpe en?</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Innenfra og ut</p>
+      <h4>Det som fester seg</h4>
+      <ul>
+        <li>Vi tror på å utfordre det bestående</li>
+        <li>Derfor lager vi produkter som er vakkert utformet og enkle å bruke</li>
+        <li>Vi lager tilfeldigvis også datamaskiner</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Ingen av påstandene er endret. Bare rekkefølgen – og med den, hva leseren sitter igjen med.</figcaption>
+</figure>
 
 ## Manipulasjon eller inspirasjon
 

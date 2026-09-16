@@ -71,6 +71,23 @@ Graham starts with a definition stricter than the one most people use: an
 reasonable expected return. Anything that does not meet all three is
 **speculation**.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Graham's three requirements</p>
+  <div class="fig__cols">
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Investing</p>
+      <h4>All three must be met</h4>
+      <ul><li>Thorough analysis</li><li>Safety of principal</li><li>An adequate expected return</li></ul>
+    </div>
+    <div class="fig__col">
+      <p class="fig__lead">Speculating</p>
+      <h4>Everything else</h4>
+      <ul><li>Can be perfectly fine</li><li>Provided you know that is what you are doing</li><li>And that the amount can afford to be lost</li></ul>
+    </div>
+  </div>
+  <figcaption>The mistake is not speculating. The mistake is speculating while believing you are investing.</figcaption>
+</figure>
+
 It is not a moral judgement – Graham thinks speculation can be fine, as long as
 you know that is what you are doing and have set aside a sum you can afford to
 lose. The mistake is speculating while believing you are investing.
@@ -88,6 +105,16 @@ sell when he is euphoric. What you should **not** do is let his mood decide
 what you believe the business is worth.
 
 ## Margin of safety
+
+<figure class="fig fig--scale">
+  <p class="fig__title">The margin of safety</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:18%"><b>What you pay</b><small>The price in the market today</small></div>
+    <div class="fig__mark" style="left:72%"><b>What you think it is worth</b><small>Your own assessment of the value</small></div>
+  </div>
+  <p class="fig__ends"><span>Low price</span><span>High price</span></p>
+  <figcaption>The distance between the two is the margin. It is not a bonus – it is there because your analysis may be wrong, the future may disappoint, and unexpected things happen. The margin is what lets you come through when you are wrong.</figcaption>
+</figure>
 
 Graham's own answer to what investing boils down to, if he had to pick three
 words: *margin of safety*. Pay clearly less than what you believe something is

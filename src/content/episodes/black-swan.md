@@ -75,6 +75,33 @@ I **Ekstremistan** gjelder ikke det. Formue, boksalg, bysteørrelse, avkastning,
 epidemier. Legg Jeff Bezos inn i samme utvalg, og gjennomsnittet er ubrukelig.
 Her står noen få hendelser for nesten hele resultatet.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">To slags tilfeldighet</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Middelmådistan</p>
+      <h4>Normalfordelt</h4>
+      <ul>
+        <li>Høyde, vekt, kaloriinntak</li>
+        <li>Ingen enkeltverdi flytter gjennomsnittet nevneverdig</li>
+        <li>Verdens høyeste menneske i et utvalg på tusen endrer nesten ingenting</li>
+        <li>Standardavvik og risikomodeller virker</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Ekstremistan</p>
+      <h4>Noen få avgjør alt</h4>
+      <ul>
+        <li>Formue, boksalg, avkastning, epidemier</li>
+        <li>Én verdi kan dominere hele utvalget</li>
+        <li>Legg Bezos inn i samme utvalg, og gjennomsnittet er ubrukelig</li>
+        <li>De samme verktøyene gir falsk trygghet</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Feilen er ikke å bruke modeller. Den er å bruke Middelmådistans modeller på noe som hører hjemme i Ekstremistan – og så tro at tallene betyr noe.</figcaption>
+</figure>
+
 Feilen, mener Taleb, er at vi bruker Middelmådistans verktøy – standardavvik,
 normalfordeling, risikomodeller – på ting som hører til i Ekstremistan. Det gir
 en falsk trygghet som er verre enn ingen modell.

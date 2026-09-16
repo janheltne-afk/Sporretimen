@@ -56,5 +56,45 @@ Poenget er ikke kortstokken i seg selv. Det er å forstå hvorfor hjernen husker
 bilder og steder så mye bedre enn tall og symboler – og hvordan du kan bruke det
 samme trikset på navn, fagstoff, handlelister og presentasjoner.
 
+## Minnepalasset, steg for steg
+
+Metoden er gammel – den er kjent fra antikken – og den bytter ut noe hjernen er dårlig
+til med noe den er god til. Tall og symboler glir fra hverandre. Steder og bilder gjør
+det ikke.
+
+<figure class="fig fig--flow" data-dir="ned">
+  <p class="fig__title">Fire ledd</p>
+  <ol>
+    <li><span class="fig__box"><b>Velg en rute du allerede kan</b><small>Barndomshjemmet, veien til jobb, rommene i leiligheten. Det viktigste er at rekkefølgen sitter uten at du må tenke.</small></span></li>
+    <li><span class="fig__box"><b>Gjør hvert kort om til et bilde</b><small>Ikke «spar dame», men en bestemt person eller ting du ser for deg. Jo tydeligere og rarere, jo bedre fester det seg.</small></span></li>
+    <li><span class="fig__box"><b>Plasser bildet på et sted langs ruta</b><small>Første kort i gangen, neste på kjøkkenbenken. La bildet gjøre noe med stedet – det er samspillet som huskes.</small></span></li>
+    <li><span class="fig__box"><b>Gå ruta i hodet</b><small>Å hente det fram igjen er bare å gå samme vei en gang til. Kortene kommer i riktig rekkefølge fordi rommene gjør det.</small></span></li>
+  </ol>
+  <figcaption>Legg merke til at ingen av leddene handler om å gjenta noe mange ganger. Rekkefølgen er ikke noe du husker – den ligger allerede i ruta, og den har du kunnet i årevis.</figcaption>
+</figure>
+
+## PAO – å pakke tre kort i ett bilde
+
+Skal du klare en hel kortstokk, blir 52 enkeltbilder mange steder å fylle. PAO løser det
+ved å gi hvert kort tre roller, og så sette sammen tre kort til én scene.
+
+<figure class="fig fig--matrix">
+  <p class="fig__title">Person, handling, objekt</p>
+  <table>
+    <thead><tr><th scope="col">Rolle</th><th scope="col">Hva det er</th><th scope="col">Hentes fra</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Person</th><td>Hvem som gjør noe i bildet</td><td>Kortet du trekker først</td></tr>
+      <tr><th scope="row">Handling</th><td>Hva som gjøres</td><td>Kortet du trekker deretter</td></tr>
+      <tr><th scope="row">Objekt</th><td>Hva det gjøres med</td><td>Det tredje kortet</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Hvert kort har alle tre rollene klare på forhånd, og hvilken som brukes avgjøres av hvor i trekløveret kortet havner. Da blir tre kort til ett sted på ruta i stedet for tre – og en kortstokk krever sytten stoppesteder, ikke femtito. Listen må du lage selv: den virker fordi bildene er dine, ikke fordi de er de riktige.</figcaption>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Poenget er ikke kortstokken. Det er at samme triks virker på alt annet.</p>
+  <p class="fig__example"><b>Samme metode, andre bruksområder:</b> navn du vil huske på et møte, punktene i en presentasjon du ikke vil lese opp fra arket, fagstoff til en eksamen, handlelista. Kortstokken er bare den vanskeligste øvelsen – og derfor den som viser tydeligst at systemet virker.</p>
+</figure>
+
 *Innholdet er praktisk kunnskap du kan øve på selv. Kilder og videre lesing oppgis
 i episoden.*

@@ -84,6 +84,23 @@ framstillinger.
   krenket. Denne formen ser ikke selvsikker ut i det hele tatt, og oppdages
   derfor sjelden.
 
+<figure class="fig fig--compare">
+  <p class="fig__title">To former, samme kjerne</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Grandios</p>
+      <h4>Det folk ser for seg</h4>
+      <ul><li>Selvsikker, dominerende</li><li>Krever oppmerksomhet</li><li>Møter kritikk med aggresjon</li><li>Lett å få øye på</li></ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Vulnerabel</p>
+      <h4>Den som sjelden oppdages</h4>
+      <ul><li>Usikker, sensitiv, tilbaketrukket</li><li>Lett krenket</li><li>Møter kritikk med sammenbrudd</li><li>Ser ikke selvsikker ut i det hele tatt</li></ul>
+    </div>
+  </div>
+  <figcaption>Kjernen er den samme i begge: et skjørt selvbilde som må holdes oppe utenfra. Det er ikke høy selvfølelse – det er selvfølelse som tåler lite.</figcaption>
+</figure>
+
 Fellesnevneren er ikke høy selvfølelse. Det er en selvfølelse som tåler lite, og
 som må holdes oppe utenfra.
 
