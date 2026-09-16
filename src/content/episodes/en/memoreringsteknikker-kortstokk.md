@@ -39,8 +39,8 @@ links:
   spotify: https://open.spotify.com/episode/2XqUwS6y5TqNIZ17SDl8a2
 featured: true
 popularityScore: 8
-related:
-  - en/memorering-kort-forklart
+related: []
+
 ---
 
 How is it possible to remember 52 cards in the right order? The answer is neither

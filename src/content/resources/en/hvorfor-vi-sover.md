@@ -8,7 +8,6 @@ summary: >-
 url: https://www.penguin.co.uk/books/295665/why-we-sleep-by-walker-matthew/9780141983769
 episodes:
   - en/sovn-laer-noe-nytt
-  - en/sovn-kort-forklart
 topic: helse
 subtopics:
   - sovn

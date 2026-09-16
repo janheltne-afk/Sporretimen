@@ -10,7 +10,6 @@ summary: >-
 url: https://protocol.bryanjohnson.com/
 episodes:
   - en/sovn-laer-noe-nytt
-  - en/sovn-kort-forklart
 topic: helse
 subtopics:
   - sovn

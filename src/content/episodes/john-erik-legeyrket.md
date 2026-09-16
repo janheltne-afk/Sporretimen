@@ -49,7 +49,7 @@ featured: true
 popularityScore: 10
 related:
   - sovn-laer-noe-nytt
-  - sovn-kort-forklart
+
 ---
 
 En personlig samtale med lege John Erik om hvordan det egentlig er å bli – og være
@@ -59,8 +59,7 @@ fastlegeyrket og psykiatri, og om presset og ansvaret som følger med.
 Vi kommer også innom livet utenfor jobben: reising, klatring og turen til
 Kilimanjaro.
 
-> Denne episoden inngår i en tematisk tredeling sammen med en Lær noe nytt-episode om søvn
-> og en Kort forklart-episode om samme tema.
+> Denne episoden henger tematisk sammen med Lær noe nytt-episoden om søvn.
 
 *Helseopplysninger omtales på et generelt nivå. Identifiserbare pasienthistorier
 deles ikke.*

@@ -1,12 +1,124 @@
 {
   "redirects": [
-    { "source": "/foredrag", "destination": "/", "permanent": false },
-    { "source": "/foredrag/", "destination": "/", "permanent": false },
-    { "source": "/en/talks", "destination": "/en/", "permanent": false },
-    { "source": "/en/talks/", "destination": "/en/", "permanent": false },
-    { "source": "/okonomi", "destination": "/temaer/okonomi/", "permanent": true },
-    { "source": "/okonomi/", "destination": "/temaer/okonomi/", "permanent": true },
-    { "source": "/en/economics", "destination": "/en/topics/okonomi/", "permanent": true },
-    { "source": "/en/economics/", "destination": "/en/topics/okonomi/", "permanent": true }
+    {
+      "source": "/episoder/sovn-kort-forklart",
+      "destination": "/episoder/sovn-laer-noe-nytt/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/sovn-kort-forklart/",
+      "destination": "/episoder/sovn-laer-noe-nytt/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/sovn-kort-forklart/manus",
+      "destination": "/episoder/sovn-laer-noe-nytt/manus/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/sovn-kort-forklart/manus/",
+      "destination": "/episoder/sovn-laer-noe-nytt/manus/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/memorering-kort-forklart",
+      "destination": "/episoder/memoreringsteknikker-kortstokk/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/memorering-kort-forklart/",
+      "destination": "/episoder/memoreringsteknikker-kortstokk/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/memorering-kort-forklart/manus",
+      "destination": "/episoder/memoreringsteknikker-kortstokk/manus/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/memorering-kort-forklart/manus/",
+      "destination": "/episoder/memoreringsteknikker-kortstokk/manus/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/sovn-kort-forklart",
+      "destination": "/en/episodes/sovn-laer-noe-nytt/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/sovn-kort-forklart/",
+      "destination": "/en/episodes/sovn-laer-noe-nytt/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/sovn-kort-forklart/transcript",
+      "destination": "/en/episodes/sovn-laer-noe-nytt/transcript/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/sovn-kort-forklart/transcript/",
+      "destination": "/en/episodes/sovn-laer-noe-nytt/transcript/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/memorering-kort-forklart",
+      "destination": "/en/episodes/memoreringsteknikker-kortstokk/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/memorering-kort-forklart/",
+      "destination": "/en/episodes/memoreringsteknikker-kortstokk/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/memorering-kort-forklart/transcript",
+      "destination": "/en/episodes/memoreringsteknikker-kortstokk/transcript/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/memorering-kort-forklart/transcript/",
+      "destination": "/en/episodes/memoreringsteknikker-kortstokk/transcript/",
+      "permanent": true
+    },
+    {
+      "source": "/foredrag",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/foredrag/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/en/talks",
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/en/talks/",
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/okonomi",
+      "destination": "/temaer/okonomi/",
+      "permanent": true
+    },
+    {
+      "source": "/okonomi/",
+      "destination": "/temaer/okonomi/",
+      "permanent": true
+    },
+    {
+      "source": "/en/economics",
+      "destination": "/en/topics/okonomi/",
+      "permanent": true
+    },
+    {
+      "source": "/en/economics/",
+      "destination": "/en/topics/okonomi/",
+      "permanent": true
+    }
   ]
 }

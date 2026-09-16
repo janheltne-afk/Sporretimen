@@ -39,8 +39,8 @@ links:
   spotify: https://open.spotify.com/episode/2XqUwS6y5TqNIZ17SDl8a2
 featured: true
 popularityScore: 8
-related:
-  - memorering-kort-forklart
+related: []
+
 ---
 
 Hvordan er det mulig å huske 52 kort i riktig rekkefølge? Svaret er verken talent

@@ -7,7 +7,6 @@ summary: >-
   studying medicine.
 episodes:
   - en/memoreringsteknikker-kortstokk
-  - en/memorering-kort-forklart
   - en/john-erik-legeyrket
 topic: laering
 subtopics:

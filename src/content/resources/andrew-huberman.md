@@ -9,7 +9,6 @@ summary: >-
 url: https://www.hubermanlab.com/
 episodes:
   - sovn-laer-noe-nytt
-  - sovn-kort-forklart
 topic: helse
 subtopics:
   - sovn

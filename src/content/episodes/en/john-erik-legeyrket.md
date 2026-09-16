@@ -50,7 +50,7 @@ featured: true
 popularityScore: 10
 related:
   - en/sovn-laer-noe-nytt
-  - en/sovn-kort-forklart
+
 ---
 
 A personal conversation with the doctor John Erik about what it is really like to
@@ -60,8 +60,7 @@ responsibility that come with it.
 
 We also get into life outside the job: travel, climbing and the trip to Kilimanjaro.
 
-> This episode is part of a themed trio alongside a Learn something new episode on
-> sleep and a Briefly explained episode on the same subject.
+> This episode connects thematically with the Learn something new episode on sleep.
 
 *Health information is discussed in general terms. No identifiable patient stories
 are shared.*

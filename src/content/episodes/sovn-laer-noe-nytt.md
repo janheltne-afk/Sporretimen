@@ -53,7 +53,6 @@ sources:
   - title: "Bryan Johnson – arbeid med søvn og optimalisering"
 popularityScore: 6
 related:
-  - sovn-kort-forklart
   - john-erik-legeyrket
 ---
 

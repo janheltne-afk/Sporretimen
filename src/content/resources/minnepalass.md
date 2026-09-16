@@ -7,7 +7,6 @@ summary: >-
   medisinstudiet.
 episodes:
   - memoreringsteknikker-kortstokk
-  - memorering-kort-forklart
   - john-erik-legeyrket
 topic: laering
 subtopics:
