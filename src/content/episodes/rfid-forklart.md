@@ -57,16 +57,17 @@ popularityScore: 0
 advisory:
   - juss
 related:
+  - rfid-varetelling
   - gs1-strekkoder
   - lean-forklart
-  - incoterms-2020
 ---
 
 Det som overrasker folk mest med RFID, er ikke at en brikke kan leses på
 avstand. Det er at den vanligste typen **ikke har batteri i det hele tatt** – og
 likevel svarer når den blir spurt.
 
-Dette er et tema jeg har skrevet bacheloroppgave om. Her er gjennomgangen av
+Dette er et tema jeg har skrevet
+[bacheloroppgave](/episoder/rfid-varetelling/) om. Her er gjennomgangen av
 hvordan det virker, hva det duger til, og hvor det pleier å skjære seg.
 
 ## De tre delene

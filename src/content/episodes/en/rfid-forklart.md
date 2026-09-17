@@ -57,18 +57,18 @@ popularityScore: 0
 advisory:
   - juss
 related:
+  - en/rfid-varetelling
   - en/gs1-strekkoder
   - en/lean-forklart
-  - en/incoterms-2020
 ---
 
 What surprises people most about RFID is not that a chip can be read at a
 distance. It is that the most common kind **has no battery at all** – and still
 answers when it is asked.
 
-This is a subject Jan Sindre wrote his bachelor thesis on. Here is the
-walk-through of how it works, what it is good for, and where it tends to come
-apart.
+This is a subject Jan Sindre wrote his
+[bachelor thesis](/en/episodes/rfid-varetelling/) on. Here is the walk-through
+of how it works, what it is good for, and where it tends to come apart.
 
 ## The three parts
 
