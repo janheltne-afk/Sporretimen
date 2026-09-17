@@ -14,7 +14,7 @@
  * ingen språkknapp – en knapp som fører til en side som ikke er bygget ennå
  * er verre enn ingen knapp, både for besøkende og for søkemotorer.
  *
- * Enkeltsider uten motstykke på det andre språket (manusene, kursene) setter
+ * Enkeltsider uten motstykke på det andre språket (manusene) setter
  * `noAlternate` på BaseLayout i stedet, og står da uten knapp og uten hreflang.
  */
 export const englishReady = true;
@@ -48,7 +48,6 @@ const routes = {
   episodes: { no: '/episoder', en: '/en/episodes' },
   guests: { no: '/gjester', en: '/en/guests' },
   resources: { no: '/ressurser', en: '/en/resources' },
-  courses: { no: '/kurs', en: '/en/courses' },
   about: { no: '/om', en: '/en/about' },
   contact: { no: '/kontakt', en: '/en/contact' },
   ethics: { no: '/var-varsom', en: '/en/editorial-standards' },
@@ -107,7 +106,6 @@ export type SearchKind =
   | 'resource'
   | 'guest'
   | 'topic'
-  | 'course'
   | 'index'
   | 'page';
 
@@ -119,7 +117,6 @@ const indexKeys = [
   'guests',
   'resources',
   'topics',
-  'courses',
 ] as const satisfies readonly RouteKey[];
 
 export function searchKindOf(lang: Locale, pathname: string): SearchKind {
@@ -136,7 +133,6 @@ export function searchKindOf(lang: Locale, pathname: string): SearchKind {
   if (under('resources')) return 'resource';
   if (under('guests')) return 'guest';
   if (under('topics')) return 'topic';
-  if (under('courses')) return 'course';
   return 'page';
 }
 

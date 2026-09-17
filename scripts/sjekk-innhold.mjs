@@ -89,7 +89,7 @@ async function filer(mappe) {
   return ut;
 }
 
-for (const mappe of ['episodes', 'resources', 'scripts', 'guests', 'courses', 'foredrag']) {
+for (const mappe of ['episodes', 'resources', 'scripts', 'guests']) {
   for (const rel of await filer(mappe)) {
     const sti = join(ROOT, rel);
     const tekst = await readFile(sti, 'utf8');

@@ -180,7 +180,6 @@ const strings = {
     'search.kind.resource': 'Ressurs',
     'search.kind.guest': 'Gjest',
     'search.kind.topic': 'Tema',
-    'search.kind.course': 'Kurs',
     'search.kind.page': 'Side',
 
     // Interesse og temaer
@@ -339,7 +338,6 @@ const strings = {
     'search.kind.resource': 'Resource',
     'search.kind.guest': 'Guest',
     'search.kind.topic': 'Topic',
-    'search.kind.course': 'Course',
     'search.kind.page': 'Page',
 
     // Interest and topics

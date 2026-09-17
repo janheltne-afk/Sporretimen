@@ -71,12 +71,6 @@ export async function resourcesForEpisode(
   return list.filter((r) => r.data.episodes.some((e) => e.id === episodeId));
 }
 
-/** Alle kurs på ett språk som ikke er draft. */
-export async function getCourses(lang: Locale = 'no'): Promise<CollectionEntry<'courses'>[]> {
-  const all = await getCollection('courses', ({ data }) => !data.draft);
-  return all.filter((c) => inLocale(lang)(c.id)).sort(byOrderThen(lang, 'title'));
-}
-
 /** Alle manus som ikke er draft. */
 export async function getScripts(lang?: Locale): Promise<CollectionEntry<'scripts'>[]> {
   const all = await getCollection('scripts', ({ data }) => !data.draft);

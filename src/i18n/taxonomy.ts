@@ -1,6 +1,6 @@
 /**
- * Faste lister som vises til besøkende: serier, formater, ressurstyper og
- * kursstatuser – på begge språk.
+ * Faste lister som vises til besøkende: serier, formater og ressurstyper – på
+ * begge språk.
  *
  * Id-ene er de samme på tvers av språk (`samtale`, `bok`, `apen` …), så
  * innholdsfilene bruker samme verdi uansett språk. Bare etikettene skifter.
