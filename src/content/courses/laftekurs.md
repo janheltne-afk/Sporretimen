@@ -32,5 +32,5 @@ hvilke verktøy som brukes, og teknikkene som gjør en laftekonstruksjon både s
 vakker. Kurset passer for deg som vil lafte selv, enten det er en hytte, et anneks
 eller bare gleden ved å forstå håndverket.
 
-*Dette er foreløpig bare en skisse av et tema, ikke et tilbud. Siden er ikke
+*Dette er foreløpig bare en skisse av et tema. Siden er ikke
 publisert.*

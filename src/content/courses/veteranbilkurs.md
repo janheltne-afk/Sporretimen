@@ -36,5 +36,5 @@ enkel å forstå og oversiktlig å jobbe på.
 
 Målet er at du skal forstå motoren godt nok til å tørre å skru selv.
 
-*Dette er foreløpig bare en skisse av et tema, ikke et tilbud. Siden er ikke
+*Dette er foreløpig bare en skisse av et tema. Siden er ikke
 publisert.*

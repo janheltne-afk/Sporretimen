@@ -37,5 +37,5 @@ rørgate til turbin og elektrisk anlegg.
 Til slutt regner vi på tallene og går gjennom hva som faktisk skal til – teknisk og
 formelt – for å bygge et lite kraftverk selv.
 
-*Dette er foreløpig bare en skisse av et tema, ikke et tilbud. Siden er ikke
+*Dette er foreløpig bare en skisse av et tema. Siden er ikke
 publisert.*
