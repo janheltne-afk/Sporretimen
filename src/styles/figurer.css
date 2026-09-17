@@ -449,6 +449,13 @@ figcaption.fig__caption {
 }
 
 @media (max-width: 560px) {
+  /* På telefon går flyten nedover. Pila snudde alt, men lista sto igjen som
+     rad med wrap – og da ble hvert ledd like bredt som sin egen tekst i
+     stedet for like bredt som figuren, slik at lange ledd rant utenfor
+     skjermen. Sporet må snus, ikke bare pila. */
+  .fig--flow ol {
+    flex-direction: column;
+  }
   .fig--flow li:not(:last-child)::after {
     content: '↓';
     align-self: center;

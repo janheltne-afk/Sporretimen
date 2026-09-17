@@ -75,15 +75,33 @@ export function fold(tekst: string): string {
   return ut;
 }
 
-/** Alle posisjoner der `nål` står i `høystakk`. Begge skal være foldet. */
+/**
+ * Treffet må begynne på et ordskille.
+ *
+ * Uten dette fant «dpu» ordet «hovedpunkter», som står på hver eneste
+ * episodeside – og et søk på en forkortelse ga treff overalt. Med regelen
+ * beholder vi det som faktisk er nyttig, nemlig at «sovn» finner «søvntrykk»,
+ * siden det treffet begynner der ordet begynner.
+ */
+function påOrdstart(tekst: string, i: number): boolean {
+  if (i === 0) return true;
+  return !/[\p{L}\p{N}]/u.test(tekst[i - 1]);
+}
+
+/** Alle posisjoner der `nål` innleder et ord i `høystakk`. Begge skal være foldet. */
 function posisjoner(høystakk: string, nål: string, maks = 50): number[] {
   const ut: number[] = [];
   let i = høystakk.indexOf(nål);
   while (i !== -1 && ut.length < maks) {
-    ut.push(i);
-    i = høystakk.indexOf(nål, i + nål.length);
+    if (påOrdstart(høystakk, i)) ut.push(i);
+    i = høystakk.indexOf(nål, i + 1);
   }
   return ut;
+}
+
+/** Om `nål` innleder et ord et sted i `høystakk`. */
+function finnes(høystakk: string, nål: string): boolean {
+  return posisjoner(høystakk, nål, 1).length > 0;
 }
 
 /** Utvider et treff til hele ordet det står i. */
@@ -172,26 +190,26 @@ export function søk(poster: Post[], q: string, valg: SøkValg = {}): Resultat[]
 
     // Alle ordene må finnes et sted på siden.
     const alle = ord.every(
-      (o) => tittelF.includes(o) || beskrivelseF.includes(o) || kroppF.includes(o)
+      (o) => finnes(tittelF, o) || finnes(beskrivelseF, o) || finnes(kroppF, o)
     );
     if (!alle) continue;
 
     let poeng = 0;
     for (const o of ord) {
-      if (tittelF.includes(o)) poeng += 60;
-      if (beskrivelseF.includes(o)) poeng += 12;
+      if (finnes(tittelF, o)) poeng += 60;
+      if (finnes(beskrivelseF, o)) poeng += 12;
       // Flere forekomster teller, men med avtagende utbytte.
       poeng += Math.min(posisjoner(kroppF, o, 12).length, 12) * 2;
     }
     // En sammenhengende frase er et mye sterkere signal enn spredte ord.
     if (frase) {
-      if (tittelF.includes(frase)) poeng += 120;
-      if (kroppF.includes(frase)) poeng += 40;
+      if (finnes(tittelF, frase)) poeng += 120;
+      if (finnes(kroppF, frase)) poeng += 40;
     }
 
     // Utdrag: helst rundt frasen, ellers rundt det mest særpregede ordet.
     const lengst = [...ord].sort((a, b) => b.length - a.length)[0];
-    const nål = frase && kroppF.includes(frase) ? frase : lengst;
+    const nål = frase && finnes(kroppF, frase) ? frase : lengst;
     let steder = posisjoner(kroppF, nål, utdragPerTreff);
     let kilde = post.b;
     if (!steder.length) {

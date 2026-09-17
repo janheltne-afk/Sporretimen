@@ -60,6 +60,7 @@ sources:
   - title: "James P. Womack and Daniel T. Jones – Lean Thinking (1996)"
   - title: "Jeffrey K. Liker – The Toyota Way (2004)"
 related:
+  - en/incoterms-2020
   - en/principles
   - en/start-with-why
 ---
