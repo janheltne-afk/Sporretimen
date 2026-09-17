@@ -61,8 +61,8 @@ sources:
   - title: "Jeffrey K. Liker – The Toyota Way (2004)"
 related:
   - incoterms-2020
+  - gs1-strekkoder
   - principles
-  - start-with-why
 ---
 
 «Lean» brukes i dag om nesten hva som helst som skal bli mer effektivt, og

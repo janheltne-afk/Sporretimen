@@ -64,6 +64,8 @@ sources:
     url: https://cjlien.no/
 related:
   - en/lean-forklart
+  - en/gs1-strekkoder
+  - en/rfid-forklart
 ---
 
 Few things in international trade cause as much argument as three letters in a

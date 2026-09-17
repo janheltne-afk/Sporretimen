@@ -64,6 +64,8 @@ sources:
     url: https://cjlien.no/
 related:
   - lean-forklart
+  - gs1-strekkoder
+  - rfid-forklart
 ---
 
 Få ting i internasjonal handel skaper like mye krangel som tre bokstaver i en

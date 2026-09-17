@@ -61,8 +61,8 @@ sources:
   - title: "Jeffrey K. Liker – The Toyota Way (2004)"
 related:
   - en/incoterms-2020
+  - en/gs1-strekkoder
   - en/principles
-  - en/start-with-why
 ---
 
 “Lean” is used today for almost anything meant to become more efficient, and
