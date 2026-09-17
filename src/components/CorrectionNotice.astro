@@ -21,7 +21,7 @@ const mailSubject = en
   : `Rettelse${subject ? `: ${subject}` : ''}`;
 ---
 
-<p class:list={['correction', className]}>
+<p class:list={['correction', className]} data-search-skip>
   <strong>{en ? 'Spotted an error?' : 'Oppdaget en feil?'}</strong>{' '}
   {en ? 'Please email us at' : 'Send oss gjerne en e-post på'}{' '}
   <a href={`mailto:${site.email}?subject=${encodeURIComponent(mailSubject)}`}>{site.email}</a>.{' '}

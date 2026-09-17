@@ -139,6 +139,7 @@ const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : und
           {script.data.advisory.map((v) => (
             <Advisory lang={lang} variant={v} />
           ))}
+          <Advisory lang={lang} variant="ai" />
           <CorrectionNotice lang={lang} subject={heading} />
         </div>
       </div>

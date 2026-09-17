@@ -355,6 +355,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
           {d.advisory.map((v) => (
             <Advisory lang={lang} variant={v} />
           ))}
+          <Advisory lang={lang} variant="ai" />
           <CorrectionNotice lang={lang} subject={d.title} />
         </div>
       </div>

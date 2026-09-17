@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Advisory from '@/components/Advisory.astro';
 import CorrectionNotice from '@/components/CorrectionNotice.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
@@ -137,7 +138,8 @@ const jsonLd = [personJsonLd, breadcrumb];
     </section>
 
     <section class="section-tight">
-      <div class="container container-narrow">
+      <div class="container container-narrow guest-advisories">
+        <Advisory lang={lang} variant="ai" />
         <CorrectionNotice lang={lang} subject={d.name} class="guest-correction" />
       </div>
     </section>
@@ -145,7 +147,9 @@ const jsonLd = [personJsonLd, breadcrumb];
 </BaseLayout>
 
 <style>
-  .guest-correction {
+  .guest-advisories {
+    display: grid;
+    gap: 0.6rem;
     padding-top: 1.3rem;
     border-top: 1px solid var(--line);
   }

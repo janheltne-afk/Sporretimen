@@ -12,12 +12,16 @@
  *   okonomi    – informasjon og analyse, ikke personlig investeringsrådgivning
  *   juss       – generell informasjon, ikke individuell juridisk rådgivning
  *   transkript – automatisk transkribert, kan inneholde feil
+ *   ai         – AI brukt som verktøy, gjennomlest, men feil kan forekomme
+ *
+ * ai-varianten settes ikke i frontmatter. Den står på alt redaksjonelt
+ * innhold, fordi den gjelder alt – ikke bare der noen husket å slå den på.
  */
 import { path as routePath, type Locale } from '@/i18n/config';
 
 interface Props {
   lang: Locale;
-  variant: 'bok' | 'helse' | 'okonomi' | 'juss' | 'transkript';
+  variant: 'bok' | 'helse' | 'okonomi' | 'juss' | 'transkript' | 'ai';
   /** Tittelen på verket, for bok-varianten. */
   work?: string;
   class?: string;
@@ -41,10 +45,13 @@ const texts = {
   transkript: en
     ? 'The transcript is automatically generated and may contain errors.'
     : 'Transkripsjonen er automatisk generert og kan inneholde feil.',
+  ai: en
+    ? 'AI is used as a tool in producing the text here, and everything is read through before it is published. Errors can still occur.'
+    : 'AI brukes som verktøy i arbeidet med tekstene her, og alt blir lest gjennom før det publiseres. Feil kan likevel forekomme.',
 };
 ---
 
-<p class:list={['advisory', `advisory--${variant}`, className]}>
+<p class:list={['advisory', `advisory--${variant}`, className]} data-search-skip>
   {texts[variant]}
   {
     variant === 'bok' && (

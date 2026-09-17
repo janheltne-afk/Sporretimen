@@ -228,6 +228,7 @@ interface Tekster {
   bok: string;
   hentet: string;
   forbehold: Record<'helse' | 'okonomi' | 'juss', string>;
+  ai: string;
 }
 
 const TEKST: Record<Locale, Tekster> = {
@@ -246,6 +247,7 @@ const TEKST: Record<Locale, Tekster> = {
       okonomi: 'Innholdet er allmenn informasjon, ikke individuell økonomisk rådgivning.',
       juss: 'Innholdet er allmenn informasjon, ikke juridisk rådgivning.',
     },
+    ai: 'AI brukes som verktøy i arbeidet med tekstene, og alt blir lest gjennom før det publiseres. Feil kan likevel forekomme.',
   },
   en: {
     serie: 'Spørretimen',
@@ -262,6 +264,7 @@ const TEKST: Record<Locale, Tekster> = {
       okonomi: 'This is general information, not individual financial advice.',
       juss: 'This is general information, not legal advice.',
     },
+    ai: 'AI is used as a tool in producing the text, and everything is read through before it is published. Errors can still occur.',
   },
 };
 
@@ -361,13 +364,13 @@ export async function episodePdf(ctx: PdfKontekst): Promise<Uint8Array> {
     }
   }
 
-  // Forbeholdene som vises på siden, skal følge med filen.
-  if (d.advisory.length) {
-    ark.luft(14);
-    for (const a of d.advisory) {
-      ark.avsnitt(T.forbehold[a], { font: 'kursiv', storrelse: 9, farge: BLEKK_SVAK });
-    }
+  // Forbeholdene som vises på siden, skal følge med filen. AI-notisen står på
+  // alt innhold, og skal derfor stå her uansett hva som er satt i frontmatter.
+  ark.luft(14);
+  for (const a of d.advisory) {
+    ark.avsnitt(T.forbehold[a], { font: 'kursiv', storrelse: 9, farge: BLEKK_SVAK });
   }
+  ark.avsnitt(T.ai, { font: 'kursiv', storrelse: 9, farge: BLEKK_SVAK });
 
   // Bunnlinje på hver side: hvor filen kommer fra, og sidetall når det er
   // mer enn én side. Skrives til slutt, når vi vet hvor mange sider det ble.
