@@ -58,6 +58,7 @@ const routes = {
   partner: { no: '/samarbeid', en: '/en/collaborate' },
   privacy: { no: '/personvern', en: '/en/privacy' },
   terms: { no: '/vilkar', en: '/en/terms' },
+  search: { no: '/sok', en: '/en/search' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -91,6 +92,52 @@ export function topicPath(lang: Locale, topicId: string, subtopicId?: string): s
 /** Stien til manuset/transkripsjonen for en episode. */
 export function transcriptPath(lang: Locale, slug: string): string {
   return `${entryPath(lang, 'episodes', slug)}${transcriptSegment[lang]}/`;
+}
+
+/**
+ * Hvilken del av nettstedet en adresse hører til. Brukes av søket, som får
+ * nøkkelen lagt ut i HTML-en og grupperer treffene etter den.
+ *
+ * Utledes av den samme rutetabellen som resten, slik at en ny seksjon ikke
+ * kan bli liggende usortert i søkeresultatene uten at det er et bevisst valg.
+ */
+export type SearchKind =
+  | 'episode'
+  | 'transcript'
+  | 'resource'
+  | 'guest'
+  | 'topic'
+  | 'course'
+  | 'index'
+  | 'page';
+
+/** Oversiktssidene. De lister opp annet innhold og har lite eget. */
+const indexKeys = [
+  'episodes',
+  'conversations',
+  'explained',
+  'guests',
+  'resources',
+  'topics',
+  'courses',
+] as const satisfies readonly RouteKey[];
+
+export function searchKindOf(lang: Locale, pathname: string): SearchKind {
+  const clean = pathname.replace(/\/+$/, '') || '/';
+  if (clean === '/' || clean === routes.home[lang]) return 'index';
+
+  // Roten i en seksjon er oversikten; alt under den er selve innholdet.
+  if (indexKeys.some((key) => clean === routes[key][lang])) return 'index';
+
+  const under = (key: RouteKey) => clean.startsWith(`${routes[key][lang]}/`);
+  if (under('episodes')) {
+    return clean.endsWith(`/${transcriptSegment[lang]}`) ? 'transcript' : 'episode';
+  }
+  if (under('resources')) return 'resource';
+  if (under('guests')) return 'guest';
+  if (under('topics')) return 'topic';
+  if (under('courses')) return 'course';
+  return 'page';
 }
 
 /** Stien til PDF-en med episodebeskrivelsen. Uten skråstrek til slutt – det er en fil. */

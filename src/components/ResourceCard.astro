@@ -26,7 +26,9 @@ const topicNames = [
 ].filter((v): v is string => Boolean(v));
 ---
 
-<article class="card resource">
+{/* data-search-skip: kortet peker på en annen side. Uten dette ville siden
+    som viser kortet, blitt søkbar på den andre sidens tittel og ingress. */}
+<article data-search-skip class="card resource">
   <a class="resource__link" href={entryPath(lang, 'resources', slugOf(resource.id))}>
     <div class="resource__body">
       <div class="resource__meta">

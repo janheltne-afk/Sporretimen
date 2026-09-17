@@ -1,0 +1,366 @@
+---
+/**
+ * Søk på tvers av hele nettstedet.
+ *
+ * Indeksen hentes først når noen begynner å skrive, ikke ved sidelast – den er
+ * på et par hundre kilobyte, og de aller fleste som treffer denne siden skal
+ * søke etter én ting og gå videre.
+ *
+ * Selve søkingen skjer i nettleseren. Ingenting sendes noe sted.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { path as routePath, type Locale } from '@/i18n/config';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const en = lang === 'en';
+
+/** Adressen til indeksfila. Må stemme med UTFIL i integrations/sok-indeks.mjs. */
+const indeksUrl = en ? '/en/search-index.json' : '/sok-indeks.json';
+
+/** Merkelappene treffene grupperes med, sendt til klienten som JSON. */
+const merkelapper: Record<string, string> = {
+  episode: t('search.kind.episode'),
+  transcript: t('search.kind.transcript'),
+  resource: t('search.kind.resource'),
+  guest: t('search.kind.guest'),
+  topic: t('search.kind.topic'),
+  course: t('search.kind.course'),
+  page: t('search.kind.page'),
+};
+
+const tekster = {
+  ingen: t('search.none'),
+  feil: t('search.error'),
+  laster: t('search.loading'),
+  ettTreff: t('search.oneResult'),
+  flereTreff: t('search.manyResults'),
+  merkelapper,
+};
+---
+
+<BaseLayout
+  title={t('search.title')}
+  description={t('search.metaDescription')}
+  noindex
+>
+  <PageHeader eyebrow={t('search.eyebrow')} title={t('search.title')} lead={t('search.lead')} />
+
+  <section class="section">
+    <div class="container container-narrow">
+      {/* Skjemaet virker uten JavaScript også: da lander man her med ?q= i
+          adressen, og meldingen under forklarer hva som mangler. */}
+      <form
+        class="sok-form"
+        role="search"
+        method="get"
+        action={routePath(lang, 'search')}
+        data-indeks={indeksUrl}
+      >
+        <label class="sok-form__label" for="sok-felt">{t('search.label')}</label>
+        <div class="sok-form__rad">
+          <input
+            class="sok-form__felt"
+            type="search"
+            id="sok-felt"
+            name="q"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder={t('search.placeholder')}
+          />
+          <button class="btn btn-primary" type="submit">{t('search.submit')}</button>
+        </div>
+        <p class="sok-form__hint">{t('search.hint')}</p>
+      </form>
+
+      <p class="sok-status" data-role="status" role="status" aria-live="polite"></p>
+
+      <noscript>
+        <p class="sok-noscript">{t('search.noscript')}</p>
+      </noscript>
+
+      <ol class="sok-treff" data-role="treff"></ol>
+    </div>
+  </section>
+
+  <script
+    type="application/json"
+    data-role="sok-tekster"
+    set:html={JSON.stringify(tekster)}
+  />
+
+  <script>
+    import { søk, type Indeks, type Resultat } from '@/lib/sok';
+
+    const skjema = document.querySelector<HTMLFormElement>('.sok-form');
+    const felt = document.querySelector<HTMLInputElement>('#sok-felt');
+    const liste = document.querySelector<HTMLOListElement>('[data-role="treff"]');
+    const status = document.querySelector<HTMLParagraphElement>('[data-role="status"]');
+    const tekster = JSON.parse(
+      document.querySelector<HTMLScriptElement>('[data-role="sok-tekster"]')?.textContent ?? '{}'
+    );
+
+    if (felt && liste && status) {
+      let indeks: Indeks | null = null;
+      let henter: Promise<Indeks> | null = null;
+      let sisteSøk = '';
+
+      /** Hentes én gang, og bare når noen faktisk søker. */
+      function hentIndeks(): Promise<Indeks> {
+        if (!henter) {
+          henter = fetch(skjema?.dataset.indeks ?? '')
+            .then((r) => {
+              if (!r.ok) throw new Error(String(r.status));
+              return r.json();
+            })
+            .then((data: Indeks) => {
+              indeks = data;
+              return data;
+            })
+            .catch((e) => {
+              henter = null;
+              throw e;
+            });
+        }
+        return henter;
+      }
+
+      function tøm(el: HTMLElement) {
+        while (el.firstChild) el.removeChild(el.firstChild);
+      }
+
+      function tegnTreff(treff: Resultat[], q: string) {
+        tøm(liste!);
+        for (const r of treff) {
+          const li = document.createElement('li');
+          li.className = 'sok-treff__post';
+
+          const merke = document.createElement('p');
+          merke.className = 'sok-treff__merke';
+          merke.textContent = tekster.merkelapper?.[r.post.k] ?? r.post.k;
+          li.append(merke);
+
+          const h2 = document.createElement('h2');
+          h2.className = 'sok-treff__tittel';
+          const a = document.createElement('a');
+          a.href = r.href;
+          a.textContent = r.post.t;
+          h2.append(a);
+          li.append(h2);
+
+          for (const u of r.utdrag) {
+            const p = document.createElement('p');
+            p.className = 'sok-treff__utdrag';
+            // Bitene settes inn som tekstnoder, aldri som HTML.
+            for (const bit of u.biter) {
+              if (bit.treff) {
+                const mark = document.createElement('mark');
+                mark.textContent = bit.tekst;
+                p.append(mark);
+              } else {
+                p.append(document.createTextNode(bit.tekst));
+              }
+            }
+            li.append(p);
+          }
+
+          const sti = document.createElement('p');
+          sti.className = 'sok-treff__sti';
+          sti.textContent = decodeURIComponent(r.post.u);
+          li.append(sti);
+
+          liste!.append(li);
+        }
+
+        if (!treff.length) {
+          status!.textContent = tekster.ingen?.replace('{q}', q) ?? '';
+          return;
+        }
+        const mal = treff.length === 1 ? tekster.ettTreff : tekster.flereTreff;
+        status!.textContent = (mal ?? '').replace('{n}', String(treff.length)).replace('{q}', q);
+      }
+
+      async function kjør(q: string) {
+        const rensket = q.trim();
+        sisteSøk = rensket;
+        if (rensket.length < 2) {
+          tøm(liste!);
+          status!.textContent = '';
+          return;
+        }
+        if (!indeks) {
+          status!.textContent = tekster.laster ?? '';
+          try {
+            await hentIndeks();
+          } catch {
+            status!.textContent = tekster.feil ?? '';
+            return;
+          }
+          // Rakk brukeren å skrive videre mens indeksen lastet, gjelder det nye.
+          if (sisteSøk !== rensket) return;
+        }
+        tegnTreff(søk(indeks!.poster, rensket), rensket);
+      }
+
+      let timer: number | undefined;
+      felt.addEventListener('input', () => {
+        window.clearTimeout(timer);
+        const verdi = felt.value;
+        timer = window.setTimeout(() => {
+          kjør(verdi);
+          // Adressen holdes i takt, slik at et søk kan deles og gå i historikken.
+          const url = new URL(window.location.href);
+          if (verdi.trim()) url.searchParams.set('q', verdi.trim());
+          else url.searchParams.delete('q');
+          window.history.replaceState({}, '', url);
+        }, 140);
+      });
+
+      // Uten JavaScript sender skjemaet en vanlig GET. Med JavaScript er
+      // resultatene allerede der, så vi lar være å laste siden på nytt.
+      felt.form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.clearTimeout(timer);
+        kjør(felt.value);
+      });
+
+      // Kom man hit med ?q= – fra skjemaet, en delt lenke eller søkefeltet i
+      // toppen – kjøres søket med en gang.
+      const fra = new URLSearchParams(window.location.search).get('q');
+      if (fra) {
+        felt.value = fra;
+        kjør(fra);
+      }
+      felt.focus();
+    }
+  </script>
+
+  <style>
+    .sok-form {
+      margin-bottom: 2.5rem;
+    }
+    .sok-form__label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.6rem;
+    }
+    .sok-form__rad {
+      display: flex;
+      gap: 0.6rem;
+      align-items: stretch;
+    }
+    .sok-form__felt {
+      flex: 1;
+      min-width: 0;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 1.02rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-sm);
+    }
+    .sok-form__felt:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+    .sok-form__hint {
+      margin: 0.7rem 0 0;
+      font-size: 0.84rem;
+      color: var(--ink-faint);
+    }
+    .sok-status {
+      margin: 0 0 1.5rem;
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+      min-height: 1.3em;
+    }
+    .sok-noscript {
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+    /* Treffene bygges av JavaScript etter at siden er lastet. Astros
+       scoped styles setter et attributt på elementene i malen, og det får
+       ikke elementer som lages i nettleseren – derfor må reglene under være
+       globale. De er avgrenset til .sok-treff, som finnes i malen. */
+    .sok-treff {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1.9rem;
+    }
+    .sok-treff :global(.sok-treff__post) {
+      padding-top: 1.7rem;
+      border-top: 1px solid var(--line);
+    }
+    .sok-treff :global(.sok-treff__post:first-child) {
+      padding-top: 0;
+      border-top: 0;
+    }
+    .sok-treff :global(.sok-treff__merke) {
+      margin: 0 0 0.35rem;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+    .sok-treff :global(.sok-treff__tittel) {
+      margin: 0 0 0.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .sok-treff :global(.sok-treff__tittel a) {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .sok-treff :global(.sok-treff__tittel a:hover),
+    .sok-treff :global(.sok-treff__tittel a:focus-visible) {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sok-treff :global(.sok-treff__utdrag) {
+      margin: 0 0 0.4rem;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .sok-treff :global(.sok-treff__utdrag mark) {
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-weight: 600;
+      padding: 0 0.12em;
+      border-radius: 2px;
+    }
+    .sok-treff :global(.sok-treff__sti) {
+      margin: 0.5rem 0 0;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 560px) {
+      .sok-form__rad {
+        flex-direction: column;
+      }
+    }
+  </style>
+</BaseLayout>

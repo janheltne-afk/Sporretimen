@@ -40,6 +40,18 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
     </a>
 
     <div class="site-header__actions">
+      <a
+        class="search-toggle"
+        href={routePath(lang, 'search')}
+        aria-label={t('header.search')}
+        title={t('header.search')}
+      >
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </a>
+
       {englishReady && !noAlternate && (
       <a
         class="lang-toggle"
@@ -166,6 +178,22 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
   .lang-toggle:hover {
     color: var(--ink);
     border-color: var(--line-strong);
+  }
+
+  .search-toggle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: var(--ink-faint);
+    transition: color 0.2s ease;
+  }
+  .search-toggle:hover,
+  .search-toggle:focus-visible {
+    color: var(--ink);
+  }
+  .search-toggle[aria-current='page'] {
+    color: var(--accent-strong);
   }
 
   .theme-toggle {
@@ -349,9 +377,10 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
       letter-spacing: 0.08em;
       margin-right: -0.08em;
     }
+    .search-toggle,
     .theme-toggle,
     .menu-toggle {
-      width: 32px;
+      width: 30px;
     }
   }
 </style>

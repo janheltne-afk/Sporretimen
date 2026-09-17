@@ -4,7 +4,7 @@ import SEO from '@/components/SEO.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { site } from '@/data/site';
-import { htmlLang, localeFromUrl, type Locale } from '@/i18n/config';
+import { htmlLang, localeFromUrl, searchKindOf, type Locale } from '@/i18n/config';
 
 interface Props {
   /** Språket siden vises på. Utledes fra adressen hvis den ikke settes. */
@@ -23,6 +23,14 @@ interface Props {
 }
 const props = Astro.props;
 const lang: Locale = props.lang ?? localeFromUrl(Astro.url);
+
+/**
+ * Nøkkelen søkeindeksen grupperer etter. Den legges ut i HTML-en fordi
+ * indeksen bygges av de ferdige sidene i dist/ – da slipper indekseringen å
+ * gjette seksjon ut fra adressen, og den kan ikke komme i utakt med rutene.
+ * Sider som ikke skal kunne søkes opp, er de samme som ikke skal indekseres.
+ */
+const searchKind = props.noindex ? undefined : searchKindOf(lang, Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -72,7 +80,7 @@ const lang: Locale = props.lang ?? localeFromUrl(Astro.url);
   <body>
     <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}</a>
     <Header lang={lang} noAlternate={props.noAlternate} />
-    <main id="main">
+    <main id="main" data-search-kind={searchKind}>
       <slot />
     </main>
     <Footer lang={lang} />

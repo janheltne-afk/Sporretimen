@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import sokIndeks from './integrations/sok-indeks.mjs';
 
 // Kanonisk nettadresse (hoveddomene med www). Alt av sitemap, canonical,
 // Open Graph og JSON-LD utledes herfra.
@@ -19,6 +20,8 @@ export default defineConfig({
       i18n: undefined,
       filter: (page) => !page.includes('/404'),
     }),
+    // Bygger søkeindeksen av de ferdige sidene, etter at alt annet er skrevet.
+    sokIndeks(),
   ],
   build: {
     inlineStylesheets: 'auto',

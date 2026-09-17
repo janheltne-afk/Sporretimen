@@ -167,7 +167,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     data-lang={lang}
   >
     <div class="container episode__wrap episode__head">
-      <a class="back-link" href={routePath(lang, 'episodes')}>{t('episode.backToAll')}</a>
+      <a class="back-link" data-search-skip href={routePath(lang, 'episodes')}>{t('episode.backToAll')}</a>
 
       {d.commercial && <CommercialLabel lang={lang} commercial={d.commercial} />}
 

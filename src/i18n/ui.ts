@@ -156,8 +156,33 @@ const strings = {
     'rating.give': 'Gi terningkast',
     'rating.failed': 'Klarte ikke å hente terningkast akkurat nå.',
 
+    'header.search': 'Søk',
     'search.label': 'Søk',
     'search.placeholder': 'Søk i tittel, gjest, tema eller spørsmål …',
+    // Søkesiden
+    'search.eyebrow': 'Søk',
+    'search.title': 'Søk i alt innhold',
+    'search.lead':
+      'Søk på tvers av episoder, transkripsjoner, ressurser, temaer og sidene ellers. Du får se hvor i teksten ordet står.',
+    'search.metaDescription':
+      'Søk i hele Spørretimen – episoder, transkripsjoner, ressurser, gjester og temaer.',
+    'search.submit': 'Søk',
+    'search.hint':
+      'Søket dekker hele teksten, også transkripsjonene. Sett anførselstegn rundt en frase for å søke på den samlet.',
+    'search.loading': 'Henter innholdet …',
+    'search.error': 'Klarte ikke å hente innholdet. Prøv å laste siden på nytt.',
+    'search.none': 'Ingen treff på «{q}».',
+    'search.oneResult': 'Ett treff på «{q}».',
+    'search.manyResults': '{n} treff på «{q}».',
+    'search.noscript':
+      'Søket kjører i nettleseren og trenger JavaScript. Uten det kan du bla i arkivet under Episoder, Ressurser og Temaer.',
+    'search.kind.episode': 'Episode',
+    'search.kind.transcript': 'Transkripsjon',
+    'search.kind.resource': 'Ressurs',
+    'search.kind.guest': 'Gjest',
+    'search.kind.topic': 'Tema',
+    'search.kind.course': 'Kurs',
+    'search.kind.page': 'Side',
 
     // Interesse og temaer
     'interest.wantThis': 'Jeg vil høre denne',
@@ -291,8 +316,32 @@ const strings = {
     'rating.give': 'Give a rating of',
     'rating.failed': 'Could not load ratings right now.',
 
+    'header.search': 'Search',
     'search.label': 'Search',
     'search.placeholder': 'Search titles, guests, topics or questions …',
+    'search.eyebrow': 'Search',
+    'search.title': 'Search everything',
+    'search.lead':
+      'Search across episodes, transcripts, resources, topics and the rest of the site. You will see where in the text the word appears.',
+    'search.metaDescription':
+      'Search all of Spørretimen – episodes, transcripts, resources, guests and topics.',
+    'search.submit': 'Search',
+    'search.hint':
+      'The search covers the full text, transcripts included. Put quotation marks around a phrase to search for it as a whole.',
+    'search.loading': 'Fetching the content …',
+    'search.error': 'Could not fetch the content. Try reloading the page.',
+    'search.none': 'No results for “{q}”.',
+    'search.oneResult': 'One result for “{q}”.',
+    'search.manyResults': '{n} results for “{q}”.',
+    'search.noscript':
+      'The search runs in the browser and needs JavaScript. Without it you can browse the archive under Episodes, Resources and Topics.',
+    'search.kind.episode': 'Episode',
+    'search.kind.transcript': 'Transcript',
+    'search.kind.resource': 'Resource',
+    'search.kind.guest': 'Guest',
+    'search.kind.topic': 'Topic',
+    'search.kind.course': 'Course',
+    'search.kind.page': 'Page',
 
     // Interest and topics
     'interest.wantThis': 'I want to hear this',

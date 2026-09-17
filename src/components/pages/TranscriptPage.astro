@@ -91,7 +91,7 @@ const jsonLd = transkribert && articleJsonLd ? [articleJsonLd, breadcrumb] : und
 >
   <article class="manus">
     <div class="container">
-      <a class="back-link" href={entryPath(lang, 'episodes', slug)}>{t('episode.backToEpisode')}</a>
+      <a class="back-link" data-search-skip href={entryPath(lang, 'episodes', slug)}>{t('episode.backToEpisode')}</a>
     </div>
 
     <header class="manus-hero">
