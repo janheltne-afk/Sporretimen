@@ -41,6 +41,7 @@ description: >-
   eksempel for hvert siffer fra 2 til 12 – og hvordan du sjekker svaret.
 featured: false
 related:
+  - gangetabellen
   - memoreringsteknikker-kortstokk
 ---
 

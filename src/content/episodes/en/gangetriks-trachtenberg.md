@@ -41,6 +41,7 @@ description: >-
   rule and an example for every digit from 2 to 12 – and how to check the answer.
 featured: false
 related:
+  - en/gangetabellen
   - en/memoreringsteknikker-kortstokk
 ---
 
