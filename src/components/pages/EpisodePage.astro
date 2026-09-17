@@ -27,7 +27,13 @@ import {
 } from '@/lib/content';
 import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { formatDate, formatRelease } from '@/lib/utils';
-import { entryPath, path as routePath, transcriptPath, type Locale } from '@/i18n/config';
+import {
+  entryPath,
+  episodePdfPath,
+  path as routePath,
+  transcriptPath,
+  type Locale,
+} from '@/i18n/config';
 import { seriesOf, seriesById } from '@/i18n/taxonomy';
 import { topicById, subtopicById } from '@/data/topics';
 import { useTranslations } from '@/i18n/ui';
@@ -314,6 +320,34 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
           )
         }
 
+        {/* PDF-utgaven av beskrivelsen. Filen bygges statisk, så lenka peker
+            rett på et ark som allerede ligger der – ingenting genereres nå. */}
+        <a class="pdf-lenke" href={episodePdfPath(lang, slug)} download={`${slug}.pdf`}>
+          <span class="pdf-lenke__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path
+                d="M12 3.5v11m0 0 4-4m-4 4-4-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4.5 17.5v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-1"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          <span class="pdf-lenke__text">
+            <strong>{t('episode.pdf')}</strong>
+            <span>{t('episode.pdfDesc')}</span>
+          </span>
+        </a>
+
         {/* Henvisningen til originalverket, og deretter fotnotene:
             rettighetsforbehold, fagforbehold og rettemelding. */}
         {d.book && <BookMeta lang={lang} book={d.book} />}
@@ -570,6 +604,51 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
   .episode__feedback > * {
     max-width: 44rem;
   }
+  /* Nedlastingslenka til PDF-en. Lavmælt med vilje – den skal ligge der for
+     den som vil ha den, ikke konkurrere med selve innholdet. */
+  .pdf-lenke {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 2.5rem;
+    padding: 0.95rem 1.15rem;
+    max-width: 40rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .pdf-lenke:hover,
+  .pdf-lenke:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .pdf-lenke__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    color: var(--ink-faint);
+  }
+  .pdf-lenke:hover .pdf-lenke__icon,
+  .pdf-lenke:focus-visible .pdf-lenke__icon {
+    color: var(--accent-strong);
+  }
+  .pdf-lenke__text {
+    display: grid;
+    gap: 0.1rem;
+  }
+  .pdf-lenke__text strong {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .pdf-lenke__text span {
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+  }
+
   .sources {
     margin-top: 3rem;
     padding-top: 1.6rem;

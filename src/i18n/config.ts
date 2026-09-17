@@ -65,6 +65,9 @@ export type RouteKey = keyof typeof routes;
 /** Undersiden med manus/transkripsjon, som henger under en episode. */
 const transcriptSegment: Record<Locale, string> = { no: 'manus', en: 'transcript' };
 
+/** Filnavnet på PDF-utgaven av episodebeskrivelsen. */
+const pdfSegment: Record<Locale, string> = { no: 'beskrivelse.pdf', en: 'description.pdf' };
+
 /** Stien til en seksjon, med skråstrek til slutt. */
 export function path(lang: Locale, key: RouteKey): string {
   const p = routes[key][lang];
@@ -88,6 +91,11 @@ export function topicPath(lang: Locale, topicId: string, subtopicId?: string): s
 /** Stien til manuset/transkripsjonen for en episode. */
 export function transcriptPath(lang: Locale, slug: string): string {
   return `${entryPath(lang, 'episodes', slug)}${transcriptSegment[lang]}/`;
+}
+
+/** Stien til PDF-en med episodebeskrivelsen. Uten skråstrek til slutt – det er en fil. */
+export function episodePdfPath(lang: Locale, slug: string): string {
+  return `${entryPath(lang, 'episodes', slug)}${pdfSegment[lang]}`;
 }
 
 /**
@@ -121,6 +129,11 @@ export function alternatePath(lang: Locale, current: string): string {
       const from = transcriptSegment[lang];
       const to = transcriptSegment[other];
       if (rest.endsWith(`/${from}`)) rest = `${rest.slice(0, -from.length)}${to}`;
+      // ... og filnavnet på PDF-en, som er en fil og ikke skal ha skråstrek
+      const pdfFrom = pdfSegment[lang];
+      if (rest.endsWith(`/${pdfFrom}`)) {
+        return `${routes[key][other]}${rest.slice(0, -pdfFrom.length)}${pdfSegment[other]}`;
+      }
       const target = `${routes[key][other]}${rest}`;
       return target.endsWith('/') ? target : `${target}/`;
     }

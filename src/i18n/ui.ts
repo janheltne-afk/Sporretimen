@@ -119,6 +119,8 @@ const strings = {
     'episode.backToEpisode': '← Tilbake til episoden',
     'episode.contents': 'Innhold',
     'episode.updated': 'Sist oppdatert',
+    'episode.pdf': 'Last ned beskrivelsen som PDF',
+    'episode.pdfDesc': 'Ett ark med temaer, spørsmål, hovedpunkter og kilder.',
 
     // Gjester
     'guest.backToAll': '← Alle gjester',
@@ -257,6 +259,8 @@ const strings = {
     'episode.backToEpisode': '← Back to the episode',
     'episode.contents': 'Contents',
     'episode.updated': 'Last updated',
+    'episode.pdf': 'Download the description as a PDF',
+    'episode.pdfDesc': 'One sheet with topics, questions, key points and sources.',
 
     'guest.backToAll': '← All guests',
     'guest.themes': 'Themes',
