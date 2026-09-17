@@ -4,11 +4,15 @@ import PageHeader from '@/components/PageHeader.astro';
 import Avatar from '@/components/Avatar.astro';
 import { site } from '@/data/site';
 import { formatList, seriesById } from '@/i18n/taxonomy';
-import { path as routePath } from '@/i18n/config';
+import { entryPath, path as routePath } from '@/i18n/config';
 
 const formats = formatList('no');
 const sporretimen = seriesById('no', 'sporretimen')!;
 const forklart = seriesById('no', 'sporretimen-forklart')!;
+
+// Mastergraden har sin egen episode. Den som lurer på hva den handlet om, skal
+// kunne trykke seg dit herfra.
+const masterSti = entryPath('no', 'episodes', 'erp-wms-integrasjon');
 ---
 
 <BaseLayout
@@ -89,9 +93,9 @@ const forklart = seriesById('no', 'sporretimen-forklart')!;
         <p class="eyebrow">Programleder</p>
         <h2>{site.host}</h2>
         <p class="lead">
-          Jan Sindre er siviløkonom med master i logistikk, og har bakgrunn fra ERP. Han er
-          nysgjerrig, relasjonsorientert og liker å møte mennesker med andre
-          erfaringer og fagområder enn ham selv.
+          Jan Sindre er siviløkonom med <a href={masterSti}>master i logistikk</a>, og
+          har bakgrunn fra ERP. Han er nysgjerrig, relasjonsorientert og liker å møte
+          mennesker med andre erfaringer og fagområder enn ham selv.
         </p>
         <p class="host__note">
           Til daglig jobber Jan Sindre med Business Analytics. Spørretimen er hobbyen:

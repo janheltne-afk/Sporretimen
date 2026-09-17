@@ -3,12 +3,16 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import Avatar from '@/components/Avatar.astro';
 import { site } from '@/data/site';
-import { path } from '@/i18n/config';
+import { entryPath, path } from '@/i18n/config';
 import { formatList, seriesById } from '@/i18n/taxonomy';
 
 const formats = formatList('en');
 const sporretimen = seriesById('en', 'sporretimen')!;
 const forklart = seriesById('en', 'sporretimen-forklart')!;
+
+// The master's degree has an episode of its own. Anyone wondering what it was
+// about should be able to click through from here.
+const masterSti = entryPath('en', 'episodes', 'erp-wms-integrasjon');
 ---
 
 <BaseLayout
@@ -93,8 +97,9 @@ const forklart = seriesById('en', 'sporretimen-forklart')!;
         <p class="eyebrow">Host</p>
         <h2>{site.host}</h2>
         <p class="lead">
-          Jan Sindre is a siviløkonom (the Norwegian MSc in Business) with a master’s in logistics, and has a background in ERP. He is
-          curious, people-oriented, and enjoys meeting people whose experience and
+          Jan Sindre is a siviløkonom (the Norwegian MSc in Business) with a{' '}
+          <a href={masterSti}>master’s in logistics</a>, and has a background in ERP. He
+          is curious, people-oriented, and enjoys meeting people whose experience and
           field differ from his own.
         </p>
         <p class="host__note">

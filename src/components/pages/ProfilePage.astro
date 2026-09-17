@@ -14,7 +14,7 @@ import TopicIcon from '@/components/TopicIcon.astro';
 import { getEpisodes, getSeriesEpisodes, topicCounts } from '@/lib/content';
 import { topics } from '@/data/topics';
 import { site, socials, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
-import { path as routePath, topicPath, type Locale } from '@/i18n/config';
+import { entryPath, path as routePath, topicPath, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 import { seriesById } from '@/i18n/taxonomy';
 
@@ -23,6 +23,11 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+// Oppgavene ligger som egne episoder. Utdanningen i faktalisten peker dit, slik
+// at den som lurer på hva mastergraden handlet om, kan lese det.
+const bachelorSti = entryPath(lang, 'episodes', 'rfid-varetelling');
+const masterSti = entryPath(lang, 'episodes', 'erp-wms-integrasjon');
 const en = lang === 'en';
 
 const episodes = await getEpisodes(lang);
@@ -109,7 +114,15 @@ const jsonLd = [
           <dt>{en ? 'Role' : 'Rolle'}</dt>
           <dd>{en ? 'Host, Spørretimen' : 'Programleder i Spørretimen'}</dd>
           <dt>{en ? 'Education' : 'Utdanning'}</dt>
-          <dd>{en ? 'Siviløkonom (MSc in Business), master’s in logistics' : 'Siviløkonom, master i logistikk'}</dd>
+          <dd>
+            {en ? 'Siviløkonom (MSc in Business), ' : 'Siviløkonom, '}
+            <a href={masterSti}>{en ? 'master’s in logistics' : 'master i logistikk'}</a>
+          </dd>
+          <dt>{en ? 'Theses' : 'Oppgaver'}</dt>
+          <dd>
+            <a href={bachelorSti}>{en ? 'Bachelor thesis' : 'Bacheloroppgaven'}</a>{' · '}
+            <a href={masterSti}>{en ? 'Master’s thesis' : 'Masteroppgaven'}</a>
+          </dd>
           <dt>{en ? 'Background' : 'Bakgrunn'}</dt>
           <dd>ERP</dd>
           <dt>{en ? 'Works with' : 'Jobber med'}</dt>
@@ -148,7 +161,10 @@ const jsonLd = [
                 logistics, has a background in ERP systems, and works in business analytics
                 day to day. That background is why the podcast keeps returning to numbers and
                 how organisations actually decide things. That is where the curiosity comes
-                from. The podcast is a hobby, made in his spare time.
+                from. The podcast is a hobby, made in his spare time. Both theses he has
+                written are walked through in episodes of their own – the{' '}
+                <a href={bachelorSti}>bachelor thesis on RFID and stock counting</a> and the{' '}
+                <a href={masterSti}>master’s thesis on ERP–WMS integrations</a>.
               </p>
               <p>
                 He is not presented as an expert on every subject covered, and the site keeps
@@ -167,11 +183,13 @@ const jsonLd = [
                 hukommelse, vaner, penger.
               </p>
               <p>
-                Han er siviløkonom med master i logistikk, har bakgrunn fra ERP, og jobber til
-                daglig med Business Analytics. Den bakgrunnen er grunnen til at podkasten
+                Han er siviløkonom med master i logistikk, har bakgrunn fra ERP, og jobber
+                til daglig med Business Analytics. Den bakgrunnen er grunnen til at podkasten
                 stadig vender tilbake til tall og hvordan virksomheter faktisk bestemmer
                 seg. Det er der nysgjerrigheten kommer fra. Podkasten er hobby, og lages på
-                fritiden.
+                fritiden. Begge oppgavene han har skrevet er gjennomgått i egne episoder –{' '}
+                <a href={bachelorSti}>bacheloroppgaven om RFID og varetelling</a> og{' '}
+                <a href={masterSti}>masteroppgaven om ERP- og WMS-integrasjoner</a>.
               </p>
               <p>
                 Han fremstilles ikke som ekspert på alle temaene som dekkes, og nettsiden
