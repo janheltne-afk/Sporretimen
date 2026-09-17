@@ -475,6 +475,13 @@ figcaption.fig__caption {
     gap: 0.35rem;
     flex: 0 0 auto;
   }
+  /* SVG-en skaleres med figurbredden, så 11 px i brukerenheter blir under
+     8 px på en telefon. Søylefigurer har en ledig tekstkolonne og tåler at
+     teksten settes større i brukerenheter; kurvefigurer har etiketter som
+     ligger tett langs aksen og kolliderer da. Derfor bare [data-bars]. */
+  .fig--chart[data-bars] .fig__label {
+    font-size: 14px;
+  }
   .fig--scale .fig__mark {
     max-width: 7rem;
   }
