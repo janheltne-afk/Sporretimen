@@ -392,6 +392,15 @@ figcaption.fig__caption {
   font-weight: 600;
 }
 
+/* Søyler. Brukes når figuren viser andeler og ikke en utvikling – da er
+   lengden lettere å sammenligne enn høyden på en kurve. */
+.fig--chart .fig__bar {
+  fill: var(--accent-strong);
+}
+.fig--chart .fig__bar--muted {
+  fill: var(--ink-faint);
+}
+
 /* -------------------------------------------------------------------- regel */
 
 .fig--rule {
