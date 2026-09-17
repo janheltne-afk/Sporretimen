@@ -119,6 +119,36 @@
       "source": "/en/economics/",
       "destination": "/en/topics/okonomi/",
       "permanent": true
+    },
+    {
+      "source": "/kurs",
+      "destination": "/temaer/",
+      "permanent": false
+    },
+    {
+      "source": "/kurs/",
+      "destination": "/temaer/",
+      "permanent": false
+    },
+    {
+      "source": "/kurs/:slug",
+      "destination": "/temaer/",
+      "permanent": false
+    },
+    {
+      "source": "/kurs/:slug/",
+      "destination": "/temaer/",
+      "permanent": false
+    },
+    {
+      "source": "/en/courses",
+      "destination": "/en/topics/",
+      "permanent": false
+    },
+    {
+      "source": "/en/courses/",
+      "destination": "/en/topics/",
+      "permanent": false
     }
   ]
 }

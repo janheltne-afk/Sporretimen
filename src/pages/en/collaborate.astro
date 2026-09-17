@@ -1,42 +1,68 @@
 ---
+/**
+ * Editorial collaboration. Norwegian original in src/pages/samarbeid.astro.
+ *
+ * The page is about content: guests, subjects, taking part in episodes and
+ * working with other podcasts. It does not describe services, offerings or
+ * plans for revenue – Spørretimen is a spare-time project, and the page should
+ * read like one.
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import { site } from '@/data/site';
 import { path } from '@/i18n/config';
 
 const areas = [
-  'Supporting a good cause or a charity',
-  'Cross-promotion with other podcasts and creators',
-  'Festivals and events',
-  'Travel and the outdoors',
-  'Education and careers',
-  'Local artists and cultural life',
+  {
+    title: 'Suggest a guest or a subject',
+    body: 'Do you know someone with a story, a profession or knowledge more people ought to hear about? That is the most common and most useful way to contribute.',
+  },
+  {
+    title: 'Take part in an episode',
+    body: 'As a guest in a conversation, or as a specialist reading through an explainer before it is recorded.',
+  },
+  {
+    title: 'Podcast to podcast',
+    body: 'Swapping guests, joint episodes, or pointing each other’s listeners at something they will enjoy.',
+  },
+  {
+    title: 'Sharing knowledge',
+    body: 'Pointing to good sources, correcting something imprecise, or suggesting reading for a subject that is coming up.',
+  },
+  {
+    title: 'Editorial projects',
+    body: 'Themed series, recordings from an event, or episodes built around a particular field.',
+  },
+  {
+    title: 'Professional bodies and societies',
+    body: 'Associations and professional communities that have something to explain, and would like it explained properly.',
+  },
 ];
 ---
 
 <BaseLayout
   lang="en"
   title="Collaborate"
-  description="Spørretimen is not a commercial podcast today. Collaborations happen for the fun of it, to promote the podcast, or to support a good cause. Paid collaborations may become relevant in time."
+  description="Spørretimen is a private spare-time project. This page describes editorial collaboration – guest suggestions, subjects, taking part in episodes and working with other podcasts."
 >
   <PageHeader
     eyebrow="Collaborate"
-    title="Collaborate"
-    lead="Spørretimen is glad to work with people and communities that fit the podcast naturally – on a non-commercial basis."
+    title="Editorial collaboration"
+    lead="Spørretimen is made out of curiosity, and gets better from input. Here are the ways it helps to contribute."
   />
 
   <section class="section-tight">
     <div class="container container-narrow">
       <div class="card notice">
-        <h2>Not a commercial podcast today</h2>
+        <h2>What Spørretimen is</h2>
         <p>
-          Spørretimen is a personal project, not a commercial podcast. We do not
-          currently enter paid collaborations or sponsorship deals. The
-          collaborations we do say yes to happen for the fun of it, to promote the
-          podcast, or to lift a good cause.
+          Spørretimen is currently a private, non-commercial spare-time project and
+          does not offer paid services. There are no sponsorship deals, no
+          advertising and nothing for sale.
         </p>
-        <p class="notice__future">
-          Paid collaborations may open up in time – but that is not the case now.
+        <p>
+          Collaboration here therefore means one thing: content. Good guests, good
+          subjects, and people who can correct something we have misunderstood.
         </p>
       </div>
     </div>
@@ -45,14 +71,21 @@ const areas = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>What a collaboration can look like today</h2>
+        <h2>Ways to contribute</h2>
         <p class="lead">
-          We are open to informal, non-commercial collaborations – as long as they
-          feel genuine to listeners and fit the editorial content.
+          Most of this costs nothing but an email, and several of the episodes came
+          about exactly that way.
         </p>
       </div>
       <ul class="areas">
-        {areas.map((a) => <li class="card area">{a}</li>)}
+        {
+          areas.map((a) => (
+            <li class="card area">
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
@@ -62,53 +95,27 @@ const areas = [
       <div class="card note-card">
         <h2>Editorial principles</h2>
         <p>
-          The editorial content is driven by curiosity and by the guests’ stories –
-          not by commercial interests. Should a collaboration ever involve something
-          in return, it will always be clearly marked, and we always keep editorial
-          content and any advertising distinctly apart.
+          The content is driven by curiosity and by the guests’ stories. Nobody is
+          paid to take part, and nobody pays to be covered. Should there ever be an
+          arrangement involving something in return, it will be clearly marked – see
+          <a href={path('en', 'principles')}>editorial principles</a>.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section future">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">In time</p>
-        <h2>Possibilities if the podcast grows</h2>
-        <p class="lead">
-          The podcast is built so it can become more than episodes. If paid
-          collaborations ever open up, they could for instance attach to:
-        </p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card future__card"><h3>Explainer archive</h3><p>A paid archive of longer explainer episodes.</p></div>
-        <div class="card future__card"><h3>Newsletter and articles</h3><p>Guides and depth around the subjects in the podcast.</p></div>
-        <div class="card future__card"><h3>Live shows and events</h3><p>Live recordings, festival interviews and audience questions.</p></div>
-        <div class="card future__card"><h3>Themed series</h3><p>Connected series around professions, industries or fields.</p></div>
-        <div class="card future__card"><h3>Courses and talks</h3><p>Working with educational institutions and companies.</p></div>
-        <div class="card future__card"><h3>Member content</h3><p>Extra material for listeners who want to support the podcast.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section cta-block">
     <div class="container container-narrow text-center">
-      <h2>Would you like to work with Spørretimen?</h2>
+      <h2>Have a suggestion?</h2>
       <p class="lead mx-auto">
-        Get in touch for an informal chat about what a collaboration could look like.
+        Send an email, or use the guest suggestion form if you have someone in mind.
       </p>
       <div class="cta-block__actions">
-        <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent('Collaboration – Spørretimen')}`}>
-          Get in touch about collaborating
+        <a class="btn" href={path('en', 'suggestGuest')}>Suggest a guest</a>
+        <a class="btn btn-secondary" href={`mailto:${site.email}?subject=${encodeURIComponent('Input for Spørretimen')}`}>
+          Send an email
         </a>
-        <a class="btn btn-secondary" href={path('en', 'contact')}>To the contact page</a>
       </div>
-      <p class="muted disclaimer">
-        Spørretimen is not a commercial podcast today, and there are no sponsorship
-        or payment agreements in place. This page describes what non-commercial
-        collaborations can look like, and what may become possible in time.
-      </p>
     </div>
   </section>
 </BaseLayout>
@@ -119,13 +126,20 @@ const areas = [
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 0.9rem;
   }
   .area {
-    padding: 1rem 1.2rem;
-    font-weight: 600;
+    padding: 1.4rem 1.5rem;
+  }
+  .area h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+  .area p {
+    margin: 0;
     color: var(--ink-soft);
+    font-size: 0.94rem;
   }
   .notice {
     padding: 1.6rem 1.8rem;
@@ -140,10 +154,8 @@ const areas = [
     color: var(--ink-soft);
     margin-bottom: 0.6rem;
   }
-  .notice__future {
+  .notice p:last-child {
     margin-bottom: 0;
-    font-weight: 600;
-    color: var(--ink);
   }
   .principles-block {
     background: var(--surface);
@@ -160,18 +172,6 @@ const areas = [
     color: var(--ink-soft);
     margin: 0;
   }
-  .future__card {
-    padding: 1.4rem 1.5rem;
-  }
-  .future__card h3 {
-    margin-bottom: 0.4rem;
-    font-size: 1.15rem;
-  }
-  .future__card p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 0.94rem;
-  }
   .cta-block {
     background: var(--surface);
     border-top: 1px solid var(--line);
@@ -182,9 +182,5 @@ const areas = [
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 1.5rem;
-  }
-  .disclaimer {
-    margin-top: 1.6rem;
-    font-size: 0.85rem;
   }
 </style>

@@ -141,29 +141,6 @@ export const resourceTypes = [
   },
 ] as const;
 
-export const courseStatuses = {
-  vurderes: {
-    label: { no: 'Bygges ved interesse', en: 'Built if there is interest' },
-    hint: {
-      no: 'Dette kurset finnes ikke ennå – det er et eksempel på hva som kan settes opp. Meld interesse: blir det mange nok, bygges kurset.',
-      en: 'This course does not exist yet – it is an example of what could be set up. Register your interest: if enough people do, the course gets built.',
-    },
-  },
-  planlagt: {
-    label: { no: 'Planlagt', en: 'Planned' },
-    hint: {
-      no: 'Interessen var stor nok – kurset er besluttet og under utvikling. Meld interesse for å få beskjed først.',
-      en: 'Interest was high enough – the course is decided and in development. Register your interest to hear first.',
-    },
-  },
-  apen: {
-    label: { no: 'Påmelding åpen', en: 'Enrolment open' },
-    hint: {
-      no: 'Kurset er i gang – meld interesse for å bli kontaktet om plass.',
-      en: 'The course is running – register your interest to be contacted about a place.',
-    },
-  },
-} as const;
 
 export function formatById(lang: Locale, id: string) {
   const f = formats.find((x) => x.id === id);
@@ -192,10 +169,6 @@ export function resourceTypeList(lang: Locale) {
   return resourceTypes.map((r) => resourceTypeById(lang, r.id)!);
 }
 
-export function courseStatus(lang: Locale, id: keyof typeof courseStatuses) {
-  const s = courseStatuses[id];
-  return { label: s.label[lang], hint: s.hint[lang] };
-}
 
 /** Alle typene en ressurs hører til (hovedtype først, så tilleggstyper). */
 export function allResourceTypes(data: { type: string; alsoTypes?: string[] }): string[] {

@@ -42,7 +42,7 @@ const person = {
   name: site.host,
   url: canonicalUrl(here),
   image: absoluteUrl(site.hostImage),
-  jobTitle: en ? 'Host and explainer, Spørretimen' : 'Programleder og fagformidler, Spørretimen',
+  jobTitle: en ? 'Host, Spørretimen' : 'Programleder i Spørretimen',
   description: en
     ? 'Host of Spørretimen. Siviløkonom (MSc in Business) with a master’s in logistics, a background in ERP, and a day job in business analytics. Publishes conversations and sourced explainers on economics, technology, learning and decision-making.'
     : 'Programleder i Spørretimen. Siviløkonom med master i logistikk, bakgrunn fra ERP, og jobber til daglig med Business Analytics. Publiserer samtaler og kildebaserte forklaringer om økonomi, teknologi, læring og beslutninger.',
@@ -90,8 +90,8 @@ const jsonLd = [
     eyebrow={en ? 'Profile' : 'Profil'}
     title={site.host}
     lead={en
-      ? 'Host of Spørretimen and explainer. He uses the podcast to explore economics, technology, business, learning and how people make decisions.'
-      : 'Programleder i Spørretimen og fagformidler. Han bruker podkasten til å utforske økonomi, teknologi, næringsliv, læring og hvordan mennesker tar beslutninger.'}
+      ? 'Host of Spørretimen. He uses the podcast to explore economics, technology, business, learning and how people make decisions.'
+      : 'Programleder i Spørretimen. Han bruker podkasten til å utforske økonomi, teknologi, næringsliv, læring og hvordan mennesker tar beslutninger.'}
   />
 
   <section class="section">
@@ -107,7 +107,7 @@ const jsonLd = [
         </div>
         <dl class="profile__facts">
           <dt>{en ? 'Role' : 'Rolle'}</dt>
-          <dd>{en ? 'Host and explainer' : 'Programleder og fagformidler'}</dd>
+          <dd>{en ? 'Host, Spørretimen' : 'Programleder i Spørretimen'}</dd>
           <dt>{en ? 'Education' : 'Utdanning'}</dt>
           <dd>{en ? 'Siviløkonom (MSc in Business), master’s in logistics' : 'Siviløkonom, master i logistikk'}</dd>
           <dt>{en ? 'Background' : 'Bakgrunn'}</dt>
@@ -146,9 +146,9 @@ const jsonLd = [
               <p>
                 He is a siviløkonom – the Norwegian MSc in Business – with a master’s in
                 logistics, has a background in ERP systems, and works in business analytics
-                day to day. Spørretimen is a personal project with no
-                connection to his employer – neither the content, the guests nor any
-                collaboration has anything to do with the job.
+                day to day. That background is why the podcast keeps returning to numbers,
+                goods flows and how organisations actually decide things – it is where the
+                curiosity comes from, not a service on offer.
               </p>
               <p>
                 He is not presented as an expert on every subject covered, and the site keeps
@@ -168,9 +168,10 @@ const jsonLd = [
               </p>
               <p>
                 Han er siviløkonom med master i logistikk, har bakgrunn fra ERP, og jobber til
-                daglig med Business Analytics. Spørretimen er et rent hobbyprosjekt uten
-                koblinger til arbeidsgiveren – verken innhold, gjester eller samarbeid har noe
-                med jobben å gjøre.
+                daglig med Business Analytics. Den bakgrunnen er grunnen til at podkasten
+                stadig vender tilbake til tall, varestrømmer og hvordan virksomheter faktisk
+                bestemmer seg – det er der nysgjerrigheten kommer fra, ikke et tilbud om
+                tjenester.
               </p>
               <p>
                 Han fremstilles ikke som ekspert på alle temaene som dekkes, og nettsiden

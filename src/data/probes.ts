@@ -1,7 +1,7 @@
 /**
  * «Hva vil du lære mer om?» på forsiden.
  *
- * Dette er temaer vi tester interessen for – de trenger ikke ha innhold ennå.
+ * Dette er temaer som kan bli episoder – de trenger ikke ha innhold ennå.
  * Hvert punkt peker på et undertema i registeret, slik at stemmene her og
  * stemmene på temasidene teller sammen. Bytt ut lista fritt; forsiden leser
  * bare det som står her.

@@ -11,7 +11,7 @@ import PageHeader from '@/components/PageHeader.astro';
 import TopicIcon from '@/components/TopicIcon.astro';
 import Interest from '@/components/Interest.astro';
 import { topics } from '@/data/topics';
-import { topicCounts } from '@/lib/content';
+import { topicCounts, subtopicCounts } from '@/lib/content';
 import { canonicalUrl, breadcrumbList } from '@/data/site';
 import { topicPath, path as routePath, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
@@ -24,6 +24,7 @@ const t = useTranslations(lang);
 const en = lang === 'en';
 
 const counts = await topicCounts(lang);
+const subCounts = await subtopicCounts(lang);
 const shown = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 
 const jsonLd = [
@@ -84,7 +85,11 @@ const jsonLd = [
               <ul class="topic-card__subs">
                 {topic.subtopics.map((sub) => (
                   <li>
-                    <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                    {(subCounts.get(sub.id) ?? 0) > 0 ? (
+                      <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                    ) : (
+                      <span class="topic-card__sub--tom">{sub.label[lang]}</span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -115,6 +120,11 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
+  /* Undertemaer uten innhold ennå: vises, men lenkes ikke – siden finnes ikke. */
+  .topic-card__sub--tom {
+    color: var(--ink-faint);
+  }
+
   .topic-grid {
     list-style: none;
     margin: 0;

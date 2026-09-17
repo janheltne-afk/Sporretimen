@@ -165,26 +165,7 @@ export function allResourceTypes(data: { type: string; alsoTypes?: string[] }): 
   return [data.type, ...(data.alsoTypes ?? [])];
 }
 
-/**
- * Statuser for kurs. Interesse fra besøkende brukes til å avgjøre hvilke
- * kurs som prioriteres og får fortgang.
- */
-export const courseStatuses = {
-  vurderes: {
-    label: 'Bygges ved interesse',
-    hint: 'Dette kurset finnes ikke ennå – det er et eksempel på hva som kan settes opp. Meld interesse: blir det mange nok, bygges kurset.',
-  },
-  planlagt: {
-    label: 'Planlagt',
-    hint: 'Interessen var stor nok – kurset er besluttet og under utvikling. Meld interesse for å få beskjed først.',
-  },
-  apen: {
-    label: 'Påmelding åpen',
-    hint: 'Kurset er i gang – meld interesse for å bli kontaktet om plass.',
-  },
-} as const;
 
-export type CourseStatusId = keyof typeof courseStatuses;
 
 /**
  * Emnekategorier brukt til filtrering av episoder.

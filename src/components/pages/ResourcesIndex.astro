@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import ResourceCard from '@/components/ResourceCard.astro';
-import { getResources, getCourses, slugOf } from '@/lib/content';
+import { getResources } from '@/lib/content';
 import { entryPath, path as routePath, type Locale } from '@/i18n/config';
 import { resourceTypeList, allResourceTypes } from '@/i18n/taxonomy';
 import { useTranslations } from '@/i18n/ui';
@@ -19,7 +19,6 @@ const usedTypes = resourceTypeList(lang).filter((ty) =>
   resources.some((r) => allResourceTypes(r.data).includes(ty.id))
 );
 const showFilters = usedTypes.length > 1;
-const courses = await getCourses(lang);
 ---
 
 <BaseLayout
@@ -84,35 +83,6 @@ const courses = await getCourses(lang);
     </div>
   </section>
 
-  {
-    courses.length > 0 && (
-      <section class="section courses-callout">
-        <div class="container">
-          <div class="callout card">
-            <div class="callout__text">
-              <p class="eyebrow">{en ? 'Courses' : 'Kurs'}</p>
-              <h2>{en ? 'What is missing a course?' : 'Hva mangler det kurs om?'}</h2>
-              <p>
-                {en
-                  ? 'There are any number of subjects with no course and no good material. If enough people want one, a course can be built. Below are some examples of what could be set up – register interest in the ones you would take, or suggest your own subject.'
-                  : 'Det finnes ufattelig mange temaer det mangler kurs og god kunnskap om. Er interessen stor nok for et tema, kan det bygges et kurs. Under ligger noen eksempler på hva som kan settes opp – meld interesse for dem du ville tatt, eller foreslå ditt eget tema.'}
-              </p>
-              <a class="btn" href={routePath(lang, 'courses')}>
-                {en ? 'See examples and register interest →' : 'Se eksempler og meld interesse →'}
-              </a>
-            </div>
-            <ul class="callout__list">
-              {courses.slice(0, 4).map((c) => (
-                <li>
-                  <a href={entryPath(lang, 'courses', slugOf(c.id))}>{c.data.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-    )
-  }
 </BaseLayout>
 
 <style>

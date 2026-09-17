@@ -1,40 +1,66 @@
 ---
+/**
+ * Redaksjonelt samarbeid.
+ *
+ * Siden handler om innhold: gjester, temaer, deltakelse i episoder og
+ * samarbeid med andre podkaster. Den beskriver ikke tjenester, tilbud eller
+ * planer om inntekt – Spørretimen er et fritidsprosjekt, og siden skal lese
+ * som det.
+ */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import { site } from '@/data/site';
 
 const areas = [
-  'Fremme en god sak eller et veldedig formål',
-  'Kryssfremming med andre podkaster og skapere',
-  'Festivaler og arrangementer',
-  'Reiseliv og friluftsliv',
-  'Utdanning og karriere',
-  'Lokale artister og kulturmiljø',
+  {
+    title: 'Foreslå en gjest eller et tema',
+    body: 'Kjenner du noen med en historie, et yrke eller en kunnskap flere burde få høre om? Det er den vanligste og mest nyttige måten å bidra.',
+  },
+  {
+    title: 'Være med i en episode',
+    body: 'Som gjest i en samtale, eller som fagperson som leser gjennom en forklaring før den spilles inn.',
+  },
+  {
+    title: 'Samarbeid mellom podkaster',
+    body: 'Gjestebytte, felles episoder eller å tipse hverandres lyttere om noe de vil ha glede av.',
+  },
+  {
+    title: 'Kunnskapsdeling',
+    body: 'Å peke på gode kilder, rette opp noe som er upresist, eller foreslå litteratur til et tema som skal dekkes.',
+  },
+  {
+    title: 'Redaksjonelle prosjekter',
+    body: 'Temaserier, opptak fra et arrangement eller episoder laget rundt et fagmiljø.',
+  },
+  {
+    title: 'Fagmiljøer og foreninger',
+    body: 'Lag, foreninger og fagmiljøer som har noe å forklare, og gjerne vil ha det forklart ordentlig.',
+  },
 ];
 ---
 
 <BaseLayout
   title="Samarbeid"
-  description="Spørretimen er ikke en kommersiell podcast i dag. Samarbeid skjer på gøy, for å fremme podcasten eller en god sak. Betalte samarbeid kan bli aktuelt på sikt."
+  description="Spørretimen er et privat fritidsprosjekt. Siden beskriver redaksjonelt samarbeid – gjesteforslag, temaer, deltakelse i episoder og samarbeid med andre podkaster."
 >
   <PageHeader
     eyebrow="Samarbeid"
-    title="Samarbeid"
-    lead="Spørretimen samarbeider gjerne med folk og miljøer som passer naturlig med podcastens profil – på ikke-kommersielt grunnlag."
+    title="Redaksjonelt samarbeid"
+    lead="Spørretimen lages av nysgjerrighet, og blir bedre av innspill. Her er måtene det er nyttig å bidra på."
   />
 
   <section class="section-tight">
     <div class="container container-narrow">
       <div class="card notice">
-        <h2>Ikke en kommersiell podcast i dag</h2>
+        <h2>Hva Spørretimen er</h2>
         <p>
-          Spørretimen er et personlig prosjekt, ikke en kommersiell podcast. I dag
-          inngår vi ikke betalte samarbeid eller sponsoravtaler. Samarbeid vi sier ja
-          til, skjer på gøy, for å fremme podcasten, eller for å løfte en god sak.
+          Spørretimen er i dag et privat, ikke-kommersielt fritidsprosjekt og tilbyr
+          ikke betalte tjenester. Det finnes ingen sponsoravtaler, ingen annonser og
+          ingenting til salgs.
         </p>
-        <p class="notice__future">
-          På sikt kan det åpne seg for betalte samarbeid – men det er altså ikke
-          aktuelt nå.
+        <p>
+          Samarbeid her betyr derfor én ting: innhold. Gode gjester, gode temaer og
+          folk som kan rette opp noe vi har misforstått.
         </p>
       </div>
     </div>
@@ -43,14 +69,21 @@ const areas = [
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <h2>Slik kan et samarbeid se ut i dag</h2>
+        <h2>Måter å bidra</h2>
         <p class="lead">
-          Vi er åpne for uformelle, ikke-kommersielle samarbeid – så lenge de føles
-          ekte for lytterne og passer inn i det redaksjonelle innholdet.
+          Det meste av dette koster ingenting annet enn en e-post, og flere av
+          episodene har blitt til nettopp slik.
         </p>
       </div>
       <ul class="areas">
-        {areas.map((a) => <li class="card area">{a}</li>)}
+        {
+          areas.map((a) => (
+            <li class="card area">
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
@@ -60,51 +93,28 @@ const areas = [
       <div class="card note-card">
         <h2>Redaksjonelle prinsipper</h2>
         <p>
-          Det redaksjonelle innholdet styres av nysgjerrighet og gjestenes historier
-          – ikke av kommersielle interesser. Skulle et samarbeid en gang innebære en
-          motytelse, vil det alltid være tydelig merket, og vi skiller alltid klart
-          mellom redaksjonelt innhold og eventuell annonsering.
+          Innholdet styres av nysgjerrighet og av gjestenes historier. Ingen får
+          betalt for å delta, og ingen betaler for å bli omtalt. Skulle det en gang
+          foreligge en avtale som innebærer en motytelse, blir den merket tydelig –
+          se <a href="/redaksjonelle-prinsipper/">redaksjonelle prinsipper</a>.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section future">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">På sikt</p>
-        <h2>Muligheter hvis podcasten vokser</h2>
-        <p class="lead">
-          Podcasten bygges for å kunne utvikles til mer enn bare episoder. Dersom det
-          en gang åpner seg for betalte samarbeid, kan de for eksempel knyttes til:
-        </p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card future__card"><h3>Lær noe nytt-arkiv</h3><p>Et betalingsbasert arkiv med lengre forklaringsepisoder.</p></div>
-        <div class="card future__card"><h3>Nyhetsbrev og artikler</h3><p>Guider og fordypning knyttet til temaene i podcasten.</p></div>
-        <div class="card future__card"><h3>Liveshow og arrangementer</h3><p>Liveopptak, festivalintervjuer og publikumsspørsmål.</p></div>
-        <div class="card future__card"><h3>Temaserier</h3><p>Sammenhengende serier rundt yrker, bransjer eller fagfelt.</p></div>
-        <div class="card future__card"><h3>Kurs og foredrag</h3><p>Samarbeid med utdanningsinstitusjoner og bedrifter.</p></div>
-        <div class="card future__card"><h3>Medlemsinnhold</h3><p>Ekstra innhold for lyttere som ønsker å støtte podcasten.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section cta-block">
     <div class="container container-narrow text-center">
-      <h2>Vil du samarbeide med Spørretimen?</h2>
+      <h2>Har du et forslag?</h2>
       <p class="lead mx-auto">
-        Ta kontakt for en uforpliktende prat om hvordan et samarbeid kan se ut.
+        Send en e-post, eller bruk skjemaet for gjesteforslag hvis du har noen i
+        tankene.
       </p>
       <div class="cta-block__actions">
-        <a class="btn" href={`mailto:${site.email}?subject=${encodeURIComponent('Samarbeid – Spørretimen')}`}>Ta kontakt om samarbeid</a>
-        <a class="btn btn-secondary" href="/kontakt/">Til kontaktsiden</a>
+        <a class="btn" href="/foresla-gjest/">Foreslå en gjest</a>
+        <a class="btn btn-secondary" href={`mailto:${site.email}?subject=${encodeURIComponent('Innspill til Spørretimen')}`}>
+          Send en e-post
+        </a>
       </div>
-      <p class="muted disclaimer">
-        Spørretimen er ikke en kommersiell podcast i dag, og det finnes ingen
-        inngåtte sponsor- eller betalingsavtaler. Denne siden beskriver hvordan
-        ikke-kommersielle samarbeid kan se ut, og hva som kan bli mulig på sikt.
-      </p>
     </div>
   </section>
 </BaseLayout>
@@ -115,13 +125,20 @@ const areas = [
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 0.9rem;
   }
   .area {
-    padding: 1rem 1.2rem;
-    font-weight: 600;
+    padding: 1.4rem 1.5rem;
+  }
+  .area h3 {
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+  .area p {
+    margin: 0;
     color: var(--ink-soft);
+    font-size: 0.94rem;
   }
   .notice {
     padding: 1.6rem 1.8rem;
@@ -136,10 +153,8 @@ const areas = [
     color: var(--ink-soft);
     margin-bottom: 0.6rem;
   }
-  .notice__future {
+  .notice p:last-child {
     margin-bottom: 0;
-    font-weight: 600;
-    color: var(--ink);
   }
   .principles-block {
     background: var(--surface);
@@ -156,18 +171,6 @@ const areas = [
     color: var(--ink-soft);
     margin: 0;
   }
-  .future__card {
-    padding: 1.4rem 1.5rem;
-  }
-  .future__card h3 {
-    margin-bottom: 0.4rem;
-    font-size: 1.15rem;
-  }
-  .future__card p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 0.94rem;
-  }
   .cta-block {
     background: var(--surface);
     border-top: 1px solid var(--line);
@@ -178,9 +181,5 @@ const areas = [
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 1.5rem;
-  }
-  .disclaimer {
-    margin-top: 1.6rem;
-    font-size: 0.85rem;
   }
 </style>

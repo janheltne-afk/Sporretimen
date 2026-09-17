@@ -50,7 +50,7 @@ const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
 const host = {
   '@type': 'Person',
   name: site.host,
-  jobTitle: lang === 'en' ? 'Host' : 'Programleder',
+  jobTitle: lang === 'en' ? 'Host, Spørretimen' : 'Programleder i Spørretimen',
   url: canonicalUrl(path(lang, 'profile')),
 };
 

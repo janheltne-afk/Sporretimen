@@ -176,6 +176,27 @@ export async function resourcesForSubtopic(
   return list.filter((r) => r.data.subtopics.includes(subtopicId));
 }
 
+/**
+ * Hvor mye innhold som finnes under hvert undertema.
+ *
+ * Brukes til å avgjøre om et undertema skal lenkes. Undertemasider bygges bare
+ * når de har innhold, så et undertema uten oppføringer har ingen side å peke
+ * på – og skal derfor stå som ren tekst, ikke som en død lenke.
+ */
+export async function subtopicCounts(lang: Locale): Promise<Map<string, number>> {
+  const [episodes, resources] = await Promise.all([getEpisodes(lang), getResources(lang)]);
+  const counts = new Map<string, number>();
+  for (const topic of topics) {
+    for (const sub of topic.subtopics) {
+      const n =
+        episodes.filter((e) => e.data.subtopics.includes(sub.id)).length +
+        resources.filter((r) => r.data.subtopics.includes(sub.id)).length;
+      counts.set(sub.id, n);
+    }
+  }
+  return counts;
+}
+
 /** Hvor mye innhold som finnes under hvert hovedtema. */
 export async function topicCounts(lang: Locale): Promise<Map<string, number>> {
   const [episodes, resources] = await Promise.all([getEpisodes(lang), getResources(lang)]);
@@ -253,18 +274,5 @@ export async function relatedResources(
   return [...direct, ...nearby].slice(0, limit);
 }
 
-/* --------------------------------------------------------------- foredrag */
 
-type Talk = CollectionEntry<'foredrag'>;
 
-/** Alle foredrag på ett språk som ikke er draft. */
-export async function getTalks(lang: Locale = 'no'): Promise<Talk[]> {
-  const all = await getCollection('foredrag', ({ data }) => !data.draft);
-  return all.filter((f) => inLocale(lang)(f.id)).sort(byOrderThen(lang, 'title'));
-}
-
-/** Foredragene en episode inngår i – for «dette temaet inngår i foredraget X». */
-export async function talksForEpisode(episodeId: string, talks?: Talk[]): Promise<Talk[]> {
-  const list = talks ?? (await getTalks(localeOf(episodeId)));
-  return list.filter((f) => f.data.episodes.some((e) => e.id === episodeId));
-}

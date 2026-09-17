@@ -19,6 +19,7 @@ import {
   resourcesForTopic,
   resourcesForSubtopic,
   getSeriesEpisodes,
+  subtopicCounts,
 } from '@/lib/content';
 import { canonicalUrl, breadcrumbList } from '@/data/site';
 import { topicPath, path as routePath, type Locale } from '@/i18n/config';
@@ -40,6 +41,7 @@ const subtopic = subtopicId ? topic.subtopics.find((s) => s.id === subtopicId) :
 const heading = subtopic ? subtopic.label[lang] : topic.label[lang];
 const blurb = subtopic ? subtopic.blurb[lang] : topic.blurb[lang];
 const here = topicPath(lang, topic.id, subtopic?.id);
+const subCounts = await subtopicCounts(lang);
 
 const episodes = subtopic
   ? await episodesForSubtopic(lang, subtopic.id)
@@ -141,7 +143,11 @@ const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` 
             <ul>
               {siblings.map((sub) => (
                 <li>
-                  <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                  {(subCounts.get(sub.id) ?? 0) > 0 ? (
+                    <a href={topicPath(lang, topic.id, sub.id)}>{sub.label[lang]}</a>
+                  ) : (
+                    <span class="sub-nav__tom">{sub.label[lang]}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -245,6 +251,11 @@ const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` 
 </BaseLayout>
 
 <style>
+  /* Undertemaer uten innhold ennå: vises, men lenkes ikke – siden finnes ikke. */
+  .sub-nav__tom {
+    color: var(--ink-faint);
+  }
+
   .crumbs {
     display: flex;
     flex-wrap: wrap;
