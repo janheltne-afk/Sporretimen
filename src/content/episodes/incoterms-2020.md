@@ -24,6 +24,7 @@ topics:
   - Hva som ble endret fra 2010 til 2020
   - Fellene – DDP, EXW og forsikringsnivået i CIF
   - Hvordan betingelsen skrives riktig i en kontrakt
+  - Norsk fagmateriale å gå videre til
 questions:
   - Hva er Incoterms, og hva regulerer de?
   - Hva regulerer Incoterms ikke?
@@ -35,6 +36,7 @@ questions:
   - Hva ble endret fra Incoterms 2010 til 2020?
   - Hvorfor er DDP og EXW risikable å avtale?
   - Hvordan skriver man leveringsbetingelsen riktig i en kontrakt?
+  - Hvor finner man norsk fagmateriale om Incoterms?
 takeaways:
   - Incoterms fordeler kostnad, risiko og plikter mellom kjøper og selger – ikke eierskap.
   - "Reglene regulerer ikke betaling, eierskifte, mislighold eller hvilket lands rett som gjelder."
@@ -56,6 +58,10 @@ advisory:
 sources:
   - title: "Det internasjonale handelskammer (ICC) – Incoterms® 2020, i kraft fra 1. januar 2020"
     url: https://iccwbo.org/business-solutions/incoterms-rules/
+  - title: "Christian J. Lien – Norsk Kommentar til Incoterms® 2010"
+    url: https://cjlien.no/
+  - title: "Christian J. Lien – Norsk Kommentar til Incoterms® 2020 (312 sider)"
+    url: https://cjlien.no/
 related:
   - lean-forklart
 ---
@@ -254,6 +260,27 @@ kjenner. Den påvirker også prisen: en pris «DDP Oslo» og en pris «FCA Shang
 er ikke sammenlignbare før du har regnet inn alt som ligger imellom.
 
 Det er derfor tre bokstaver er verdt en halvtime.
+
+## Vil du gå dypere
+
+Skal du bruke reglene i praksis, finnes det norsk fagmateriale om dem, og det
+er verdt å vite om.
+
+**Christian J. Lien** står bak de norske utgavene av regelverket: han var
+initiativtaker, oversetter og forlegger for *Incoterms 1990*, *Incoterms 2000*
+og *Incoterms® 2010* på norsk, og oversatte *Incoterms® 2020* til norsk for ICC
+Norge i 2020.
+
+I tillegg har han skrevet og utgitt to kommentarutgaver – **Norsk Kommentar til
+Incoterms® 2010** og **Norsk Kommentar til Incoterms® 2020** – der reglene er
+gjennomgått på norsk, langt grundigere enn en episode kan gjøre. Den siste er
+på 312 sider.
+
+Han har holdt kurs og foredrag om emnet i 35 år, både åpne og bedriftsinterne,
+og har undervist for blant andre Innovasjon Norge, Logistikkforeningen, NIMA,
+ICC Norge og BI. Skal du lenger enn denne episoden rekker – og særlig hvis det
+gjelder en konkret kontrakt – er det dit du bør gå. Nettsiden hans er
+[cjlien.no](https://cjlien.no/).
 
 *Incoterms® er et registrert varemerke som tilhører Det internasjonale
 handelskammer (ICC). Denne episoden er en forklaring av hvordan reglene

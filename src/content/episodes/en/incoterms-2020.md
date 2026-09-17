@@ -24,6 +24,7 @@ topics:
   - What changed from 2010 to 2020
   - The traps – DDP, EXW and the insurance level in CIF
   - How to write the term properly in a contract
+  - Norwegian-language material to go on to
 questions:
   - What are Incoterms, and what do they govern?
   - What do Incoterms not govern?
@@ -35,6 +36,7 @@ questions:
   - What changed from Incoterms 2010 to 2020?
   - Why are DDP and EXW risky to agree to?
   - How do you write the delivery term properly in a contract?
+  - Where can you find Norwegian material on Incoterms?
 takeaways:
   - Incoterms allocate cost, risk and obligations between buyer and seller – not ownership.
   - "The rules say nothing about payment, transfer of title, breach or governing law."
@@ -56,6 +58,10 @@ advisory:
 sources:
   - title: "International Chamber of Commerce (ICC) – Incoterms® 2020, in force from 1 January 2020"
     url: https://iccwbo.org/business-solutions/incoterms-rules/
+  - title: "Christian J. Lien – Norsk Kommentar til Incoterms® 2010 (in Norwegian)"
+    url: https://cjlien.no/
+  - title: "Christian J. Lien – Norsk Kommentar til Incoterms® 2020, 312 pages (in Norwegian)"
+    url: https://cjlien.no/
 related:
   - en/lean-forklart
 ---
@@ -261,6 +267,28 @@ not know. It also affects the price: a price “DDP Oslo” and a price “FCA
 Shanghai” are not comparable until you have costed everything in between.
 
 Which is why three letters are worth half an hour.
+
+## If you want to go deeper
+
+If you are going to use the rules in practice, there is Norwegian-language
+material on them worth knowing about.
+
+**Christian J. Lien** is behind the Norwegian editions of the rules: he
+initiated, translated and published *Incoterms 1990*, *Incoterms 2000* and
+*Incoterms® 2010* in Norwegian, and translated *Incoterms® 2020* into Norwegian
+for ICC Norway in 2020.
+
+He has also written and published two commentary editions – **Norsk Kommentar
+til Incoterms® 2010** and **Norsk Kommentar til Incoterms® 2020** – working
+through the rules in Norwegian in far more depth than an episode can. The
+latter runs to 312 pages.
+
+He has taught and lectured on the subject for 35 years, both open and in-house
+courses, for organisations including Innovasjon Norge, Logistikkforeningen,
+NIMA, ICC Norway and BI Norwegian Business School. If you need to go further
+than this episode reaches – and especially if it concerns a specific contract –
+that is where to go. His site is [cjlien.no](https://cjlien.no/). Note that the
+commentary editions are in Norwegian.
 
 *Incoterms® is a registered trademark of the International Chamber of Commerce
 (ICC). This episode explains how the rules work, and does not reproduce the
