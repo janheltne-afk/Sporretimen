@@ -2,6 +2,7 @@
 title: "Odin om hårtransplantasjon i Tyrkia"
 format: samtale
 status: publisert
+guest: odin-aadland
 topic: helse
 subtopics:
   - helsevesenet

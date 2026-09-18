@@ -2,6 +2,7 @@
 title: "Odin on getting a hair transplant in Turkey"
 format: samtale
 status: publisert
+guest: en/odin-aadland
 topic: helse
 subtopics:
   - helsevesenet
