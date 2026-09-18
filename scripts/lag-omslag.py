@@ -51,6 +51,7 @@ GJESTER = {
     "sturla": {"skala": 1.02, "x": 0.68, "luft": 0.10},
     "havard-hasund": {"skala": 0.96, "x": 0.67, "luft": 0.12},
     "john-erik": {"skala": 1.06, "x": 0.68, "luft": 0.09},
+    "odin-aadland": {"skala": 1.00, "x": 0.68, "luft": 0.10},
 }
 
 

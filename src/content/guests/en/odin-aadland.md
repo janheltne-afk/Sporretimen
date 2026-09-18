@@ -7,6 +7,9 @@ themes:
   - Medical tourism
   - Hair loss and body image among men
   - Logistics and supply chains
+image: /images/gjester/odin-aadland.jpg
+imageAlt: "Odin Jean Aadland by the waterfront, wearing a backwards cap, glasses and a white T-shirt"
+cover: /images/omslag/odin-aadland.jpg
 region: Bergen
 status: bekreftet
 featured: false

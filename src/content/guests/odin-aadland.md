@@ -7,6 +7,9 @@ themes:
   - Helseturisme
   - Hårtap og kroppspress blant menn
   - Logistikk og forsyningskjeder
+image: /images/gjester/odin-aadland.jpg
+imageAlt: "Odin Jean Aadland ute ved sjøkanten, med caps bak fram, briller og hvit t-skjorte"
+cover: /images/omslag/odin-aadland.jpg
 region: Bergen
 status: bekreftet
 featured: false
