@@ -42,7 +42,13 @@ takeaways:
   - "Han hadde forberedt seg på at folk skulle stirre. Det gjorde de knapt."
   - "Samtalen ender der den egentlig begynte: at dette handler like mye om hvordan man har det med seg selv."
 coverTheme: "Hårtransplantasjon"
+publishDate: 2026-09-18
 duration: "25 min"
+image: /images/episoder/odin-hartransplantasjon.jpg
+imageAlt: "Spørretimen: Hårtransplantasjon – Odin forteller hele historien. Odin og Jan Sindre i studio, hver bak sin mikrofon."
+coverStyle: bilde
+imageCredit:
+  source: egen
 description: >-
   Odin dro til Tyrkia og kom hjem med 4300 nye hårsekker. Han forteller om hele
   turen – hvor lite han undersøkte på forhånd, hvordan inngrepet faktisk

@@ -42,7 +42,13 @@ takeaways:
   - "He had braced himself for people staring. They barely did."
   - "The conversation ends where it really began: that this is as much about how you feel about yourself."
 coverTheme: "Hair transplant"
+publishDate: 2026-09-18
 duration: "25 min"
+image: /images/episoder/odin-hartransplantasjon.jpg
+imageAlt: "Spørretimen: Hårtransplantasjon – Odin forteller hele historien. Odin and Jan Sindre in the studio, each behind a microphone."
+coverStyle: bilde
+imageCredit:
+  source: egen
 description: >-
   Odin went to Turkey and came home with 4,300 new hair follicles. He describes
   the whole trip – how little he researched beforehand, how the procedure
