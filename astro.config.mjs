@@ -18,7 +18,12 @@ export default defineConfig({
       // par, og hreflang ville blitt stående tomt eller feil. Koblingen ligger
       // derfor i <head> på hver side, utledet av alternatePath().
       i18n: undefined,
-      filter: (page) => !page.includes('/404'),
+      // Presentasjonene er samme innhold som episoden i et annet format, og
+      // skal ikke konkurrere med artikkelen i søkeresultatene.
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/presentasjon/') &&
+        !page.includes('/presentation/'),
     }),
     // Bygger søkeindeksen av de ferdige sidene, etter at alt annet er skrevet.
     sokIndeks(),

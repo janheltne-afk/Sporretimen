@@ -68,6 +68,9 @@ const transcriptSegment: Record<Locale, string> = { no: 'manus', en: 'transcript
 /** Filnavnet på PDF-utgaven av episodebeskrivelsen. */
 const pdfSegment: Record<Locale, string> = { no: 'beskrivelse.pdf', en: 'description.pdf' };
 
+/** Undersiden der episoden vises som presentasjon. */
+const presentationSegment: Record<Locale, string> = { no: 'presentasjon', en: 'presentation' };
+
 /** Stien til en seksjon, med skråstrek til slutt. */
 export function path(lang: Locale, key: RouteKey): string {
   const p = routes[key][lang];
@@ -141,6 +144,11 @@ export function episodePdfPath(lang: Locale, slug: string): string {
   return `${entryPath(lang, 'episodes', slug)}${pdfSegment[lang]}`;
 }
 
+/** Stien til presentasjonsutgaven av en episode. */
+export function presentationPath(lang: Locale, slug: string): string {
+  return `${entryPath(lang, 'episodes', slug)}${presentationSegment[lang]}/`;
+}
+
 /**
  * Finner språket ut fra adressen. Alt under /en/ er engelsk, resten norsk.
  */
@@ -172,6 +180,11 @@ export function alternatePath(lang: Locale, current: string): string {
       const from = transcriptSegment[lang];
       const to = transcriptSegment[other];
       if (rest.endsWith(`/${from}`)) rest = `${rest.slice(0, -from.length)}${to}`;
+      // ... og for presentasjonen, som har sitt eget ord på hvert språk
+      const presFrom = presentationSegment[lang];
+      if (rest.endsWith(`/${presFrom}`)) {
+        rest = `${rest.slice(0, -presFrom.length)}${presentationSegment[other]}`;
+      }
       // ... og filnavnet på PDF-en, som er en fil og ikke skal ha skråstrek
       const pdfFrom = pdfSegment[lang];
       if (rest.endsWith(`/${pdfFrom}`)) {

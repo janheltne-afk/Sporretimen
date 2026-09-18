@@ -120,6 +120,8 @@ const strings = {
     'episode.updated': 'Sist oppdatert',
     'episode.pdf': 'Last ned beskrivelsen som PDF',
     'episode.pdfDesc': 'Ett ark med temaer, spørsmål, hovedpunkter og kilder.',
+    'episode.deck': 'Vis som presentasjon',
+    'episode.deckDesc': 'Fullskjerm, én del om gangen. Piltaster eller sveip.',
 
     // Gjester
     'guest.backToAll': '← Alle gjester',
@@ -284,6 +286,8 @@ const strings = {
     'episode.updated': 'Last updated',
     'episode.pdf': 'Download the description as a PDF',
     'episode.pdfDesc': 'One sheet with topics, questions, key points and sources.',
+    'episode.deck': 'View as a presentation',
+    'episode.deckDesc': 'Full screen, one part at a time. Arrow keys or swipe.',
 
     'guest.backToAll': '← All guests',
     'guest.themes': 'Themes',

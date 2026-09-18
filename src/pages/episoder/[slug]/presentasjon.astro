@@ -1,0 +1,13 @@
+---
+import DeckPage from '@/components/pages/DeckPage.astro';
+import { getEpisodes } from '@/lib/content';
+
+export async function getStaticPaths() {
+  const episodes = await getEpisodes('no');
+  return episodes.map((episode) => ({ params: { slug: episode.id }, props: { episode } }));
+}
+
+const { episode } = Astro.props;
+---
+
+<DeckPage lang="no" episode={episode} />

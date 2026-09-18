@@ -15,6 +15,12 @@ interface Props {
   type?: string;
   noindex?: boolean;
   /**
+   * Sider som fyller skjermen selv, uten sidehode og bunntekst – i praksis
+   * presentasjonsutgaven av en episode. Skriftene, temaet og SEO-hodet er det
+   * samme, bare rammen rundt er borte.
+   */
+  bare?: boolean;
+  /**
    * Settes på sider som ikke finnes på det andre språket (foreløpig manusene).
    * Da vises verken språkknapp eller hreflang, siden begge ville pekt på 404.
    */
@@ -78,12 +84,24 @@ const searchKind = props.noindex ? undefined : searchKindOf(lang, Astro.url.path
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}</a>
-    <Header lang={lang} noAlternate={props.noAlternate} />
-    <main id="main" data-search-kind={searchKind}>
-      <slot />
-    </main>
-    <Footer lang={lang} />
+    {
+      props.bare ? (
+        <main id="main" data-search-kind={searchKind}>
+          <slot />
+        </main>
+      ) : (
+        <>
+          <a class="skip-link" href="#main">
+            {lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}
+          </a>
+          <Header lang={lang} noAlternate={props.noAlternate} />
+          <main id="main" data-search-kind={searchKind}>
+            <slot />
+          </main>
+          <Footer lang={lang} />
+        </>
+      )
+    }
 
     <script>
       import { bindTrackedElements, track } from '@/lib/analytics';

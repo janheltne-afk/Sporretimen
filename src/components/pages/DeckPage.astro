@@ -1,0 +1,438 @@
+---
+/**
+ * Presentasjonsutgaven av en episode.
+ *
+ * Slidene lages av episoden selv – frontmatter og brødtekst – og skrives ikke
+ * for hånd. Det betyr to ting: hver episode får en presentasjon uten at noen
+ * lager den, og presentasjonen kan ikke komme i utakt med artikkelen.
+ *
+ * Kildene er, i rekkefølge:
+ *   title + coverTheme  → tittelslide
+ *   topics              → agenda
+ *   ## -overskriftene   → én slide per del, med innledningen under
+ *   <figure> i teksten  → én slide hver, uendret fra artikkelen
+ *   takeaways           → hovedpunkter
+ *   questions           → spørsmålene episoden svarer på
+ *   sources             → kilder
+ *
+ * Navigasjonen er scroll-snap, ikke et eget karusellskript. Da virker sveip,
+ * piltaster, rullehjul og utskrift av seg selv, og det finnes ingen tilstand
+ * som kan bli feil.
+ */
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { entryPath, type Locale } from '@/i18n/config';
+import { site } from '@/data/site';
+import { formatById } from '@/i18n/taxonomy';
+import { slugOf } from '@/lib/content';
+
+interface Props {
+  lang: Locale;
+  episode: CollectionEntry<'episodes'>;
+}
+const { lang, episode } = Astro.props;
+const en = lang === 'en';
+const d = episode.data;
+const slug = slugOf(episode.id);
+const episodeSti = entryPath(lang, 'episodes', slug);
+
+const t = {
+  agenda: en ? 'What this covers' : 'Dette går vi gjennom',
+  punkter: en ? 'Key points' : 'Hovedpunkter',
+  sporsmal: en ? 'Questions this answers' : 'Spørsmål episoden svarer på',
+  kilder: en ? 'Sources' : 'Kilder',
+  tilbake: en ? 'Back to the episode' : 'Tilbake til episoden',
+  hjelp: en ? 'Arrow keys or swipe' : 'Piltaster eller sveip',
+  avslutt: en ? 'Read the whole thing at' : 'Les hele saken på',
+  forts: en ? 'cont.' : 'forts.',
+};
+
+/* ------------------------------------------------------------ slidene */
+
+type Slide =
+  | { type: 'tittel' }
+  | { type: 'liste'; tittel: string; punkter: string[]; tall?: boolean }
+  | { type: 'del'; tittel: string; innledning?: string }
+  | { type: 'figur'; html: string }
+  | { type: 'slutt' };
+
+/** Markdown til ren tekst. Bare det som faktisk forekommer i brødteksten. */
+function tilTekst(md: string): string {
+  return md
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Deler brødteksten i deler på ##-overskriftene, og plukker ut figurene.
+ * Figurene ligger som rå HTML i markdownen, og hentes derfor ut som de er.
+ */
+function delOpp(body: string): Slide[] {
+  const ut: Slide[] = [];
+  // Alt før første ## er innledningen til episoden, og hører til tittelsliden.
+  const deler = body.split(/^## +/m).slice(1);
+
+  for (const del of deler) {
+    const linjeslutt = del.indexOf('\n');
+    const tittel = tilTekst(linjeslutt === -1 ? del : del.slice(0, linjeslutt));
+    const resten = linjeslutt === -1 ? '' : del.slice(linjeslutt + 1);
+
+    const figurer = resten.match(/<figure[\s\S]*?<\/figure>/g) ?? [];
+
+    // Innledningen er teksten før første figur, hvis den er kort nok til å
+    // stå på en slide. Lange avsnitt hører i artikkelen, ikke her.
+    const foran = resten.split('<figure')[0];
+    const avsnitt = foran
+      .split(/\n{2,}/)
+      .map((a) => tilTekst(a))
+      .filter((a) => a && !a.startsWith('<') && !a.startsWith('-') && !a.startsWith('|'));
+    const innledning = avsnitt[0] && avsnitt[0].length <= 240 ? avsnitt[0] : undefined;
+
+    ut.push({ type: 'del', tittel, innledning });
+    for (const html of figurer) ut.push({ type: 'figur', html });
+  }
+  return ut;
+}
+
+/**
+ * Deler en liste over flere slides, så ingen slide blir for full. Går den over
+ * mer enn én, merkes fortsettelsen – ellers står samme overskrift to ganger
+ * etter hverandre, og den som presenterer tror han har gått feil vei.
+ */
+function iPuljer(punkter: string[], per: number, tittel: string): Slide[] {
+  const puljer: string[][] = [];
+  for (let i = 0; i < punkter.length; i += per) puljer.push(punkter.slice(i, i + per));
+  return puljer.map((pulje, i) => ({
+    type: 'liste' as const,
+    tittel: i === 0 ? tittel : `${tittel} (${t.forts})`,
+    punkter: pulje,
+  }));
+}
+
+const slides: Slide[] = [{ type: 'tittel' }];
+
+if (d.topics.length) {
+  slides.push(...iPuljer(d.topics, 7, t.agenda).map((s) => ({ ...s, tall: true })));
+}
+
+slides.push(...delOpp(episode.body ?? ''));
+
+if (d.takeaways.length) slides.push(...iPuljer(d.takeaways, 4, t.punkter));
+if (d.questions.length) slides.push(...iPuljer(d.questions, 6, t.sporsmal));
+if (d.sources.length) {
+  slides.push({
+    type: 'liste',
+    tittel: t.kilder,
+    punkter: d.sources.map((s) => s.title),
+  });
+}
+slides.push({ type: 'slutt' });
+
+const format = formatById(lang, d.format);
+---
+
+<BaseLayout
+  lang={lang}
+  bare
+  noindex
+  title={`${d.title} – ${en ? 'presentation' : 'presentasjon'}`}
+  description={d.description}
+>
+  <div class="dekk" data-antall={slides.length}>
+    {
+      slides.map((s, i) => (
+        <section class="slide" aria-label={`${i + 1} / ${slides.length}`}>
+          <div class="slide__inner">
+            {s.type === 'tittel' && (
+              <div class="tittel">
+                <p class="eyebrow">{d.coverTheme ?? format?.label ?? site.name}</p>
+                <h1>{d.title}</h1>
+                {d.description && <p class="tittel__lead">{d.description}</p>}
+                <p class="tittel__meta">
+                  <a href={episodeSti}>{t.tilbake}</a>
+                  <span class="tittel__hjelp">{t.hjelp}</span>
+                </p>
+              </div>
+            )}
+            {s.type === 'liste' && (
+              <div class="liste">
+                <h2>{s.tittel}</h2>
+                {s.tall ? (
+                  <ol>{s.punkter.map((p) => <li>{p}</li>)}</ol>
+                ) : (
+                  <ul>{s.punkter.map((p) => <li>{p}</li>)}</ul>
+                )}
+              </div>
+            )}
+            {s.type === 'del' && (
+              <div class="del">
+                <h2>{s.tittel}</h2>
+                {s.innledning && <p>{s.innledning}</p>}
+              </div>
+            )}
+            {s.type === 'figur' && <div class="figur prose" set:html={s.html} />}
+            {s.type === 'slutt' && (
+              <div class="slutt">
+                <p class="eyebrow">{site.name}</p>
+                <p class="slutt__tekst">{t.avslutt}</p>
+                <p class="slutt__url">{site.url.replace(/^https?:\/\//, '')}{episodeSti}</p>
+              </div>
+            )}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <div class="teller" aria-hidden="true"><span data-teller>1</span> / {slides.length}</div>
+  <div class="framdrift" aria-hidden="true"><span data-framdrift></span></div>
+</BaseLayout>
+
+<script>
+  /**
+   * Tastatur og teller. Selve rullingen gjør nettleseren med scroll-snap –
+   * skriptet flytter bare fokuset til neste slide når noen trykker en tast.
+   */
+  const dekk = document.querySelector<HTMLElement>('.dekk');
+  const slides = [...document.querySelectorAll<HTMLElement>('.slide')];
+  const teller = document.querySelector<HTMLElement>('[data-teller]');
+  const framdrift = document.querySelector<HTMLElement>('[data-framdrift]');
+  let naa = 0;
+
+  function vis(i: number) {
+    naa = Math.max(0, Math.min(slides.length - 1, i));
+    slides[naa].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function oppdater(i: number) {
+    naa = i;
+    if (teller) teller.textContent = String(i + 1);
+    if (framdrift) framdrift.style.width = `${((i + 1) / slides.length) * 100}%`;
+  }
+
+  if (dekk && slides.length) {
+    // Hvilken slide som er framme, leses av nettleseren selv.
+    const io = new IntersectionObserver(
+      (poster) => {
+        for (const post of poster) {
+          if (post.isIntersecting) oppdater(slides.indexOf(post.target as HTMLElement));
+        }
+      },
+      { root: dekk, threshold: 0.55 }
+    );
+    slides.forEach((s) => io.observe(s));
+    oppdater(0);
+
+    addEventListener('keydown', (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const fram = ['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Spacebar'];
+      const bak = ['ArrowLeft', 'ArrowUp', 'PageUp'];
+      if (fram.includes(e.key)) {
+        e.preventDefault();
+        vis(naa + 1);
+      } else if (bak.includes(e.key)) {
+        e.preventDefault();
+        vis(naa - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        vis(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        vis(slides.length - 1);
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Rammen: én slide i høyden, med feste slik at sveip og rullehjul
+     lander på en slide og ikke mellom to. */
+  .dekk {
+    height: 100svh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  .slide {
+    /* Minstehøyde, ikke fast høyde. En høy figur med lang bildetekst er
+       høyere enn skjermen på en bærbar, og da skal sliden bli lengre – ikke
+       klippe bort de siste linjene. Festet virker like godt. */
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: grid;
+    place-items: center;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .slide__inner {
+    width: min(100%, 60rem);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.8rem;
+  }
+
+  /* Tittelsliden */
+  .tittel h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 5.5vw, 3.6rem);
+    line-height: 1.1;
+  }
+  .tittel__lead {
+    margin: 1.2rem 0 0;
+    color: var(--ink-soft);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    max-width: 48ch;
+  }
+  .tittel__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.4rem;
+    align-items: baseline;
+    margin: 2.4rem 0 0;
+    font-size: 0.9rem;
+  }
+  .tittel__hjelp {
+    color: var(--ink-faint);
+  }
+
+  /* Delslidene – overskriften i en artikkel blir en mellomtittel her. */
+  .del h2 {
+    margin: 0;
+    font-size: clamp(1.7rem, 4.5vw, 3rem);
+    line-height: 1.15;
+  }
+  .del p {
+    margin: 1.2rem 0 0;
+    color: var(--ink-soft);
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    max-width: 52ch;
+  }
+
+  /* Listeslidene */
+  .liste h2 {
+    margin: 0 0 1.6rem;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+  }
+  .liste :is(ul, ol) {
+    margin: 0;
+    padding-left: 1.4rem;
+    display: grid;
+    gap: 0.9rem;
+    font-size: clamp(1rem, 2.1vw, 1.3rem);
+    line-height: 1.45;
+  }
+  .liste li {
+    padding-left: 0.2rem;
+  }
+  .liste ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .liste ul li {
+    padding-left: 1.4rem;
+    position: relative;
+  }
+  .liste ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--accent-strong);
+  }
+
+  /* Figursliden. Figuren er den samme som i artikkelen, bare større. */
+  .figur {
+    width: 100%;
+  }
+  .figur :global(.fig) {
+    margin: 0;
+  }
+  .figur :global(.fig__title) {
+    font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+  }
+  .figur :global(figcaption) {
+    font-size: clamp(0.82rem, 1.5vw, 0.95rem);
+  }
+  /* Figurene er satt for en artikkelspalte. På en slide er det mer bredde og
+     mindre høyde, så luften strammes litt inn. */
+  .figur :global(.fig--flow) ol {
+    gap: 0.5rem;
+  }
+  .figur :global(.fig__box) {
+    padding: 0.7rem 0.9rem;
+  }
+
+  /* Sluttsliden */
+  .slutt__tekst {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .slutt__url {
+    margin: 0.4rem 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    overflow-wrap: anywhere;
+  }
+
+  /* Teller og framdrift. Diskret, og aldri i veien for innholdet. */
+  .teller {
+    position: fixed;
+    right: clamp(0.8rem, 2vw, 1.6rem);
+    bottom: clamp(0.8rem, 2vw, 1.6rem);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+  }
+  .framdrift {
+    position: fixed;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: var(--line);
+  }
+  .framdrift span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent-strong);
+    transition: width 0.2s ease;
+  }
+
+  /* Utskrift: én slide per ark, liggende. Da er PDF-en ferdig uten verktøy. */
+  @media print {
+    .dekk {
+      height: auto;
+      overflow: visible;
+    }
+    .slide {
+      height: auto;
+      min-height: 0;
+      break-after: page;
+      border-bottom: 0;
+      padding: 0 0 2rem;
+    }
+    .teller,
+    .framdrift,
+    .tittel__meta {
+      display: none;
+    }
+  }
+</style>
+
+<style is:global>
+  @page {
+    size: landscape;
+    margin: 12mm;
+  }
+</style>
