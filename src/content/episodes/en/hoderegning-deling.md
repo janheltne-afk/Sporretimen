@@ -52,8 +52,8 @@ featured: false
 popularityScore: 0
 related:
   - en/hoderegning-pluss-minus
+  - en/hoderegning-prosent
   - en/gangetabellen
-  - en/gangetriks-trachtenberg
 ---
 
 Of the four operations, division is the one people name as the worst. It is

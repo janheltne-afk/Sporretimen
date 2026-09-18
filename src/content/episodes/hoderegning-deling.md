@@ -53,8 +53,8 @@ featured: false
 popularityScore: 0
 related:
   - hoderegning-pluss-minus
+  - hoderegning-prosent
   - gangetabellen
-  - gangetriks-trachtenberg
 ---
 
 Av de fire regneartene er deling den folk oppgir som verst. Det er verdt å

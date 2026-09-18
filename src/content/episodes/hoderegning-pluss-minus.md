@@ -52,9 +52,9 @@ description: >-
 featured: false
 popularityScore: 0
 related:
-  - gangetabellen
-  - gangetriks-trachtenberg
   - hoderegning-deling
+  - hoderegning-prosent
+  - gangetabellen
 ---
 
 De fleste av oss har lært én måte å legge sammen tall på: still dem opp under

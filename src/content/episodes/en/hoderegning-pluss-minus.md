@@ -51,9 +51,9 @@ description: >-
 featured: false
 popularityScore: 0
 related:
-  - en/gangetabellen
-  - en/gangetriks-trachtenberg
   - en/hoderegning-deling
+  - en/hoderegning-prosent
+  - en/gangetabellen
 ---
 
 Most of us learned one way to add numbers: stack them, start on the right,
