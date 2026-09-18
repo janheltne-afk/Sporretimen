@@ -10,6 +10,8 @@ themes:
 image: /images/gjester/odin-aadland.jpg
 imageAlt: "Odin Jean Aadland by the waterfront, wearing a backwards cap, glasses and a white T-shirt"
 cover: /images/omslag/odin-aadland.jpg
+imageCredit:
+  source: gjest
 region: Bergen
 status: bekreftet
 featured: false

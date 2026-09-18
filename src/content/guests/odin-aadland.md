@@ -10,6 +10,8 @@ themes:
 image: /images/gjester/odin-aadland.jpg
 imageAlt: "Odin Jean Aadland ute ved sjøkanten, med caps bak fram, briller og hvit t-skjorte"
 cover: /images/omslag/odin-aadland.jpg
+imageCredit:
+  source: gjest
 region: Bergen
 status: bekreftet
 featured: false

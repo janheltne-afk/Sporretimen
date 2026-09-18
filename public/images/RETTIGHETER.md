@@ -44,11 +44,11 @@ registrering i frontmatter.
 | `gjester/havard-hasund.jpg` | Gjestesiden | | |
 | `gjester/john-erik.jpg` | Gjestesiden | | |
 | `gjester/sturla.jpg` | Gjestesiden | | |
-| `gjester/odin-aadland.jpg` | Gjestesiden | | |
+| `gjester/odin-aadland.jpg` | Gjestesiden | Levert av gjesten | Ikke påkrevd |
 | `omslag/havard-hasund.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
 | `omslag/john-erik.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
 | `omslag/sturla.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
-| `omslag/odin-aadland.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
+| `omslag/odin-aadland.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Ikke påkrevd |
 | `episoder/odin-hartransplantasjon.jpg` | Episodeomslag og delebilde | Eget opptak, Spørretimen | Ikke påkrevd |
 | `episoder/kanada-ekspedisjon.jpg` | Delebilde | | |
 | `episoder/lege-episoden.jpg` | Delebilde | | |
