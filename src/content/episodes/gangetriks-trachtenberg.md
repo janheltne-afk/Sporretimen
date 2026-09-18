@@ -42,7 +42,8 @@ description: >-
 featured: false
 related:
   - gangetabellen
-  - memoreringsteknikker-kortstokk
+  - hoderegning-deling
+  - hoderegning-pluss-minus
 ---
 
 Ta 3 425 × 11. De fleste av oss setter opp et regnestykke. Men det finnes en regel

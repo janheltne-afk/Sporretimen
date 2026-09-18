@@ -42,7 +42,8 @@ description: >-
 featured: false
 related:
   - en/gangetabellen
-  - en/memoreringsteknikker-kortstokk
+  - en/hoderegning-deling
+  - en/hoderegning-pluss-minus
 ---
 
 Take 3,425 × 11. Most of us would set out a calculation. But there is a rule that

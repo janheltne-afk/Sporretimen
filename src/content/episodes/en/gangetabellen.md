@@ -51,7 +51,8 @@ featured: false
 popularityScore: 0
 related:
   - en/gangetriks-trachtenberg
-  - en/memoreringsteknikker-kortstokk
+  - en/hoderegning-pluss-minus
+  - en/hoderegning-deling
 ---
 
 The times tables are presented as a wall: ten by ten, a hundred facts, memorise

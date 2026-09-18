@@ -51,7 +51,8 @@ featured: false
 popularityScore: 0
 related:
   - gangetriks-trachtenberg
-  - memoreringsteknikker-kortstokk
+  - hoderegning-pluss-minus
+  - hoderegning-deling
 ---
 
 Gangetabellen presenteres som en vegg: ti ganger ti, hundre stykker, pugg dem.
