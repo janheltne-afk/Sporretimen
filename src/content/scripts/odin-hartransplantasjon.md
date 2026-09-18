@@ -21,9 +21,10 @@ ikke er bekreftet.*
 
 ## Hvordan det begynte
 
-Odin hadde sett en kjent nordmann med nye hårlepper på TikTok, og gjorde det de
-færreste gjør: han sendte en melding på Instagram og spurte rett ut om
-klinikken var bra. Svaret var positivt.
+Ideen kom fra TikTok. Odin hadde fulgt profilen **Snusleppa**, som hadde tatt
+hårtransplantasjon, og gjorde så det de færreste gjør: han sendte en melding på
+Instagram og spurte rett ut om klinikken var bra. Svaret var positivt – gode
+erfaringer.
 
 Så fikk han et tips til av noen på høyskolen, om en tidligere student som hadde
 gjort det samme. Ham møtte han på byen.

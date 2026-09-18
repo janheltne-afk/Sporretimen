@@ -68,9 +68,10 @@ prices and clinics change, so some of what is said may be out of date today.
 They say as much themselves in the introduction, and it is worth bearing in
 mind.
 
-**Odin** had started thinning on top. He saw a well-known person with new hair
-on TikTok, sent them a message on Instagram, got a second tip from a fellow
-student, and booked an appointment in Istanbul.
+**Odin** had started thinning on top. The idea came from the TikTok account
+**Snusleppa**, who had been through it. He sent a message on Instagram to ask
+about the clinic, got a second tip from a fellow student, and booked an
+appointment in Istanbul.
 
 That was the extent of the research. He is entirely open about it: he never
 checked what it would have cost in Norway, or whether he should have been on any

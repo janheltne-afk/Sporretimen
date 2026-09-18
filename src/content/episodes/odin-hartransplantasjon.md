@@ -67,9 +67,10 @@ Denne episoden er hentet fra en eldre podkast, spilt inn for noen år siden.
 Metoder, priser og klinikker endrer seg, så noe av det som sies kan være
 utdatert i dag. Det sier de selv i innledningen, og det er verdt å ha med seg.
 
-**Odin** hadde begynt å bli tynn i håret. Han så en kjent person med nye
-hårlepper på TikTok, sendte vedkommende en melding på Instagram, fikk et tips
-til av en medstudent, og bestilte time i Istanbul.
+**Odin** hadde begynt å bli tynn i håret. Ideen fikk han fra TikTok-profilen
+**Snusleppa**, som hadde gjort det samme. Han sendte en melding på Instagram og
+spurte om klinikken, fikk et tips til av en medstudent, og bestilte time i
+Istanbul.
 
 Så mye research ble det. Han hadde ikke undersøkt hva det ville kostet i Norge,
 eller om han burde stått på noe i forkant – og han er helt åpen om det gjennom
