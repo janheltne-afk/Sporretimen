@@ -145,7 +145,10 @@ const format = formatById(lang, d.format);
   <div class="dekk" data-antall={slides.length}>
     {
       slides.map((s, i) => (
-        <section class="slide" aria-label={`${i + 1} / ${slides.length}`}>
+        <section
+          class:list={['slide', { 'slide--figur': s.type === 'figur' }]}
+          aria-label={`${i + 1} / ${slides.length}`}
+        >
           <div class="slide__inner">
             {s.type === 'tittel' && (
               <div class="tittel">
@@ -214,7 +217,44 @@ const format = formatById(lang, d.format);
     if (framdrift) framdrift.style.width = `${((i + 1) / slides.length) * 100}%`;
   }
 
+  /**
+   * Skalerer figurer som er høyere enn skjermen, slik at hver figurslide er én
+   * skjerm. Måles etter at skriftene er lastet, og på nytt ved endret størrelse.
+   * Skalerer aldri opp – en figur som får plass, står som den er.
+   */
+  function tilpassFigurer() {
+    for (const fig of document.querySelectorAll<HTMLElement>('.slide--figur .figur')) {
+      const ramme = fig.parentElement as HTMLElement;
+      // Nullstill før måling, ellers måles forrige skalering om igjen.
+      fig.style.transform = '';
+      ramme.style.height = '';
+
+      const slide = fig.closest<HTMLElement>('.slide')!;
+      const stil = getComputedStyle(slide);
+      const plass =
+        slide.clientHeight - parseFloat(stil.paddingTop) - parseFloat(stil.paddingBottom);
+      const hoyde = fig.getBoundingClientRect().height;
+      if (hoyde <= plass) continue;
+
+      const k = Math.max(0.55, plass / hoyde);
+      // transform endrer ikke layouten, så boksen rundt må settes til den
+      // skalerte høyden. Ellers er boksen fortsatt for høy, og figuren blir
+      // sentrert ut av skjermen i toppen.
+      fig.style.transformOrigin = 'top center';
+      fig.style.transform = `scale(${k})`;
+      ramme.style.height = `${hoyde * k}px`;
+    }
+  }
+
   if (dekk && slides.length) {
+    tilpassFigurer();
+    if (document.fonts?.ready) document.fonts.ready.then(tilpassFigurer);
+    let timer: number;
+    addEventListener('resize', () => {
+      clearTimeout(timer);
+      timer = setTimeout(tilpassFigurer, 150) as unknown as number;
+    });
+
     // Hvilken slide som er framme, leses av nettleseren selv.
     const io = new IntersectionObserver(
       (poster) => {
@@ -258,8 +298,7 @@ const format = formatById(lang, d.format);
     scroll-behavior: smooth;
   }
   .slide {
-    /* Minstehøyde, ikke fast høyde. En høy figur med lang bildetekst er
-       høyere enn skjermen på en bærbar, og da skal sliden bli lengre – ikke
+    /* Minstehøyde, ikke fast høyde. Tekstslides skal heller bli lengre enn å
        klippe bort de siste linjene. Festet virker like godt. */
     min-height: 100svh;
     scroll-snap-align: start;
@@ -271,6 +310,21 @@ const format = formatById(lang, d.format);
   }
   .slide__inner {
     width: min(100%, 60rem);
+  }
+  /* En figurslide skal være én skjerm. En figur med sju steg og en lang
+     bildetekst er høyere enn en bærbar skjerm, og da hjelper det ikke å la
+     sliden vokse – da må man rulle inni sliden for å se slutten. Figuren
+     skaleres i stedet ned til den passer, av skriptet under. */
+  .slide--figur {
+    height: 100svh;
+    overflow: hidden;
+  }
+  .slide--figur .slide__inner {
+    display: grid;
+    place-items: center;
+  }
+  .slide--figur .figur {
+    width: 100%;
   }
 
   .eyebrow {
@@ -426,6 +480,13 @@ const format = formatById(lang, d.format);
     .framdrift,
     .tittel__meta {
       display: none;
+    }
+    .slide--figur {
+      height: auto;
+      overflow: visible;
+    }
+    .figur {
+      transform: none !important;
     }
   }
 </style>
