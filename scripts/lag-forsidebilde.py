@@ -113,6 +113,10 @@ EPISODER = {
 SOLO_UNDERTEKST = {
     "erp-wms-integrasjon": "Da to systemer skulle snakke sammen",
     "ten-t-transportnettet": "EUs transportnett, og Norges plass i det",
+    "kabotasje-godstransport": "Reglene for utenlandske lastebiler i Norge",
+    "sjoruter-suez-panama-arktis": "Suez, Panama og rutene over toppen",
+    "container-teu-feu": "Målene som styrer verdenshandelen",
+    "tolltariffen-varenummer": "Hvordan en vare blir en kode",
     "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
     "gangetabellen": "Slik fester den for godt",
     "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
