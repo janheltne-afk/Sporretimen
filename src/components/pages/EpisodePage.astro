@@ -189,7 +189,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
       <p class="episode__facts muted">
         {d.duration && <span>{d.duration}</span>}
         {d.duration && (d.publishDate || d.status === 'kommende') && <span aria-hidden="true">·</span>}
-        <span>{d.status === 'kommende' ? formatRelease(d.publishDate) : formatDate(d.publishDate)}</span>
+        <span>{d.status === 'kommende' ? formatRelease(d.publishDate, lang) : formatDate(d.publishDate, lang)}</span>
         <span aria-hidden="true">·</span>
         <span>{t('episode.host')} <a href={routePath(lang, 'profile')} class="episode__host">{site.host}</a></span>
         {guest && <span aria-hidden="true">·</span>}

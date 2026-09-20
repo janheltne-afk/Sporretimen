@@ -17,10 +17,11 @@ export function formatDate(date?: Date, lang: Locale = 'no'): string {
 /**
  * Formaterer et annonsert publiseringstidspunkt, f.eks.
  * «Slippes søndag 16. august kl. 07:00». Brukes på kommende episoder der
- * datoen er avklart. Uten dato faller den tilbake til «Publiseres senere».
+ * datoen er avklart. Uten dato sier den at opptaket står igjen – ikke at
+ * siden er tom, for artikkelen ligger der i sin helhet.
  */
 export function formatRelease(date?: Date, lang: Locale = 'no'): string {
-  if (!date) return lang === 'en' ? 'Published later' : 'Publiseres senere';
+  if (!date) return lang === 'en' ? 'Not recorded yet' : 'Ikke spilt inn ennå';
   const day = new Intl.DateTimeFormat(intlLocale(lang), {
     weekday: 'long',
     day: 'numeric',
