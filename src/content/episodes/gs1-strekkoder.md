@@ -1,7 +1,8 @@
 ---
 title: "Lær noe nytt: GS1 – strekkoden, GTIN og tallene bak hver vare"
 format: laer-noe-nytt
-status: kommende
+status: publisert
+publishDate: 2026-09-20T08:00:00+02:00
 topic: arbeidsliv-og-naeringsliv
 subtopics:
   - logistikk-og-supply-chain
@@ -55,6 +56,8 @@ description: >-
   2D-koder mot 2027.
 featured: false
 popularityScore: 0
+links:
+  youtube: https://youtu.be/ZVob-10Iemw
 sources:
   - title: "GS1 – GS1 General Specifications og standardene for identifikasjonsnøkler"
     url: https://www.gs1.org/standards

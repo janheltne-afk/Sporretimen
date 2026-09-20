@@ -1,7 +1,8 @@
 ---
 title: "Learn something new: GS1 – the barcode, the GTIN and the numbers behind every item"
 format: laer-noe-nytt
-status: kommende
+status: publisert
+publishDate: 2026-09-20T08:00:00+02:00
 topic: arbeidsliv-og-naeringsliv
 subtopics:
   - logistikk-og-supply-chain
@@ -55,6 +56,8 @@ description: >-
   2D codes towards 2027.
 featured: false
 popularityScore: 0
+links:
+  youtube: https://youtu.be/ZVob-10Iemw
 sources:
   - title: "GS1 – GS1 General Specifications and the identification key standards"
     url: https://www.gs1.org/standards
