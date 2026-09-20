@@ -58,6 +58,7 @@ featured: false
 popularityScore: 0
 links:
   youtube: https://youtu.be/ZVob-10Iemw
+  spotify: https://open.spotify.com/episode/6eeli2JrFLS0rdsj0zwkw8
 sources:
   - title: "GS1 – GS1 General Specifications og standardene for identifikasjonsnøkler"
     url: https://www.gs1.org/standards
