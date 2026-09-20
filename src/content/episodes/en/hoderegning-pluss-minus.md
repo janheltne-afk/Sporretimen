@@ -43,6 +43,8 @@ takeaways:
   - "A shopping basket is fastest if you round everything up and subtract the roundings at the end."
   - "Casting out nines catches most arithmetic slips, but never two digits swapping places."
 coverTheme: "Mental arithmetic"
+image: /images/episoder/hoderegning-pluss-minus.jpg
+imageAlt: "Spørretimen cover: Hoderegning – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   School teaches you to work right to left, because that is how you write. In
   your head it is the other way round. A walk-through of the techniques for

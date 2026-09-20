@@ -43,6 +43,8 @@ takeaways:
   - "The rule for 11 is the alternating digit sum – plus, minus, plus."
   - "Knowing that an eighth is 12.5 per cent saves you half the arithmetic."
 coverTheme: "Mental arithmetic"
+image: /images/episoder/hoderegning-deling.jpg
+imageAlt: "Spørretimen cover: Hoderegning – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Division feels harder than the other operations, but it is the method that is
   the problem – not the sum. A walk-through of factorising, splitting, short

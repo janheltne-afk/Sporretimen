@@ -41,6 +41,8 @@ book:
   year: 1949
 advisory:
   - okonomi
+image: /images/episoder/intelligent-investor.jpg
+imageAlt: "Spørretimen: Verdiinvestering – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Boken Warren Buffett kaller den beste om investering, fra 1949. En
   gjennomgang av ideene i The Intelligent Investor – Mr. Market,

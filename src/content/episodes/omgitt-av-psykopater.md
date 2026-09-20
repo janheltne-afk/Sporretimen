@@ -40,6 +40,8 @@ book:
   originalTitle: "Omgiven av psykopater"
 advisory:
   - helse
+image: /images/episoder/omgitt-av-psykopater.jpg
+imageAlt: "Spørretimen: Psykopati – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Ordet brukes om alt fra dårlige sjefer til ekser. En gjennomgang av temaet i
   Thomas Eriksons Omgitt av psykopater – hva psykopati faktisk er som klinisk

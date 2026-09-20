@@ -40,6 +40,8 @@ book:
   originalTitle: "Omgiven av dåliga chefer"
 advisory:
   - juss
+image: /images/episoder/omgitt-av-darlige-sjefer.jpg
+imageAlt: "Spørretimen cover: Ledelse – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Most people have had one. A walk through the subject of Thomas Erikson's
   Surrounded by Bad Bosses – the forms bad leadership takes, why absence is

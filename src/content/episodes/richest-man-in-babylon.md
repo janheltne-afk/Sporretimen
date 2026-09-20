@@ -38,6 +38,8 @@ book:
   year: 1926
 advisory:
   - okonomi
+image: /images/episoder/richest-man-in-babylon.jpg
+imageAlt: "Spørretimen: Sparing – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hundre år gamle råd om sparing, gjeld og det å la pengene arbeide, fortalt
   som lignelser fra Babylon. En gjennomgang av de syv rådene i The Richest Man

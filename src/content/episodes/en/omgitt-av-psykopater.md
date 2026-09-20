@@ -40,6 +40,8 @@ book:
   originalTitle: "Omgiven av psykopater"
 advisory:
   - helse
+image: /images/episoder/omgitt-av-psykopater.jpg
+imageAlt: "Spørretimen cover: Psykopati – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The word gets used for everything from bad bosses to exes. A walk through the
   subject of Thomas Erikson's Surrounded by Psychopaths – what psychopathy

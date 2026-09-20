@@ -45,6 +45,8 @@ book:
   year: 2020
 advisory:
   - okonomi
+image: /images/episoder/psychology-of-money.jpg
+imageAlt: "Spørretimen: Penger og atferd – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Økonomi er ikke et regnestykke – det er atferd. En gjennomgang av ideene i
   Morgan Housels The Psychology of Money: flaks og risiko, renters rente,

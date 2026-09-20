@@ -37,6 +37,8 @@ book:
   title: "Surrounded by Liars"
   author: "Thomas Erikson"
   originalTitle: "Omgitt av løgnere"
+image: /images/episoder/omgitt-av-lognere.jpg
+imageAlt: "Spørretimen cover: Løgn – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Everyone thinks they can tell. Almost nobody can. A walk through the subject
   of Thomas Erikson's Surrounded by Liars – what the research says about lie

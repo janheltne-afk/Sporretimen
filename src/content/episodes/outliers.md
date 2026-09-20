@@ -38,6 +38,8 @@ book:
   title: "Outliers: The Story of Success"
   author: "Malcolm Gladwell"
   year: 2008
+image: /images/episoder/outliers.jpg
+imageAlt: "Spørretimen: Ekspertise – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hva skal til for å lykkes stort? Ikke det du tror, mener Malcolm Gladwell. En
   gjennomgang av ideene i Outliers – 10 000 timer, fødselsmåneder, muligheter

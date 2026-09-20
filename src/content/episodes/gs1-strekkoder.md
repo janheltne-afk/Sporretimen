@@ -46,6 +46,8 @@ takeaways:
   - Målet for Sunrise 2027 er at kassa skal kunne lese både 1D og 2D.
   - Nummeret på en RFID-tagg bygger på de samme nøklene.
 coverTheme: "GS1"
+image: /images/episoder/gs1-strekkoder.jpg
+imageAlt: "Spørretimen: GS1 – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva betyr tallene i en strekkode? En gjennomgang av GS1-standardene – hvordan
   et GTIN er bygget opp, hvordan kontrollsifferet regnes ut, hva prefikset

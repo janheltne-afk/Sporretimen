@@ -41,6 +41,8 @@ book:
   title: "Never Split the Difference"
   author: "Chris Voss og Tahl Raz"
   year: 2016
+image: /images/episoder/never-split-the-difference.jpg
+imageAlt: "Spørretimen: Forhandling – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   En tidligere gisselforhandler i FBI om hvorfor man aldri bør møtes på midten.
   En gjennomgang av ideene i Chris Voss' Never Split the Difference – taktisk

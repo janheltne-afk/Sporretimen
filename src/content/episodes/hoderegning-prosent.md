@@ -46,6 +46,8 @@ takeaways:
   - "En vekstfaktor ganges. To ganger 10 prosent er 21 prosent, ikke 20."
   - "72-regelen anslår doblingstid, og treffer godt for renter mellom 3 og 12 prosent."
 coverTheme: "Hoderegning"
+image: /images/episoder/hoderegning-prosent.jpg
+imageAlt: "Spørretimen: Hoderegning – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Prosent er den regnearten folk bruker oftest og bommer mest på. En
   gjennomgang av teknikkene – ti prosent som utgangspunkt, trikset med å snu

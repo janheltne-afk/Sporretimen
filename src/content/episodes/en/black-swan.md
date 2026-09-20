@@ -43,6 +43,8 @@ book:
   year: 2007
 advisory:
   - okonomi
+image: /images/episoder/black-swan.jpg
+imageAlt: "Spørretimen cover: Risiko – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Why is it always the thing nobody saw coming that changes everything? A walk
   through the ideas in Nassim Nicholas Taleb's The Black Swan – Mediocristan and

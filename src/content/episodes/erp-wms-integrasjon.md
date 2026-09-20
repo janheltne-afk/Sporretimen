@@ -47,6 +47,8 @@ takeaways:
   - "Scope creep ble beskrevet som vanlig, og som en direkte årsak til forsinkelser."
   - "Undersøkelsen har 22 svar og fire intervjuer. Det viser tendenser, ikke tall som kan generaliseres."
 coverTheme: "ERP og WMS"
+image: /images/episoder/erp-wms-integrasjon.jpg
+imageAlt: "Spørretimen: ERP og WMS – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   To systemer som må snakke sammen, og et prosjekt som ofte ikke går som
   planlagt. Dette er masteroppgaven min fra 2025 – hva 22 fagfolk og fire

@@ -47,6 +47,8 @@ takeaways:
   - "Scope creep was described as common, and as a direct cause of delay."
   - "The study has 22 questionnaire responses and four interviews. It shows tendencies, not figures that can be generalised."
 coverTheme: "ERP and WMS"
+image: /images/episoder/erp-wms-integrasjon.jpg
+imageAlt: "Spørretimen cover: ERP og WMS – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Two systems that have to talk to each other, and a project that often does not
   go to plan. This is my master's thesis from 2025 – what 22 practitioners and

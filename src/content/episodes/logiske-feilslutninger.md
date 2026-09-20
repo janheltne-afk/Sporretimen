@@ -49,6 +49,8 @@ takeaways:
   - At noen argumenterer dårlig, betyr ikke at de tar feil. Det er en egen feilslutning.
 coverTheme: "Argumentasjon"
 advisory: []
+image: /images/episoder/logiske-feilslutninger.jpg
+imageAlt: "Spørretimen: Argumentasjon – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor høres dårlige argumenter så overbevisende ut? En gjennomgang av de
   vanligste feilslutningene – stråmann, ad hominem, falskt dilemma, glidende

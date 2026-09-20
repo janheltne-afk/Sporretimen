@@ -41,6 +41,8 @@ book:
   title: "Never Split the Difference"
   author: "Chris Voss og Tahl Raz"
   year: 2016
+image: /images/episoder/never-split-the-difference.jpg
+imageAlt: "Spørretimen cover: Forhandling – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   A former FBI hostage negotiator on why you should never meet in the middle. A
   walk through the ideas in Chris Voss's Never Split the Difference – tactical

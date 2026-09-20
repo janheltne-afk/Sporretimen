@@ -45,6 +45,8 @@ book:
   sourceUrl: https://www.navalmanack.com/
 advisory:
   - okonomi
+image: /images/episoder/almanack-naval.jpg
+imageAlt: "Spørretimen: Formue og frihet – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Investoren Naval Ravikants tanker om formue, gearing og lykke, samlet av Eric
   Jorgenson. En gjennomgang av ideene – spesifikk kunnskap, ansvar, de fire

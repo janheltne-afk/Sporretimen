@@ -47,6 +47,8 @@ takeaways:
   - DDP legger fortolling i kjøpers land på selger – ofte mer enn selger kan levere.
   - Skriv alltid regel, sted så presist som mulig, og hvilken versjon som gjelder.
 coverTheme: "Incoterms 2020"
+image: /images/episoder/incoterms-2020.jpg
+imageAlt: "Spørretimen: Incoterms 2020 – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva betyr FOB, CIF, DAP og DDP – og hvor går egentlig risikoen over? En
   gjennomgang av alle elleve Incoterms 2020-reglene, skillet mellom risiko og

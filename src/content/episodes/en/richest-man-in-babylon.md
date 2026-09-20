@@ -38,6 +38,8 @@ book:
   year: 1926
 advisory:
   - okonomi
+image: /images/episoder/richest-man-in-babylon.jpg
+imageAlt: "Spørretimen cover: Sparing – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Hundred-year-old advice on saving, debt and putting money to work, told as
   parables from Babylon. A walk through the seven cures in The Richest Man in

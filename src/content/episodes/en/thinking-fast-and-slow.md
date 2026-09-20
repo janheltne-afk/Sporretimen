@@ -42,6 +42,8 @@ book:
   title: "Thinking, Fast and Slow"
   author: "Daniel Kahneman"
   year: 2011
+image: /images/episoder/thinking-fast-and-slow.jpg
+imageAlt: "Spørretimen cover: Tenkning og bias – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Nobel laureate Daniel Kahneman on the two ways the brain makes decisions, and
   the systematic errors that follow. A walk through the ideas in Thinking, Fast

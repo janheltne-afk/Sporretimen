@@ -39,6 +39,8 @@ book:
   title: "Start With Why"
   author: "Simon Sinek"
   year: 2009
+image: /images/episoder/start-with-why.jpg
+imageAlt: "Spørretimen: Ledelse – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor klarer noen mennesker og selskaper å inspirere, mens andre bare
   informerer? En gjennomgang av ideene i Simon Sineks Start With Why – den

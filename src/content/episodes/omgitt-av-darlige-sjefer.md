@@ -40,6 +40,8 @@ book:
   originalTitle: "Omgiven av dåliga chefer"
 advisory:
   - juss
+image: /images/episoder/omgitt-av-darlige-sjefer.jpg
+imageAlt: "Spørretimen: Ledelse – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   De fleste har hatt en. En gjennomgang av temaet i Thomas Eriksons Omgitt av
   dårlige sjefer – hvilke former dårlig ledelse tar, hvorfor fravær ofte er

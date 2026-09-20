@@ -16,6 +16,7 @@ Krever pillow, rembg, onnxruntime, fonttools og brotli. Modellen
 
     pip install pillow rembg onnxruntime fonttools brotli
     python3 scripts/lag-forsidebilde.py            # alle
+    python3 scripts/lag-forsidebilde.py --solo     # bare de uten gjest
     python3 scripts/lag-forsidebilde.py lege-episoden
 
 Odin-episoden er ikke med her. Det bildet er laget for hånd som et ekte
@@ -104,6 +105,31 @@ EPISODER = {
         "gjest_x": 0.17,
         "gjest_luft": 0.06,
     },
+}
+
+# Episoder uten gjest får en enklere forside: Jan Sindre til høyre, og
+# tittelen venstrestilt. Tittel og format hentes fra episodefilen, så bare
+# undertekstlinjen står her. Bokepisodene får bok og forfatter automatisk.
+SOLO_UNDERTEKST = {
+    "erp-wms-integrasjon": "Da to systemer skulle snakke sammen",
+    "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
+    "gangetabellen": "Slik fester den for godt",
+    "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
+    "gs1-strekkoder": "Hva strekkoden faktisk sier",
+    "hoderegning-deling": "Del store tall uten kalkulator",
+    "hoderegning-pluss-minus": "Legg sammen og trekk fra i hodet",
+    "hoderegning-prosent": "Prosent uten penn og papir",
+    "incoterms-2020": "Hvem betaler, og hvem har risikoen",
+    "lean-forklart": "Å fjerne alt som ikke skaper verdi",
+    "logiske-feilslutninger": "Feilene som høres riktige ut",
+    "rfid-forklart": "Brikkene som teller for deg",
+    "rfid-varetelling": "Fra 14 dager til to timer",
+}
+
+FORMATMERKE = {
+    "laer-noe-nytt": "LÆR NOE NYTT",
+    "boker-forklart": "BØKER FORKLART",
+    "kort-forklart": "KORT FORKLART",
 }
 
 # Tekstblokken, som andel av bredde og høyde. Målt på Odin-bildet.
@@ -383,6 +409,137 @@ def legg_inn_tekst(flate: Image.Image, innstilling: dict, f: dict) -> Image.Imag
     return Image.alpha_composite(flate.convert("RGBA"), lag).convert("RGB")
 
 
+SOLO_X = 0.065
+SOLO_MAKS = 0.56
+Y_SOLO_ORDMERKE = 0.115
+Y_SOLO_STREK = 0.215
+Y_SOLO_MERKE = 0.250
+H_SOLO_MERKE = 0.110
+Y_SOLO_TITTEL = 0.430
+Y_SOLO_STREK_LAV = 0.730
+Y_SOLO_UNDER = 0.765
+Y_SOLO_LITEN = 0.860
+
+
+def les_episode(slug: str) -> dict:
+    """Henter tittel, format og bokopplysninger ut av episodefilen."""
+    import re
+
+    sti = ROT / "src/content/episodes" / f"{slug}.md"
+    tekst = sti.read_text(encoding="utf-8")
+    fm = tekst[: tekst.index("\n---\n", 3)]
+
+    def felt(navn, kilde=fm):
+        treff = re.search(rf'^ *{navn}: *"?(.+?)"?$', kilde, re.M)
+        return treff.group(1).strip() if treff else ""
+
+    bokblokk = re.search(r"^book:\n((?:  .+\n)+)", fm, re.M)
+    bok = bokblokk.group(1) if bokblokk else ""
+    return {
+        "tittel": felt("coverTheme"),
+        "format": felt("format"),
+        "bok": felt("title", bok),
+        "forfatter": felt("author", bok),
+    }
+
+
+def undertekst(slug: str, data: dict) -> tuple:
+    """Returnerer linjen i kursiv, og den lille sperrede linjen under."""
+    if slug in SOLO_UNDERTEKST:
+        return SOLO_UNDERTEKST[slug], ""
+    return data["bok"], data["forfatter"]
+
+
+def merkeboks(tegn, x, y, tekst, font, sperring=3.6):
+    """Rammen rundt formatnavnet, slik den er på de eldre forsidene."""
+    bredder = [tegn.textlength(t, font=font) for t in tekst]
+    innhold = sum(bredder) + sperring * max(0, len(tekst) - 1)
+    luft_x, luft_y = 26, 16
+    hoyde = HOYDE * H_SOLO_MERKE
+    tegn.rectangle([x, y, x + innhold + luft_x * 2, y + hoyde],
+                   outline=STREK + (210,), width=2)
+    tx = x + luft_x
+    ty = y + (hoyde - font.size) / 2 - luft_y * 0.12
+    for t, b in zip(tekst, bredder):
+        tegn.text((tx, ty), t, font=font, fill=GULL)
+        tx += b + sperring
+
+
+def sperret_venstre(tegn, xy, tekst, font, fyll, sperring):
+    """Som sperret(), men forankret i venstre kant."""
+    x, y = xy
+    for t in tekst:
+        tegn.text((x, y), t, font=font, fill=fyll)
+        x += tegn.textlength(t, font=font) + sperring
+
+
+def legg_inn_solotekst(flate: Image.Image, data: dict, under: str, liten: str,
+                       f: dict) -> Image.Image:
+    lag = Image.new("RGBA", (BREDDE, HOYDE), (0, 0, 0, 0))
+    tegn = ImageDraw.Draw(lag)
+    x = BREDDE * SOLO_X
+    maks = int(BREDDE * SOLO_MAKS)
+
+    ordmerke = ImageFont.truetype(str(f["serif-600"]), 40)
+    sperret_venstre(tegn, (x, HOYDE * Y_SOLO_ORDMERKE), "SPØRRETIMEN",
+                    ordmerke, KREM, 5.5)
+
+    tegn.line([(x, HOYDE * Y_SOLO_STREK), (x + maks, HOYDE * Y_SOLO_STREK)],
+              fill=STREK + (170,), width=1)
+
+    merke = ImageFont.truetype(str(f["sans-600"]), 22)
+    merkeboks(tegn, x, HOYDE * Y_SOLO_MERKE,
+              FORMATMERKE.get(data["format"], "SPØRRETIMEN"), merke)
+
+    tittel = passer(tegn, data["tittel"].upper(), f["serif-700"], maks, 122)
+    tegn.text((x, HOYDE * Y_SOLO_TITTEL), data["tittel"].upper(), font=tittel,
+              fill=GULL, anchor="la")
+
+    tegn.line([(x, HOYDE * Y_SOLO_STREK_LAV),
+               (x + maks * 0.62, HOYDE * Y_SOLO_STREK_LAV)],
+              fill=STREK + (150,), width=1)
+
+    if under:
+        under_font = passer(tegn, under, f["kursiv-400"], maks, 42, minste=22)
+        tegn.text((x, HOYDE * Y_SOLO_UNDER), under, font=under_font,
+                  fill=KREM, anchor="la")
+    if liten:
+        liten_font = ImageFont.truetype(str(f["sans-600"]), 19)
+        sperret_venstre(tegn, (x, HOYDE * Y_SOLO_LITEN), liten.upper(),
+                        liten_font, DEMPET_GULL, 3.2)
+
+    return Image.alpha_composite(flate.convert("RGBA"), lag).convert("RGB")
+
+
+def lag_solo(slug: str, sess, f: dict) -> Path:
+    data = les_episode(slug)
+    if not data["tittel"]:
+        raise SystemExit(f"{slug}: mangler coverTheme, som brukes som tittel")
+    flate = grunnflate()
+    flate = legg_inn_vert(flate)
+    flate = legg_inn_mikrofon(flate, 0.80, 0.42, speil=False)
+    under, liten = undertekst(slug, data)
+    flate = legg_inn_solotekst(flate, data, under, liten, f)
+    ferdig = vignett(flate)
+    MAAL.mkdir(parents=True, exist_ok=True)
+    ut = MAAL / f"{slug}.jpg"
+    ferdig.save(ut, quality=88, optimize=True, progressive=True)
+    return ut
+
+
+def uten_bilde() -> list:
+    """Episodene som ennå ikke har et forsidebilde."""
+    import re
+
+    funnet = []
+    for sti in sorted((ROT / "src/content/episodes").glob("*.md")):
+        tekst = sti.read_text(encoding="utf-8")
+        fm = tekst[: tekst.index("\n---\n", 3)]
+        if not re.search(r"^image:", fm, re.M):
+            funnet.append(sti.stem)
+    return funnet
+
+
 def vignett(bilde: Image.Image) -> Image.Image:
     liten = Image.new("L", (BREDDE // 8, HOYDE // 8), 0)
     ImageDraw.Draw(liten).ellipse(
@@ -413,15 +570,22 @@ def lag(navn: str, innstilling: dict, sess, f: dict) -> Path:
 def main() -> None:
     from rembg import new_session
 
-    valgte = sys.argv[1:] or list(EPISODER)
-    ukjente = [v for v in valgte if v not in EPISODER]
-    if ukjente:
-        sys.exit(f"Ukjent episode: {', '.join(ukjente)}")
+    argumenter = sys.argv[1:]
+    if argumenter == ["--solo"]:
+        med_gjest, solo = [], uten_bilde()
+    elif argumenter:
+        med_gjest = [a for a in argumenter if a in EPISODER]
+        solo = [a for a in argumenter if a not in EPISODER]
+    else:
+        med_gjest, solo = list(EPISODER), uten_bilde()
 
     f = fonter()
     sess = new_session("u2net_human_seg")
-    for navn in valgte:
+    for navn in med_gjest:
         ut = lag(navn, EPISODER[navn], sess, f)
+        print(f"  {ut.relative_to(ROT)}  {ut.stat().st_size // 1024} kB")
+    for slug in solo:
+        ut = lag_solo(slug, sess, f)
         print(f"  {ut.relative_to(ROT)}  {ut.stat().st_size // 1024} kB")
 
 

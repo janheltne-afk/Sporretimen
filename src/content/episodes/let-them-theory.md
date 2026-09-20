@@ -39,6 +39,8 @@ book:
   year: 2024
 advisory:
   - helse
+image: /images/episoder/let-them-theory.jpg
+imageAlt: "Spørretimen: Relasjoner – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   To ord som ble en bestselger. En gjennomgang av ideene i Mel Robbins' The Let
   Them Theory – hva «la dem» og «la meg» faktisk betyr, hvor det kommer fra, og

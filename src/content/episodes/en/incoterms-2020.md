@@ -47,6 +47,8 @@ takeaways:
   - DDP puts import clearance in the buyer's country on the seller – often more than the seller can deliver.
   - Always write the rule, the place as precisely as possible, and which version applies.
 coverTheme: "Incoterms 2020"
+image: /images/episoder/incoterms-2020.jpg
+imageAlt: "Spørretimen cover: Incoterms 2020 – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What do FOB, CIF, DAP and DDP actually mean – and where does the risk really
   pass? A walk through all eleven Incoterms 2020 rules, the split between risk

@@ -39,6 +39,8 @@ book:
   title: "Start With Why"
   author: "Simon Sinek"
   year: 2009
+image: /images/episoder/start-with-why.jpg
+imageAlt: "Spørretimen cover: Ledelse – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Why do some people and companies manage to inspire, while others merely
   inform? A walk through the ideas in Simon Sinek's Start With Why – the golden

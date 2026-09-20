@@ -43,6 +43,8 @@ book:
   year: 2007
 advisory:
   - okonomi
+image: /images/episoder/black-swan.jpg
+imageAlt: "Spørretimen: Risiko – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor er det alltid det ingen så komme som endrer alt? En gjennomgang av
   ideene i Nassim Nicholas Talebs The Black Swan – Middelmådistan og

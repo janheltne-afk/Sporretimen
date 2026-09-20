@@ -46,6 +46,8 @@ takeaways:
   - "Lean installed as tools without the culture behind it tends to stall within a year."
   - Just-in-time is efficient and fragile for precisely the same reason.
 coverTheme: "Lean"
+image: /images/episoder/lean-forklart.jpg
+imageAlt: "Spørretimen cover: Lean – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What is lean, really? A walk through the system Toyota built – value and
   waste, the seven wastes, the five principles, kanban and just-in-time,

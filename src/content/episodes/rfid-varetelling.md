@@ -45,6 +45,8 @@ takeaways:
   - "Multipakninger lot seg ikke løse. Ingen merker hver enkelt skrue."
   - "Konklusjonen var at det kunne lønne seg, med forbehold – ikke at det ville lønne seg."
 coverTheme: "RFID i praksis"
+image: /images/episoder/rfid-varetelling.jpg
+imageAlt: "Spørretimen: RFID i praksis – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   En årlig varetelling som tar to til tre måneder med to årsverk. Kan RFID kutte
   den? Dette er bacheloroppgaven min fra 2020 – lageret i tall, hva pilottesten

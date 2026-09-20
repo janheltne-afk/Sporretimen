@@ -40,6 +40,8 @@ book:
   title: "Principles: Life and Work"
   author: "Ray Dalio"
   year: 2017
+image: /images/episoder/principles.jpg
+imageAlt: "Spørretimen cover: Prinsipper og beslutninger – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The founder of the world's largest hedge fund on how he makes up his mind. A
   walk through the ideas in Ray Dalio's Principles – written rules, radical

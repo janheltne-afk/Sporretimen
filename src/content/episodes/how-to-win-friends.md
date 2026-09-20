@@ -37,6 +37,8 @@ book:
   title: "How to Win Friends and Influence People"
   author: "Dale Carnegie"
   year: 1936
+image: /images/episoder/how-to-win-friends.jpg
+imageAlt: "Spørretimen: Relasjoner – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Den mest solgte boken om mennesker noensinne, fra 1936. En gjennomgang av
   ideene i Dale Carnegies How to Win Friends and Influence People – hvorfor

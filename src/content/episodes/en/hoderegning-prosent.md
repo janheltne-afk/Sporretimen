@@ -46,6 +46,8 @@ takeaways:
   - "A growth factor is multiplied. Ten per cent twice is 21 per cent, not 20."
   - "The rule of 72 estimates doubling time, and holds well for rates between 3 and 12 per cent."
 coverTheme: "Mental arithmetic"
+image: /images/episoder/hoderegning-prosent.jpg
+imageAlt: "Spørretimen cover: Hoderegning – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Percentages are the arithmetic people use most and get wrong most. A
   walk-through of the techniques – ten per cent as the starting point, the trick

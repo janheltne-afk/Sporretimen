@@ -45,6 +45,8 @@ book:
   year: 2020
 advisory:
   - okonomi
+image: /images/episoder/psychology-of-money.jpg
+imageAlt: "Spørretimen cover: Penger og atferd – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Money is not a sum – it is behaviour. A walk through the ideas in Morgan
   Housel's The Psychology of Money: luck and risk, compounding, why keeping

@@ -39,6 +39,8 @@ book:
   year: 2024
 advisory:
   - helse
+image: /images/episoder/let-them-theory.jpg
+imageAlt: "Spørretimen cover: Relasjoner – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Two words that became a bestseller. A walk through the ideas in Mel Robbins's
   The Let Them Theory – what “let them” and “let me” actually mean, where they

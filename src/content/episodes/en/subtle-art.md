@@ -39,6 +39,8 @@ book:
   year: 2016
 advisory:
   - helse
+image: /images/episoder/subtle-art.jpg
+imageAlt: "Spørretimen cover: Verdier – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   A book that sells on its title and is really about values. A walk through the
   ideas in Mark Manson's The Subtle Art of Not Giving a F*ck – choosing what to

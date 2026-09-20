@@ -47,6 +47,8 @@ takeaways:
   - NFC er en slektning av RFID. Bluetooth og UWB er noe annet.
   - Hypen rundt 2005 sprakk på taggpris og lesesikkerhet, ikke på ideen.
 coverTheme: "RFID"
+image: /images/episoder/rfid-forklart.jpg
+imageAlt: "Spørretimen: RFID – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvordan kan en brikke uten batteri leses på flere meters avstand? En
   gjennomgang av RFID – de tre delene, frekvensbåndene, passive og aktive

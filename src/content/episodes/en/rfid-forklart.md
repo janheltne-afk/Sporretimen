@@ -47,6 +47,8 @@ takeaways:
   - NFC is a relative of RFID. Bluetooth and UWB are something else.
   - The hype around 2005 collapsed on tag price and read reliability, not on the idea.
 coverTheme: "RFID"
+image: /images/episoder/rfid-forklart.jpg
+imageAlt: "Spørretimen cover: RFID – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How can a chip with no battery be read several metres away? A walk through
   RFID – the three parts, the frequency bands, passive and active tags, how it

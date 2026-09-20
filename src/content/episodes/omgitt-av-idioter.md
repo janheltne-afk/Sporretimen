@@ -44,6 +44,8 @@ book:
   originalTitle: "Omgiven av idioter"
 advisory:
   - helse
+image: /images/episoder/omgitt-av-idioter.jpg
+imageAlt: "Spørretimen: Personlighet – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Fire farger, og et av Nordens mest solgte bokkonsepter. En gjennomgang av
   ideene i Thomas Eriksons Omgitt av idioter – hva modellen sier, hvorfor den

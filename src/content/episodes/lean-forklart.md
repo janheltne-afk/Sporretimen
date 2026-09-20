@@ -46,6 +46,8 @@ takeaways:
   - "Lean innført som verktøy uten kulturen bak, pleier å stoppe opp etter et år."
   - Just-in-time gir effektivitet og sårbarhet av nøyaktig samme grunn.
 coverTheme: "Lean"
+image: /images/episoder/lean-forklart.jpg
+imageAlt: "Spørretimen: Lean – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva er lean, egentlig? En gjennomgang av systemet Toyota bygde – verdi og
   sløsing, de sju sløsingene, de fem prinsippene, kanban og just-in-time,

@@ -46,6 +46,8 @@ takeaways:
   - The aim of Sunrise 2027 is for the checkout to be able to read both 1D and 2D.
   - The number on an RFID tag is built on the same keys.
 coverTheme: "GS1"
+image: /images/episoder/gs1-strekkoder.jpg
+imageAlt: "Spørretimen cover: GS1 – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What do the numbers in a barcode mean? A walk through the GS1 standards – how
   a GTIN is built up, how the check digit is calculated, what the prefix

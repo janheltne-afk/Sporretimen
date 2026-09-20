@@ -44,6 +44,8 @@ takeaways:
   - "Elleverregelen er den alternerende siffersummen – pluss, minus, pluss."
   - "Kan du at en åttedel er 12,5 prosent, slipper du halvparten av regningen."
 coverTheme: "Hoderegning"
+image: /images/episoder/hoderegning-deling.jpg
+imageAlt: "Spørretimen: Hoderegning – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Deling føles vanskeligere enn de andre regneartene, men det er metoden som er
   problemet – ikke regnestykket. En gjennomgang av faktorisering, oppdeling,

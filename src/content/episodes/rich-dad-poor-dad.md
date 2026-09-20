@@ -42,6 +42,8 @@ book:
   year: 1997
 advisory:
   - okonomi
+image: /images/episoder/rich-dad-poor-dad.jpg
+imageAlt: "Spørretimen: Eiendeler og gjeld – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Den mest solgte personlige økonomiboken noensinne, og en av de mest
   omdiskuterte. En gjennomgang av ideene i Rich Dad Poor Dad – eiendeler mot

@@ -35,6 +35,8 @@ takeaways:
   - Sifferkontrollen fanger de fleste feil, men ikke alle – den er en test, ikke et bevis.
   - Reglene er ikke magi – de faller ut av hvordan titallsystemet er bygd opp.
 coverTheme: "Trachtenberg-systemet"
+image: /images/episoder/gangetriks-trachtenberg.jpg
+imageAlt: "Spørretimen: Trachtenberg-systemet – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   En metode for å regne i hodet der gangetabellen byttes ut med én kort regel
   per siffer. Hele Trachtenberg-systemet gjennomgått, med regelen og et

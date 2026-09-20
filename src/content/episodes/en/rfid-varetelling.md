@@ -45,6 +45,8 @@ takeaways:
   - "Multipacks could not be solved. Nobody tags every single screw."
   - "The conclusion was that it could pay off, with reservations – not that it would."
 coverTheme: "RFID in practice"
+image: /images/episoder/rfid-varetelling.jpg
+imageAlt: "Spørretimen cover: RFID i praksis – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   An annual stock count that takes two to three months with two full-time
   equivalents. Can RFID cut it? This is my bachelor thesis from 2020 – the

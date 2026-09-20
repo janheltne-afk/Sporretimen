@@ -44,6 +44,8 @@ takeaways:
   - "En handlekurv regnes raskest ved å runde alt opp og trekke fra avrundingene til slutt."
   - "Niprøven fanger de fleste regnefeil, men aldri ombytte av to sifre."
 coverTheme: "Hoderegning"
+image: /images/episoder/hoderegning-pluss-minus.jpg
+imageAlt: "Spørretimen: Hoderegning – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Skolen lærer deg å regne fra høyre, fordi det er slik man skriver. I hodet er
   det motsatt. En gjennomgang av teknikkene for pluss og minus – runde av og

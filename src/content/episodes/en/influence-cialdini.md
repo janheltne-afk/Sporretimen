@@ -40,6 +40,8 @@ book:
   title: "Influence: The Psychology of Persuasion"
   author: "Robert B. Cialdini"
   year: 1984
+image: /images/episoder/influence-cialdini.jpg
+imageAlt: "Spørretimen cover: Påvirkning – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Social psychologist Robert Cialdini on the few mechanisms that make people say
   yes. A walk through the ideas in Influence – reciprocity, commitment, social

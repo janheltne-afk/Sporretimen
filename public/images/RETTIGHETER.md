@@ -54,6 +54,7 @@ registrering i frontmatter.
 | `episoder/lege-episoden.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
 | `episoder/paramedisin.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
 | `episoder/sturla-artist-business.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
+| `episoder/`-forsider uten gjest (34 filer) | Episodeforside og delebilde | Satt sammen av vertportrettet alene, `scripts/lag-forsidebilde.py --solo` | Følger vertportrettet |
 | `episoder/sovn-laer-noe-nytt.jpg` | Delebilde | | |
 | `episoder/sovn-kort-forklart.jpg` | Delebilde | | |
 | `episoder/memorering-laer-noe-nytt.jpg` | Delebilde | | |

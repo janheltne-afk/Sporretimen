@@ -42,6 +42,8 @@ takeaways:
   - The square numbers are anchors you can step out from.
   - A few facts remain at the end. Those are worth practising deliberately.
 coverTheme: "The times tables"
+image: /images/episoder/gangetabellen.jpg
+imageAlt: "Spørretimen cover: Gangetabellen – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How do you learn the times tables without memorising a hundred facts? A walk
   through a technique for every table from 1 to 10 – doubling, the five rule,

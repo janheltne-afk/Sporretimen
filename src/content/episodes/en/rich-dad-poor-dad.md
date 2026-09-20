@@ -42,6 +42,8 @@ book:
   year: 1997
 advisory:
   - okonomi
+image: /images/episoder/rich-dad-poor-dad.jpg
+imageAlt: "Spørretimen cover: Eiendeler og gjeld – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The best-selling personal finance book of all time, and one of the most
   disputed. A walk through the ideas in Rich Dad Poor Dad – assets versus

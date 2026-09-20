@@ -44,6 +44,8 @@ book:
   originalTitle: "Omgiven av idioter"
 advisory:
   - helse
+image: /images/episoder/omgitt-av-idioter.jpg
+imageAlt: "Spørretimen cover: Personlighet – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Four colours, and one of the best-selling book concepts in the Nordics. A walk
   through the ideas in Thomas Erikson's Surrounded by Idiots – what the model

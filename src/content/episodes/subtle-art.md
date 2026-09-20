@@ -39,6 +39,8 @@ book:
   year: 2016
 advisory:
   - helse
+image: /images/episoder/subtle-art.jpg
+imageAlt: "Spørretimen: Verdier – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   En bok som selger på tittelen og handler om verdier. En gjennomgang av ideene
   i Mark Mansons The Subtle Art of Not Giving a F*ck – å velge hva man bryr seg
