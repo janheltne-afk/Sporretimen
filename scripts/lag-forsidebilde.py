@@ -112,6 +112,7 @@ EPISODER = {
 # undertekstlinjen står her. Bokepisodene får bok og forfatter automatisk.
 SOLO_UNDERTEKST = {
     "erp-wms-integrasjon": "Da to systemer skulle snakke sammen",
+    "ten-t-transportnettet": "EUs transportnett, og Norges plass i det",
     "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
     "gangetabellen": "Slik fester den for godt",
     "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
@@ -568,8 +569,6 @@ def lag(navn: str, innstilling: dict, sess, f: dict) -> Path:
 
 
 def main() -> None:
-    from rembg import new_session
-
     argumenter = sys.argv[1:]
     if argumenter == ["--solo"]:
         med_gjest, solo = [], uten_bilde()
@@ -580,7 +579,13 @@ def main() -> None:
         med_gjest, solo = list(EPISODER), uten_bilde()
 
     f = fonter()
-    sess = new_session("u2net_human_seg")
+    # Utklippsmodellen trengs bare når en gjest skal klippes ut. Solo-forsidene
+    # bruker bare vertportrettet, og skal kunne lages uten rembg installert.
+    sess = None
+    if med_gjest:
+        from rembg import new_session
+
+        sess = new_session("u2net_human_seg")
     for navn in med_gjest:
         ut = lag(navn, EPISODER[navn], sess, f)
         print(f"  {ut.relative_to(ROT)}  {ut.stat().st_size // 1024} kB")
