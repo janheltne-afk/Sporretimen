@@ -117,6 +117,7 @@ SOLO_UNDERTEKST = {
     "sjoruter-suez-panama-arktis": "Suez, Panama og rutene over toppen",
     "container-teu-feu": "Målene som styrer verdenshandelen",
     "tolltariffen-varenummer": "Hvordan en vare blir en kode",
+    "kjore-og-hviletid": "Fartsskriveren, kortet og timene",
     "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
     "gangetabellen": "Slik fester den for godt",
     "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
