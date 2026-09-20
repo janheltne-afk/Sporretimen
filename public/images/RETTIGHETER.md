@@ -50,10 +50,10 @@ registrering i frontmatter.
 | `omslag/sturla.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
 | `omslag/odin-aadland.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Ikke påkrevd |
 | `episoder/odin-hartransplantasjon.jpg` | Episodeomslag og delebilde | Eget opptak, Spørretimen | Ikke påkrevd |
-| `episoder/kanada-ekspedisjon.jpg` | Delebilde | | |
-| `episoder/lege-episoden.jpg` | Delebilde | | |
-| `episoder/paramedisin.jpg` | Delebilde | | |
-| `episoder/sturla-artist-business.jpg` | Delebilde | | |
+| `episoder/kanada-ekspedisjon.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
+| `episoder/lege-episoden.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
+| `episoder/paramedisin.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
+| `episoder/sturla-artist-business.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
 | `episoder/sovn-laer-noe-nytt.jpg` | Delebilde | | |
 | `episoder/sovn-kort-forklart.jpg` | Delebilde | | |
 | `episoder/memorering-laer-noe-nytt.jpg` | Delebilde | | |
