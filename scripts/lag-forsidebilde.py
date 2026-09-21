@@ -119,6 +119,8 @@ SOLO_UNDERTEKST = {
     "tolltariffen-varenummer": "Hvordan en vare blir en kode",
     "kjore-og-hviletid": "Fartsskriveren, kortet og timene",
     "f1-logistikk-dhl": "Å flytte et sirkus 24 ganger i året",
+    "ford-samlebandet": "Det begynte i slakteriet",
+    "taylor-og-tps": "Stoppeklokka, snora og menneskene",
     "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
     "gangetabellen": "Slik fester den for godt",
     "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
