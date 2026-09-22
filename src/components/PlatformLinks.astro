@@ -6,7 +6,7 @@
  * tilbake til podkastens hovedside på plattformen. Slik får også kommende
  * episoder en vei videre til å følge podkasten.
  */
-import { socials } from '@/data/site';
+import { socialsFor } from '@/data/site';
 
 import { type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
@@ -24,7 +24,8 @@ interface Props {
 const { lang = 'no', links = {}, title } = Astro.props;
 const t = useTranslations(lang);
 
-const show = (label: string) => socials.find((s) => s.label === label)?.url ?? undefined;
+// Slår opp i kanalene for dette språket, ikke i hele lista.
+const show = (label: string) => socialsFor(lang).find((s) => s.label === label)?.url ?? undefined;
 
 type Platform = {
   id: 'youtube' | 'spotify' | 'apple' | 'annet';

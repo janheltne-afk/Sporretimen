@@ -2,10 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import Form from '@/components/Form.astro';
-import { site, socials } from '@/data/site';
+import { site, socialsFor } from '@/data/site';
 import { path } from '@/i18n/config';
 
-const activeSocials = socials.filter((s) => s.url);
+const activeSocials = socialsFor('en');
 ---
 
 <BaseLayout

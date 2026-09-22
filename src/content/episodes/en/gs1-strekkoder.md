@@ -57,7 +57,7 @@ description: >-
 featured: false
 popularityScore: 0
 links:
-  youtube: https://youtu.be/ZVob-10Iemw
+  youtube: https://youtu.be/t25KsN3rSc8
   spotify: https://open.spotify.com/episode/61RM7GbMQMCEofczgqBkdJ
 sources:
   - title: "GS1 – GS1 General Specifications and the identification key standards"

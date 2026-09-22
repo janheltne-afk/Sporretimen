@@ -88,11 +88,32 @@ export const nav: { label: string; href: string }[] = [
  * PLASSHOLDERE: Sett inn de faktiske adressene når de er klare.
  * `url: null` skjuler lenken automatisk i grensesnittet.
  */
-export const socials: { label: string; url: string | null; handle?: string }[] = [
+export const socials: {
+  label: string;
+  url: string | null;
+  handle?: string;
+  /**
+   * Kanalen finnes bare for ett språk. Uten feltet vises lenken på begge.
+   * Forklart-serien har én kanal på norsk og én på engelsk – det er to
+   * kanaler, ikke én kanal med to navn.
+   */
+  lang?: 'no' | 'en';
+}[] = [
   { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
-  // Spørretimen Forklart har egen kanal og eget show.
-  { label: 'YouTube – Forklart', url: 'https://www.youtube.com/@Spørretimenforklart', handle: '@Spørretimenforklart' },
+  // Spørretimen Forklart har egen kanal og eget show, og en egen engelsk kanal.
+  {
+    label: 'YouTube – Forklart',
+    url: 'https://www.youtube.com/@Spørretimenforklart',
+    handle: '@Spørretimenforklart',
+    lang: 'no',
+  },
+  {
+    label: 'YouTube – Explained',
+    url: 'https://www.youtube.com/@SpørretimenExplained',
+    handle: '@SpørretimenExplained',
+    lang: 'en',
+  },
   { label: 'Spotify – Forklart', url: 'https://open.spotify.com/show/1MxYZUg9LqXJxyZnFUkIIz' },
   {
     label: 'Apple Podcasts',
@@ -103,6 +124,16 @@ export const socials: { label: string; url: string | null; handle?: string }[] =
   { label: 'Facebook', url: null },
   { label: 'LinkedIn', url: null },
 ];
+
+/**
+ * Kanallenkene for ett språk. Kanaler merket med `lang` hører til ett språk –
+ * Forklart-serien har én YouTube-kanal på norsk og én på engelsk – mens de
+ * uten felt gjelder begge. Alle steder som viser eller lenker til kanaler,
+ * skal gå gjennom denne, ellers sender engelske sider folk til norsk innhold.
+ */
+export function socialsFor(lang: 'no' | 'en') {
+  return socials.filter((s) => s.url && (!s.lang || s.lang === lang));
+}
 
 /**
  * De tre publiseringsformatene.

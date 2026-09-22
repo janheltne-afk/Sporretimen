@@ -13,7 +13,7 @@ import EpisodeCard from '@/components/EpisodeCard.astro';
 import TopicIcon from '@/components/TopicIcon.astro';
 import { getEpisodes, getSeriesEpisodes, topicCounts } from '@/lib/content';
 import { topics } from '@/data/topics';
-import { site, socials, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
+import { site, socialsFor, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
 import { entryPath, path as routePath, topicPath, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 import { seriesById } from '@/i18n/taxonomy';
@@ -37,7 +37,8 @@ const own = await getSeriesEpisodes(lang, 'sporretimen-forklart', published);
 const latestOwn = own.slice(0, 3);
 const counts = await topicCounts(lang);
 const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
-const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
+const profilLenker = socialsFor(lang);
+const sameAs = profilLenker.map((s) => s.url!);
 
 const here = routePath(lang, 'profile');
 
@@ -133,8 +134,7 @@ const jsonLd = [
         {
           sameAs.length > 0 && (
             <ul class="profile__links">
-              {socials
-                .filter((s) => s.url)
+              {profilLenker
                 .map((s) => (
                   <li>
                     <a href={s.url!} target="_blank" rel="noopener me">{s.label}</a>

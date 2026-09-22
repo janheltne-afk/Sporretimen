@@ -40,9 +40,14 @@ export const seriesList = [
     id: 'sporretimen-forklart',
     label: { no: 'Spørretimen Forklart', en: 'Spørretimen Explained' } as Text,
     // Egen kanal og eget show – de to seriene er to podkaster, ikke én.
+    // Serien har i tillegg en egen engelsk YouTube-kanal. `channelsEn`
+    // overstyrer per plattform, så det som ikke står der, er felles.
     channels: {
       youtube: 'https://www.youtube.com/@Spørretimenforklart',
       spotify: 'https://open.spotify.com/show/1MxYZUg9LqXJxyZnFUkIIz',
+    },
+    channelsEn: {
+      youtube: 'https://www.youtube.com/@SpørretimenExplained',
     },
     kicker: { no: 'Ideene', en: 'The ideas' } as Text,
     blurb: {
@@ -62,7 +67,11 @@ export function seriesOf(format: string): SeriesId {
 export function seriesById(lang: Locale, id: string) {
   const s = seriesList.find((x) => x.id === id);
   if (!s) return undefined;
-  return { id: s.id, label: s.label[lang], kicker: s.kicker[lang], blurb: s.blurb[lang], channels: s.channels };
+  // Kanalene løses her, så ingen forbruker trenger å vite at en serie kan ha
+  // en egen kanal per språk. `channelsEn` overstyrer per plattform.
+  const channels =
+    lang === 'en' && 'channelsEn' in s ? { ...s.channels, ...s.channelsEn } : s.channels;
+  return { id: s.id, label: s.label[lang], kicker: s.kicker[lang], blurb: s.blurb[lang], channels };
 }
 
 export const formats = [

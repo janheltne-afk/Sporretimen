@@ -1,5 +1,5 @@
 ---
-import { site, socials, canonicalUrl, absoluteUrl } from '@/data/site';
+import { site, socialsFor, canonicalUrl, absoluteUrl } from '@/data/site';
 import { alternatePath, englishReady, htmlLang, ogLocale, path, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 
@@ -44,7 +44,7 @@ const ogImageAlt = imageAlt ?? title ?? `${site.name} – ${tagline}`;
 const alternate = canonicalUrl(alternatePath(lang, Astro.url.pathname));
 
 // Lenker til offisielle profiler (sameAs).
-const sameAs = socials.map((s) => s.url).filter((u): u is string => Boolean(u));
+const sameAs = socialsFor(lang).map((s) => s.url!) ;
 
 // Programlederen som Person – gjenbrukes som author/founder.
 const host = {

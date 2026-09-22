@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { site, socials } from '@/data/site';
+import { site, socialsFor } from '@/data/site';
 import { path as routePath, type Locale } from '@/i18n/config';
 import { footerNav, useTranslations } from '@/i18n/ui';
 
@@ -16,7 +16,7 @@ const groups = footerNav.map((g) => ({
   items: g.items.map((i) => ({ label: i.label[lang], href: routePath(lang, i.key) })),
 }));
 const year = new Date().getFullYear();
-const activeSocials = socials.filter((s) => s.url);
+const activeSocials = socialsFor(lang);
 ---
 
 <footer class="site-footer">
