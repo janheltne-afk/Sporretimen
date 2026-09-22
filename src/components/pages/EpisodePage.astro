@@ -200,6 +200,13 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
 
       <div class="episode__platforms">
         <PlatformLinks lang={lang} links={d.links} title={d.title} />
+        {/* Samtalene spilles inn på norsk. Forklart-episodene finnes på begge
+            språk, så merknaden gjelder bare samtaler lest på engelsk. */}
+        {lang === 'en' && d.format === 'samtale' && (
+          <p class="episode__reclang muted" data-search-skip>
+            {t('episode.recordingLanguage')}
+          </p>
+        )}
       </div>
     </div>
 

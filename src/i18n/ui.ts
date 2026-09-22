@@ -90,6 +90,7 @@ const strings = {
 
     // Episoder
     'episode.upcoming': 'Kommende',
+    'episode.recordingLanguage': 'Samtalen er på norsk. Denne siden er den engelske utgaven.',
     'episode.publishedLater': 'Publiseres senere',
     'episode.releases': 'Slippes',
     'episode.with': 'Med',
@@ -256,6 +257,7 @@ const strings = {
     'footer.terms': 'Terms of use',
 
     'episode.upcoming': 'Upcoming',
+    'episode.recordingLanguage': 'The conversation is in Norwegian. This page is the English edition.',
     'episode.publishedLater': 'Published later',
     'episode.releases': 'Out',
     'episode.with': 'With',

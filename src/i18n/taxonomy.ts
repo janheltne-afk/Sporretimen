@@ -33,7 +33,7 @@ export const seriesList = [
     kicker: { no: 'Samtalene', en: 'The conversations' } as Text,
     blurb: {
       no: 'Lange samtaler med mennesker med interessante erfaringer, historier, yrker og kunnskap.',
-      en: 'Long conversations with people who carry interesting experience, stories, professions and knowledge.',
+      en: 'Long conversations with people who carry interesting experience, stories, professions and knowledge. Recorded in Norwegian.',
     } as Text,
   },
   {
@@ -52,7 +52,7 @@ export const seriesList = [
     kicker: { no: 'Ideene', en: 'The ideas' } as Text,
     blurb: {
       no: 'Økonomi, teknologi, psykologi, bøker og andre temaer forklart forståelig.',
-      en: 'Economics, technology, psychology, books and other subjects explained so they make sense.',
+      en: 'Economics, technology, psychology, books and other subjects explained so they make sense. Published in Norwegian and English.',
     } as Text,
   },
 ] as const;
