@@ -123,6 +123,7 @@ SOLO_UNDERTEKST = {
     "taylor-og-tps": "Stoppeklokka, snora og menneskene",
     "bullwhip-effekten": "Fra butikkhylla til fabrikken",
     "mrp-produksjonsplanlegging": "Hva skal bestilles, og når",
+    "eoq-optimal-bestillingsmengde": "Hvor mye om gangen",
     "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
     "gangetabellen": "Slik fester den for godt",
     "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
