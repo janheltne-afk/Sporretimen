@@ -42,7 +42,7 @@ takeaways:
   - "Frokosten var havregrøt med tørrmelk, sukker og rapsolje, hver eneste dag i 47 dager."
   - "En canadarøye under kiloen er dårlig gjort. Han fikk selv en på åtte kilo."
   - "På de verste dagene gjorde de 2,5 km/t. Den hardeste dagen var 85 kilometer på seksten–sytten timer."
-duration: "Cirka 1 time og 10 min"
+duration: "Cirka 1 t 10 min"
 coverTheme: "Kanada-ekspedisjonen"
 advisory:
   - helse

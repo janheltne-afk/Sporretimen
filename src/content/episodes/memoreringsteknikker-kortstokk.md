@@ -26,7 +26,7 @@ takeaways:
   - Hjernen husker bilder og steder langt bedre enn abstrakte symboler.
   - Med minnepalass kobler du informasjon til steder du allerede kjenner godt.
   - De samme teknikkene fungerer på navn, tall, fagstoff og presentasjoner.
-duration: "Cirka 45 min"
+duration: "Cirka 37 min"
 coverTheme: "Memoreringsteknikker"
 description: >-
   Hvordan klarer noen å memorere en hel kortstokk? En praktisk gjennomgang av

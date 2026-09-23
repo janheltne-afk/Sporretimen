@@ -41,7 +41,7 @@ takeaways:
   - "A concert is paid either by a guarantee from the promoter or by the artist taking the door."
   - "Corporate gigs are often the most profitable: 20,000–30,000 kroner for half an hour to an hour."
   - "He left his steady job in January 2026, and compares it to burning the ships."
-duration: "About 1 hour 33 min"
+duration: "About 1 h 33 min"
 coverTheme: "Life as an artist"
 advisory:
   - okonomi

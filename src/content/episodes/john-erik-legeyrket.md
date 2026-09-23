@@ -33,7 +33,7 @@ takeaways:
   - Å spørre kolleger om hjelp er en normal og viktig del av legearbeidet.
   - Velg yrket fordi du selv ønsker det, ikke for status eller på grunn av press.
   - Gode studieteknikker, som minnepalass, gjør et krevende studium mer overkommelig.
-duration: "Cirka 1 t 20 min"
+duration: "Cirka 1 t 27 min"
 coverTheme: "Yrket som lege"
 advisory:
   - helse

@@ -41,7 +41,7 @@ takeaways:
   - "En konsert betales enten med garantisum fra arrangøren eller ved at artisten tar døra."
   - "Firmajobber er ofte det mest lønnsomme: 20–30 000 kroner for en halvtime til en time."
   - "Han sluttet i fast jobb i januar 2026 og sammenligner det med å brenne skipene."
-duration: "Cirka 1 time og 33 min"
+duration: "Cirka 1 t 33 min"
 coverTheme: "Livet som artist"
 advisory:
   - okonomi

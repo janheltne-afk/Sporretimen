@@ -49,7 +49,7 @@ takeaways:
   - "The conversation ends where it really began: that this is as much about how you feel about yourself."
 coverTheme: "Hair transplant"
 publishDate: 2026-09-18
-duration: "25 min"
+duration: "About 26 min"
 image: /images/episoder/odin-hartransplantasjon.jpg
 imageAlt: "Spørretimen: Hårtransplantasjon – Odin forteller hele historien. Odin and Jan Sindre in the studio, each behind a microphone."
 coverStyle: bilde

@@ -42,7 +42,7 @@ takeaways:
   - "Breakfast was porridge with powdered milk, sugar and rapeseed oil, every single day for 47 days."
   - "A lake trout under a kilo counts as a poor effort. He landed one of eight kilos himself."
   - "On the worst days they made 2.5 km/h. The hardest day was 85 kilometres in sixteen to seventeen hours."
-duration: "About 1 hour 10 min"
+duration: "About 1 h 10 min"
 coverTheme: "The Canada expedition"
 advisory:
   - helse

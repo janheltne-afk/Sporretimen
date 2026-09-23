@@ -47,6 +47,22 @@ const { lang, episode } = Astro.props;
 const t = useTranslations(lang);
 const slug = slugOf(episode.id);
 const d = episode.data;
+
+/**
+ * Merknad om opptaksspråk.
+ *
+ * Forklart-episodene lages på begge språk, samtalene bare på norsk. I stedet
+ * for å gjette ut fra format, sammenlignes lenkene: peker den engelske siden
+ * til nøyaktig samme opptak som den norske, finnes det ingen engelsk utgave,
+ * og det skal stå. Får episoden sin egen engelske video eller lyd, forsvinner
+ * merknaden av seg selv.
+ */
+const norsk = lang === 'en' ? await getEntry('episodes', slugOf(episode.id)) : undefined;
+const harLenker = Boolean(d.links?.youtube || d.links?.spotify || d.links?.apple);
+const sammeOpptakSomNorsk =
+  Boolean(norsk) &&
+  JSON.stringify(norsk!.data.links ?? {}) === JSON.stringify(d.links ?? {});
+const visOpptakssprak = lang === 'en' && harLenker && sammeOpptakSomNorsk;
 const { Content } = await render(episode);
 const guest = d.guest ? await getEntry(d.guest) : undefined;
 const script = await scriptForEpisode(episode.id);
@@ -200,9 +216,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
 
       <div class="episode__platforms">
         <PlatformLinks lang={lang} links={d.links} title={d.title} />
-        {/* Samtalene spilles inn på norsk. Forklart-episodene finnes på begge
-            språk, så merknaden gjelder bare samtaler lest på engelsk. */}
-        {lang === 'en' && d.format === 'samtale' && (
+        {visOpptakssprak && (
           <p class="episode__reclang muted" data-search-skip>
             {t('episode.recordingLanguage')}
           </p>

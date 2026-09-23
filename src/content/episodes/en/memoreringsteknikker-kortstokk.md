@@ -26,7 +26,7 @@ takeaways:
   - The brain remembers images and places far better than abstract symbols.
   - With a memory palace you attach information to places you already know well.
   - The same techniques work on names, numbers, course material and presentations.
-duration: "About 45 min"
+duration: "About 37 min"
 coverTheme: "Memory techniques"
 description: >-
   How do some people memorise a whole deck of cards? A practical walk through

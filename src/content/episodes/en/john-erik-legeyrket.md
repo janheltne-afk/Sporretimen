@@ -33,7 +33,7 @@ takeaways:
   - Asking colleagues for help is a normal and important part of the work.
   - Choose the profession because you want it, not for the status or because of pressure.
   - Good study techniques, such as the memory palace, make a demanding degree more manageable.
-duration: "About 1 h 20 min"
+duration: "About 1 h 27 min"
 coverTheme: "The medical profession"
 advisory:
   - helse

@@ -46,6 +46,7 @@ takeaways:
   - SSCC identifiserer den enkelte pallen, GLN identifiserer stedet.
   - Målet for Sunrise 2027 er at kassa skal kunne lese både 1D og 2D.
   - Nummeret på en RFID-tagg bygger på de samme nøklene.
+duration: "Cirka 20 min"
 coverTheme: "GS1"
 image: /images/episoder/gs1-strekkoder.jpg
 imageAlt: "Spørretimen: GS1 – Lær noe nytt. Jan Sindre Heltne i studio."

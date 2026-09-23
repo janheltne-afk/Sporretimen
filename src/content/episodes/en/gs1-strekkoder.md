@@ -46,6 +46,7 @@ takeaways:
   - An SSCC identifies the individual pallet, a GLN identifies the place.
   - The aim of Sunrise 2027 is for the checkout to be able to read both 1D and 2D.
   - The number on an RFID tag is built on the same keys.
+duration: "About 21 min"
 coverTheme: "GS1"
 image: /images/episoder/gs1-strekkoder.jpg
 imageAlt: "Spørretimen cover: GS1 – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
