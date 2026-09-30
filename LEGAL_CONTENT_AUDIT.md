@@ -283,8 +283,9 @@ Tre forhold henger sammen her:
    emnekode og institusjon – men uten URL. Uten lenke kan verken leseren eller
    du selv vise at tallene allerede er offentlige.
 3. **Medforfatteren er navngitt.** Stian Lunde står oppført som medforfatter.
-   Oppgaven er et felles verk. Å gjøre den om til en publisert artikkel og en
-   planlagt episode er en ny bruk av noe dere eier sammen.
+   Oppgaven er et felles verk, og å gjøre den om til artikkel og episode er en
+   ny bruk av noe dere eier sammen. **Lukket 30. september:** Stian har
+   godkjent bruken.
 
 **Verdt å merke seg:** masteroppgave-episoden
 (`erp-wms-integrasjon.md`) gjør det motsatte, og sier det uttrykkelig: «Bedrifter,
@@ -295,8 +296,11 @@ episodene behandler altså samme type materiale ulikt.
 masteroppgave-episoden allerede var. Tallene står igjen, og oppgaven er
 fortsatt sitert med tittel, begge forfattere, emnekode og institusjon.
 Ligger oppgaven åpent i institusjonsarkivet, kan navnet settes tilbake – det er
-én endring, i ett avsnitt, i to filer. Spørsmålet om medforfatterens samtykke
-til at fellesarbeidet blir episode, står fortsatt til deg.
+én endring, i ett avsnitt, i to filer.
+
+Medforfatteren har godkjent bruken, så den delen av punktet er lukket. Det som
+eventuelt gjenstår er forholdet til bedriften, og det er anonymiseringen som
+dekker det inntil videre.
 
 ## 🟠 R2 – Én bokforklaring manglet motvekt *(rettet fra tolv)*
 
