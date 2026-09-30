@@ -13,6 +13,7 @@
     "les-varighet": "node scripts/les-varighet.mjs",
     "astro": "astro",
     "sjekk-innhold": "node scripts/sjekk-innhold.mjs",
+    "sjekk-merkevare": "python3 scripts/sjekk-merkevare.py",
     "prebuild": "node scripts/sjekk-innhold.mjs"
   },
   "dependencies": {

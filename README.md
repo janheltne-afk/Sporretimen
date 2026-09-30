@@ -317,6 +317,19 @@ src/
 └── styles/global.css   # Designsystem
 ```
 
+Ved siden av `src/` ligger merkevaren skrevet ut for seg:
+
+```
+merkevare/
+├── tokens.json         # Maskinlesbare designtokens – importeres av video og grafikk
+├── merkevare.md        # Merkevareguiden: farger, typografi, forsideoppsett, stemme
+└── remotion.md         # Hvordan uttrykket brukes i video
+```
+
+Tokens-fila er en avskrift av verdier som bor i `global.css`, `figurer.css`,
+`lag-forsidebilde.py` og `taxonomy.ts`. `npm run sjekk-merkevare` leser begge
+sider og sier fra når de spriker.
+
 ---
 
 ## Publisering
