@@ -45,6 +45,7 @@ description: >-
   Why a small change on a shop shelf becomes a large swing in the factory: the
   bullwhip effect explained, with the nappies that exposed it, the four causes,
   the toilet paper of 2020 – and what actually dampens it.
+calculator: bullwhip
 featured: false
 popularityScore: 0
 sources:
@@ -121,6 +122,39 @@ already contains the margin. So it adds its own.
   </ol>
   <figcaption>The arithmetic is 1.1 to the power of four, or 1.46. Nobody has done anything wrong. Every tier added a perfectly defensible margin. But the margins <em>multiply</em>, they do not add – which is why the amplification gets so strong with only a few tiers. And if sales drop again next week, the whole chain runs in reverse with the same force.</figcaption>
 </figure>
+
+It is easy to think ten per cent is small. Adjust the numbers below and see what
+happens when the margin is modest but the chain is long – and what happens when
+you set the margin to zero.
+
+<form class="kalk" data-kalkulator="bullwhip">
+  <p class="kalk__title">Bullwhip calculator</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Actual sales in the shop</span><span class="kalk__faktor">units</span><input class="kalk__inn" type="number" min="0" step="10" value="100" inputmode="numeric" data-bw="salg" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Margin each tier adds</span><span class="kalk__faktor">per cent</span><input class="kalk__inn" type="number" min="-50" max="100" step="1" value="10" inputmode="decimal" data-bw="margin" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Tiers in the chain</span><span class="kalk__faktor">1–8</span><input class="kalk__inn" type="number" min="1" max="8" step="1" value="4" inputmode="numeric" data-bw="ledd" /></label>
+  </div>
+  <table class="kalk__tabell">
+    <thead><tr><th scope="col">Tier</th><th scope="col">Orders</th><th scope="col">Against actual sales</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Actual sales</th><td data-ut="salg">100</td><td>–</td></tr>
+      <tr data-ledd><th scope="row">Tier 1</th><td data-kol="antall">110</td><td data-kol="avvik">+10.0 %</td></tr>
+      <tr data-ledd><th scope="row">Tier 2</th><td data-kol="antall">121</td><td data-kol="avvik">+21.0 %</td></tr>
+      <tr data-ledd><th scope="row">Tier 3</th><td data-kol="antall">133</td><td data-kol="avvik">+33.1 %</td></tr>
+      <tr data-ledd><th scope="row">Tier 4</th><td data-kol="antall">146</td><td data-kol="avvik">+46.4 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Tier 5</th><td data-kol="antall">161</td><td data-kol="avvik">+61.1 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Tier 6</th><td data-kol="antall">177</td><td data-kol="avvik">+77.2 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Tier 7</th><td data-kol="antall">195</td><td data-kol="avvik">+94.9 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Tier 8</th><td data-kol="antall">214</td><td data-kol="avvik">+114.4 %</td></tr>
+    </tbody>
+  </table>
+  <p class="kalk__note" data-advarsel="ja" data-ut="melding">The top tier orders 146 – 46.4 % above what was actually sold.</p>
+</form>
+
+Two things are worth trying. Set the margin to 5 per cent and the tiers to 8: a
+margin nobody would object to still produces nearly fifty per cent. Then set the
+margin to zero: every tier orders exactly what was sold. That is not an
+arithmetic trick – it is the whole point of sharing sales data up the chain.
 
 ## Ordering by the pallet
 

@@ -45,6 +45,7 @@ description: >-
   Hvorfor en liten endring i butikkhylla blir en stor svingning i fabrikken:
   bullwhip-effekten forklart, med bleiene som avslørte den, de fire årsakene,
   dopapiret i 2020 – og hva som faktisk demper den.
+calculator: bullwhip
 featured: false
 popularityScore: 0
 sources:
@@ -121,6 +122,39 @@ inneholder marginen. Så legger det på sin egen.
   </ol>
   <figcaption>Regnestykket er 1,1 opphøyd i fire, altså 1,46. Ingen har gjort noe galt. Hvert ledd la på en helt forsvarlig margin. Men marginene <em>ganges</em>, de legges ikke sammen – og det er derfor forsterkningen blir så kraftig med bare noen få ledd. Og går salget ned igjen neste uke, går hele kjeden i revers med samme kraft.</figcaption>
 </figure>
+
+Det er lett å tenke at ti prosent er lite. Skru på tallene under og se hva som
+skjer når marginen er liten, men kjeden er lang – og hva som skjer når du setter
+marginen til null.
+
+<form class="kalk" data-kalkulator="bullwhip">
+  <p class="kalk__title">Bullwhip-kalkulator</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Faktisk salg i butikken</span><span class="kalk__faktor">enheter</span><input class="kalk__inn" type="number" min="0" step="10" value="100" inputmode="numeric" data-bw="salg" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Margin hvert ledd legger på</span><span class="kalk__faktor">prosent</span><input class="kalk__inn" type="number" min="-50" max="100" step="1" value="10" inputmode="decimal" data-bw="margin" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Antall ledd i kjeden</span><span class="kalk__faktor">1–8</span><input class="kalk__inn" type="number" min="1" max="8" step="1" value="4" inputmode="numeric" data-bw="ledd" /></label>
+  </div>
+  <table class="kalk__tabell">
+    <thead><tr><th scope="col">Ledd</th><th scope="col">Bestiller</th><th scope="col">Mot faktisk salg</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Faktisk salg</th><td data-ut="salg">100</td><td>–</td></tr>
+      <tr data-ledd><th scope="row">Ledd 1</th><td data-kol="antall">110</td><td data-kol="avvik">+10,0 %</td></tr>
+      <tr data-ledd><th scope="row">Ledd 2</th><td data-kol="antall">121</td><td data-kol="avvik">+21,0 %</td></tr>
+      <tr data-ledd><th scope="row">Ledd 3</th><td data-kol="antall">133</td><td data-kol="avvik">+33,1 %</td></tr>
+      <tr data-ledd><th scope="row">Ledd 4</th><td data-kol="antall">146</td><td data-kol="avvik">+46,4 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Ledd 5</th><td data-kol="antall">161</td><td data-kol="avvik">+61,1 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Ledd 6</th><td data-kol="antall">177</td><td data-kol="avvik">+77,2 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Ledd 7</th><td data-kol="antall">195</td><td data-kol="avvik">+94,9 %</td></tr>
+      <tr data-ledd hidden><th scope="row">Ledd 8</th><td data-kol="antall">214</td><td data-kol="avvik">+114,4 %</td></tr>
+    </tbody>
+  </table>
+  <p class="kalk__note" data-advarsel="ja" data-ut="melding">Øverste ledd bestiller 146 – 46,4 % over det som faktisk ble solgt.</p>
+</form>
+
+To ting er verdt å prøve. Sett marginen til 5 prosent og antall ledd til 8: en
+margin ingen ville reagert på, gir likevel nesten femti prosent. Og sett marginen
+til null: da bestiller hvert ledd nøyaktig det som ble solgt. Det er ikke et
+regnetriks – det er hele poenget med å dele salgstall oppover i kjeden.
 
 ## Bestillinger i hele paller
 

@@ -14,7 +14,7 @@
 import { type Locale } from '@/i18n/config';
 
 interface Props {
-  type: 'teu' | 'mrp' | 'eoq';
+  type: 'teu' | 'mrp' | 'eoq' | 'bullwhip';
   lang?: Locale;
 }
 const { type, lang = 'no' } = Astro.props;
@@ -323,6 +323,93 @@ const en = lang === 'en';
   </script>
 )}
 
+{type === 'bullwhip' && (
+  <script
+    is:inline
+    data-locale={en ? 'en-GB' : 'nb-NO'}
+    data-over={en
+      ? 'The top tier orders {slutt} – {avvik} % above what was actually sold.'
+      : 'Øverste ledd bestiller {slutt} – {avvik} % over det som faktisk ble solgt.'}
+    data-under={en
+      ? 'The top tier orders {slutt} – {avvik} % below what was actually sold.'
+      : 'Øverste ledd bestiller {slutt} – {avvik} % under det som faktisk ble solgt.'}
+    data-flat={en
+      ? 'With no margin added, every tier orders exactly what was sold. This is what shared demand data is for.'
+      : 'Uten margin bestiller hvert ledd nøyaktig det som ble solgt. Det er dette delte salgstall skal få til.'}
+  >
+    (() => {
+      const cfg = document.currentScript;
+      const locale = cfg.dataset.locale;
+      const mal = { over: cfg.dataset.over, under: cfg.dataset.under, flat: cfg.dataset.flat };
+      const tall = (n, des = 0) =>
+        n.toLocaleString(locale, { minimumFractionDigits: des, maximumFractionDigits: des });
+
+      const start = () => {
+        document.querySelectorAll('[data-kalkulator="bullwhip"]').forEach((form) => {
+          const felt = (navn) => form.querySelector('[data-bw="' + navn + '"]');
+          const ut = (navn) => form.querySelector('[data-ut="' + navn + '"]');
+          const rader = [...form.querySelectorAll('[data-ledd]')];
+          if (!rader.length || !felt('salg')) return;
+          const maksLedd = rader.length;
+
+          const regn = () => {
+            const salg = Math.max(0, Number(felt('salg').value) || 0);
+            const margin = (Number(felt('margin').value) || 0) / 100;
+            const ledd = Math.min(maksLedd, Math.max(1, Math.floor(Number(felt('ledd').value) || 1)));
+
+            const el = ut('salg');
+            if (el) el.textContent = tall(salg);
+
+            let verdi = salg;
+            rader.forEach((rad, i) => {
+              const nr = i + 1;
+              if (nr > ledd) {
+                rad.hidden = true;
+                return;
+              }
+              rad.hidden = false;
+              // Marginen ganges på, den legges ikke sammen – det er hele
+              // poenget. Neste ledd regner videre på det eksakte tallet,
+              // ikke på det avrundede som vises.
+              verdi = verdi * (1 + margin);
+              rad.querySelector('[data-kol="antall"]').textContent = tall(Math.round(verdi));
+              const avvik = salg ? (verdi / salg - 1) * 100 : 0;
+              rad.querySelector('[data-kol="avvik"]').textContent =
+                (avvik >= 0 ? '+' : '−') + tall(Math.abs(avvik), 1) + ' %';
+            });
+
+            const melding = ut('melding');
+            if (!melding) return;
+            delete melding.dataset.advarsel;
+            const avvik = salg ? (verdi / salg - 1) * 100 : 0;
+            if (Math.abs(avvik) < 0.05) {
+              melding.textContent = mal.flat;
+              return;
+            }
+            if (avvik > 0) melding.dataset.advarsel = 'ja';
+            melding.textContent = (avvik > 0 ? mal.over : mal.under)
+              .replace('{slutt}', tall(Math.round(verdi)))
+              .replace('{avvik}', tall(Math.abs(avvik), 1));
+          };
+
+          [...form.querySelectorAll('[data-bw]')].forEach((e) =>
+            e.addEventListener('input', regn)
+          );
+          form.addEventListener('submit', (e) => e.preventDefault());
+          form.dataset.live = 'ja';
+          regn();
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+    })();
+  </script>
+)}
+
 <style is:global>
   /* Kalkulatoren låner figurenes formspråk: hårfin ramme, nesten rette
      hjørner, ingen skygge. Den skal se ut som en figur du kan skrive i. */
@@ -492,10 +579,14 @@ const en = lang === 'en';
     font-variant-numeric: tabular-nums;
     color: var(--ink-soft);
   }
-  /* Bestillingsuka er svaret man kommer for. */
-  .kalk__tabell [data-ut$="-bestilles"] {
+  /* Svaret man kommer for: bestillingsuka i MRP, avviket i bullwhip. */
+  .kalk__tabell [data-ut$="-bestilles"],
+  .kalk__tabell [data-kol="avvik"] {
     color: var(--ink);
     font-weight: 600;
+  }
+  .kalk__tabell tr[hidden] {
+    display: none;
   }
   .kalk__tabell tbody tr:last-child :is(th, td) {
     border-bottom: 0;
