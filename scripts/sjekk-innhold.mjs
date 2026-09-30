@@ -131,7 +131,12 @@ for (const mappe of ['episodes', 'resources', 'scripts', 'guests']) {
     }
 
     // Lange manus som handler om en bok bør ha verket registrert.
-    const bokOmtaler = (body.match(/\bbok(a|en|ens)\b|\bbook\b/gi) ?? []).length;
+    //
+    // Begge språk krever bestemt form: «boka», «boken», «the book». Det er
+    // forskjellen på å omtale ett bestemt verk og å nevne bøker som vare.
+    // Et manus som forklarer hva et ISBN-nummer er, sier «a book» og «that
+    // book» – det er ikke en bokgjennomgang, og skal ikke varsles.
+    const bokOmtaler = (body.match(/\bbok(a|en|ens)\b|\bthe book(s|'s)?\b/gi) ?? []).length;
     if (mappe === 'scripts' && body.split(/\s+/).length > 1200 && bokOmtaler >= 3 && !harBlokk(fm, 'book')) {
       advarsler.push(`${rel}: langt manus som omtaler en bok, uten book: i frontmatter`);
     }

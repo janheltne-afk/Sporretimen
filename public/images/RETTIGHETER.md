@@ -34,10 +34,16 @@ Er `credit` satt, vises «Foto: …» under bildet automatisk.
 
 ## Registeret
 
-**Status: utfylt, med ett unntak.** Jan Sindre har godkjent alt som viser ham
-selv, og alle gjestene har godkjent bruken av sine egne bilder. Det eneste som
-står igjen uavklart er plassholderen. Kjør `npm run sjekk-innhold` for å se hva
-som mangler registrering i frontmatter.
+**Status: utfylt.** Jan Sindre har godkjent alt som viser ham selv, alle
+gjestene har godkjent bruken av sine egne bilder, og plassholderen er laget med
+AI-verktøy. Kjør `npm run sjekk-innhold` for å se om noe nytt mangler
+registrering i frontmatter.
+
+Bilder laget med AI-verktøy føres som `egen`: de er laget av Spørretimen, og
+ingen tredjepart har rettigheter i dem. Verdt å merke seg at slike bilder ikke
+skal vise ekte personer eller utgi seg for å være dokumentasjon av noe som har
+skjedd. Plassholderen er et stemningsbilde av et studio, og gjør ingen av
+delene.
 
 Kreditering for kategorien `gjest` er «etter avtale». Ingen av bildene har en
 `credit`-linje i dag, fordi det ikke er avklart hvem som har tatt dem eller om
@@ -68,7 +74,7 @@ noen ønsker å bli navngitt. Skal det stå «Foto: …» under et bilde, settes
 | `episoder/mikrovaner-laer-noe-nytt.jpg` | Episodeforside og delebilde | Eldre forside i annen stil, viser verten | Ikke påkrevd |
 | `episoder/laer-noe-nytt-brand.jpg` | Ubrukt | | |
 | `episoder/kort-forklart-brand.jpg` | Ubrukt | | |
-| `placeholder.jpg` | Plassholder | **Ikke avklart** – viser ingen person, så den falt utenfor godkjenningen | |
+| `placeholder.jpg` | Plassholder | Laget av Jan Sindre med AI-verktøy | Ikke påkrevd |
 
 Merk: omslagene under `omslag/` er behandlede utsnitt av gjestebildene. De
 arver rettighetene til originalen – er originalen uavklart, er omslaget det
