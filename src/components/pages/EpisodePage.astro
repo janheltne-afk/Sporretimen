@@ -16,6 +16,7 @@ import Advisory from '@/components/Advisory.astro';
 import BookMeta from '@/components/BookMeta.astro';
 import CommercialLabel from '@/components/CommercialLabel.astro';
 import CorrectionNotice from '@/components/CorrectionNotice.astro';
+import Kalkulator from '@/components/Kalkulator.astro';
 import type { CollectionEntry } from 'astro:content';
 import {
   scriptForEpisode,
@@ -247,6 +248,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     <div class="container episode__wrap episode__layout">
       <div class="prose episode__content">
         <Content />
+        {d.calculator && <Kalkulator type={d.calculator} lang={lang} />}
 
         {
           d.topics.length > 0 && (

@@ -172,6 +172,12 @@ const episodes = defineCollection({
        * til reelle data senere.
        */
       popularityScore: z.number().default(0),
+      /**
+       * Interaktivt verktøy i artikkelteksten. Selve skjemaet står i
+       * Markdown-fila som vanlig HTML; dette feltet kobler på regnestykket
+       * og utseendet. Utelates når episoden ikke har et slikt verktøy.
+       */
+      calculator: z.enum(['teu', 'mrp']).optional(),
       // Skjul en episode uten å slette den.
       draft: z.boolean().default(false),
     }),

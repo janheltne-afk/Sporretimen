@@ -45,6 +45,7 @@ description: >-
   MRP forklart fra bunnen: hvorfor delebehov skal regnes og ikke gjettes, hva en
   stykkliste er, og et fullt regnestykke fra ordre til bestillingsdato – med
   bruttobehov, nettobehov og ledetidsforskyvning.
+calculator: mrp
 featured: false
 popularityScore: 0
 sources:
@@ -174,6 +175,38 @@ Se på siste kolonne. Platene må bestilles i **uke 2**.
   <p class="fig__claim">En leveranse i uke 8 er i praksis besluttet i uke 2.</p>
   <p class="fig__example"><b>Regnestykket:</b> 3 uker på platene, pluss 2 uker på å lage sidevangene, pluss 1 uke montering. Til sammen seks uker.<br /><b>Det er den lengste vegen gjennom stykklista som bestemmer</b>, ikke summen av alle delene. Skruene har én ukes ledetid og bestilles i uke 6 – de er aldri problemet.<br /><b>Konsekvensen:</b> kommer det inn en hasteordre i uke 5, er det fysisk umulig å levere i uke 8, uansett hvor mye noen presser. Svaret ligger i stykklista, ikke i innsatsviljen.<br /><b>Og derfor er MRP mer enn en innkjøpsliste:</b> den forteller deg hvilke løfter du faktisk kan gi.</p>
 </figure>
+
+Det som gjør metoden vanskelig å få taket på, er at tallene henger sammen: endrer
+du ett, flytter resten seg. Prøv det – skru på antallet, leveringsuka eller det du
+har på lager, og se hvilken uke beslutningen faller i.
+
+<form class="kalk" data-kalkulator="mrp">
+  <p class="kalk__title">Kjør stykklista med dine egne tall</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Bokhyller som skal leveres</span><input class="kalk__inn" type="number" min="0" step="1" value="100" inputmode="numeric" data-mrp="antall" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Leveringsuke</span><input class="kalk__inn" type="number" min="1" step="1" value="8" inputmode="numeric" data-mrp="uke" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Sidevanger på lager</span><span class="kalk__faktor">2 per hylle · 2 uker</span><input class="kalk__inn" type="number" min="0" step="1" value="20" inputmode="numeric" data-lager="sidevange" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Plater på lager</span><span class="kalk__faktor">1 per sidevange · 3 uker</span><input class="kalk__inn" type="number" min="0" step="1" value="0" inputmode="numeric" data-lager="plate" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Hyllebord på lager</span><span class="kalk__faktor">4 per hylle · 2 uker</span><input class="kalk__inn" type="number" min="0" step="1" value="50" inputmode="numeric" data-lager="hyllebord" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Skruer på lager</span><span class="kalk__faktor">24 per hylle · 1 uke</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-lager="skrue" /></label>
+  </div>
+  <table class="kalk__tabell">
+    <thead><tr><th scope="col">Del</th><th scope="col">Brutto</th><th scope="col">På lager</th><th scope="col">Netto</th><th scope="col">Trengs uke</th><th scope="col">Bestilles uke</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Bokhylle</th><td data-ut="bokhylle-brutto">100</td><td data-ut="bokhylle-lager">0</td><td data-ut="bokhylle-netto">100</td><td data-ut="bokhylle-trengs">8</td><td data-ut="bokhylle-bestilles">7</td></tr>
+      <tr><th scope="row">Sidevange</th><td data-ut="sidevange-brutto">200</td><td data-ut="sidevange-lager">20</td><td data-ut="sidevange-netto">180</td><td data-ut="sidevange-trengs">7</td><td data-ut="sidevange-bestilles">5</td></tr>
+      <tr><th scope="row">Plate</th><td data-ut="plate-brutto">180</td><td data-ut="plate-lager">0</td><td data-ut="plate-netto">180</td><td data-ut="plate-trengs">5</td><td data-ut="plate-bestilles">2</td></tr>
+      <tr><th scope="row">Hyllebord</th><td data-ut="hyllebord-brutto">400</td><td data-ut="hyllebord-lager">50</td><td data-ut="hyllebord-netto">350</td><td data-ut="hyllebord-trengs">7</td><td data-ut="hyllebord-bestilles">5</td></tr>
+      <tr><th scope="row">Skrue</th><td data-ut="skrue-brutto">2400</td><td data-ut="skrue-lager">1000</td><td data-ut="skrue-netto">1400</td><td data-ut="skrue-trengs">7</td><td data-ut="skrue-bestilles">6</td></tr>
+    </tbody>
+  </table>
+  <p class="kalk__note" data-ut="melding">En leveranse i uke 8 er i praksis besluttet i uke 2 – 6 uker før.</p>
+</form>
+
+Legg merke til hvor lite som skal til. Øker du antallet hyller, endrer ikke
+bestillingsukene seg i det hele tatt – ledetidene er de samme uansett hvor mange
+det gjelder. Flytter du derimot leveringsuka én uke fram, flytter hele kjeden seg
+med. Det er ledetidene, ikke volumet, som bestemmer når du må bestemme deg.
 
 ## Partistørrelse
 

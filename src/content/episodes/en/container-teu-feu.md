@@ -44,6 +44,7 @@ description: >-
   TEU, FEU and the container standards explained: what the unit actually counts,
   why the 40-footer dominates, what the number on the side means, and why the
   standardisation mattered more than the box itself.
+calculator: teu
 featured: false
 popularityScore: 0
 sources:
@@ -99,6 +100,31 @@ practical trap lies.
   </table>
   <figcaption>Note the right-hand column. A high cube gives more volume but still counts as two TEU. That is one reason TEU figures are a coarse measure: two ships with the same TEU capacity can carry different amounts of goods, depending on what kinds of boxes are actually there.</figcaption>
 </figure>
+
+The arithmetic is easy to do yourself, and it is only once you do it that the
+number stops being abstract. Enter a mix and see what it comes to in TEU – and
+how many boxes that actually is.
+
+<form class="kalk" data-kalkulator="teu">
+  <p class="kalk__title">Convert a mix to TEU</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">20' standard</span><span class="kalk__faktor">1 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-teu="1" /></label>
+    <label class="kalk__row"><span class="kalk__navn">40' standard</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="2000" inputmode="numeric" data-teu="2" /></label>
+    <label class="kalk__row"><span class="kalk__navn">40' high cube</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1500" inputmode="numeric" data-teu="2" /></label>
+    <label class="kalk__row"><span class="kalk__navn">45' high cube</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="0" inputmode="numeric" data-teu="2" /></label>
+  </div>
+  <div class="kalk__ut" aria-live="polite">
+    <p class="kalk__tall"><b data-ut="teu">8,000</b><small>TEU</small></p>
+    <p class="kalk__tall"><b data-ut="bokser">4,500</b><small>boxes</small></p>
+    <p class="kalk__tall"><b data-ut="snitt">1.78</b><small>TEU per box</small></p>
+  </div>
+  <p class="kalk__skip"><span>And a ship rated at</span><input class="kalk__inn" type="number" min="0" step="100" value="24000" inputmode="numeric" data-skip aria-label="Ship capacity in TEU" /><span>TEU:</span></p>
+  <p class="kalk__note" data-ut="melding">A ship rated at 24,000 TEU carries roughly 13,500 boxes with this mix.</p>
+</form>
+
+Notice what happens when you raise the share of 40-footers: the TEU figure holds
+still, but the number of boxes falls. That is the whole reason a ship rated at
+24,000 TEU never has 24,000 containers on board.
 
 Alongside the dry boxes there are separate types for cargo that does not suit a
 closed case: the **reefer** with its own refrigeration unit, the **open top** for

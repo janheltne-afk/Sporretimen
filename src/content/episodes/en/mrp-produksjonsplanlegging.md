@@ -45,6 +45,7 @@ description: >-
   MRP explained from the ground up: why component requirements should be
   calculated rather than guessed, what a bill of materials is, and a full worked
   calculation from order to order date – gross, net and lead time offsetting.
+calculator: mrp
 featured: false
 popularityScore: 0
 sources:
@@ -177,6 +178,38 @@ Look at the last column. The boards have to be ordered in **week 2**.
   <p class="fig__claim">A delivery in week 8 is in practice decided in week 2.</p>
   <p class="fig__example"><b>The arithmetic:</b> 3 weeks for the boards, plus 2 weeks to make the side panels, plus 1 week of assembly. Six weeks in total.<br /><b>It is the longest path through the bill of materials that decides</b>, not the sum of all the parts. The screws have a one-week lead time and are ordered in week 6 – they are never the problem.<br /><b>The consequence:</b> if a rush order arrives in week 5, delivering in week 8 is physically impossible, however hard anyone pushes. The answer is in the bill of materials, not in willingness to try.<br /><b>And that is why MRP is more than a shopping list:</b> it tells you which promises you can actually make.</p>
 </figure>
+
+What makes the method hard to get hold of is that the numbers are linked: change
+one and the rest move. Try it – adjust the quantity, the delivery week or what
+you have in stock, and watch which week the decision falls in.
+
+<form class="kalk" data-kalkulator="mrp">
+  <p class="kalk__title">Run the bill of materials with your own numbers</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Bookshelves to be delivered</span><input class="kalk__inn" type="number" min="0" step="1" value="100" inputmode="numeric" data-mrp="antall" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Delivery week</span><input class="kalk__inn" type="number" min="1" step="1" value="8" inputmode="numeric" data-mrp="uke" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Side panels in stock</span><span class="kalk__faktor">2 per shelf · 2 weeks</span><input class="kalk__inn" type="number" min="0" step="1" value="20" inputmode="numeric" data-lager="sidevange" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Boards in stock</span><span class="kalk__faktor">1 per side panel · 3 weeks</span><input class="kalk__inn" type="number" min="0" step="1" value="0" inputmode="numeric" data-lager="plate" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Shelves in stock</span><span class="kalk__faktor">4 per shelf · 2 weeks</span><input class="kalk__inn" type="number" min="0" step="1" value="50" inputmode="numeric" data-lager="hyllebord" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Screws in stock</span><span class="kalk__faktor">24 per shelf · 1 week</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-lager="skrue" /></label>
+  </div>
+  <table class="kalk__tabell">
+    <thead><tr><th scope="col">Part</th><th scope="col">Gross</th><th scope="col">In stock</th><th scope="col">Net</th><th scope="col">Needed week</th><th scope="col">Ordered week</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Bookshelf</th><td data-ut="bokhylle-brutto">100</td><td data-ut="bokhylle-lager">0</td><td data-ut="bokhylle-netto">100</td><td data-ut="bokhylle-trengs">8</td><td data-ut="bokhylle-bestilles">7</td></tr>
+      <tr><th scope="row">Side panel</th><td data-ut="sidevange-brutto">200</td><td data-ut="sidevange-lager">20</td><td data-ut="sidevange-netto">180</td><td data-ut="sidevange-trengs">7</td><td data-ut="sidevange-bestilles">5</td></tr>
+      <tr><th scope="row">Board</th><td data-ut="plate-brutto">180</td><td data-ut="plate-lager">0</td><td data-ut="plate-netto">180</td><td data-ut="plate-trengs">5</td><td data-ut="plate-bestilles">2</td></tr>
+      <tr><th scope="row">Shelf</th><td data-ut="hyllebord-brutto">400</td><td data-ut="hyllebord-lager">50</td><td data-ut="hyllebord-netto">350</td><td data-ut="hyllebord-trengs">7</td><td data-ut="hyllebord-bestilles">5</td></tr>
+      <tr><th scope="row">Screw</th><td data-ut="skrue-brutto">2,400</td><td data-ut="skrue-lager">1,000</td><td data-ut="skrue-netto">1,400</td><td data-ut="skrue-trengs">7</td><td data-ut="skrue-bestilles">6</td></tr>
+    </tbody>
+  </table>
+  <p class="kalk__note" data-ut="melding">A delivery in week 8 is in practice decided in week 2 – 6 weeks earlier.</p>
+</form>
+
+Notice how little it takes. Raise the number of shelves and the order weeks do
+not move at all – the lead times are the same however many it concerns. Move the
+delivery week forward by one, though, and the whole chain moves with it. It is
+the lead times, not the volume, that decide when you have to decide.
 
 ## Lot sizing
 

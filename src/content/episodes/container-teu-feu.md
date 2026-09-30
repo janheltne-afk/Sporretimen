@@ -44,6 +44,7 @@ description: >-
   TEU, FEU og containerstandardene forklart: hva måleenheten egentlig teller,
   hvorfor 40-foteren dominerer, hva nummeret på siden betyr, og hvorfor
   standardiseringen var viktigere enn selve boksen.
+calculator: teu
 featured: false
 popularityScore: 0
 sources:
@@ -98,6 +99,31 @@ felle ligger.
   </table>
   <figcaption>Legg merke til høyre kolonne. En high cube gir mer volum, men teller likevel som to TEU. Det er én av grunnene til at TEU-tall er en grov størrelse: to skip med samme TEU-kapasitet kan ta ulik mengde gods, avhengig av hva slags bokser som faktisk står der.</figcaption>
 </figure>
+
+Regnestykket er lett å gjøre selv, og det er først når du gjør det at tallet
+slutter å være abstrakt. Skriv inn en blanding og se hva den blir i TEU – og
+hvor mange bokser det faktisk er.
+
+<form class="kalk" data-kalkulator="teu">
+  <p class="kalk__title">Regn om en blanding til TEU</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">20' standard</span><span class="kalk__faktor">1 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-teu="1" /></label>
+    <label class="kalk__row"><span class="kalk__navn">40' standard</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="2000" inputmode="numeric" data-teu="2" /></label>
+    <label class="kalk__row"><span class="kalk__navn">40' high cube</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1500" inputmode="numeric" data-teu="2" /></label>
+    <label class="kalk__row"><span class="kalk__navn">45' high cube</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="0" inputmode="numeric" data-teu="2" /></label>
+  </div>
+  <div class="kalk__ut" aria-live="polite">
+    <p class="kalk__tall"><b data-ut="teu">8 000</b><small>TEU</small></p>
+    <p class="kalk__tall"><b data-ut="bokser">4 500</b><small>bokser</small></p>
+    <p class="kalk__tall"><b data-ut="snitt">1,78</b><small>TEU per boks</small></p>
+  </div>
+  <p class="kalk__skip"><span>Og et skip med kapasitet</span><input class="kalk__inn" type="number" min="0" step="100" value="24000" inputmode="numeric" data-skip aria-label="Skipets kapasitet i TEU" /><span>TEU:</span></p>
+  <p class="kalk__note" data-ut="melding">Et skip på 24 000 TEU tar omtrent 13 500 bokser med denne blandingen.</p>
+</form>
+
+Legg merke til hva som skjer når du skrur opp andelen 40-fotere: TEU-tallet står
+stille, men antallet bokser faller. Det er hele grunnen til at et skip på
+24 000 TEU aldri har 24 000 containere om bord.
 
 Ved siden av de tørre boksene finnes egne typer for last som ikke passer i en
 lukket kasse: **reefer** med eget kjøleanlegg, **open top** for last som må heises
