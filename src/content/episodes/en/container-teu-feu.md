@@ -106,7 +106,7 @@ number stops being abstract. Enter a mix and see what it comes to in TEU – and
 how many boxes that actually is.
 
 <form class="kalk" data-kalkulator="teu">
-  <p class="kalk__title">Convert a mix to TEU</p>
+  <p class="kalk__title">TEU calculator</p>
   <div class="kalk__rows">
     <label class="kalk__row"><span class="kalk__navn">20' standard</span><span class="kalk__faktor">1 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-teu="1" /></label>
     <label class="kalk__row"><span class="kalk__navn">40' standard</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="2000" inputmode="numeric" data-teu="2" /></label>

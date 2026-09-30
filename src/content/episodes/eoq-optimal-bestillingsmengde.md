@@ -46,6 +46,7 @@ description: >-
   gjennomregnet eksempel, den elegante egenskapen ved optimum, hvorfor
   kostnadskurven er så flat at presisjon knapt betyr noe – og hva lean gjør med
   hele regnestykket.
+calculator: eoq
 featured: false
 popularityScore: 0
 sources:
@@ -142,6 +143,30 @@ Regn ut hva de to kostnadene blir ved 10 000, og noe pent skjer.
   <p class="fig__claim">I optimum er bestillingskostnaden og lagerkostnaden nøyaktig like store.</p>
   <p class="fig__example"><b>Bestillingskostnad:</b> 100 000 / 10 000 = 10 bestillinger, ganger 500 kroner = <b>5 000 kroner.</b><br /><b>Lagerkostnad:</b> gjennomsnittslageret er halve partiet, altså 5 000 skruer, ganger 1 krone = <b>5 000 kroner.</b><br /><b>Sum: 10 000 kroner i året.</b><br /><b>Og dette er ikke tilfeldig:</b> det gjelder alltid. Er de to kostnadene ulike, er du ikke i optimum – og det gir deg en rask måte å sjekke et svar på uten å regne formelen om igjen.</p>
 </figure>
+
+Tallene under er skruene fra eksempelet. Bytt dem ut med dine egne, så ser du
+både partiet og hva de to kostnadene lander på.
+
+<form class="kalk" data-kalkulator="eoq">
+  <p class="kalk__title">EOQ-kalkulator</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Etterspørsel per år</span><span class="kalk__faktor">D · enheter</span><input class="kalk__inn" type="number" min="0" step="1000" value="100000" inputmode="numeric" data-eoq="etterspørsel" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Bestillingskostnad</span><span class="kalk__faktor">S · kr per bestilling</span><input class="kalk__inn" type="number" min="0" step="10" value="500" inputmode="decimal" data-eoq="bestillingskostnad" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Lagerkostnad</span><span class="kalk__faktor">H · kr per enhet per år</span><input class="kalk__inn" type="number" min="0" step="0.5" value="1" inputmode="decimal" data-eoq="lagerkostnad" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Partiet du bestiller i dag</span><span class="kalk__faktor">valgfritt</span><input class="kalk__inn" type="number" min="0" step="500" value="10000" inputmode="numeric" data-eoq="parti" /></label>
+  </div>
+  <div class="kalk__ut" aria-live="polite">
+    <p class="kalk__tall"><b data-ut="eoq">10 000</b><small>EOQ</small></p>
+    <p class="kalk__tall"><b data-ut="ordrer">10,0</b><small>bestillinger/år</small></p>
+    <p class="kalk__tall"><b data-ut="bestilling">5 000</b><small>kr bestilling</small></p>
+    <p class="kalk__tall"><b data-ut="lager">5 000</b><small>kr lager</small></p>
+    <p class="kalk__tall"><b data-ut="total">10 000</b><small>kr totalt</small></p>
+  </div>
+  <p class="kalk__note" data-ut="melding">Å bestille 10 000 om gangen er optimum. Det er ingenting igjen å hente.</p>
+</form>
+
+Prøv å sette partiet til 7 500 eller 12 500. Totalen rører seg knapt – og det er
+nettopp det neste avsnitt handler om.
 
 ## Kurven er flat
 

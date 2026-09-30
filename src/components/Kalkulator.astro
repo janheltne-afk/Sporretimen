@@ -14,7 +14,7 @@
 import { type Locale } from '@/i18n/config';
 
 interface Props {
-  type: 'teu' | 'mrp';
+  type: 'teu' | 'mrp' | 'eoq';
   lang?: Locale;
 }
 const { type, lang = 'no' } = Astro.props;
@@ -213,6 +213,107 @@ const en = lang === 'en';
         });
       };
   
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+      } else {
+        start();
+      }
+    })();
+  </script>
+)}
+
+{type === 'eoq' && (
+  <script
+    is:inline
+    data-locale={en ? 'en-GB' : 'nb-NO'}
+    data-equal={en
+      ? 'At the optimum the two costs are equal: {kost} kr each, {total} kr a year.'
+      : 'I optimum er de to kostnadene like store: {kost} kr hver, {total} kr i året.'}
+    data-penalty={en
+      ? 'Ordering {valgt} at a time costs {total} kr a year – {avvik} % above the optimum.'
+      : 'Å bestille {valgt} om gangen koster {total} kr i året – {avvik} % over optimum.'}
+    data-atoptimum={en
+      ? 'Ordering {valgt} at a time is the optimum. Nothing is left to gain.'
+      : 'Å bestille {valgt} om gangen er optimum. Det er ingenting igjen å hente.'}
+    data-invalid={en
+      ? 'Demand, order cost and holding cost must all be above zero.'
+      : 'Etterspørsel, bestillingskostnad og lagerkostnad må alle være over null.'}
+  >
+    (() => {
+      const cfg = document.currentScript;
+      const locale = cfg.dataset.locale;
+      const mal = {
+        equal: cfg.dataset.equal,
+        penalty: cfg.dataset.penalty,
+        atOptimum: cfg.dataset.atoptimum,
+        invalid: cfg.dataset.invalid,
+      };
+      const tall = (n, des = 0) =>
+        n.toLocaleString(locale, { minimumFractionDigits: des, maximumFractionDigits: des });
+
+      const start = () => {
+        document.querySelectorAll('[data-kalkulator="eoq"]').forEach((form) => {
+          const felt = (navn) => form.querySelector('[data-eoq="' + navn + '"]');
+          const ut = (navn) => form.querySelector('[data-ut="' + navn + '"]');
+          const inn = [...form.querySelectorAll('[data-eoq]')];
+          if (!inn.length || !ut('eoq')) return;
+
+          const regn = () => {
+            const D = Math.max(0, Number(felt('etterspørsel').value) || 0);
+            const S = Math.max(0, Number(felt('bestillingskostnad').value) || 0);
+            const H = Math.max(0, Number(felt('lagerkostnad').value) || 0);
+            const melding = ut('melding');
+            delete melding.dataset.advarsel;
+
+            if (!D || !S || !H) {
+              ['eoq', 'ordrer', 'bestilling', 'lager', 'total'].forEach((k) => {
+                const el = ut(k);
+                if (el) el.textContent = '–';
+              });
+              melding.dataset.advarsel = 'ja';
+              melding.textContent = mal.invalid;
+              return;
+            }
+
+            // Harris' formel. Kostnaden regnes på det eksakte optimumet, ikke
+            // på det avrundede tallet som vises – ellers stemmer ikke likheten
+            // mellom de to kostnadene.
+            const eoq = Math.sqrt((2 * D * S) / H);
+            const bestilling = (D / eoq) * S;
+            const lager = (eoq / 2) * H;
+
+            ut('eoq').textContent = tall(Math.round(eoq));
+            ut('ordrer').textContent = tall(D / eoq, 1);
+            ut('bestilling').textContent = tall(Math.round(bestilling));
+            ut('lager').textContent = tall(Math.round(lager));
+            ut('total').textContent = tall(Math.round(bestilling + lager));
+
+            const valgt = Math.max(0, Number(felt('parti').value) || 0);
+            if (!valgt) {
+              melding.textContent = mal.equal
+                .replace('{kost}', tall(Math.round(bestilling)))
+                .replace('{total}', tall(Math.round(bestilling + lager)));
+              return;
+            }
+            const totalValgt = (D / valgt) * S + (valgt / 2) * H;
+            const avvik = (totalValgt / (bestilling + lager) - 1) * 100;
+            // Under en tidel av en prosent er det i praksis samme parti.
+            melding.textContent =
+              avvik < 0.05
+                ? mal.atOptimum.replace('{valgt}', tall(valgt))
+                : mal.penalty
+                    .replace('{valgt}', tall(valgt))
+                    .replace('{total}', tall(Math.round(totalValgt)))
+                    .replace('{avvik}', tall(avvik, 1));
+          };
+
+          inn.forEach((el) => el.addEventListener('input', regn));
+          form.addEventListener('submit', (e) => e.preventDefault());
+          form.dataset.live = 'ja';
+          regn();
+        });
+      };
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', start);
       } else {

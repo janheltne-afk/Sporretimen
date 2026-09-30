@@ -45,6 +45,7 @@ description: >-
   How much should you order at once? The EOQ formula explained with a worked
   example, the elegant property at the optimum, why the cost curve is so flat
   that precision barely matters – and what lean does to the whole calculation.
+calculator: eoq
 featured: false
 popularityScore: 0
 sources:
@@ -141,6 +142,30 @@ Work out what the two costs come to at 10,000, and something neat happens.
   <p class="fig__claim">At the optimum, ordering cost and holding cost are exactly equal.</p>
   <p class="fig__example"><b>Ordering cost:</b> 100,000 / 10,000 = 10 orders, times 500 kroner = <b>5,000 kroner.</b><br /><b>Holding cost:</b> average stock is half the batch, that is 5,000 screws, times 1 krone = <b>5,000 kroner.</b><br /><b>Total: 10,000 kroner a year.</b><br /><b>And this is no coincidence:</b> it always holds. If the two costs differ, you are not at the optimum – which gives you a quick way to check an answer without running the formula again.</p>
 </figure>
+
+The numbers below are the screws from the example. Swap them for your own, and
+you will see both the batch and where the two costs land.
+
+<form class="kalk" data-kalkulator="eoq">
+  <p class="kalk__title">EOQ calculator</p>
+  <div class="kalk__rows">
+    <label class="kalk__row"><span class="kalk__navn">Annual demand</span><span class="kalk__faktor">D · units</span><input class="kalk__inn" type="number" min="0" step="1000" value="100000" inputmode="numeric" data-eoq="etterspørsel" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Order cost</span><span class="kalk__faktor">S · kr per order</span><input class="kalk__inn" type="number" min="0" step="10" value="500" inputmode="decimal" data-eoq="bestillingskostnad" /></label>
+    <label class="kalk__row"><span class="kalk__navn">Holding cost</span><span class="kalk__faktor">H · kr per unit per year</span><input class="kalk__inn" type="number" min="0" step="0.5" value="1" inputmode="decimal" data-eoq="lagerkostnad" /></label>
+    <label class="kalk__row"><span class="kalk__navn">The batch you order today</span><span class="kalk__faktor">optional</span><input class="kalk__inn" type="number" min="0" step="500" value="10000" inputmode="numeric" data-eoq="parti" /></label>
+  </div>
+  <div class="kalk__ut" aria-live="polite">
+    <p class="kalk__tall"><b data-ut="eoq">10,000</b><small>EOQ</small></p>
+    <p class="kalk__tall"><b data-ut="ordrer">10.0</b><small>orders/year</small></p>
+    <p class="kalk__tall"><b data-ut="bestilling">5,000</b><small>kr ordering</small></p>
+    <p class="kalk__tall"><b data-ut="lager">5,000</b><small>kr holding</small></p>
+    <p class="kalk__tall"><b data-ut="total">10,000</b><small>kr in total</small></p>
+  </div>
+  <p class="kalk__note" data-ut="melding">Ordering 10,000 at a time is the optimum. Nothing is left to gain.</p>
+</form>
+
+Try setting the batch to 7,500 or 12,500. The total barely moves – and that is
+exactly what the next section is about.
 
 ## The curve is flat
 

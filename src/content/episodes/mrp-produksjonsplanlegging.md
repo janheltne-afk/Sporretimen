@@ -181,7 +181,7 @@ du ett, flytter resten seg. Prøv det – skru på antallet, leveringsuka eller 
 har på lager, og se hvilken uke beslutningen faller i.
 
 <form class="kalk" data-kalkulator="mrp">
-  <p class="kalk__title">Kjør stykklista med dine egne tall</p>
+  <p class="kalk__title">MRP-kalkulator</p>
   <div class="kalk__rows">
     <label class="kalk__row"><span class="kalk__navn">Bokhyller som skal leveres</span><input class="kalk__inn" type="number" min="0" step="1" value="100" inputmode="numeric" data-mrp="antall" /></label>
     <label class="kalk__row"><span class="kalk__navn">Leveringsuke</span><input class="kalk__inn" type="number" min="1" step="1" value="8" inputmode="numeric" data-mrp="uke" /></label>

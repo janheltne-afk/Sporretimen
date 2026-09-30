@@ -105,7 +105,7 @@ slutter å være abstrakt. Skriv inn en blanding og se hva den blir i TEU – og
 hvor mange bokser det faktisk er.
 
 <form class="kalk" data-kalkulator="teu">
-  <p class="kalk__title">Regn om en blanding til TEU</p>
+  <p class="kalk__title">TEU-kalkulator</p>
   <div class="kalk__rows">
     <label class="kalk__row"><span class="kalk__navn">20' standard</span><span class="kalk__faktor">1 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="1000" inputmode="numeric" data-teu="1" /></label>
     <label class="kalk__row"><span class="kalk__navn">40' standard</span><span class="kalk__faktor">2 TEU</span><input class="kalk__inn" type="number" min="0" step="1" value="2000" inputmode="numeric" data-teu="2" /></label>

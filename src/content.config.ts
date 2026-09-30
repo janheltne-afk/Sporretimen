@@ -177,7 +177,7 @@ const episodes = defineCollection({
        * Markdown-fila som vanlig HTML; dette feltet kobler på regnestykket
        * og utseendet. Utelates når episoden ikke har et slikt verktøy.
        */
-      calculator: z.enum(['teu', 'mrp']).optional(),
+      calculator: z.enum(['teu', 'mrp', 'eoq']).optional(),
       // Skjul en episode uten å slette den.
       draft: z.boolean().default(false),
     }),

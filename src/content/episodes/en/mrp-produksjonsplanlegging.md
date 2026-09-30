@@ -184,7 +184,7 @@ one and the rest move. Try it – adjust the quantity, the delivery week or what
 you have in stock, and watch which week the decision falls in.
 
 <form class="kalk" data-kalkulator="mrp">
-  <p class="kalk__title">Run the bill of materials with your own numbers</p>
+  <p class="kalk__title">MRP calculator</p>
   <div class="kalk__rows">
     <label class="kalk__row"><span class="kalk__navn">Bookshelves to be delivered</span><input class="kalk__inn" type="number" min="0" step="1" value="100" inputmode="numeric" data-mrp="antall" /></label>
     <label class="kalk__row"><span class="kalk__navn">Delivery week</span><input class="kalk__inn" type="number" min="1" step="1" value="8" inputmode="numeric" data-mrp="uke" /></label>
