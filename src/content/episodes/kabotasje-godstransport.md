@@ -39,6 +39,8 @@ takeaways:
   - Reglene er et kompromiss mellom fri flyt av tjenester og vern av det nasjonale markedet.
 coverTheme: "Kabotasje"
 image: /images/episoder/kabotasje-godstransport.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Kabotasje – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva kabotasje er, og hvilke regler som gjelder for utenlandske lastebiler i

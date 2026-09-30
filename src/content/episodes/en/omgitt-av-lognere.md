@@ -38,6 +38,8 @@ book:
   author: "Thomas Erikson"
   originalTitle: "Omgitt av løgnere"
 image: /images/episoder/omgitt-av-lognere.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Løgn – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Everyone thinks they can tell. Almost nobody can. A walk through the subject

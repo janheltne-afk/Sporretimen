@@ -43,6 +43,8 @@ takeaways:
   - Til slutt står noen få stykker igjen. Dem er det verdt å øve målrettet på.
 coverTheme: "Gangetabellen"
 image: /images/episoder/gangetabellen.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Gangetabellen – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvordan lærer man gangetabellen uten å pugge hundre stykker? En gjennomgang

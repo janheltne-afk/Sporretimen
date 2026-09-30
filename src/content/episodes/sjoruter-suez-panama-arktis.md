@@ -40,6 +40,8 @@ takeaways:
   - En rute som er stengt for noen, er dyrere for alle.
 coverTheme: "Sjørutene"
 image: /images/episoder/sjoruter-suez-panama-arktis.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Sjørutene – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Suez, Panama og de arktiske rutene forklart: hvorfor noen få trange steder

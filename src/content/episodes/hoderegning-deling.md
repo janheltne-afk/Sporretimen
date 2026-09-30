@@ -45,6 +45,8 @@ takeaways:
   - "Kan du at en åttedel er 12,5 prosent, slipper du halvparten av regningen."
 coverTheme: "Hoderegning"
 image: /images/episoder/hoderegning-deling.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Hoderegning – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Deling føles vanskeligere enn de andre regneartene, men det er metoden som er

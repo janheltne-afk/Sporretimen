@@ -48,6 +48,8 @@ takeaways:
   - Always write the rule, the place as precisely as possible, and which version applies.
 coverTheme: "Incoterms 2020"
 image: /images/episoder/incoterms-2020.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Incoterms 2020 – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What do FOB, CIF, DAP and DDP actually mean – and where does the risk really

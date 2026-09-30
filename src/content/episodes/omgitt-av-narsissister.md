@@ -40,6 +40,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-narsissister.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Narsissisme – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Et klinisk begrep som er blitt et hverdagsord. En gjennomgang av temaet i

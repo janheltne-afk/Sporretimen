@@ -43,6 +43,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/rich-dad-poor-dad.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Eiendeler og gjeld – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Den mest solgte personlige økonomiboken noensinne, og en av de mest

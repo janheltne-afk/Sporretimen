@@ -39,6 +39,8 @@ book:
   author: "Cal Newport"
   year: 2016
 image: /images/episoder/deep-work.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Fokus – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor er det blitt så vanskelig å konsentrere seg om én ting – og hvorfor

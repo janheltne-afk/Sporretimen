@@ -40,6 +40,8 @@ takeaways:
   - MRP assumes fixed lead times and unlimited capacity. Both are untrue.
 coverTheme: "MRP"
 image: /images/episoder/mrp-produksjonsplanlegging.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: MRP – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   MRP explained from the ground up: why component requirements should be

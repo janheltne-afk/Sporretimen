@@ -47,6 +47,8 @@ takeaways:
   - Just-in-time gir effektivitet og sårbarhet av nøyaktig samme grunn.
 coverTheme: "Lean"
 image: /images/episoder/lean-forklart.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Lean – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva er lean, egentlig? En gjennomgang av systemet Toyota bygde – verdi og

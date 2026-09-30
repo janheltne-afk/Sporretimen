@@ -39,6 +39,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/richest-man-in-babylon.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Sparing – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hundre år gamle råd om sparing, gjeld og det å la pengene arbeide, fortalt

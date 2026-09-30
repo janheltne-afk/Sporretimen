@@ -40,6 +40,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/let-them-theory.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Relasjoner – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   To ord som ble en bestselger. En gjennomgang av ideene i Mel Robbins' The Let

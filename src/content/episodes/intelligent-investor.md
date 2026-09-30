@@ -42,6 +42,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/intelligent-investor.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Verdiinvestering – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Boken Warren Buffett kaller den beste om investering, fra 1949. En

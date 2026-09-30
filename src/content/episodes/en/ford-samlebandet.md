@@ -41,6 +41,8 @@ takeaways:
   - Turnover was 380 per cent in 1913. The five dollar day came in January 1914.
 coverTheme: "Samlebåndet"
 image: /images/episoder/ford-samlebandet.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Samlebåndet (The assembly line) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   The assembly line was not invented in the car industry. It came from the

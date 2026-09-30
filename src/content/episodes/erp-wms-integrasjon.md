@@ -48,6 +48,8 @@ takeaways:
   - "Undersøkelsen har 22 svar og fire intervjuer. Det viser tendenser, ikke tall som kan generaliseres."
 coverTheme: "ERP og WMS"
 image: /images/episoder/erp-wms-integrasjon.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: ERP og WMS – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   To systemer som må snakke sammen, og et prosjekt som ofte ikke går som

@@ -41,6 +41,8 @@ description: >-
   the four laws, the 1 % rule, habit stacking, the two-minute rule and why you
   should never miss twice.
 image: /images/episoder/mikrovaner-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Learn something new: atomic habits – small habits, large results"
 links:
   youtube: https://youtu.be/jhpxM8EONhk

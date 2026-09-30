@@ -44,6 +44,8 @@ takeaways:
   - Norway takes part in the rules, but not in the EU funding scheme behind them.
 coverTheme: "TEN-T"
 image: /images/episoder/ten-t-transportnettet.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: TEN-T – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   The EU transport network explained: what TEN-T actually covers, the three

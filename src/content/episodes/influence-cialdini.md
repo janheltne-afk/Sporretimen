@@ -42,6 +42,8 @@ book:
   author: "Robert B. Cialdini"
   year: 1984
 image: /images/episoder/influence-cialdini.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Påvirkning – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Sosialpsykologen Robert Cialdini om de få mekanismene som får mennesker til

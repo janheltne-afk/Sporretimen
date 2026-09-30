@@ -33,6 +33,8 @@ description: >-
   husketeknikk: minnepalass, bildekoding og systemene som gjør det mulig – og
   hvordan du kan bruke dem selv.
 image: /images/episoder/memorering-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Lær noe nytt: Memoreringsteknikker – lær å memorere en kortstokk"
 links:
   youtube: https://youtu.be/LJEGXeL5cy8

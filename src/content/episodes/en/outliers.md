@@ -39,6 +39,8 @@ book:
   author: "Malcolm Gladwell"
   year: 2008
 image: /images/episoder/outliers.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Ekspertise – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   What does it take to succeed enormously? Not what you think, argues Malcolm

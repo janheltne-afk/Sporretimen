@@ -46,6 +46,8 @@ takeaways:
   - "The conclusion was that it could pay off, with reservations – not that it would."
 coverTheme: "RFID in practice"
 image: /images/episoder/rfid-varetelling.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: RFID i praksis – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   An annual stock count that takes two to three months with two full-time

@@ -33,6 +33,8 @@ description: >-
   memory technique: the memory palace, encoding things as images, and the systems
   that make it possible – and how to use them yourself.
 image: /images/episoder/memorering-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Learn something new: memory techniques – learn to memorise a deck of cards"
 links:
   youtube: https://youtu.be/LJEGXeL5cy8

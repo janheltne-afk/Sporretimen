@@ -39,6 +39,8 @@ takeaways:
   - The valuable thing was never the box, but that everyone agreed on the dimensions.
 coverTheme: "Containeren"
 image: /images/episoder/container-teu-feu.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Containeren (The container) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   TEU, FEU and the container standards explained: what the unit actually counts,

@@ -41,6 +41,8 @@ takeaways:
   - Turnover var 380 prosent i 1913. Fem dollar dagen kom i januar 1914.
 coverTheme: "Samlebåndet"
 image: /images/episoder/ford-samlebandet.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Samlebåndet – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Samlebåndet ble ikke funnet opp i bilindustrien. Det kom fra slakteriene i

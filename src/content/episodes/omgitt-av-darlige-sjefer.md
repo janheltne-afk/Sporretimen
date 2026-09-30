@@ -41,6 +41,8 @@ book:
 advisory:
   - juss
 image: /images/episoder/omgitt-av-darlige-sjefer.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Ledelse – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   De fleste har hatt en. En gjennomgang av temaet i Thomas Eriksons Omgitt av

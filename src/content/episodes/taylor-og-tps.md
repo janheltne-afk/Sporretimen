@@ -41,6 +41,8 @@ takeaways:
   - Begge systemene måler arbeid ned til sekunder. Forskjellen er hvem som holder klokka.
 coverTheme: "Taylor og Toyota"
 image: /images/episoder/taylor-og-tps.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Taylor og Toyota – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Scientific management og Toyota Production System side om side: Taylors

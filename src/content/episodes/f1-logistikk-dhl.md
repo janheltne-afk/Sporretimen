@@ -40,6 +40,8 @@ takeaways:
   - "Kalenderen avgjør hvor dyrt og hvor forurensende sesongen blir, før et eneste løp er kjørt."
 coverTheme: "Formel 1-logistikk"
 image: /images/episoder/f1-logistikk-dhl.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Formel 1-logistikk – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvordan Formel 1 flyttes fra bane til bane: hva som går med fly og hva som går

@@ -43,6 +43,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/rich-dad-poor-dad.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Eiendeler og gjeld – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The best-selling personal finance book of all time, and one of the most

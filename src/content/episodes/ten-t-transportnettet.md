@@ -44,6 +44,8 @@ takeaways:
   - Norge deltar i regelverket, men ikke i EUs finansieringsordning for det.
 coverTheme: "TEN-T"
 image: /images/episoder/ten-t-transportnettet.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: TEN-T – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   EUs transportnett forklart: hva TEN-T faktisk dekker, de tre lagene og

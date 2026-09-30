@@ -43,6 +43,8 @@ description: >-
   Bryan Johnson agree on - the circadian rhythm, sleep pressure, light, caffeine
   and the evening routine.
 image: /images/episoder/sovn-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Learn something new: sleep – how to sleep better"
 links:
   youtube: https://youtu.be/XuqW2rS8oKU

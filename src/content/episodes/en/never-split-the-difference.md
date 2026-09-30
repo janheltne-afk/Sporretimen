@@ -42,6 +42,8 @@ book:
   author: "Chris Voss og Tahl Raz"
   year: 2016
 image: /images/episoder/never-split-the-difference.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Forhandling – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   A former FBI hostage negotiator on why you should never meet in the middle. A

@@ -45,6 +45,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-idioter.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Personlighet – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Four colours, and one of the best-selling book concepts in the Nordics. A walk

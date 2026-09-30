@@ -39,6 +39,8 @@ takeaways:
   - HS is revised roughly every five years. The next revision applies in the Norwegian tariff from 1 January 2028.
 coverTheme: "Varenummer"
 image: /images/episoder/tolltariffen-varenummer.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Varenummer (Commodity codes) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   The customs tariff explained: what a commodity code is, why the first six

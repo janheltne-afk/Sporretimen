@@ -41,6 +41,8 @@ description: >-
   (Atomic Habits) – de fire reglene, 1 %-regelen, habit stacking,
   to-minuttersregelen og hvorfor du aldri skal bomme to ganger.
 image: /images/episoder/mikrovaner-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Lær noe nytt: Mikrovaner – små vaner, store resultater. Habit tracker, Atomic Habits-bok, vannglass og joggesko"
 links:
   youtube: https://youtu.be/jhpxM8EONhk

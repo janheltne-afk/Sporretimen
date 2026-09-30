@@ -41,6 +41,8 @@ book:
 advisory:
   - juss
 image: /images/episoder/omgitt-av-darlige-sjefer.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Ledelse – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Most people have had one. A walk through the subject of Thomas Erikson's

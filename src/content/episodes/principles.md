@@ -41,6 +41,8 @@ book:
   author: "Ray Dalio"
   year: 2017
 image: /images/episoder/principles.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Prinsipper og beslutninger – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Grunnleggeren av verdens største hedgefond om hvordan han bestemmer seg. En

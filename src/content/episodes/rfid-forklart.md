@@ -48,6 +48,8 @@ takeaways:
   - Hypen rundt 2005 sprakk på taggpris og lesesikkerhet, ikke på ideen.
 coverTheme: "RFID"
 image: /images/episoder/rfid-forklart.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: RFID – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvordan kan en brikke uten batteri leses på flere meters avstand? En

@@ -44,6 +44,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/black-swan.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Risiko – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Why is it always the thing nobody saw coming that changes everything? A walk

@@ -36,6 +36,8 @@ takeaways:
   - The rules are not magic – they fall out of how the decimal system is built.
 coverTheme: "The Trachtenberg system"
 image: /images/episoder/gangetriks-trachtenberg.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Trachtenberg-systemet – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   A method for mental arithmetic in which the times tables are replaced by one

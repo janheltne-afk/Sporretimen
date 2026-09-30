@@ -42,6 +42,8 @@ takeaways:
   - The undertaking must organise the work so the driver can get home at least every fourth week.
 coverTheme: "Kjøre- og hviletid"
 image: /images/episoder/kjore-og-hviletid.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Kjøre- og hviletid (Driving and rest time) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How the tachograph and the driver card work, and what the driving and rest

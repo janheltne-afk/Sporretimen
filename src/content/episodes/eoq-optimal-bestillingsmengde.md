@@ -40,6 +40,8 @@ takeaways:
   - "Lean angriper ikke svaret, men inngangsdataene: kutt bestillingskostnaden, så faller EOQ."
 coverTheme: "EOQ"
 image: /images/episoder/eoq-optimal-bestillingsmengde.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: EOQ – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvor mye bør du bestille om gangen? EOQ-formelen forklart med et

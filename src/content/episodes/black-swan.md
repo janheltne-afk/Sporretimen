@@ -44,6 +44,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/black-swan.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Risiko – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor er det alltid det ingen så komme som endrer alt? En gjennomgang av

@@ -40,6 +40,8 @@ takeaways:
   - Det som demper effekten er delt informasjon, ikke bedre gjetting i hvert ledd.
 coverTheme: "Bullwhip-effekten"
 image: /images/episoder/bullwhip-effekten.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Bullwhip-effekten – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor en liten endring i butikkhylla blir en stor svingning i fabrikken:

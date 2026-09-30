@@ -49,6 +49,8 @@ takeaways:
 duration: "About 21 min"
 coverTheme: "GS1"
 image: /images/episoder/gs1-strekkoder.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: GS1 – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What do the numbers in a barcode mean? A walk through the GS1 standards – how

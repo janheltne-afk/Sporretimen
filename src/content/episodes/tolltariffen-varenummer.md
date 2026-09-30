@@ -39,6 +39,8 @@ takeaways:
   - HS revideres omtrent hvert femte år. Neste revisjon gjelder i tolltariffen fra 1. januar 2028.
 coverTheme: "Varenummer"
 image: /images/episoder/tolltariffen-varenummer.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Varenummer – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Tolltariffen forklart: hva et varenummer er, hvorfor de første seks sifrene er

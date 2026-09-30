@@ -40,6 +40,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/subtle-art.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Verdier – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   En bok som selger på tittelen og handler om verdier. En gjennomgang av ideene

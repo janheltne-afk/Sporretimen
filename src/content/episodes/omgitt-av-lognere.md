@@ -37,6 +37,8 @@ book:
   title: "Omgitt av løgnere"
   author: "Thomas Erikson"
 image: /images/episoder/omgitt-av-lognere.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Løgn – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Alle tror de merker det. Nesten ingen gjør det. En gjennomgang av temaet i

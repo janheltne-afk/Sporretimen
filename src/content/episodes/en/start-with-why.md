@@ -40,6 +40,8 @@ book:
   author: "Simon Sinek"
   year: 2009
 image: /images/episoder/start-with-why.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Ledelse – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Why do some people and companies manage to inspire, while others merely

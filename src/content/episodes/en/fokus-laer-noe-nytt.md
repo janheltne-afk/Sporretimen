@@ -29,6 +29,8 @@ coverTheme: "Focus"
 advisory:
   - helse
 image: /images/episoder/fokus-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Fokus – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Why has concentrating become so hard? A walk through two books about attention –

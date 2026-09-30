@@ -41,6 +41,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-psykopater.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Psykopati – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Ordet brukes om alt fra dårlige sjefer til ekser. En gjennomgang av temaet i

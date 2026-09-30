@@ -39,6 +39,8 @@ takeaways:
   - The rules are a compromise between free movement of services and protection of the domestic market.
 coverTheme: "Kabotasje"
 image: /images/episoder/kabotasje-godstransport.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Kabotasje (Cabotage) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   What cabotage is, and which rules apply to foreign lorries in Norway: three

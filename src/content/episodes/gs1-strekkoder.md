@@ -49,6 +49,8 @@ takeaways:
 duration: "Cirka 20 min"
 coverTheme: "GS1"
 image: /images/episoder/gs1-strekkoder.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: GS1 – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hva betyr tallene i en strekkode? En gjennomgang av GS1-standardene – hvordan

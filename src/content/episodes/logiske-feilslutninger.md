@@ -50,6 +50,8 @@ takeaways:
 coverTheme: "Argumentasjon"
 advisory: []
 image: /images/episoder/logiske-feilslutninger.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Argumentasjon – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor høres dårlige argumenter så overbevisende ut? En gjennomgang av de

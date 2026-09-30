@@ -41,6 +41,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-psykopater.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Psykopati – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The word gets used for everything from bad bosses to exes. A walk through the

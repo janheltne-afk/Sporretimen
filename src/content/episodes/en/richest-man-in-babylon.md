@@ -39,6 +39,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/richest-man-in-babylon.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Sparing – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Hundred-year-old advice on saving, debt and putting money to work, told as

@@ -44,6 +44,8 @@ takeaways:
   - "Casting out nines catches most arithmetic slips, but never two digits swapping places."
 coverTheme: "Mental arithmetic"
 image: /images/episoder/hoderegning-pluss-minus.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Hoderegning – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   School teaches you to work right to left, because that is how you write. In

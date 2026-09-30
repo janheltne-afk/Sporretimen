@@ -50,6 +50,8 @@ takeaways:
 coverTheme: "Argument"
 advisory: []
 image: /images/episoder/logiske-feilslutninger.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Argumentasjon – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Why do bad arguments sound so convincing? A walk through the most common

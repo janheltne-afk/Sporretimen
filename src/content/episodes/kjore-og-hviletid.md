@@ -42,6 +42,8 @@ takeaways:
   - Foretaket skal organisere arbeidet slik at sjåføren kan komme hjem minst hver fjerde uke.
 coverTheme: "Kjøre- og hviletid"
 image: /images/episoder/kjore-og-hviletid.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Kjøre- og hviletid – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvordan fartsskriveren og sjåførkortet fungerer, og hva reglene for kjøre- og

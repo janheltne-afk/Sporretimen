@@ -40,6 +40,8 @@ takeaways:
   - "The calendar decides how expensive and how polluting a season will be, before a single race is run."
 coverTheme: "Formel 1-logistikk"
 image: /images/episoder/f1-logistikk-dhl.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Formel 1-logistikk (Formula 1 logistics) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How Formula 1 moves from track to track: what goes by air and what goes by

@@ -40,6 +40,8 @@ takeaways:
   - "Lean does not dispute the answer, it attacks the input: cut the order cost and EOQ falls."
 coverTheme: "EOQ"
 image: /images/episoder/eoq-optimal-bestillingsmengde.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: EOQ – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How much should you order at once? The EOQ formula explained with a worked

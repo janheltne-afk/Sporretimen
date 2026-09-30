@@ -46,6 +46,8 @@ takeaways:
   - "Konklusjonen var at det kunne lønne seg, med forbehold – ikke at det ville lønne seg."
 coverTheme: "RFID i praksis"
 image: /images/episoder/rfid-varetelling.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: RFID i praksis – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   En årlig varetelling som tar to til tre måneder med to årsverk. Kan RFID kutte

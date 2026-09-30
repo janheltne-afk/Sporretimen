@@ -34,13 +34,14 @@ Er `credit` satt, vises «Foto: …» under bildet automatisk.
 
 ## Registeret
 
-**Status: ikke utfylt.** Kolonnen «opphav» må fylles ut av Jan Sindre – den skal
-ikke gjettes. Kjør `npm run sjekk-innhold` for å se hvilke bilder som mangler
-registrering i frontmatter.
+**Status: delvis utfylt.** Jan Sindre har godkjent alt som viser ham selv –
+vertportrettet og alle forsidene som er satt sammen av det. Gjestebildene og
+plassholderen står fortsatt åpne, og skal ikke gjettes. Kjør
+`npm run sjekk-innhold` for å se hva som mangler registrering i frontmatter.
 
 | Fil | Brukt av | Opphav | Kreditering |
 | --- | --- | --- | --- |
-| `jan-sindre-heltne.jpg` | Forsiden, profilsiden, delebilde | | |
+| `jan-sindre-heltne.jpg` | Forsiden, profilsiden, delebilde | Eget portrett, godkjent av Jan Sindre | Ikke påkrevd |
 | `gjester/havard-hasund.jpg` | Gjestesiden | | |
 | `gjester/john-erik.jpg` | Gjestesiden | | |
 | `gjester/sturla.jpg` | Gjestesiden | | |
@@ -54,15 +55,15 @@ registrering i frontmatter.
 | `episoder/lege-episoden.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
 | `episoder/paramedisin.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
 | `episoder/sturla-artist-business.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
-| `episoder/`-forsider uten gjest (34 filer) | Episodeforside og delebilde | Satt sammen av vertportrettet alene, `scripts/lag-forsidebilde.py --solo` | Følger vertportrettet |
-| `episoder/sovn-laer-noe-nytt.jpg` | Delebilde | | |
-| `episoder/sovn-kort-forklart.jpg` | Delebilde | | |
-| `episoder/memorering-laer-noe-nytt.jpg` | Delebilde | | |
-| `episoder/memorering-kort-forklart.jpg` | Delebilde | | |
-| `episoder/mikrovaner-laer-noe-nytt.jpg` | Delebilde | | |
+| `episoder/`-forsider uten gjest (49 filer) | Episodeforside og delebilde | Satt sammen av vertportrettet alene, `scripts/lag-forsidebilde.py --solo` | Ikke påkrevd |
+| `episoder/sovn-laer-noe-nytt.jpg` | Episodeforside og delebilde | Eldre forside i annen stil, viser verten | Ikke påkrevd |
+| `episoder/sovn-kort-forklart.jpg` | Ubrukt | Eldre forside i annen stil, viser verten | Ikke påkrevd |
+| `episoder/memorering-laer-noe-nytt.jpg` | Ubrukt (episoden bruker et annet omslag) | Eldre forside i annen stil, viser verten | Ikke påkrevd |
+| `episoder/memorering-kort-forklart.jpg` | Ubrukt | Eldre forside i annen stil, viser verten | Ikke påkrevd |
+| `episoder/mikrovaner-laer-noe-nytt.jpg` | Episodeforside og delebilde | Eldre forside i annen stil, viser verten | Ikke påkrevd |
 | `episoder/laer-noe-nytt-brand.jpg` | Ubrukt | | |
 | `episoder/kort-forklart-brand.jpg` | Ubrukt | | |
-| `placeholder.jpg` | Plassholder | | |
+| `placeholder.jpg` | Plassholder | **Ikke avklart** – viser ingen person, så den falt utenfor godkjenningen | |
 
 Merk: omslagene under `omslag/` er behandlede utsnitt av gjestebildene. De
 arver rettighetene til originalen – er originalen uavklart, er omslaget det

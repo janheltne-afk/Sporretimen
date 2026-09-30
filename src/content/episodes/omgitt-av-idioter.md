@@ -45,6 +45,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-idioter.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Personlighet – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Fire farger, og et av Nordens mest solgte bokkonsepter. En gjennomgang av

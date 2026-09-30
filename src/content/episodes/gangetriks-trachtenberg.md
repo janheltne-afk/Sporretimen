@@ -36,6 +36,8 @@ takeaways:
   - Reglene er ikke magi – de faller ut av hvordan titallsystemet er bygd opp.
 coverTheme: "Trachtenberg-systemet"
 image: /images/episoder/gangetriks-trachtenberg.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Trachtenberg-systemet – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   En metode for å regne i hodet der gangetabellen byttes ut med én kort regel

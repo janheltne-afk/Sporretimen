@@ -41,6 +41,8 @@ book:
   author: "Robert B. Cialdini"
   year: 1984
 image: /images/episoder/influence-cialdini.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Påvirkning – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Social psychologist Robert Cialdini on the few mechanisms that make people say

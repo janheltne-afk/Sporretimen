@@ -38,6 +38,8 @@ book:
   author: "Dale Carnegie"
   year: 1936
 image: /images/episoder/how-to-win-friends.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Relasjoner – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Den mest solgte boken om mennesker noensinne, fra 1936. En gjennomgang av

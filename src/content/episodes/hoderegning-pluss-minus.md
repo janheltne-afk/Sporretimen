@@ -45,6 +45,8 @@ takeaways:
   - "Niprøven fanger de fleste regnefeil, men aldri ombytte av to sifre."
 coverTheme: "Hoderegning"
 image: /images/episoder/hoderegning-pluss-minus.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Hoderegning – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Skolen lærer deg å regne fra høyre, fordi det er slik man skriver. I hodet er

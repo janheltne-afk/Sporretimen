@@ -43,6 +43,8 @@ description: >-
   Bryan Johnson er enige om - døgnrytme, søvntrykk, lys, koffein og kveldsrutine,
   forklart på norsk.
 image: /images/episoder/sovn-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen Lær noe nytt: Søvn – slik får du bedre søvn"
 links:
   youtube: https://youtu.be/XuqW2rS8oKU

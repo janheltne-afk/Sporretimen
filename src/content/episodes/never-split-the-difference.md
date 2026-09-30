@@ -42,6 +42,8 @@ book:
   author: "Chris Voss og Tahl Raz"
   year: 2016
 image: /images/episoder/never-split-the-difference.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Forhandling – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   En tidligere gisselforhandler i FBI om hvorfor man aldri bør møtes på midten.

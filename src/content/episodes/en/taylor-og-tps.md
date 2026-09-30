@@ -41,6 +41,8 @@ takeaways:
   - Both systems measure work down to seconds. The difference is who holds the watch.
 coverTheme: "Taylor og Toyota"
 image: /images/episoder/taylor-og-tps.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Taylor og Toyota – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Scientific management and the Toyota Production System side by side: Taylor's

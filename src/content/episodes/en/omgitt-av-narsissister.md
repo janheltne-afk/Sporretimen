@@ -40,6 +40,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/omgitt-av-narsissister.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Narsissisme – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   A clinical concept that became an everyday word. A walk through the subject of

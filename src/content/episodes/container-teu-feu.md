@@ -39,6 +39,8 @@ takeaways:
   - Det verdifulle var aldri boksen, men at alle ble enige om målene.
 coverTheme: "Containeren"
 image: /images/episoder/container-teu-feu.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Containeren – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   TEU, FEU og containerstandardene forklart: hva måleenheten egentlig teller,

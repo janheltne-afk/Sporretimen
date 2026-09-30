@@ -40,6 +40,8 @@ takeaways:
   - MRP forutsetter fast ledetid og ubegrenset kapasitet. Begge deler er usant.
 coverTheme: "MRP"
 image: /images/episoder/mrp-produksjonsplanlegging.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: MRP – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   MRP forklart fra bunnen: hvorfor delebehov skal regnes og ikke gjettes, hva en

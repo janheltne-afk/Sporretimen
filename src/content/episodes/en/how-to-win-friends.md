@@ -38,6 +38,8 @@ book:
   author: "Dale Carnegie"
   year: 1936
 image: /images/episoder/how-to-win-friends.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Relasjoner – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   The best-selling book about people ever written, from 1936. A walk through the

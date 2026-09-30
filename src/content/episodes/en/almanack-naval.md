@@ -46,6 +46,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/almanack-naval.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Formue og frihet – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Investor Naval Ravikant's thinking on wealth, leverage and happiness, compiled

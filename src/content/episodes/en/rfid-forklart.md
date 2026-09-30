@@ -48,6 +48,8 @@ takeaways:
   - The hype around 2005 collapsed on tag price and read reliability, not on the idea.
 coverTheme: "RFID"
 image: /images/episoder/rfid-forklart.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: RFID – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   How can a chip with no battery be read several metres away? A walk through

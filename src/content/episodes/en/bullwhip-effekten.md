@@ -40,6 +40,8 @@ takeaways:
   - What dampens the effect is shared information, not better guessing at each tier.
 coverTheme: "Bullwhip-effekten"
 image: /images/episoder/bullwhip-effekten.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Bullwhip-effekten (The bullwhip effect) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Why a small change on a shop shelf becomes a large swing in the factory: the

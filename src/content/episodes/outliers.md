@@ -39,6 +39,8 @@ book:
   author: "Malcolm Gladwell"
   year: 2008
 image: /images/episoder/outliers.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Ekspertise – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hva skal til for å lykkes stort? Ikke det du tror, mener Malcolm Gladwell. En

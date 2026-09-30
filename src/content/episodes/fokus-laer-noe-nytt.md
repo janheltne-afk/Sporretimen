@@ -29,6 +29,8 @@ coverTheme: "Fokus"
 advisory:
   - helse
 image: /images/episoder/fokus-laer-noe-nytt.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Fokus – Lær noe nytt. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor er det blitt så vanskelig å konsentrere seg? En gjennomgang av to bøker

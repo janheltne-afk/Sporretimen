@@ -43,6 +43,8 @@ book:
   author: "Daniel Kahneman"
   year: 2011
 image: /images/episoder/thinking-fast-and-slow.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Tenkning og bias – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Nobel laureate Daniel Kahneman on the two ways the brain makes decisions, and

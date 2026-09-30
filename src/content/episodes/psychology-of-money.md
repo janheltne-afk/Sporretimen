@@ -46,6 +46,8 @@ book:
 advisory:
   - okonomi
 image: /images/episoder/psychology-of-money.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Penger og atferd – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Økonomi er ikke et regnestykke – det er atferd. En gjennomgang av ideene i

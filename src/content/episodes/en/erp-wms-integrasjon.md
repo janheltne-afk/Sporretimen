@@ -48,6 +48,8 @@ takeaways:
   - "The study has 22 questionnaire responses and four interviews. It shows tendencies, not figures that can be generalised."
 coverTheme: "ERP and WMS"
 image: /images/episoder/erp-wms-integrasjon.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: ERP og WMS – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Two systems that have to talk to each other, and a project that often does not

@@ -40,6 +40,8 @@ takeaways:
   - A route closed for some is more expensive for everyone.
 coverTheme: "Sjørutene"
 image: /images/episoder/sjoruter-suez-panama-arktis.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Sjørutene (Shipping routes) – Lær noe nytt (Learn something new). Host Jan Sindre Heltne in the studio."
 description: >-
   Suez, Panama and the Arctic routes explained: why a few narrow places decide

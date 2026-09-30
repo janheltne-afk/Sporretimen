@@ -40,6 +40,8 @@ book:
   author: "Simon Sinek"
   year: 2009
 image: /images/episoder/start-with-why.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen: Ledelse – Bøker forklart. Jan Sindre Heltne i studio."
 description: >-
   Hvorfor klarer noen mennesker og selskaper å inspirere, mens andre bare

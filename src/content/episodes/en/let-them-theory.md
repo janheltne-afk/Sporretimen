@@ -40,6 +40,8 @@ book:
 advisory:
   - helse
 image: /images/episoder/let-them-theory.jpg
+imageCredit:
+  source: egen
 imageAlt: "Spørretimen cover: Relasjoner – Bøker forklart (Books explained). Host Jan Sindre Heltne in the studio."
 description: >-
   Two words that became a bestseller. A walk through the ideas in Mel Robbins's
