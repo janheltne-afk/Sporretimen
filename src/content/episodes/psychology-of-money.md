@@ -153,6 +153,26 @@ Og den mest undervurderte gevinsten ved å ha penger er ikke ting. Det er
 kontroll over egen tid: å kunne si nei, bytte jobb, stå i en dårlig periode.
 Housel kaller frihet den høyeste utbetalingen penger gir.
 
+## Hva innvendingene går på
+
+Boken er essayistisk, og det er både styrken og svakheten. Poengene illustreres
+med fortellinger, ikke med undersøkelser, og fortellingene er valgt i etterkant
+fordi de passer poenget. Det gjør dem overbevisende å lese og vanskelige å
+etterprøve.
+
+Den mest brukte innvendingen er at påstandene er formet så de nesten ikke kan
+motbevises. «Flaks spiller en større rolle enn folk tror» er rimelig, men det
+finnes ingen utfall som ville talt imot det. Da blir det en måte å se verden på,
+ikke en påstand som kan testes.
+
+En annen er at perspektivet er amerikansk. Avkastningstall, skatteregler og
+pensjonssystem er hentet derfra, og flere av resonnementene forutsetter et
+marked og et regelverk som ikke er vårt.
+
+Og som i alt annet i denne sjangeren: rådet om å spare mer og vente lenger
+forutsetter at du har noe å spare av. Boken sier lite til den som ikke har
+slakk i økonomien, og det er en stor gruppe.
+
 ## Verdt å vite
 
 Boken er kort, essayistisk og lettlest – nitten korte kapitler som kan leses

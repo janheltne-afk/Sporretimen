@@ -51,6 +51,8 @@ description: >-
   half hours, daily rest, weekly rest – and what the Mobility Package changed.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Norwegian Public Roads Administration – Regulations for driving time and rest periods"
     url: https://www.vegvesen.no/en/vehicles/professional-transport/driving-time-and-rest-periods/regulations-for-driving-time-and-rest-periods/

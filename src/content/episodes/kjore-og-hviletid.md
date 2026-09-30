@@ -51,6 +51,8 @@ description: >-
   døgnhvil, ukehvil – og hva mobilitetspakken endret.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Statens vegvesen – Regelverk for kjøre- og hviletid"
     url: https://www.vegvesen.no/en/vehicles/professional-transport/driving-time-and-rest-periods/regulations-for-driving-time-and-rest-periods/

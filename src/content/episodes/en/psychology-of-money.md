@@ -153,6 +153,26 @@ And the most underrated gain from having money is not things. It is control
 over your own time: being able to say no, change jobs, ride out a bad stretch.
 Housel calls freedom the highest dividend money pays.
 
+## What the objections are
+
+The book is essayistic, and that is both its strength and its weakness. The
+points are illustrated with stories rather than studies, and the stories are
+picked afterwards because they fit the point. That makes them persuasive to
+read and hard to check.
+
+The most common objection is that the claims are shaped so that almost nothing
+could disprove them. "Luck matters more than people think" is reasonable, but
+no outcome would count against it. That makes it a way of seeing the world
+rather than a claim you can test.
+
+Another is that the perspective is American. Return figures, tax rules and the
+pension system come from there, and several of the arguments assume a market
+and a regulatory setting that is not ours.
+
+And as with everything in this genre: the advice to save more and wait longer
+assumes you have something to save. The book says little to a reader with no
+slack in their finances, and that is a large group.
+
 ## Worth knowing
 
 The book is short, essayistic and easy to read – nineteen brief chapters that

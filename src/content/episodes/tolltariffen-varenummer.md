@@ -48,6 +48,8 @@ description: >-
   vanskelig – og hva koden faktisk avgjør.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Tolletaten – Tolltariffen og klassifisering"
     url: https://www.toll.no/no/bedrift/tolltariffen-og-klassifisering

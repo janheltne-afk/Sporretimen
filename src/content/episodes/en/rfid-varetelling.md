@@ -69,11 +69,13 @@ Molde University College. The subject was RFID, but the question was narrower
 than that: could the technology do anything about the annual stock count in a
 large warehouse?
 
-The focus company was **ConocoPhillips**, and the warehouse was the supply base
-at Tananger outside Stavanger, which serves the Ekofisk and Eldfisk fields. I
-had taken my vocational certificate in logistics there before university, and
-knew the warehouse from the inside – which is both the strength and the weakness
-of a thesis like that. Our supervisor was Bjørn Jæger.
+The focus company was an international oil company, and the warehouse was a
+large supply base on the west coast of Norway. The company is anonymised here,
+as it is in the master's thesis episode – the figures come from the thesis, but
+naming anyone is not needed to understand them. I had taken my vocational
+certificate in logistics there before university, and knew the warehouse from
+the inside – which is both the strength and the weakness of a thesis like that.
+Our supervisor was Bjørn Jæger.
 
 This episode is the walk-through of what we actually found. If you want the
 technology explained from the ground up, that is [its own
@@ -85,7 +87,7 @@ warehouse, one specific problem, and what happened when somebody tried.
 The numbers are half the answer to why this is hard.
 
 <figure class="fig fig--matrix">
-  <p class="fig__title">The Tananger supply base, as it was in 2020</p>
+  <p class="fig__title">The supply base, as it was in 2020</p>
   <table>
     <thead>
       <tr><th scope="col">Measure</th><th scope="col">Figure</th></tr>

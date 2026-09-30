@@ -68,10 +68,12 @@ Våren 2020 skrev jeg bacheloroppgave sammen med **Stian Lunde** ved Høgskolen 
 Molde. Temaet var RFID, men problemstillingen var smalere enn det: kunne
 teknologien gjøre noe med den årlige varetellingen på et stort lager?
 
-Fokusbedriften var **ConocoPhillips**, og lageret var forsyningsbasen i Tananger
-utenfor Stavanger, som leverer til Ekofisk og Eldfisk. Jeg hadde tatt fagbrev i
-logistikk der før studiet, og kjente lageret fra innsiden – som er både styrken
-og svakheten ved en slik oppgave. Veileder var Bjørn Jæger.
+Fokusbedriften var et internasjonalt oljeselskap, og lageret var en stor
+forsyningsbase på Vestlandet. Bedriften er anonymisert her, slik den er det i
+masteroppgave-episoden – tallene er hentet fra oppgaven, men det er ikke
+nødvendig å navngi noen for å forstå dem. Jeg hadde tatt fagbrev i logistikk
+der før studiet, og kjente lageret fra innsiden – som er både styrken og
+svakheten ved en slik oppgave. Veileder var Bjørn Jæger.
 
 Denne episoden er gjennomgangen av hva vi faktisk fant. Skal du ha teknologien
 forklart fra grunnen av, ligger det i [egen
@@ -83,7 +85,7 @@ konkret problem, og hva som skjedde da noen prøvde.
 Tallene er halve svaret på hvorfor dette er vanskelig.
 
 <figure class="fig fig--matrix">
-  <p class="fig__title">Forsyningsbasen i Tananger, slik den var i 2020</p>
+  <p class="fig__title">Forsyningsbasen, slik den var i 2020</p>
   <table>
     <thead>
       <tr><th scope="col">Størrelse</th><th scope="col">Tall</th></tr>

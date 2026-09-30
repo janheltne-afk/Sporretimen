@@ -291,33 +291,38 @@ Tre forhold henger sammen her:
 informanter og alt som kunne identifisere deltakerne er anonymisert.» De to
 episodene behandler altså samme type materiale ulikt.
 
-**Krever din beslutning.** Alternativene er å legge inn arkivlenken om oppgaven
-er åpent publisert, å anonymisere bedriften slik masteroppgaven er
-anonymisert, eller å bekrefte med medforfatter og bedrift at bruken er i orden.
+**Rettet, og reversibelt.** Bedrift og sted er anonymisert, slik
+masteroppgave-episoden allerede var. Tallene står igjen, og oppgaven er
+fortsatt sitert med tittel, begge forfattere, emnekode og institusjon.
+Ligger oppgaven åpent i institusjonsarkivet, kan navnet settes tilbake – det er
+én endring, i ett avsnitt, i to filer. Spørsmålet om medforfatterens samtykke
+til at fellesarbeidet blir episode, står fortsatt til deg.
 
-## 🟠 R2 – Tolv av 21 bokforklaringer mangler motvekt
+## 🟠 R2 – Én bokforklaring manglet motvekt *(rettet fra tolv)*
 
-Forrige gjennomgang rettet dette for Atomic Habits (H2) og beskrev mønsteret:
-en gjennomgang av bokens ideer uten innvendinger fungerer som en erstatning
-framfor en omtale. Etter hvert som resten av bokserien ble utvidet, har
-mønsteret gjentatt seg.
+**Første telling var feil, og feilen var min.** Jeg søkte etter et kort sett
+overskrifter og konkluderte med at tolv av 21 bokepisoder manglet motvekt. En
+gjennomlesing av de faktiske overskriftene viser at ti av dem hadde det hele
+tiden, under formuleringer søket ikke fanget: «Hva som ikke har stått seg»
+(*Thinking, Fast and Slow*), «Hva kritikken går ut på» (*Rich Dad Poor Dad*),
+«Hva som er tvilsomt» (*Start with Why*), «Hva som ikke har tålt hundre år»
+(*Richest Man in Babylon*), «Hva som er utdatert» (*The Intelligent Investor*),
+«Hvorfor ordet brukes for lett» (Erikson-bøkene), «Hvorfor kroppsspråk ikke
+virker» (*Omgitt av løgnere*), «Hva det ikke skal brukes på» (*Let Them*).
+*Almanack of Naval Ravikant* tar opp utvalgsskjevhet og flaks under «Verdt å
+merke seg».
 
-Uten en seksjon med kritikk, innvendinger eller «hva boka ikke svarer på»:
-`almanack-naval`, `intelligent-investor`, `let-them-theory`,
-`omgitt-av-darlige-sjefer`, `omgitt-av-lognere`, `omgitt-av-narsissister`,
-`omgitt-av-psykopater`, `psychology-of-money`, `rich-dad-poor-dad`,
-`richest-man-in-babylon`, `start-with-why`, `thinking-fast-and-slow`.
+Reelt manglende: **`psychology-of-money`**. Seksjonen «Verdt å vite» var
+beskrivende ros uten innvendinger.
 
-De lengste blant dem er `omgitt-av-darlige-sjefer` (1941 ord),
-`omgitt-av-psykopater` (1607) og `omgitt-av-narsissister` (1594).
+**Rettet.** Ny seksjon «Hva innvendingene går på» på begge språk, med fire
+innvendinger som er alminnelig framført mot boka: at den bygger på fortellinger
+valgt i etterkant framfor undersøkelser, at påstandene er formet så lite kan
+motbevise dem, at perspektivet er amerikansk, og at rådet om å spare mer
+forutsetter at man har noe å spare av.
 
-**Det som taler for:** ingen av de 21 episodene inneholder direkte sitater fra
-bøkene – ingen blockquotes, ingen lengre anførte passasjer. Alle har
-`book:`-metadata med henvisning til originalverket. Ideer er ikke vernet, bare
-uttrykk, og uttrykket er ditt eget.
-
-**Det som taler imot:** ni av episodene har motvekt, tolv har det ikke. Det er
-forskjellen mellom en omtale og et referat.
+Bekreftet på nytt: ingen av de 21 episodene inneholder direkte sitater fra
+bøkene, og alle har `book:`-metadata.
 
 ## 🟠 R3 – Tre episoder om regelverk mangler juridisk forbehold
 
@@ -327,8 +332,8 @@ der en feil har konsekvenser: en sjåfør som legger feil forståelse av
 døgnhvilereglene til grunn risikerer gebyr, og feil varenummer i tolltariffen
 har direkte økonomisk virkning.
 
-`incoterms-2020` har allerede `advisory: juss`, så presedensen finnes. Dette er
-en linje i frontmatter per fil.
+`incoterms-2020` har allerede `advisory: juss`, så presedensen fantes.
+**Rettet:** alle tre har nå `advisory: juss` på begge språk.
 
 De øvrige ni nye episodene er beskrivende og trenger etter min vurdering ikke
 forbehold.

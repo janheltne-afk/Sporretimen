@@ -48,6 +48,8 @@ description: >-
   requirement, the rules for buses – and why the arrangement exists.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Norwegian Public Roads Administration – International transport, cabotage and penalties"
     url: https://www.vegvesen.no/en/vehicles/professional-transport/international-transport-and-cabotage-by-road/international-transport-cabotage-and-penalties/

@@ -48,6 +48,8 @@ description: >-
   classification is hard – and what the code actually decides.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Norwegian Customs – The customs tariff and classification"
     url: https://www.toll.no/no/bedrift/tolltariffen-og-klassifisering

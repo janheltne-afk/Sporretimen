@@ -48,6 +48,8 @@ description: >-
   reglene for buss – og hvorfor ordningen finnes.
 featured: false
 popularityScore: 0
+advisory:
+  - juss
 sources:
   - title: "Statens vegvesen – Internasjonal transport, kabotasje og gebyr"
     url: https://www.vegvesen.no/en/vehicles/professional-transport/international-transport-and-cabotage-by-road/international-transport-cabotage-and-penalties/
