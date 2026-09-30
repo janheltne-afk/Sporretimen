@@ -51,6 +51,8 @@ description: >-
   behind it – from television competitions to royalties and booking your own
   concerts.
 image: /images/episoder/sturla-artist-business.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: Sturla – life as an artist and the business behind it"
 links:
   youtube: https://youtu.be/k9vAk4qQKr0

@@ -3,6 +3,8 @@ name: Håvard Hasund
 role: Paramedic
 intro: A paramedic with several years in the Oslo ambulance service, now working in Volda. He also has expedition experience from the Canada trip.
 image: /images/gjester/havard-hasund.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Håvard Hasund outdoors with climbing rope, mountains and blue sky behind him"
 cover: /images/omslag/havard-hasund.jpg
 themes:

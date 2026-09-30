@@ -51,6 +51,8 @@ description: >-
   samtale om utdanningen, praksisen, året på AMK og de store forskjellene mellom
   by og bygd.
 image: /images/episoder/paramedisin.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: Paramedisin – livet når det gjelder. Ambulanse med blålys i bygate"
 links:
   youtube: https://youtu.be/6SAdTqwGiWU

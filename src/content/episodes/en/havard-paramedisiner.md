@@ -51,6 +51,8 @@ description: >-
   conversation about the training, the placements, the year on dispatch and the
   large differences between city and countryside.
 image: /images/episoder/paramedisin.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: paramedicine – an ambulance with blue lights on a city street"
 links:
   youtube: https://youtu.be/6SAdTqwGiWU

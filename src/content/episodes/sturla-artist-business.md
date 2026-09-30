@@ -50,6 +50,8 @@ description: >-
   platekontrakt med Sony. En samtale om livet som artist og businessen bak – fra
   TV-konkurranser til Tono, Gramo og booking av egne konserter.
 image: /images/episoder/sturla-artist-business.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: Sturla – livet som artist og businessen bak. Med logoer fra MGP, The Voice, Idol og X Factor"
 links:
   youtube: https://youtu.be/k9vAk4qQKr0

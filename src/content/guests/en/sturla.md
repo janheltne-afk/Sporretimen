@@ -7,6 +7,8 @@ intro: >-
   deal with Sony Music Norway and the Norwegian Eurovision selection. Today he
   works shifts at a smelting plant alongside the music.
 image: /images/gjester/sturla.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Sturla singing and playing guitar on an intimate stage"
 cover: /images/omslag/sturla.jpg
 themes:

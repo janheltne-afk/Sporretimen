@@ -16,6 +16,8 @@ status: planlagt
 featured: true
 order: 10
 image: /images/gjester/john-erik.jpg
+imageCredit:
+  source: gjest
 imageAlt: John Erik in a white coat with a stethoscope in a doctor's office
 cover: /images/omslag/john-erik.jpg
 ---

@@ -51,6 +51,8 @@ description: >-
   conversation about the planning, the safety, the bear encounters and what
   actually happened out there.
 image: /images/episoder/kanada-ekspedisjon.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: the Canada expedition – mountains, a lake and a Canadian flag"
 links:
   youtube: https://youtu.be/1okHu9l2DO0

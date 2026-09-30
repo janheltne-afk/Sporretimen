@@ -41,6 +41,8 @@ description: >-
   Hvordan er det å være lege? John Erik forteller om medisinstudiet i Polen,
   fastlegehverdagen, pasientmøter, ansvar og råd til kommende leger.
 image: /images/episoder/lege-episoden.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: Hvordan er det egentlig å være lege? – med fastlege John Erik"
 links:
   youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk

@@ -16,6 +16,8 @@ status: planlagt
 featured: true
 order: 10
 image: /images/gjester/john-erik.jpg
+imageCredit:
+  source: gjest
 imageAlt: John Erik i hvit legefrakk med stetoskop på et legekontor
 cover: /images/omslag/john-erik.jpg
 ---

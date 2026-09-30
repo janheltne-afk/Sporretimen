@@ -42,6 +42,8 @@ description: >-
   Poland, everyday life as a GP, meeting patients, responsibility, and advice for
   future doctors.
 image: /images/episoder/lege-episoden.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: what is it really like to be a doctor? – with GP John Erik"
 links:
   youtube: https://www.youtube.com/watch?v=cZdjqJFOmwk

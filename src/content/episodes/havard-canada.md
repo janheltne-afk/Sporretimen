@@ -50,6 +50,8 @@ description: >-
   Håvard Hasund padlet 1500 kilometer gjennom Nord-Canada på 47 dager. En samtale
   om planleggingen, sikkerheten, bjørnemøtene og hva som faktisk skjedde der ute.
 image: /images/episoder/kanada-ekspedisjon.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Spørretimen: Kanada-ekspedisjon – fjell, innsjø og kanadisk flagg"
 links:
   youtube: https://youtu.be/1okHu9l2DO0

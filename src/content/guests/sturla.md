@@ -6,6 +6,8 @@ intro: >-
   over et tiår i bransjen – The Voice, band, platekontrakt med Sony Music Norway og
   Melodi Grand Prix. I dag skiftarbeider på smelteverk ved siden av artistlivet.
 image: /images/gjester/sturla.jpg
+imageCredit:
+  source: gjest
 imageAlt: "Sturla synger og spiller gitar på en intim scene"
 cover: /images/omslag/sturla.jpg
 themes:

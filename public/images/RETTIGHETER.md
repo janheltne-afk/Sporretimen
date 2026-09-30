@@ -34,27 +34,32 @@ Er `credit` satt, vises «Foto: …» under bildet automatisk.
 
 ## Registeret
 
-**Status: delvis utfylt.** Jan Sindre har godkjent alt som viser ham selv –
-vertportrettet og alle forsidene som er satt sammen av det. Gjestebildene og
-plassholderen står fortsatt åpne, og skal ikke gjettes. Kjør
-`npm run sjekk-innhold` for å se hva som mangler registrering i frontmatter.
+**Status: utfylt, med ett unntak.** Jan Sindre har godkjent alt som viser ham
+selv, og alle gjestene har godkjent bruken av sine egne bilder. Det eneste som
+står igjen uavklart er plassholderen. Kjør `npm run sjekk-innhold` for å se hva
+som mangler registrering i frontmatter.
+
+Kreditering for kategorien `gjest` er «etter avtale». Ingen av bildene har en
+`credit`-linje i dag, fordi det ikke er avklart hvem som har tatt dem eller om
+noen ønsker å bli navngitt. Skal det stå «Foto: …» under et bilde, settes
+`credit` på den aktuelle fila.
 
 | Fil | Brukt av | Opphav | Kreditering |
 | --- | --- | --- | --- |
 | `jan-sindre-heltne.jpg` | Forsiden, profilsiden, delebilde | Eget portrett, godkjent av Jan Sindre | Ikke påkrevd |
-| `gjester/havard-hasund.jpg` | Gjestesiden | | |
-| `gjester/john-erik.jpg` | Gjestesiden | | |
-| `gjester/sturla.jpg` | Gjestesiden | | |
+| `gjester/havard-hasund.jpg` | Gjestesiden | Godkjent av gjesten | Etter avtale |
+| `gjester/john-erik.jpg` | Gjestesiden | Godkjent av gjesten | Etter avtale |
+| `gjester/sturla.jpg` | Gjestesiden | Godkjent av gjesten | Etter avtale |
 | `gjester/odin-aadland.jpg` | Gjestesiden | Levert av gjesten | Ikke påkrevd |
-| `omslag/havard-hasund.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
-| `omslag/john-erik.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
-| `omslag/sturla.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | |
+| `omslag/havard-hasund.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Etter avtale |
+| `omslag/john-erik.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Etter avtale |
+| `omslag/sturla.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Etter avtale |
 | `omslag/odin-aadland.jpg` | Episodeomslag | Utledet av gjestebildet over, `scripts/lag-omslag.py` | Ikke påkrevd |
 | `episoder/odin-hartransplantasjon.jpg` | Episodeomslag og delebilde | Eget opptak, Spørretimen | Ikke påkrevd |
-| `episoder/kanada-ekspedisjon.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
-| `episoder/lege-episoden.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
-| `episoder/paramedisin.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
-| `episoder/sturla-artist-business.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Ikke påkrevd |
+| `episoder/kanada-ekspedisjon.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Etter avtale |
+| `episoder/lege-episoden.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Etter avtale |
+| `episoder/paramedisin.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Etter avtale |
+| `episoder/sturla-artist-business.jpg` | Episodeforside og delebilde | Satt sammen av vertportrettet og gjestebildet, `scripts/lag-forsidebilde.py` | Etter avtale |
 | `episoder/`-forsider uten gjest (49 filer) | Episodeforside og delebilde | Satt sammen av vertportrettet alene, `scripts/lag-forsidebilde.py --solo` | Ikke påkrevd |
 | `episoder/sovn-laer-noe-nytt.jpg` | Episodeforside og delebilde | Eldre forside i annen stil, viser verten | Ikke påkrevd |
 | `episoder/sovn-kort-forklart.jpg` | Ubrukt | Eldre forside i annen stil, viser verten | Ikke påkrevd |
