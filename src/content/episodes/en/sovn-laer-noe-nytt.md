@@ -125,6 +125,30 @@ by then – it means half of it is still there.
 
 ## The day that hangs together
 
+Light is the strongest single factor you control yourself, and it works in both
+directions: plenty of light early helps, plenty of light late hurts.
+
+<figure class="fig fig--chart">
+  <p class="fig__title">Melatonin through the evening</p>
+  <svg class="fig__plot" viewBox="0 0 520 190" role="img" aria-label="Two curves across the evening. The solid one rises steeply from around nine in the evening and is high by midnight. The faint one, showing an evening spent in bright light, rises far later and reaches barely half as high.">
+    <line class="fig__axisline" x1="50" y1="160" x2="490" y2="160" />
+    <line class="fig__grid" x1="343.3" y1="25" x2="343.3" y2="160" />
+    <polyline class="fig__line" points="50.0,159.8 123.3,158.7 196.7,151.0 270.0,113.9 343.3,55.7 416.7,34.2 490.0,30.6" />
+    <polyline class="fig__line fig__line--muted" points="50.0,160.0 123.3,159.8 196.7,158.4 270.0,149.8 343.3,124.4 416.7,106.2 490.0,102.2" />
+    <text class="fig__label" x="50" y="178">15</text>
+    <text class="fig__label" x="196.7" y="178" text-anchor="middle">19</text>
+    <text class="fig__label" x="343.3" y="178" text-anchor="middle">23</text>
+    <text class="fig__label" x="490" y="178" text-anchor="end">03</text>
+    <text class="fig__label fig__label--strong" x="360" y="48">Dim light</text>
+    <text class="fig__label" x="360" y="120">Bright light in the evening</text>
+  </svg>
+  <figcaption>Melatonin is not a sedative – it is a signal that night has begun. Bright light through the evening dampens that signal and pushes it later, and sleepiness then arrives later than it otherwise would. The curves show the shape of what happens, not figures that apply to everyone: the timing varies with your own body clock, and the size of the effect varies with how much light actually reaches your eyes.</figcaption>
+</figure>
+
+It is also why indoor light and daylight are not the same thing. Outdoors is
+many times brighter than indoors even on a grey day, and that difference is what
+the body responds to – not whether a lamp feels bright.
+
 <figure class="fig fig--cycle">
   <p class="fig__title">Four links, in order</p>
   <ol>
@@ -135,6 +159,11 @@ by then – it means half of it is still there.
   </ol>
   <p class="fig__loop">↻ And then it begins again the next morning</p>
   <figcaption>The links act on one another: get up at a fixed time and the morning light is easier to reach, and then the evening falls into place by itself. When one link goes, it is usually the first that has slipped.</figcaption>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Your resting pulse in the hour before bed tells you whether the body has actually wound down.</p>
+  <p class="fig__example"><b>What keeps it up:</b> hard training late, a large meal, alcohol, nicotine, caffeine, stress and a room that is too warm. If your pulse is noticeably above what is normal for you as you go to bed, the body is still working – and you will sleep worse even though you feel tired. This is one of the few things you can measure yourself, with a watch or a ring, instead of guessing.</p>
 </figure>
 
 <figure class="fig fig--rule">

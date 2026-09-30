@@ -75,6 +75,22 @@ images do not.
 
 ## PAO – packing three cards into one image
 
+Before PAO makes sense, you need a way to get from "queen of spades" to a
+particular person. This is where most people stop, and it is simpler than it
+looks: you let the two pieces of information on the card decide one thing each.
+
+<figure class="fig fig--matrix">
+  <p class="fig__title">From card to person</p>
+  <table>
+    <thead><tr><th scope="col">What the card says</th><th scope="col">What it decides</th><th scope="col">Why it sticks</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">The rank</th><td>The first letter of the name</td><td>A number can be tied to a letter it resembles or rhymes with – an 8 looks like a B, a 7 looks like an L.</td></tr>
+      <tr><th scope="row">The suit</th><td>What kind of person it is</td><td>Four suits give four categories: young or grown, woman or man. You avoid inventing fifty-two people from scratch.</td></tr>
+    </tbody>
+  </table>
+  <figcaption>Two pieces of information that are hard to hold separately become one person who is easy to picture. The link between number and letter is one you make yourself, and it does not need to be logical to anyone else – it works because you made it, not because it is correct.</figcaption>
+</figure>
+
 To manage a whole deck, 52 separate images is a lot of places to fill. PAO solves that
 by giving each card three roles, and then combining three cards into a single scene.
 
@@ -94,6 +110,11 @@ by giving each card three roles, and then combining three cards into a single sc
 <figure class="fig fig--rule">
   <p class="fig__claim">The point is not the deck of cards. It is that the same trick works on everything else.</p>
   <p class="fig__example"><b>The same method, other uses:</b> names you want to remember in a meeting, the points of a presentation you would rather not read off the page, course material for an exam, the shopping list. The deck is simply the hardest exercise – and therefore the one that shows most clearly that the system works.</p>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">If you need room for more, you make the route longer – you do not change method.</p>
+  <p class="fig__example"><b>How it scales:</b> one deck with PAO needs seventeen stops. To take two decks, you add seventeen new places to the same route – out of the door and on down the street, for instance. The order holds because the route holds. It is also why it pays to pick a place with many distinct rooms: a school you attended beats a small flat, simply because it has more places.</p>
 </figure>
 
 *The content is practical knowledge you can practise yourself. Sources and further

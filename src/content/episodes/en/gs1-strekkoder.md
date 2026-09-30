@@ -95,6 +95,17 @@ standards organisation with national member organisations, GS1 Norway among
 them. The American UPC came first, the European EAN followed in 1977, and the
 two organisations became GS1 in 2005.
 
+<figure class="fig fig--scale">
+  <p class="fig__title">From patent to global standard</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:6%"><b>1952</b><small>The patent</small></div>
+    <div class="fig__mark" style="left:40%"><b>1974</b><small>First scan in a shop</small></div>
+    <div class="fig__mark" style="left:88%"><b>2005</b><small>GS1 is formed</small></div>
+  </div>
+  <p class="fig__ends"><span>An idea</span><span>An agreement the world uses</span></p>
+  <figcaption>More than twenty years passed between the patent and the first scan. What was missing was not the technology – that existed – but agreement on what the numbers should mean. American UPC came first, European EAN followed in 1977, and the two were merged into GS1 in 2005.</figcaption>
+</figure>
+
 ## How the number is built up
 
 The central concept is the **GTIN** – Global Trade Item Number. That is the
@@ -111,6 +122,31 @@ number. The barcode is only one of several ways to carry it.
   <figcaption>Note how the lengths of the company prefix and the item reference vary inversely: a short company prefix leaves room for many items, a long one for few. That is why you cannot read out of the code where one ends and the other begins – only whoever allocated the prefix knows.</figcaption>
 </figure>
 
+<figure class="fig fig--compare">
+  <p class="fig__title">The same thirteen digits, cut two ways</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Many products</p>
+      <h4>Short company prefix</h4>
+      <ul>
+        <li>Fewer digits go to identifying the company</li>
+        <li>More digits are left for item references</li>
+        <li>Room for tens of thousands of products</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Few products</p>
+      <h4>Long company prefix</h4>
+      <ul>
+        <li>More digits go to the company</li>
+        <li>Fewer digits are left for item references</li>
+        <li>Room for a few hundred products</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>Thirteen digits are always thirteen. What moves is the boundary between the company and the item – and that boundary is not visible in the code. This is why you cannot tell from a GTIN where the company prefix ends without looking it up with GS1.</figcaption>
+</figure>
+
 ## The check digit
 
 You can work this out yourself, and it is worth being able to: it exposes a
@@ -123,6 +159,11 @@ mistyped code in seconds.
 
 The same rule applies to all the GS1 keys, whatever their length – you always
 start with weight 3 on the rightmost digit of the body, and alternate inwards.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Try the rule on a real product, and you will see that it holds.</p>
+  <p class="fig__example"><b>7038010068980</b> is an ordinary grocery code. The body is <b>703801006898</b>, and from the right that gives 8×3 + 9×1 + 8×3 + 6×1 + 0×3 + 0×1 + 1×3 + 0×1 + 8×3 + 3×1 + 0×3 + 7×1 = 24+9+24+6+0+0+3+0+24+3+0+7 = <b>100</b>. Here the sum lands on a multiple of ten by itself, so the check digit is <b>0</b> – which is exactly what sits at the end of the code.</p>
+</figure>
 
 ## The country myth
 

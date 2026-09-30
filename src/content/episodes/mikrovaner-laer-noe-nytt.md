@@ -115,6 +115,24 @@ Tallet er blitt bokas varemerke, og det er verdt å se hva det faktisk sier.
   <figcaption>Dette er regnestykket 1,01 opphøyd i 365 mot 0,99 opphøyd i 365 – et bilde på hvordan små forskjeller samler seg, ikke en måling av noe. Det mest nyttige ved kurven er formen: den første tredelen ser nesten flat ut. Det er der folk gir opp, fordi det ennå ikke vises noe.</figcaption>
 </figure>
 
+Det forklarer også hvorfor motivasjon er et dårlig fundament å bygge på. Den
+kommer og går av grunner du ikke styrer – søvn, vær, hvordan dagen har vært – og
+en vane som bare skjer når du er motivert, skjer omtrent halvparten av dagene.
+
+<figure class="fig fig--chart">
+  <p class="fig__title">To uker, to linjer</p>
+  <svg class="fig__plot" viewBox="0 0 520 190" role="img" aria-label="En bølgende kurve som svinger kraftig opp og ned gjennom to uker, og en rett vannrett linje som ligger jevnt på omtrent middels høyde hele veien.">
+    <line class="fig__axisline" x1="50" y1="160" x2="490" y2="160" />
+    <polyline class="fig__line fig__line--muted" points="50.0,92.4 81.4,45.8 112.9,48.5 144.3,56.6 175.7,66.2 207.1,115.0 238.6,152.6 270.0,134.2 301.4,111.4 332.9,95.5 364.3,51.7 395.7,32.6 427.1,62.5 458.6,95.4 490.0,110.6" />
+    <polyline class="fig__line" points="50,88.5 490,88.5" />
+    <text class="fig__label" x="50" y="178">Dag 1</text>
+    <text class="fig__label" x="490" y="178" text-anchor="end">Dag 14</text>
+    <text class="fig__label fig__label--strong" x="484" y="84" text-anchor="end">Et fast tidspunkt</text>
+    <text class="fig__label" x="200" y="168" text-anchor="middle">Motivasjonen</text>
+  </svg>
+  <figcaption>Den bølgende linjen er ikke et mål på noe – den er en illustrasjon av et mønster de fleste kjenner igjen. Poenget er hva som skjer i bunnpunktene: det er der en vane som hviler på motivasjon, faller bort. Et fast tidspunkt bryr seg ikke om hvor kurven ligger den dagen, og det er hele grunnen til at det virker bedre.</figcaption>
+</figure>
+
 <figure class="fig fig--rule">
   <p class="fig__claim">Det er greit å bomme én gang. Bom aldri to.</p>
   <p class="fig__example"><b>Hvorfor regelen er formet slik:</b> Det er ikke den tapte dagen som velter en vane – det er dagen etter, når «jeg har allerede brutt rekka» blir til begrunnelsen for å la være igjen. Regelen flytter oppmerksomheten bort fra det som gikk galt og over til det ene valget som faktisk avgjør.</p>

@@ -75,6 +75,22 @@ det ikke.
 
 ## PAO – å pakke tre kort i ett bilde
 
+Før PAO gir mening, trenger du en måte å komme fra «spar dame» til en bestemt
+person på. Det er her de fleste stopper, og det er enklere enn det ser ut: du
+lar de to opplysningene i kortet bestemme hver sin ting.
+
+<figure class="fig fig--matrix">
+  <p class="fig__title">Fra kort til person</p>
+  <table>
+    <thead><tr><th scope="col">Det kortet sier</th><th scope="col">Hva det bestemmer</th><th scope="col">Hvorfor det fester seg</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Verdien</th><td>Forbokstaven i navnet</td><td>Tallet kan knyttes til en bokstav det ligner på eller rimer med – en 8 ligner en B, en 7 ligner en L.</td></tr>
+      <tr><th scope="row">Sorten</th><td>Hva slags person det er</td><td>Fire sorter gir fire kategorier: ung eller voksen, kvinne eller mann. Du slipper å finne på femtito personer fra bunnen av.</td></tr>
+    </tbody>
+  </table>
+  <figcaption>To opplysninger som hver for seg er vanskelige å huske, blir til én person som er lett å se for seg. Koblingen mellom tall og bokstav må du lage selv, og den trenger ikke å være logisk for andre enn deg – den virker fordi du har laget den, ikke fordi den er riktig.</figcaption>
+</figure>
+
 Skal du klare en hel kortstokk, blir 52 enkeltbilder mange steder å fylle. PAO løser det
 ved å gi hvert kort tre roller, og så sette sammen tre kort til én scene.
 
@@ -94,6 +110,11 @@ ved å gi hvert kort tre roller, og så sette sammen tre kort til én scene.
 <figure class="fig fig--rule">
   <p class="fig__claim">Poenget er ikke kortstokken. Det er at samme triks virker på alt annet.</p>
   <p class="fig__example"><b>Samme metode, andre bruksområder:</b> navn du vil huske på et møte, punktene i en presentasjon du ikke vil lese opp fra arket, fagstoff til en eksamen, handlelista. Kortstokken er bare den vanskeligste øvelsen – og derfor den som viser tydeligst at systemet virker.</p>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Trenger du plass til mer, gjør du ruta lengre – du bytter ikke metode.</p>
+  <p class="fig__example"><b>Hvordan det skalerer:</b> én kortstokk med PAO trenger sytten stoppesteder. Skal du ta to stokker, legger du sytten nye steder til den samme ruta – for eksempel ut døra og videre nedover gata. Rekkefølgen holder seg fordi ruta holder seg. Det er også derfor det lønner seg å velge et sted med mange tydelige rom: en skole du gikk på slår en liten leilighet, rett og slett fordi den har flere plasser.</p>
 </figure>
 
 *Innholdet er praktisk kunnskap du kan øve på selv. Kilder og videre lesing oppgis

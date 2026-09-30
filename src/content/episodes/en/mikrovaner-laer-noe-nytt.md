@@ -117,6 +117,24 @@ says.
   <figcaption>This is the sum 1.01 to the power of 365 against 0.99 to the power of 365 – a picture of how small differences accumulate, not a measurement of anything. The most useful thing about the curve is its shape: the first third looks almost flat. That is where people give up, because nothing is showing yet.</figcaption>
 </figure>
 
+It also explains why motivation is a poor foundation to build on. It comes and
+goes for reasons you do not control – sleep, weather, how the day has been – and
+a habit that only happens when you feel motivated happens about half the time.
+
+<figure class="fig fig--chart">
+  <p class="fig__title">Two weeks, two lines</p>
+  <svg class="fig__plot" viewBox="0 0 520 190" role="img" aria-label="A wavy curve swinging sharply up and down across two weeks, and a straight horizontal line sitting steadily at about mid height throughout.">
+    <line class="fig__axisline" x1="50" y1="160" x2="490" y2="160" />
+    <polyline class="fig__line fig__line--muted" points="50.0,92.4 81.4,45.8 112.9,48.5 144.3,56.6 175.7,66.2 207.1,115.0 238.6,152.6 270.0,134.2 301.4,111.4 332.9,95.5 364.3,51.7 395.7,32.6 427.1,62.5 458.6,95.4 490.0,110.6" />
+    <polyline class="fig__line" points="50,88.5 490,88.5" />
+    <text class="fig__label" x="50" y="178">Day 1</text>
+    <text class="fig__label" x="490" y="178" text-anchor="end">Day 14</text>
+    <text class="fig__label fig__label--strong" x="484" y="84" text-anchor="end">A fixed time of day</text>
+    <text class="fig__label" x="200" y="168" text-anchor="middle">Motivation</text>
+  </svg>
+  <figcaption>The wavy line is not a measurement of anything – it is an illustration of a pattern most people recognise. What matters is what happens at the low points: that is where a habit resting on motivation falls away. A fixed time of day does not care where the curve sits that morning, and that is the whole reason it works better.</figcaption>
+</figure>
+
 <figure class="fig fig--rule">
   <p class="fig__claim">Missing once is fine. Never miss twice.</p>
   <p class="fig__example"><b>Why the rule is shaped this way:</b> it is not the lost day that topples a habit – it is the day after, when “I have already broken the run” becomes the reason to skip again. The rule moves attention away from what went wrong and onto the one choice that actually decides it.</p>

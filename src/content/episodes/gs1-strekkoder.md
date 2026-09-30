@@ -93,6 +93,17 @@ ikke-kommersiell standardorganisasjon med nasjonale medlemsorganisasjoner,
 deriblant GS1 Norway. Amerikansk UPC kom først, europeisk EAN fulgte i 1977, og
 de to organisasjonene ble til GS1 i 2005.
 
+<figure class="fig fig--scale">
+  <p class="fig__title">Fra patent til global standard</p>
+  <div class="fig__axis">
+    <div class="fig__mark" style="left:6%"><b>1952</b><small>Patentet</small></div>
+    <div class="fig__mark" style="left:40%"><b>1974</b><small>Første skanning i butikk</small></div>
+    <div class="fig__mark" style="left:88%"><b>2005</b><small>GS1 blir til</small></div>
+  </div>
+  <p class="fig__ends"><span>En idé</span><span>En avtale hele verden bruker</span></p>
+  <figcaption>Over tjue år gikk mellom patentet og den første skanningen. Det som manglet, var ikke teknologien – den fantes – men enigheten om hva tallene skulle bety. Amerikanske UPC kom først, europeiske EAN fulgte i 1977, og de to ble slått sammen til GS1 i 2005.</figcaption>
+</figure>
+
 ## Hvordan tallet er bygget opp
 
 Det sentrale begrepet er **GTIN** – Global Trade Item Number. Det er tallet.
@@ -109,6 +120,31 @@ Strekkoden er bare én av flere måter å bære det på.
   <figcaption>Merk hvordan lengden på firmaprefikset og varenummeret varierer omvendt: et kort firmaprefiks gir plass til mange varer, et langt gir plass til få. Det er derfor du ikke kan lese ut av koden hvor det ene slutter og det andre begynner – bare den som tildelte prefikset, vet det.</figcaption>
 </figure>
 
+<figure class="fig fig--compare">
+  <p class="fig__title">Samme tretten siffer, to ulike snitt</p>
+  <div class="fig__cols">
+    <div class="fig__col">
+      <p class="fig__lead">Mange varer</p>
+      <h4>Kort firmaprefiks</h4>
+      <ul>
+        <li>Færre siffer går med til å identifisere selskapet</li>
+        <li>Flere siffer står igjen til varenumrene</li>
+        <li>Plass til titusenvis av varer</li>
+      </ul>
+    </div>
+    <div class="fig__col" data-accent>
+      <p class="fig__lead">Få varer</p>
+      <h4>Langt firmaprefiks</h4>
+      <ul>
+        <li>Flere siffer går med til selskapet</li>
+        <li>Færre siffer står igjen til varenumrene</li>
+        <li>Plass til noen hundre varer</li>
+      </ul>
+    </div>
+  </div>
+  <figcaption>De tretten sifrene er alltid tretten. Det som flytter seg, er grensen mellom selskapet og varen – og den grensen er ikke synlig i koden. Derfor kan du ikke se på et GTIN hvor firmaprefikset slutter uten å slå opp hos GS1.</figcaption>
+</figure>
+
 ## Kontrollsifferet
 
 Dette kan du regne ut selv, og det er verdt å kunne: det avslører en feiltastet
@@ -121,6 +157,11 @@ kode på noen sekunder.
 
 Samme regel gjelder for alle GS1-nøklene, uansett lengde – du begynner alltid
 med vekt 3 på sifferet lengst til høyre i kroppen, og veksler innover.
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Prøv regelen på en ekte vare, så ser du at den stemmer.</p>
+  <p class="fig__example"><b>7038010068980</b> er en helt vanlig dagligvarekode. Kroppen er <b>703801006898</b>, og fra høyre gir det 8×3 + 9×1 + 8×3 + 6×1 + 0×3 + 0×1 + 1×3 + 0×1 + 8×3 + 3×1 + 0×3 + 7×1 = 24+9+24+6+0+0+3+0+24+3+0+7 = <b>100</b>. Her går summen opp i ti av seg selv, og kontrollsifferet blir derfor <b>0</b> – som er akkurat det som står sist i koden.</p>
+</figure>
 
 ## Landmyten
 

@@ -123,6 +123,30 @@ over da – det betyr at halvparten fortsatt er igjen.
 
 ## Døgnet som henger sammen
 
+Lys er den sterkeste enkeltfaktoren du styrer selv, og den virker i begge
+retninger: mye lys tidlig hjelper, mye lys sent skader.
+
+<figure class="fig fig--chart">
+  <p class="fig__title">Melatonin utover kvelden</p>
+  <svg class="fig__plot" viewBox="0 0 520 190" role="img" aria-label="To kurver gjennom kvelden. Den heltrukne stiger bratt fra omkring klokka 21 og er høy ved midnatt. Den stiplede, som viser kvelden med sterkt lys, stiger langt senere og når bare knapt halvparten så høyt.">
+    <line class="fig__axisline" x1="50" y1="160" x2="490" y2="160" />
+    <line class="fig__grid" x1="343.3" y1="25" x2="343.3" y2="160" />
+    <polyline class="fig__line" points="50.0,159.8 123.3,158.7 196.7,151.0 270.0,113.9 343.3,55.7 416.7,34.2 490.0,30.6" />
+    <polyline class="fig__line fig__line--muted" points="50.0,160.0 123.3,159.8 196.7,158.4 270.0,149.8 343.3,124.4 416.7,106.2 490.0,102.2" />
+    <text class="fig__label" x="50" y="178">15</text>
+    <text class="fig__label" x="196.7" y="178" text-anchor="middle">19</text>
+    <text class="fig__label" x="343.3" y="178" text-anchor="middle">23</text>
+    <text class="fig__label" x="490" y="178" text-anchor="end">03</text>
+    <text class="fig__label fig__label--strong" x="360" y="48">Dempet lys</text>
+    <text class="fig__label" x="360" y="120">Sterkt lys om kvelden</text>
+  </svg>
+  <figcaption>Melatonin er ikke et sovemiddel – det er et signal om at natten har begynt. Sterkt lys utover kvelden demper signalet og skyver det senere, og da kommer søvnigheten senere enn den ellers ville gjort. Kurvene viser formen på det som skjer, ikke tall som gjelder alle: tidspunktet varierer med døgnrytmen din, og styrken varierer med hvor mye lys du faktisk får i øynene.</figcaption>
+</figure>
+
+Det er også grunnen til at innelys og dagslys ikke er samme sak. Ute er det
+mange ganger lysere enn inne selv på en grå dag, og det er den forskjellen
+kroppen reagerer på – ikke om lampen føles sterk.
+
 <figure class="fig fig--cycle">
   <p class="fig__title">Fire ledd, i rekkefølge</p>
   <ol>
@@ -133,6 +157,11 @@ over da – det betyr at halvparten fortsatt er igjen.
   </ol>
   <p class="fig__loop">↻ Og så begynner det på nytt neste morgen</p>
   <figcaption>Leddene virker på hverandre: står du opp til fast tid, blir morgenlyset lettere å få tak i, og da faller kvelden på plass av seg selv. Går ett ledd, er det som regel det første som har glippet.</figcaption>
+</figure>
+
+<figure class="fig fig--rule">
+  <p class="fig__claim">Hvilepulsen i timen før du legger deg forteller om kroppen faktisk har roet seg.</p>
+  <p class="fig__example"><b>Hva som holder den oppe:</b> hard trening sent, et stort måltid, alkohol, nikotin, koffein, stress og et for varmt rom. Ligger pulsen merkbart over det som er vanlig for deg når du legger deg, er kroppen fortsatt i arbeid – og da sovner du dårligere selv om du er trøtt. Dette er en av de få tingene du kan måle selv, med klokke eller ring, i stedet for å gjette.</p>
 </figure>
 
 <figure class="fig fig--rule">
