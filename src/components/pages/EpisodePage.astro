@@ -652,8 +652,24 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     grid-template-columns: minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3.5rem);
   }
+  /* Spalta er ikke låst – barna er det.
+     Før lå taket på selve spalta, og da arvet alt den samme bredden:
+     brødtekst, figurer og manus. Nå settes lesebredden på hvert element,
+     slik at det som tjener på mer plass, kan få det. */
   .episode__content {
-    max-width: 40rem;
+    max-width: none;
+  }
+  /* :global() er nødvendig her: avsnittene og figurene kommer fra
+     Markdown og har ikke Astros omfangsattributt, så en vanlig regel
+     ville ikke truffet dem. */
+  .episode__content > :global(*) {
+    max-width: 46rem;
+  }
+  /* Manuset er til å skumme og søke i, ikke til å lese i ett strekk.
+     Det får bruke sporet det står i, opp til en grense som holder
+     linjelengden innenfor det lesbare. */
+  .episode__content > :global(.manus-blokk) {
+    max-width: 54rem;
   }
   .episode__feedback > * {
     max-width: 44rem;
