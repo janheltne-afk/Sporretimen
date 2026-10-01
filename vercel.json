@@ -149,6 +149,26 @@
       "source": "/en/courses/",
       "destination": "/en/topics/",
       "permanent": false
+    },
+    {
+      "source": "/episoder/:slug/manus",
+      "destination": "/episoder/:slug/#manus",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/:slug/manus/",
+      "destination": "/episoder/:slug/#manus",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/:slug/transcript",
+      "destination": "/en/episodes/:slug/#transcript",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/:slug/transcript/",
+      "destination": "/en/episodes/:slug/#transcript",
+      "permanent": true
     }
   ]
 }

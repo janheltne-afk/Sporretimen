@@ -91,9 +91,20 @@ export function topicPath(lang: Locale, topicId: string, subtopicId?: string): s
   return subtopicId ? `${base}${subtopicId}/` : base;
 }
 
-/** Stien til manuset/transkripsjonen for en episode. */
+/**
+ * Stien til manuset/transkripsjonen for en episode.
+ *
+ * Teksten har ikke lenger en egen side – den står på episodesiden, under
+ * et anker med samme ord som den gamle adressen brukte. Alle som lenket
+ * til manuset, lenker dermed fortsatt til riktig sted på siden.
+ */
 export function transcriptPath(lang: Locale, slug: string): string {
-  return `${entryPath(lang, 'episodes', slug)}${transcriptSegment[lang]}/`;
+  return `${entryPath(lang, 'episodes', slug)}#${transcriptSegment[lang]}`;
+}
+
+/** Ankerets id på episodesiden. Samme ord som den gamle ruten brukte. */
+export function transcriptAnchor(lang: Locale): string {
+  return transcriptSegment[lang];
 }
 
 /**
