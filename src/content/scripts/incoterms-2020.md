@@ -8,6 +8,9 @@ description: "Manus til Lær noe nytt-episoden om Incoterms 2020: hva reglene fa
 updated: 2026-10-02
 advisory:
   - juss
+# Skjult inntil videre. Manuset er ferdig, men temaet skal avklares med
+# Christian, som underviser i det. Sett draft til false for å vise det igjen.
+draft: true
 ---
 
 *Dette er manuset, skrevet før innspilling. Teksten under er det som skal sies,
