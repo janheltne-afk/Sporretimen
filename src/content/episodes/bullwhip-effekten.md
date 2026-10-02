@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Bullwhip-effekten – hvorfor små svingninger i butikk blir store kriser i fabrikken"
+title: "Bullwhip-effekten – hvorfor små svingninger i butikk blir store kriser i fabrikken"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

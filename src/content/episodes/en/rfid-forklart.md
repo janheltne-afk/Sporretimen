@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: RFID – chips with no battery, read at a distance"
+title: "RFID – chips with no battery, read at a distance"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

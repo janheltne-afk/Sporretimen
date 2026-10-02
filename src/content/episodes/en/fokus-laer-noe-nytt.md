@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: focus – why it has become so hard"
+title: "Focus – why it has become so hard"
 format: laer-noe-nytt
 status: kommende
 topic: psykologi-og-beslutninger

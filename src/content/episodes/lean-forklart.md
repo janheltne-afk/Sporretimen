@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Lean – verdi, sløsing og systemet bak Toyota"
+title: "Lean – verdi, sløsing og systemet bak Toyota"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

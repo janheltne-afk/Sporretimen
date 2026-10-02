@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: how to sleep better"
+title: "How to sleep better – circadian rhythm, sleep pressure, light and caffeine"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-12T08:00:00+02:00

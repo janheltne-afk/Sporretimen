@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: EOQ – how much to order at once, and why the answer is flat"
+title: "EOQ – how much to order at once, and why the answer is flat"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

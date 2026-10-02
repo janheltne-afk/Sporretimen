@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: The assembly line – which began in the slaughterhouse, not the car factory"
+title: "The assembly line – which began in the slaughterhouse, not the car factory"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

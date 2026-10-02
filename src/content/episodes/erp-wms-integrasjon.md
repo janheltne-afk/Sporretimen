@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Hvorfor ERP- og WMS-integrasjoner feiler – masteroppgaven"
+title: "Hvorfor ERP- og WMS-integrasjoner feiler – masteroppgaven"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

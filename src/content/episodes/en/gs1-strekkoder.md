@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: GS1 – the barcode, the GTIN and the numbers behind every item"
+title: "GS1 – the barcode, the GTIN and the numbers behind every item"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-09-20T08:00:00+02:00

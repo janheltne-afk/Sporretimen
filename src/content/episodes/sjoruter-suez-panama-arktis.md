@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Suez, Panama og Nordøstpassasjen – rutene verdenshandelen går gjennom"
+title: "Suez, Panama og Nordøstpassasjen – rutene verdenshandelen går gjennom"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

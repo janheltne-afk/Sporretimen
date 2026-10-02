@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Percentages in your head – ten per cent, VAT and the common traps"
+title: "Percentages in your head – ten per cent, VAT and the common traps"
 format: laer-noe-nytt
 status: kommende
 topic: laering

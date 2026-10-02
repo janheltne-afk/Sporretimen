@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: TEU, FEU and the container – the dimensions that run world trade"
+title: "TEU, FEU and the container – the dimensions that run world trade"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

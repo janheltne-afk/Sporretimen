@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Å telle 160 000 varer – bacheloroppgaven om RFID"
+title: "Å telle 160 000 varer – bacheloroppgaven om RFID"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

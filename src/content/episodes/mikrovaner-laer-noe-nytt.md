@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Mikrovaner"
+title: "Mikrovaner – de fire reglene, 1 %-regelen og identiteten under vanen"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-18T18:41:00+02:00

@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Counting 160,000 items – the bachelor thesis on RFID"
+title: "Counting 160,000 items – the bachelor thesis on RFID"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

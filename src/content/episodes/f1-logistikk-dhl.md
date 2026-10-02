@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Formel 1-logistikk – hvordan et helt sirkus flyttes 24 ganger i året"
+title: "Formel 1-logistikk – hvordan et helt sirkus flyttes 24 ganger i året"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

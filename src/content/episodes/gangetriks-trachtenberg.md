@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Trachtenberg-systemet – hoderegning uten gangetabell"
+title: "Trachtenberg-systemet – hoderegning uten gangetabell"
 format: laer-noe-nytt
 status: kommende
 topic: laering

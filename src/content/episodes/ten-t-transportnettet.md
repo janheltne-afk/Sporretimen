@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: TEN-T – EUs transportnett, fristene og Norges plass i det"
+title: "TEN-T – EUs transportnett, fristene og Norges plass i det"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

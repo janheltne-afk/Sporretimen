@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: MRP – regnestykket som bestemmer hva fabrikken skal bestille, og når"
+title: "MRP – regnestykket som bestemmer hva fabrikken skal bestille, og når"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

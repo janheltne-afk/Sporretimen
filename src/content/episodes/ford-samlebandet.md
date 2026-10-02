@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Samlebåndet – som begynte i slakteriet, ikke i bilfabrikken"
+title: "Samlebåndet – som begynte i slakteriet, ikke i bilfabrikken"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

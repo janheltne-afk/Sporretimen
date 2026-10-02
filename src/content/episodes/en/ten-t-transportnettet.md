@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: TEN-T – the EU transport network, the deadlines, and Norway's place in it"
+title: "TEN-T – the EU transport network, the deadlines, and Norway's place in it"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

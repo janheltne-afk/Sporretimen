@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: RFID – brikker uten batteri, lest på avstand"
+title: "RFID – brikker uten batteri, lest på avstand"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

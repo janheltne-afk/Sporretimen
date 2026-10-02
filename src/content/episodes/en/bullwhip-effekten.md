@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: The bullwhip effect – why small ripples in a shop become crises in the factory"
+title: "The bullwhip effect – why small ripples in a shop become crises in the factory"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

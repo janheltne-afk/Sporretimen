@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Hvordan sove bedre"
+title: "Hvordan sove bedre – døgnrytme, søvntrykk, lys og koffein"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-12T08:00:00+02:00

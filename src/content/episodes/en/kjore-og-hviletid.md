@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Driver cards and rest periods – the rules that govern a lorry driver's day"
+title: "Driver cards and rest periods – the rules that govern a lorry driver's day"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

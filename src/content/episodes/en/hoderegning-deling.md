@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Division in your head – factors, splitting and short division"
+title: "Division in your head – factors, splitting and short division"
 format: laer-noe-nytt
 status: kommende
 topic: laering

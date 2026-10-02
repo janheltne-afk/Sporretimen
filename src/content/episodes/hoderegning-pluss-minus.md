@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Pluss og minus i hodet – fra to siffer til fire"
+title: "Pluss og minus i hodet – fra to siffer til fire"
 format: laer-noe-nytt
 status: kommende
 topic: laering

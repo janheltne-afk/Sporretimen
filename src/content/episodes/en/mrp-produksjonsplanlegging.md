@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: MRP – the calculation that decides what a factory orders, and when"
+title: "MRP – the calculation that decides what a factory orders, and when"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Commodity codes and the customs tariff – how a product becomes a number"
+title: "Commodity codes and the customs tariff – how a product becomes a number"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

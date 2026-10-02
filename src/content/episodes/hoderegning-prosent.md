@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Prosent i hodet – ti prosent, mva og de vanligste fellene"
+title: "Prosent i hodet – ti prosent, mva og de vanligste fellene"
 format: laer-noe-nytt
 status: kommende
 topic: laering

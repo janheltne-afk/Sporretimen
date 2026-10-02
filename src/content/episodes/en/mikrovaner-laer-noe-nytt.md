@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: atomic habits"
+title: "Atomic Habits – the four laws, the 1 % rule and the identity under the habit"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-18T18:41:00+02:00

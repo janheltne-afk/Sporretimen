@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Kabotasje – reglene for utenlandske lastebiler i Norge"
+title: "Kabotasje – reglene for utenlandske lastebiler i Norge"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Deling i hodet – faktorer, oppdeling og kort divisjon"
+title: "Deling i hodet – faktorer, oppdeling og kort divisjon"
 format: laer-noe-nytt
 status: kommende
 topic: laering

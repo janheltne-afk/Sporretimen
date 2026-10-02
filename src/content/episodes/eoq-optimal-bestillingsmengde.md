@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: EOQ – hvor mye du bør bestille om gangen, og hvorfor svaret er flatt"
+title: "EOQ – hvor mye du bør bestille om gangen, og hvorfor svaret er flatt"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

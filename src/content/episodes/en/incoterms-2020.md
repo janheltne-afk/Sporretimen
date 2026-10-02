@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Incoterms 2020 – who carries the risk, and where"
+title: "Incoterms 2020 – who carries the risk, and where"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

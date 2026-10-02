@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Cabotage – the rules for foreign lorries in Norway"
+title: "Cabotage – the rules for foreign lorries in Norway"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

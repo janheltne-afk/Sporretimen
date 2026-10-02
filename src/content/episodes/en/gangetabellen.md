@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: The times tables – the techniques that shrink them"
+title: "The times tables – the techniques that shrink them"
 format: laer-noe-nytt
 status: kommende
 topic: laering

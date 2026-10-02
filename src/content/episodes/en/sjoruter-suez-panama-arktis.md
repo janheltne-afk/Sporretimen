@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Suez, Panama and the Arctic routes – the passages world trade runs through"
+title: "Suez, Panama and the Arctic routes – the passages world trade runs through"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

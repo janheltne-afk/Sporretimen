@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Lean – value, waste and the system Toyota built"
+title: "Lean – value, waste and the system Toyota built"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

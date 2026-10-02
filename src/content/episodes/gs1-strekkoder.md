@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: GS1 – strekkoden, GTIN og tallene bak hver vare"
+title: "GS1 – strekkoden, GTIN og tallene bak hver vare"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-09-20T08:00:00+02:00

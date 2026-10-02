@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Gangetabellen – teknikkene som gjør den liten"
+title: "Gangetabellen – teknikkene som gjør den liten"
 format: laer-noe-nytt
 status: kommende
 topic: laering

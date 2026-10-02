@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Taylor and Toyota – two ways of measuring a human being"
+title: "Taylor and Toyota – two ways of measuring a human being"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

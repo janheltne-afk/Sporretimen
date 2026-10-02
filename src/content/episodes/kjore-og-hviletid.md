@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Sjåførkort og hviletid – reglene som styrer lastebilsjåførens døgn"
+title: "Sjåførkort og hviletid – reglene som styrer lastebilsjåførens døgn"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

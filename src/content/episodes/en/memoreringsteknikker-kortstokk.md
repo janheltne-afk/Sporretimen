@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: memory techniques – learn to memorise a deck of cards"
+title: "Memory techniques – learn to memorise a deck of cards"
 format: laer-noe-nytt
 status: publisert
 publishDate: 2026-08-07

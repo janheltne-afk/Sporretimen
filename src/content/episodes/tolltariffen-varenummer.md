@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: Varenummer og tolltariffen – hvordan en vare blir en kode"
+title: "Varenummer og tolltariffen – hvordan en vare blir en kode"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

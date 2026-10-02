@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: the Trachtenberg system – mental arithmetic without the times tables"
+title: "The Trachtenberg system – mental arithmetic without the times tables"
 format: laer-noe-nytt
 status: kommende
 topic: laering

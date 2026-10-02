@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Why ERP–WMS integrations fail – the master's thesis"
+title: "Why ERP–WMS integrations fail – the master's thesis"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv

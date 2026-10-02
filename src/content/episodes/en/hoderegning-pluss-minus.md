@@ -1,5 +1,5 @@
 ---
-title: "Learn something new: Adding and subtracting in your head – from two digits to four"
+title: "Adding and subtracting in your head – from two digits to four"
 format: laer-noe-nytt
 status: kommende
 topic: laering

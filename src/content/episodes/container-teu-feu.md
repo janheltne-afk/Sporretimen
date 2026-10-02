@@ -1,5 +1,5 @@
 ---
-title: "Lær noe nytt: TEU, FEU og containeren – målene som styrer verdenshandelen"
+title: "TEU, FEU og containeren – målene som styrer verdenshandelen"
 format: laer-noe-nytt
 status: kommende
 topic: arbeidsliv-og-naeringsliv
