@@ -323,7 +323,8 @@ Ved siden av `src/` ligger merkevaren skrevet ut for seg:
 merkevare/
 ├── tokens.json         # Maskinlesbare designtokens – importeres av video og grafikk
 ├── merkevare.md        # Merkevareguiden: farger, typografi, forsideoppsett, stemme
-└── remotion.md         # Hvordan uttrykket brukes i video
+├── remotion.md         # Hvordan uttrykket brukes i video
+└── hyperframes.md      # Lærdom fra HyperFrames-videoene, med avvik mot tokens
 ```
 
 Tokens-fila er en avskrift av verdier som bor i `global.css`, `figurer.css`,
