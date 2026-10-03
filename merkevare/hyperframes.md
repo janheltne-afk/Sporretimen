@@ -218,14 +218,25 @@ Tokenene er hentet fra `scripts/lag-forsidebilde.py`, altså fra miniatyrbildene
 som alt ligger publisert på 49 episoder. En seer ser først gullet i
 miniatyrbildet, og deretter et annet gull når videoen starter.
 
-**Anbefaling:** flytt videoen til tokenverdiene, ikke omvendt. Gradientparet er
-derimot et reelt behov videoen har og forsidene ikke, og bør legges inn i
-tokens.json i stedet for å leve bare her.
+**Rettet 3. oktober 2026.** Videoen er flyttet til tokenverdiene, ikke omvendt –
+miniatyrbildene lå allerede publisert, så de måtte være fasiten. Femten
+fargeroller er byttet, i alt 53 forekomster.
 
-Typografien stemmer bedre: knipningen på `-0,028em` er den samme som på
-nettstedet. Sperringen på `0,22em` er en tredje verdi ved siden av eyebrow
-(`0,17em`) og merkelapp (`0,13em`), og bør samles.
+Gull-gradienten trengte ingen nye tokens likevel. Den går nå fra `gull` via
+`dempet-gull` til `strek` – tre verdier som alt fantes, i riktig rekkefølge fra
+lys til mørk. Det samme gjelder radialgradienten og teksturbåndet.
 
-**Og én feil som bør rettes før videoen publiseres:** avsenderkortet signerer
-med «Explained» på en norsk video (`index.html`, linje 840). Forklart og
-Explained er to forskjellige kanaler med hvert sitt publikum.
+To mørke gull står igjen utenfor paletten, `#6f5d3c` og `#74592d`. De er
+skyggeverdier på gullflater, ikke merkevareroller, og å bytte dem ville flatet
+ut dybden.
+
+Typografien stemte bedre fra før: knipningen på `-0,028em` er den samme som på
+nettstedet. Sperringen lå på to verdier, `0,22em` og `0,16em`, på det som er
+samme rolle – liten versallabel. Begge er samlet på eyebrow-verdien `0,17em`.
+
+**Avsenderkortet signerte med «Explained» på en norsk video.** Rettet til
+«Forklart». De to er forskjellige kanaler med hvert sitt publikum.
+
+Det som ikke er kontrollert: hvordan det faktisk ser ut i bevegelse. Tidslinja
+registrerer seg og filen parser, men stillbilder av 3D-scenen tok for lang tid å
+rendre uten skjermkort. Se over åpningen før hele videoen bygges om.
