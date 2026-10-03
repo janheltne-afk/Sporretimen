@@ -238,5 +238,14 @@ samme rolle – liten versallabel. Begge er samlet på eyebrow-verdien `0,17em`.
 «Forklart». De to er forskjellige kanaler med hvert sitt publikum.
 
 Det som ikke er kontrollert: hvordan det faktisk ser ut i bevegelse. Tidslinja
-registrerer seg og filen parser, men stillbilder av 3D-scenen tok for lang tid å
-rendre uten skjermkort. Se over åpningen før hele videoen bygges om.
+registrerer seg og filen parser, men stillbilder av 3D-scenen ble aldri
+ferdige. Se over åpningen før hele videoen bygges om.
+
+**Én korreksjon til punkt 8 i notatet over.** Der står det at stillbilder tas
+raskest med Playwright direkte. Det stemmer for den flate versjonen, men ikke
+for 3D-en: i et miljø uten skjermkort stopper WebGL opp på `ReadPixels`, og tre
+enkeltbilder ble ikke ferdige på over en halvtime. For 3D må stillbilder tas på
+en maskin med skjermkort.
+
+Til gjengjeld ble én ting bekreftet: prosjektet har ingen eksterne referanser i
+det hele tatt. Regelen om at alt skal ligge lokalt, holder.
