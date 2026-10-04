@@ -169,6 +169,106 @@
       "source": "/en/episodes/:slug/transcript/",
       "destination": "/en/episodes/:slug/#transcript",
       "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-idioter",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-idioter/",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-idioter",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-idioter/",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-psykopater",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-psykopater/",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-psykopater",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-psykopater/",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-lognere",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-lognere/",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-lognere",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-lognere/",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-narsissister",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-narsissister/",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-narsissister",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-narsissister/",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-darlige-sjefer",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/episoder/omgitt-av-darlige-sjefer/",
+      "destination": "/forklart/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-darlige-sjefer",
+      "destination": "/en/explained/",
+      "permanent": true
+    },
+    {
+      "source": "/en/episodes/omgitt-av-darlige-sjefer/",
+      "destination": "/en/explained/",
+      "permanent": true
     }
   ]
 }
