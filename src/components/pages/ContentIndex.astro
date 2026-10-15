@@ -112,6 +112,9 @@ const topicFilter = showTopicFilter && usedTopics.length > 1;
 >
   <PageHeader wide eyebrow={eyebrow} title={title} lead={lead} />
 
+  {/* Valgfritt innslag mellom sidetoppen og listen. Står tomt der det ikke brukes. */}
+  <slot name="intro" />
+
   <section class="section-tight">
     <div class="container">
       {

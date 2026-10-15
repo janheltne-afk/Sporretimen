@@ -4,6 +4,7 @@
  * nytt og Bøker forklart, på tvers av temaene.
  */
 import ContentIndex from './ContentIndex.astro';
+import TikTokKarusell from '@/components/TikTokKarusell.astro';
 import { getEpisodes, getSeriesEpisodes } from '@/lib/content';
 import { canonicalUrl, breadcrumbList } from '@/data/site';
 import { path as routePath, type Locale } from '@/i18n/config';
@@ -53,4 +54,6 @@ const jsonLd = [
     ? 'Spørretimen Explained: economics, technology, psychology, learning and books explained so they make sense – briefly explained, learn something new and books explained.'
     : 'Spørretimen Forklart: økonomi, teknologi, psykologi, læring og bøker forklart forståelig – Kort forklart, Lær noe nytt og Bøker forklart.'}
   jsonLd={jsonLd}
-/>
+>
+  <TikTokKarusell slot="intro" lang={lang} />
+</ContentIndex>
