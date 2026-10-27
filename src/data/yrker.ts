@@ -202,6 +202,9 @@ export const yrker: Yrke[] = [
   { id: 'forsikringsradgiver', label: { no: 'Forsikringsrådgiver' }, kategori: 'naringsliv' },
 
   // Industri og energi
+  // Episoden sier at han jobbet skift på et smelteverk, ikke hva stillingen
+  // het. Etiketten holder seg til det, og påstår ingen formell tittel.
+  { id: 'smelteverksarbeider', label: { no: 'Smelteverksarbeider' }, kategori: 'industri', episode: 'sturla-artist-business', gjest: 'sturla' },
   { id: 'prosessoperator', label: { no: 'Prosessoperatør' }, kategori: 'industri' },
   { id: 'cnc-operator', label: { no: 'CNC-operatør' }, kategori: 'industri' },
   { id: 'automatiker', label: { no: 'Automatiker' }, kategori: 'industri' },
