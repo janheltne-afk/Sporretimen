@@ -9,10 +9,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import Avatar from '@/components/Avatar.astro';
-import { getEpisodes, slugOf } from '@/lib/content';
+import { getEpisodes } from '@/lib/content';
 import { site } from '@/data/site';
 import { yrkestall } from '@/data/yrker';
-import { entryPath, path as routePath, type Locale } from '@/i18n/config';
+import { path as routePath, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 
 interface Props {
@@ -25,10 +25,6 @@ const en = lang === 'en';
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
 const yrke = yrkestall();
-
-// Kan være tom mens et språk ennå ikke har innhold – da skal siden fortsatt
-// bygge, bare uten knappen til «siste episode».
-const featuredEpisode = published.find((e) => e.data.featured) ?? published[0];
 
 // Én liste, ikke tre. Forsiden hadde «Nyeste», «Populært» og «Samtaler» ved
 // siden av hverandre, og med et lite arkiv viste alle tre de samme kortene.
@@ -53,15 +49,7 @@ const latest = published.slice(0, 6);
         </h1>
         <p class="lead hero__lead">{t('site.description')}</p>
         <div class="hero__actions">
-          {featuredEpisode && (
-            <a class="btn" href={entryPath(lang, 'episodes', slugOf(featuredEpisode.id))}>
-              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5v14l11-7z" fill="currentColor"></path></svg>
-              {en ? 'Latest episode' : 'Se siste episode'}
-            </a>
-          )}
-          <a class:list={['btn', { 'btn-secondary': Boolean(featuredEpisode) }]} href={routePath(lang, 'conversations')}>
-            {en ? 'All conversations' : 'Alle samtaler'}
-          </a>
+          <a class="btn" href={routePath(lang, 'conversations')}>Alle samtaler</a>
         </div>
       </div>
 
