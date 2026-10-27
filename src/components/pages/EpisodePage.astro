@@ -6,7 +6,6 @@ import EpisodePlayers from '@/components/EpisodePlayers.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
-import ResourceCard from '@/components/ResourceCard.astro';
 import Terningkast from '@/components/Terningkast.astro';
 import Comments from '@/components/Comments.astro';
 import SeriesBadge from '@/components/SeriesBadge.astro';
@@ -20,9 +19,7 @@ import Kalkulator from '@/components/Kalkulator.astro';
 import type { CollectionEntry } from 'astro:content';
 import {
   scriptForEpisode,
-  resourcesForEpisode,
   relatedEpisodes,
-  relatedResources,
   slugOf,
 } from '@/lib/content';
 import { site, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
@@ -70,7 +67,6 @@ const script = await scriptForEpisode(episode.id);
 // Manuset rendres på episodesiden. Det har ingen egen rute lenger.
 const Manus = script ? (await render(script)).Content : undefined;
 const manusAnker = transcriptAnchor(lang);
-const resources = await resourcesForEpisode(episode.id);
 // Spillere vises kun for publiserte episoder. Lenkene kan være kjent på forhånd
 // for kommende episoder, men en innebygd spiller ville da vist en feilmelding.
 const hasEmbed = d.status === 'publisert' && Boolean(d.links?.youtube || d.links?.spotify);
@@ -87,7 +83,6 @@ const series = seriesById(lang, seriesId)!;
  * peke videre til uten at den må vedlikeholdes manuelt.
  */
 const related = await relatedEpisodes(episode, 3);
-const nearbyResources = await relatedResources(episode, 3);
 // Foredragene dette temaet inngår i, hvis noen. Tom liste er det vanlige.
 
 const platformUrls = [d.links?.youtube, d.links?.spotify, d.links?.apple, d.links?.annet].filter(
@@ -117,7 +112,7 @@ const episodeJsonLd = {
   partOfSeries: {
     '@type': 'PodcastSeries',
     name: series.label,
-    url: canonicalUrl(routePath(lang, seriesId === 'sporretimen' ? 'conversations' : 'explained')),
+    url: canonicalUrl(routePath(lang, 'conversations')),
     sameAs: Object.values(series.channels),
   },
   author: { '@type': 'Person', name: site.host, url: canonicalUrl(routePath(lang, 'profile')) },
@@ -465,18 +460,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
       }
     </div>
 
-    {
-      resources.length > 0 && (
-        <section class="container episode__wrap resources-block">
-          <h2>{d.status === 'kommende' ? t('episode.resourcesFor') : t('episode.resourcesMentioned')}</h2>
-          <div class="grid grid-2">
-            {resources.map((r) => (
-              <ResourceCard lang={lang} resource={r} />
-            ))}
-          </div>
-        </section>
-      )
-    }
 
 
     {
@@ -501,7 +484,7 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     }
 
     {
-      (related.length > 0 || nearbyResources.length > 0) && (
+      related.length > 0 && (
         <section class="section related">
           <div class="container">
             <h2 class="related__heading">{t('episode.related')}</h2>
@@ -515,16 +498,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
                 {related.map((ep) => (
                   <EpisodeCard lang={lang} episode={ep} />
                 ))}
-              </div>
-            )}
-            {nearbyResources.length > 0 && (
-              <div class="related__resources">
-                <h3 class="related__sub">{t('topic.resources')}</h3>
-                <div class="grid grid-3">
-                  {nearbyResources.map((r) => (
-                    <ResourceCard lang={lang} resource={r} />
-                  ))}
-                </div>
               </div>
             )}
           </div>
@@ -867,14 +840,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     line-height: 1.6;
     margin-bottom: 1.35rem;
   }
-  .resources-block {
-    margin-top: clamp(2.5rem, 5vw, 3.75rem);
-    padding-top: clamp(2rem, 4vw, 2.75rem);
-    border-top: 1px solid var(--line);
-  }
-  .resources-block h2 {
-    margin-bottom: 1.75rem;
-  }
   .related {
     margin-top: clamp(2.5rem, 6vw, 4.5rem);
     border-top: 1px solid var(--line);
@@ -905,9 +870,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
     margin: 0 0 1.4rem;
     max-width: 52ch;
     font-size: 0.92rem;
-  }
-  .related__resources {
-    margin-top: clamp(2rem, 4vw, 2.75rem);
   }
   .related__sub {
     margin-bottom: 1.2rem;

@@ -89,7 +89,7 @@ async function filer(mappe) {
   return ut;
 }
 
-for (const mappe of ['episodes', 'resources', 'scripts', 'guests']) {
+for (const mappe of ['episodes', 'scripts', 'guests']) {
   for (const rel of await filer(mappe)) {
     const sti = join(ROOT, rel);
     const tekst = await readFile(sti, 'utf8');
@@ -110,8 +110,8 @@ for (const mappe of ['episodes', 'resources', 'scripts', 'guests']) {
     }
 
     // Bokomtaler skal ha henvisning til originalverket.
-    if (felt(fm, 'format') === 'boker-forklart' && !harBlokk(fm, 'book')) {
-      feil.push(`${rel}: format er boker-forklart, men mangler book: (tittel og forfatter)`);
+    if (harBlokk(fm, 'book') && !felt(fm, 'title')) {
+      feil.push(`${rel}: book: er satt, men tittel mangler`);
     }
 
     // Kommersielle formuleringer uten registrert avtale.

@@ -8,11 +8,9 @@ import { formatList, seriesById } from '@/i18n/taxonomy';
 
 const formats = formatList('en');
 const sporretimen = seriesById('en', 'sporretimen')!;
-const forklart = seriesById('en', 'sporretimen-forklart')!;
 
 // The master's degree has an episode of its own. Anyone wondering what it was
 // about should be able to click through from here.
-const masterSti = entryPath('en', 'episodes', 'erp-wms-integrasjon');
 ---
 
 <BaseLayout
@@ -62,12 +60,10 @@ const masterSti = entryPath('en', 'episodes', 'erp-wms-integrasjon');
   <section class="section why">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Two podcasts – one universe</p>
-        <h2>Why we combine conversations and explainers</h2>
+        <p class="eyebrow">One podcast</p>
+        <h2>The conversations are all of Spørretimen</h2>
         <p class="lead">
-          <strong>{sporretimen.label}</strong> is the conversations – {sporretimen.blurb.toLowerCase()}{' '}
-          <strong>{forklart.label}</strong> is the ideas – {forklart.blurb.toLowerCase()} The two are
-          one universe, with four formats.
+          <strong>{sporretimen.label}</strong> is the conversations – {sporretimen.blurb.toLowerCase()}
         </p>
       </div>
       <div class="grid grid-2">
@@ -98,7 +94,7 @@ const masterSti = entryPath('en', 'episodes', 'erp-wms-integrasjon');
         <h2>{site.host}</h2>
         <p class="lead">
           Jan Sindre is a siviløkonom (the Norwegian MSc in Business) with a{' '}
-          <a href={masterSti}>master’s in logistics</a>, and has a background in ERP. He
+          master’s in logistics, and has a background in ERP. He
           is curious, people-oriented, and enjoys meeting people whose experience and
           field differ from his own.
         </p>

@@ -465,14 +465,6 @@ main {
   color: var(--tag-samtale);
   border-color: color-mix(in srgb, var(--tag-samtale) 38%, transparent);
 }
-.tag-laer-noe-nytt {
-  color: var(--tag-laer);
-  border-color: color-mix(in srgb, var(--tag-laer) 38%, transparent);
-}
-.tag-kort-forklart {
-  color: var(--tag-kort);
-  border-color: color-mix(in srgb, var(--tag-kort) 38%, transparent);
-}
 .tag-status {
   color: var(--accent-strong);
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);

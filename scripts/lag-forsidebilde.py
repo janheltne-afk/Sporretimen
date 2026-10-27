@@ -111,38 +111,10 @@ EPISODER = {
 # tittelen venstrestilt. Tittel og format hentes fra episodefilen, så bare
 # undertekstlinjen står her. Bokepisodene får bok og forfatter automatisk.
 SOLO_UNDERTEKST = {
-    "erp-wms-integrasjon": "Da to systemer skulle snakke sammen",
-    "ten-t-transportnettet": "EUs transportnett, og Norges plass i det",
-    "kabotasje-godstransport": "Reglene for utenlandske lastebiler i Norge",
-    "sjoruter-suez-panama-arktis": "Suez, Panama og rutene over toppen",
-    "container-teu-feu": "Målene som styrer verdenshandelen",
-    "tolltariffen-varenummer": "Hvordan en vare blir en kode",
-    "kjore-og-hviletid": "Fartsskriveren, kortet og timene",
-    "f1-logistikk-dhl": "Å flytte et sirkus 24 ganger i året",
-    "ford-samlebandet": "Det begynte i slakteriet",
-    "taylor-og-tps": "Stoppeklokka, snora og menneskene",
-    "bullwhip-effekten": "Fra butikkhylla til fabrikken",
-    "mrp-produksjonsplanlegging": "Hva skal bestilles, og når",
-    "eoq-optimal-bestillingsmengde": "Hvor mye om gangen",
-    "fokus-laer-noe-nytt": "Hvorfor oppmerksomhet er ferskvare",
-    "gangetabellen": "Slik fester den for godt",
-    "gangetriks-trachtenberg": "Regnetriksene fra en fange i Berlin",
-    "gs1-strekkoder": "Hva strekkoden faktisk sier",
-    "hoderegning-deling": "Del store tall uten kalkulator",
-    "hoderegning-pluss-minus": "Legg sammen og trekk fra i hodet",
-    "hoderegning-prosent": "Prosent uten penn og papir",
-    "incoterms-2020": "Hvem betaler, og hvem har risikoen",
-    "lean-forklart": "Å fjerne alt som ikke skaper verdi",
-    "logiske-feilslutninger": "Feilene som høres riktige ut",
-    "rfid-forklart": "Brikkene som teller for deg",
-    "rfid-varetelling": "Fra 14 dager til to timer",
+
 }
 
-FORMATMERKE = {
-    "laer-noe-nytt": "LÆR NOE NYTT",
-    "boker-forklart": "BØKER FORKLART",
-    "kort-forklart": "KORT FORKLART",
-}
+FORMATMERKE: dict[str, str] = {}
 
 # Tekstblokken, som andel av bredde og høyde. Målt på Odin-bildet.
 TEKST_X = 0.500

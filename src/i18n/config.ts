@@ -37,9 +37,8 @@ export const localeName: Record<Locale, string> = { no: 'Norsk', en: 'English' }
  */
 const routes = {
   home: { no: '/', en: '/en' },
-  // De to innholdssporene, hver med sin egen oversiktsside.
+  // Samtalesporet. Hele nettstedet er nå podkastsamtalene.
   conversations: { no: '/samtaler', en: '/en/conversations' },
-  explained: { no: '/forklart', en: '/en/explained' },
   // Temabiblioteket. Undersidene ligger under, se topicPath().
   topics: { no: '/temaer', en: '/en/topics' },
   foredrag: { no: '/foredrag', en: '/en/talks' },
@@ -47,7 +46,6 @@ const routes = {
   // Hele arkivet, på tvers av seriene. Adressen er uendret fra før.
   episodes: { no: '/episoder', en: '/en/episodes' },
   guests: { no: '/gjester', en: '/en/guests' },
-  resources: { no: '/ressurser', en: '/en/resources' },
   about: { no: '/om', en: '/en/about' },
   contact: { no: '/kontakt', en: '/en/contact' },
   ethics: { no: '/var-varsom', en: '/en/editorial-standards' },
@@ -117,7 +115,6 @@ export function transcriptAnchor(lang: Locale): string {
 export type SearchKind =
   | 'episode'
   | 'transcript'
-  | 'resource'
   | 'guest'
   | 'topic'
   | 'index'
@@ -127,9 +124,7 @@ export type SearchKind =
 const indexKeys = [
   'episodes',
   'conversations',
-  'explained',
   'guests',
-  'resources',
   'topics',
 ] as const satisfies readonly RouteKey[];
 
@@ -144,7 +139,6 @@ export function searchKindOf(lang: Locale, pathname: string): SearchKind {
   if (under('episodes')) {
     return clean.endsWith(`/${transcriptSegment[lang]}`) ? 'transcript' : 'episode';
   }
-  if (under('resources')) return 'resource';
   if (under('guests')) return 'guest';
   if (under('topics')) return 'topic';
   return 'page';

@@ -24,17 +24,10 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// Oppgavene ligger som egne episoder. Utdanningen i faktalisten peker dit, slik
-// at den som lurer på hva mastergraden handlet om, kan lese det.
-const bachelorSti = entryPath(lang, 'episodes', 'rfid-varetelling');
-const masterSti = entryPath(lang, 'episodes', 'erp-wms-integrasjon');
 const en = lang === 'en';
 
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
-// Det han lager selv – forklaringene. Samtalene er gjestenes.
-const own = await getSeriesEpisodes(lang, 'sporretimen-forklart', published);
-const latestOwn = own.slice(0, 3);
 const counts = await topicCounts(lang);
 const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 const profilLenker = socialsFor(lang);
@@ -117,12 +110,12 @@ const jsonLd = [
           <dt>{en ? 'Education' : 'Utdanning'}</dt>
           <dd>
             {en ? 'Siviløkonom (MSc in Business), ' : 'Siviløkonom, '}
-            <a href={masterSti}>{en ? 'master’s in logistics' : 'master i logistikk'}</a>
+            {en ? 'master’s in logistics' : 'master i logistikk'}
           </dd>
           <dt>{en ? 'Theses' : 'Oppgaver'}</dt>
           <dd>
-            <a href={bachelorSti}>{en ? 'Bachelor thesis' : 'Bacheloroppgaven'}</a>{' · '}
-            <a href={masterSti}>{en ? 'Master’s thesis' : 'Masteroppgaven'}</a>
+            {en ? 'Bachelor thesis on RFID and stock counting' : 'Bacheloroppgave om RFID og varetelling'}{' · '}
+            {en ? 'Master’s thesis on ERP–WMS integrations' : 'Masteroppgave om ERP–WMS-integrasjoner'}
           </dd>
           <dt>{en ? 'Background' : 'Bakgrunn'}</dt>
           <dd>ERP</dd>
@@ -163,8 +156,8 @@ const jsonLd = [
                 how organisations actually decide things. That is where the curiosity comes
                 from. The podcast is a hobby, made in his spare time. Both theses he has
                 written are walked through in episodes of their own – the{' '}
-                <a href={bachelorSti}>bachelor thesis on RFID and stock counting</a> and the{' '}
-                <a href={masterSti}>master’s thesis on ERP–WMS integrations</a>.
+                bachelor thesis on RFID and stock counting and the{' '}
+                master’s thesis on ERP–WMS integrations.
               </p>
               <p>
                 He is not presented as an expert on every subject covered, and the site keeps
@@ -188,8 +181,8 @@ const jsonLd = [
                 stadig vender tilbake til tall og hvordan virksomheter faktisk bestemmer
                 seg. Det er der nysgjerrigheten kommer fra. Podkasten er hobby, og lages på
                 fritiden. Begge oppgavene han har skrevet er gjennomgått i egne episoder –{' '}
-                <a href={bachelorSti}>bacheloroppgaven om RFID og varetelling</a> og{' '}
-                <a href={masterSti}>masteroppgaven om ERP- og WMS-integrasjoner</a>.
+                bacheloroppgaven om RFID og varetelling og{' '}
+                masteroppgaven om ERP- og WMS-integrasjoner.
               </p>
               <p>
                 Han fremstilles ikke som ekspert på alle temaene som dekkes, og nettsiden
@@ -204,28 +197,6 @@ const jsonLd = [
     </div>
   </section>
 
-  {
-    latestOwn.length > 0 && (
-      <section class="section own" aria-labelledby="own-heading">
-        <div class="container">
-          <div class="row-head">
-            <div>
-              <p class="eyebrow">{seriesById(lang, 'sporretimen-forklart')!.label}</p>
-              <h2 id="own-heading">{en ? 'Latest from Jan Sindre' : 'Nyeste fra Jan Sindre'}</h2>
-            </div>
-            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'explained')}>
-              {en ? 'All of Explained' : 'Alt i Forklart'}
-            </a>
-          </div>
-          <div class="grid grid-3">
-            {latestOwn.map((ep) => (
-              <EpisodeCard lang={lang} episode={ep} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <section class="section" aria-labelledby="ptopics-heading">
     <div class="container">
@@ -257,7 +228,6 @@ const jsonLd = [
       <h2>{en ? 'The conversations, and contact' : 'Samtalene, og kontakt'}</h2>
       <div class="cta__actions">
         <a class="btn" href={routePath(lang, 'conversations')}>{en ? 'The conversations' : 'Samtalene'}</a>
-        <a class="btn btn-secondary" href={routePath(lang, 'explained')}>{en ? 'Explained' : 'Forklart'}</a>
         <a class="btn btn-ghost" href={routePath(lang, 'contact')} data-track="contact_click" data-track-label="profile">
           {en ? 'Contact →' : 'Kontakt →'}
         </a>
@@ -335,10 +305,6 @@ const jsonLd = [
   }
   .row-head .eyebrow {
     margin-bottom: 0.55rem;
-  }
-  .own {
-    background: var(--surface);
-    border-block: 1px solid var(--line);
   }
   .profile__topics {
     list-style: none;

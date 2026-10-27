@@ -15,7 +15,6 @@ import type { Locale, RouteKey } from './config';
  */
 export const navItems: { key: RouteKey; label: Record<Locale, string> }[] = [
   { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
-  { key: 'explained', label: { no: 'Forklart', en: 'Explained' } },
   { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
   { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
   { key: 'about', label: { no: 'Om', en: 'About' } },
@@ -30,11 +29,9 @@ export const footerNav: {
     heading: { no: 'Innhold', en: 'Content' },
     items: [
       { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
-      { key: 'explained', label: { no: 'Forklart', en: 'Explained' } },
-      { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
+          { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
       { key: 'episodes', label: { no: 'Alle episoder', en: 'All episodes' } },
       { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
-      { key: 'resources', label: { no: 'Ressurser', en: 'Resources' } },
     ],
   },
   {

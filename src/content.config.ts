@@ -105,7 +105,7 @@ const episodes = defineCollection({
       title: z.string(),
       // Format avgjør hvilken «type» episoden er. Serien utledes av formatet:
       // samtale → Spørretimen, alt annet → Spørretimen Forklart (se seriesOf).
-      format: z.enum(['samtale', 'laer-noe-nytt', 'kort-forklart', 'boker-forklart']),
+      format: z.enum(['samtale']),
       // status: bruk 'kommende' for planlagte episoder som ikke er publisert ennå.
       status: z.enum(['publisert', 'kommende']).default('kommende'),
       // Referanse til en gjest (valgfritt – Lær noe nytt / Kort forklart kan stå alene).
@@ -252,46 +252,5 @@ const scripts = defineCollection({
     }),
 });
 
-/**
- * Ressursarkiv – husketeknikker, bokanbefalinger, tips og verktøy nevnt i
- * podkasten (eller som utfyller den).
- *
- * Legg en .md-fil i `src/content/resources/`. Brødteksten er stedet for lengre
- * notater (f.eks. notater fra en bok eller hvordan en teknikk fungerer).
- */
-const resources = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
-  schema: () =>
-    z.object({
-      title: z.string(),
-      // Hovedtype – styrer hovedmerkelappen. Se `resourceTypes` i src/data/site.ts.
-      type: z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel', 'podkast']),
-      // Valgfrie tilleggstyper. Ressursen dukker da opp under flere filtre –
-      // f.eks. en husketeknikk-ressurs som også består av bøker.
-      alsoTypes: z
-        .array(z.enum(['bok', 'husketeknikk', 'tips', 'verktoy', 'artikkel', 'podkast']))
-        .default([]),
-      // Angi at ressursen er på et annet språk enn norsk (f.eks. «Engelsk»).
-      language: z.string().optional(),
-      // Forfatter (mest aktuelt for bøker).
-      author: z.string().optional(),
-      // Kort oppsummering vist på kort og øverst på ressurssiden.
-      summary: z.string(),
-      // Ekstern lenke (kjøp/les/verktøy). Valgfritt.
-      url: z.string().url().optional(),
-      // Episoder ressursen er nevnt i (kobles begge veier).
-      episodes: z.array(reference('episodes')).default([]),
-      // Hovedtema og undertemaer, samme registre som episodene.
-      topic: topicField,
-      subtopics: subtopicsField,
-      image: z.string().optional(),
-      imageAlt: z.string().optional(),
-      imageCredit,
-      advisory: advisories,
-      featured: z.boolean().default(false),
-      draft: z.boolean().default(false),
-      order: z.number().default(100),
-    }),
-});
 
-export const collections = { episodes, guests, scripts, resources };
+export const collections = { episodes, guests, scripts };

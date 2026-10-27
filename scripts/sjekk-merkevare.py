@@ -56,8 +56,6 @@ def main() -> int:
     # --- Formatfarger ----------------------------------------------------
     css_navn = {
         "samtale": "tag-samtale",
-        "laer-noe-nytt": "tag-laer",
-        "kort-forklart": "tag-kort",
     }
     for tema, blokk in (("lys", lys_blokk), ("mork", mork_blokk)):
         for fid, base in css_navn.items():
@@ -122,7 +120,9 @@ def main() -> int:
                 f"forsideoppsett/{navn}: {konstanter[konstant]} i skriptet, {verdi} i tokens"
             )
 
-    for fid, merke in tok["forsideoppsett"]["formatmerke"].items():
+    # Formatmerket står bare på forsider for formater som finnes. Er det tomt,
+    # er det ingenting å sammenligne.
+    for fid, merke in tok["forsideoppsett"].get("formatmerke", {}).items():
         if fid.startswith("$"):
             continue
         if f'"{fid}": "{merke}"' not in py:

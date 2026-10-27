@@ -56,20 +56,7 @@ export async function getGuests(lang: Locale = 'no'): Promise<CollectionEntry<'g
   return all.filter((g) => inLocale(lang)(g.id)).sort(byOrderThen(lang, 'name'));
 }
 
-/** Alle ressurser på ett språk som ikke er draft. */
-export async function getResources(lang: Locale = 'no'): Promise<CollectionEntry<'resources'>[]> {
-  const all = await getCollection('resources', ({ data }) => !data.draft);
-  return all.filter((r) => inLocale(lang)(r.id)).sort(byOrderThen(lang, 'title'));
-}
 
-/** Ressurser som er knyttet til en gitt episode. */
-export async function resourcesForEpisode(
-  episodeId: string,
-  resources?: CollectionEntry<'resources'>[]
-): Promise<CollectionEntry<'resources'>[]> {
-  const list = resources ?? (await getResources(localeOf(episodeId)));
-  return list.filter((r) => r.data.episodes.some((e) => e.id === episodeId));
-}
 
 /** Alle manus som ikke er draft. */
 export async function getScripts(lang?: Locale): Promise<CollectionEntry<'scripts'>[]> {
@@ -101,7 +88,6 @@ import { seriesOf, type SeriesId } from '@/i18n/taxonomy';
 import { topicById, topics, type Topic } from '@/data/topics';
 
 type Episode = CollectionEntry<'episodes'>;
-type Resource = CollectionEntry<'resources'>;
 
 /** Episodene i ett av de to innholdssporene. */
 export async function getSeriesEpisodes(
@@ -148,27 +134,7 @@ export async function episodesForSubtopic(
   return list.filter((e) => e.data.subtopics.includes(subtopicId));
 }
 
-/** Ressursene under et hovedtema. */
-export async function resourcesForTopic(
-  lang: Locale,
-  topicId: string,
-  resources?: Resource[]
-): Promise<Resource[]> {
-  const topic = topicById(topicId);
-  if (!topic) return [];
-  const list = resources ?? (await getResources(lang));
-  return list.filter((r) => inTopic(r.data, topic));
-}
 
-/** Ressursene under ett undertema. */
-export async function resourcesForSubtopic(
-  lang: Locale,
-  subtopicId: string,
-  resources?: Resource[]
-): Promise<Resource[]> {
-  const list = resources ?? (await getResources(lang));
-  return list.filter((r) => r.data.subtopics.includes(subtopicId));
-}
 
 /**
  * Hvor mye innhold som finnes under hvert undertema.
@@ -178,13 +144,11 @@ export async function resourcesForSubtopic(
  * på – og skal derfor stå som ren tekst, ikke som en død lenke.
  */
 export async function subtopicCounts(lang: Locale): Promise<Map<string, number>> {
-  const [episodes, resources] = await Promise.all([getEpisodes(lang), getResources(lang)]);
+  const episodes = await getEpisodes(lang);
   const counts = new Map<string, number>();
   for (const topic of topics) {
     for (const sub of topic.subtopics) {
-      const n =
-        episodes.filter((e) => e.data.subtopics.includes(sub.id)).length +
-        resources.filter((r) => r.data.subtopics.includes(sub.id)).length;
+      const n = episodes.filter((e) => e.data.subtopics.includes(sub.id)).length;
       counts.set(sub.id, n);
     }
   }
@@ -193,12 +157,10 @@ export async function subtopicCounts(lang: Locale): Promise<Map<string, number>>
 
 /** Hvor mye innhold som finnes under hvert hovedtema. */
 export async function topicCounts(lang: Locale): Promise<Map<string, number>> {
-  const [episodes, resources] = await Promise.all([getEpisodes(lang), getResources(lang)]);
+  const episodes = await getEpisodes(lang);
   const counts = new Map<string, number>();
   for (const topic of topics) {
-    const n =
-      episodes.filter((e) => inTopic(e.data, topic)).length +
-      resources.filter((r) => inTopic(r.data, topic)).length;
+    const n = episodes.filter((e) => inTopic(e.data, topic)).length;
     counts.set(topic.id, n);
   }
   return counts;
@@ -244,29 +206,6 @@ export async function relatedEpisodes(
     .map((x) => x.e);
 }
 
-/** Ressursene som hører tematisk sammen med en episode. */
-export async function relatedResources(
-  episode: Episode,
-  limit = 3,
-  resources?: Resource[]
-): Promise<Resource[]> {
-  const lang = localeOf(episode.id);
-  const list = resources ?? (await getResources(lang));
-  const d = episode.data;
-  const direct = list.filter((r) => r.data.episodes.some((e) => e.id === episode.id));
-  const nearby = list
-    .filter((r) => !direct.includes(r))
-    .map((r) => ({
-      r,
-      s:
-        r.data.subtopics.filter((x) => d.subtopics.includes(x)).length * 10 +
-        (r.data.topic === d.topic ? 5 : 0),
-    }))
-    .filter((x) => x.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .map((x) => x.r);
-  return [...direct, ...nearby].slice(0, limit);
-}
 
 
 

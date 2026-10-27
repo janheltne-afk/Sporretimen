@@ -112,9 +112,6 @@ const topicFilter = showTopicFilter && usedTopics.length > 1;
 >
   <PageHeader wide eyebrow={eyebrow} title={title} lead={lead} />
 
-  {/* Valgfritt innslag mellom sidetoppen og listen. Står tomt der det ikke brukes. */}
-  <slot name="intro" />
-
   <section class="section-tight">
     <div class="container">
       {
@@ -318,7 +315,7 @@ const topicFilter = showTopicFilter && usedTopics.length > 1;
     apply();
   });
 
-  /** Forhåndsvelger et filter fra adressen, f.eks. ?format=kort-forklart. */
+  /** Forhåndsvelger et filter fra adressen, f.eks. ?format=samtale. */
   function preset(group: string, value: string | null) {
     if (!value) return false;
     const btn = document.querySelector<HTMLButtonElement>(

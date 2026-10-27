@@ -9,15 +9,12 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
-import ResourceCard from '@/components/ResourceCard.astro';
 import TopicIcon from '@/components/TopicIcon.astro';
 import Interest from '@/components/Interest.astro';
 import { topicById } from '@/data/topics';
 import {
   episodesForTopic,
   episodesForSubtopic,
-  resourcesForTopic,
-  resourcesForSubtopic,
   getSeriesEpisodes,
   subtopicCounts,
 } from '@/lib/content';
@@ -46,16 +43,9 @@ const subCounts = await subtopicCounts(lang);
 const episodes = subtopic
   ? await episodesForSubtopic(lang, subtopic.id)
   : await episodesForTopic(lang, topic.id);
-const resources = subtopic
-  ? await resourcesForSubtopic(lang, subtopic.id)
-  : await resourcesForTopic(lang, topic.id);
 
-// Delt i de to sporene, slik at samtaler og forklaringer ikke blandes i én
-// lang liste. Rekkefølgen er nyeste først innenfor hver bolk.
 const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
-const explained = await getSeriesEpisodes(lang, 'sporretimen-forklart', episodes);
 const seriesConv = seriesById(lang, 'sporretimen')!;
-const seriesExpl = seriesById(lang, 'sporretimen-forklart')!;
 
 // Søsken: de andre undertemaene, som navigasjon videre på samme nivå.
 const siblings = topic.subtopics.filter((s) => s.id !== subtopic?.id);
@@ -167,28 +157,6 @@ const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` 
     )
   }
 
-  {
-    explained.length > 0 && (
-      <section class="section" aria-labelledby="explained-heading">
-        <div class="container">
-          <div class="row-head">
-            <div>
-              <p class="eyebrow">{seriesExpl.label}</p>
-              <h2 id="explained-heading">{en ? 'Explained' : 'Forklart'}</h2>
-            </div>
-            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'explained')}>
-              {en ? 'All of Explained' : 'Alt i Forklart'}
-            </a>
-          </div>
-          <div class="grid grid-3">
-            {explained.map((ep) => (
-              <EpisodeCard lang={lang} episode={ep} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   {
     conversations.length > 0 && (
@@ -213,28 +181,6 @@ const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` 
     )
   }
 
-  {
-    resources.length > 0 && (
-      <section class="section resources" aria-labelledby="resources-heading">
-        <div class="container">
-          <div class="row-head">
-            <div>
-              <p class="eyebrow">{en ? 'Resources' : 'Ressurser'}</p>
-              <h2 id="resources-heading">{t('topic.resources')}</h2>
-            </div>
-            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'resources')}>
-              {t('resource.all')}
-            </a>
-          </div>
-          <div class="grid grid-3">
-            {resources.map((r) => (
-              <ResourceCard lang={lang} resource={r} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <section class="section interest-block">
     <div class="container container-narrow text-center">
@@ -333,10 +279,6 @@ const metaTitle = subtopic ? `${subtopic.label[lang]} – ${topic.label[lang]}` 
     margin-bottom: 0.55rem;
   }
 
-  .resources {
-    background: var(--surface);
-    border-block: 1px solid var(--line);
-  }
   .empty {
     padding: 2rem 0;
   }

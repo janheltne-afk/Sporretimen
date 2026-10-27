@@ -30,11 +30,9 @@ const en = lang === 'en';
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
 const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
-const explained = await getSeriesEpisodes(lang, 'sporretimen-forklart', episodes);
 const counts = await topicCounts(lang);
 
 const sporretimen = seriesById(lang, 'sporretimen')!;
-const forklart = seriesById(lang, 'sporretimen-forklart')!;
 
 // Kan være tom mens et språk ennå ikke har innhold – da skal siden fortsatt
 // bygge, bare uten knappen til «siste episode».
@@ -52,7 +50,6 @@ const notInLatest = (list: typeof episodes) => {
   return (fresh.length >= 3 ? fresh : list).slice(0, 3);
 };
 const pickedConversations = notInLatest(conversations);
-const pickedExplained = notInLatest(explained);
 
 // Temaene på forsiden: de som har innhold, i registerets rekkefølge.
 const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
@@ -79,8 +76,8 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
               {en ? 'Latest episode' : 'Se siste episode'}
             </a>
           )}
-          <a class:list={['btn', { 'btn-secondary': Boolean(featuredEpisode) }]} href={routePath(lang, 'explained')}>
-            {en ? 'Explore Explained' : 'Utforsk Forklart'}
+          <a class:list={['btn', { 'btn-secondary': Boolean(featuredEpisode) }]} href={routePath(lang, 'conversations')}>
+            {en ? 'All conversations' : 'Alle samtaler'}
           </a>
         </div>
       </div>
@@ -124,35 +121,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
     </div>
   </section>
 
-  <!-- To podkaster, ett univers -->
-  <section class="section series" aria-labelledby="series-heading">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">{en ? 'Two podcasts, one universe' : 'To podkaster – ett univers'}</p>
-        <h2 id="series-heading">
-          {en ? 'The people, and the ideas' : 'Menneskene, og ideene'}
-        </h2>
-      </div>
-      <div class="series__pair">
-        <article class="series__card">
-          <p class="series__kicker">{sporretimen.label}</p>
-          <h3 class="series__title">{sporretimen.kicker}</h3>
-          <p class="series__desc">{sporretimen.blurb}</p>
-          <a class="btn btn-secondary" href={routePath(lang, 'conversations')}>
-            {en ? 'See the conversations' : 'Se samtaler'}
-          </a>
-        </article>
-        <article class="series__card series__card--explained">
-          <p class="series__kicker">{forklart.label}</p>
-          <h3 class="series__title">{forklart.kicker}</h3>
-          <p class="series__desc">{forklart.blurb}</p>
-          <a class="btn btn-secondary" href={routePath(lang, 'explained')}>
-            {en ? 'Explore Explained' : 'Utforsk Forklart'}
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
 
   <!-- Utforsk temaer -->
   <section class="section" aria-labelledby="topics-heading">
@@ -227,29 +195,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
     )
   }
 
-  <!-- Forklart -->
-  {
-    pickedExplained.length > 0 && (
-      <section class="section" aria-labelledby="expl-heading">
-        <div class="container">
-          <div class="row-head">
-            <div>
-              <p class="eyebrow">{forklart.label}</p>
-              <h2 id="expl-heading">{en ? 'Explained' : 'Forklart'}</h2>
-            </div>
-            <a class="btn btn-secondary btn-sm" href={routePath(lang, 'explained')}>
-              {en ? 'All of Explained' : 'Alt i Forklart'}
-            </a>
-          </div>
-          <div class="grid grid-3">
-            {pickedExplained.map((ep) => (
-              <EpisodeCard lang={lang} episode={ep} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <!-- Hva vil du lære mer om? -->
   <section class="section probes" aria-labelledby="probes-heading">
@@ -379,50 +324,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 
   /* To podkaster – ett univers. Samme kort, samme familie; det andre får
      bare en tynn markering i kanten så de leses som to. */
-  .series {
-    background: var(--surface);
-    border-block: 1px solid var(--line);
-  }
-  .series__pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(1rem, 2vw, 1.5rem);
-  }
-  .series__card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    padding: clamp(1.7rem, 3vw, 2.4rem);
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-  }
-  .series__card--explained {
-    border-left: 3px solid var(--accent);
-  }
-  .series__kicker {
-    margin: 0;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.19em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-  .series__title {
-    margin: 0.2rem 0 0;
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
-  }
-  .series__desc {
-    margin: 0.4rem 0 1.4rem;
-    color: var(--ink-soft);
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 40ch;
-  }
-  .series__card .btn {
-    align-self: flex-start;
-    margin-top: auto;
-  }
 
   /* Temaer – en tolinjers liste, ikke enda en kortvegg. */
   .topics {
@@ -554,7 +455,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 
   @media (max-width: 880px) {
     .hero__inner,
-    .series__pair,
     .host__inner {
       grid-template-columns: 1fr;
     }

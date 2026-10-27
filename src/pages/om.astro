@@ -8,11 +8,9 @@ import { entryPath, path as routePath } from '@/i18n/config';
 
 const formats = formatList('no');
 const sporretimen = seriesById('no', 'sporretimen')!;
-const forklart = seriesById('no', 'sporretimen-forklart')!;
 
 // Mastergraden har sin egen episode. Den som lurer på hva den handlet om, skal
 // kunne trykke seg dit herfra.
-const masterSti = entryPath('no', 'episodes', 'erp-wms-integrasjon');
 ---
 
 <BaseLayout
@@ -56,19 +54,17 @@ const masterSti = entryPath('no', 'episodes', 'erp-wms-integrasjon');
   <section class="section why">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">To podkaster – ett univers</p>
-        <h2>Derfor kombinerer vi samtaler og forklaringer</h2>
+        <p class="eyebrow">Én podkast</p>
+        <h2>Samtalene er hele Spørretimen</h2>
         <p class="lead">
-          <strong>{sporretimen.label}</strong> er samtalene – {sporretimen.blurb.toLowerCase()}{' '}
-          <strong>{forklart.label}</strong> er ideene – {forklart.blurb.toLowerCase()} De to
-          er ett univers, med fire formater.
+          <strong>{sporretimen.label}</strong> er samtalene – {sporretimen.blurb.toLowerCase()}
         </p>
       </div>
       <div class="grid grid-2">
         {
           formats.map((f) => (
             <div class="card format-card">
-              <p class="eyebrow">{f.id === 'samtale' ? sporretimen.label : forklart.label}</p>
+              <p class="eyebrow">{sporretimen.label}</p>
               <h3>{f.singular}</h3>
               <p>{f.description}</p>
               <a href={`${routePath('no', 'episodes')}?format=${f.id}`}>Se {f.label.toLowerCase()} →</a>
@@ -93,7 +89,7 @@ const masterSti = entryPath('no', 'episodes', 'erp-wms-integrasjon');
         <p class="eyebrow">Programleder</p>
         <h2>{site.host}</h2>
         <p class="lead">
-          Jan Sindre er siviløkonom med <a href={masterSti}>master i logistikk</a>, og
+          Jan Sindre er siviløkonom med master i logistikk, og
           har bakgrunn fra ERP. Han er nysgjerrig, relasjonsorientert og liker å møte
           mennesker med andre erfaringer og fagområder enn ham selv.
         </p>

@@ -94,27 +94,11 @@ export const socials: {
   handle?: string;
   /**
    * Kanalen finnes bare for ett språk. Uten feltet vises lenken på begge.
-   * Forklart-serien har én kanal på norsk og én på engelsk – det er to
-   * kanaler, ikke én kanal med to navn.
    */
   lang?: 'no' | 'en';
 }[] = [
   { label: 'YouTube', url: 'https://www.youtube.com/@Spørretimen', handle: '@Spørretimen' },
   { label: 'Spotify', url: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa' },
-  // Spørretimen Forklart har egen kanal og eget show, og en egen engelsk kanal.
-  {
-    label: 'YouTube – Forklart',
-    url: 'https://www.youtube.com/@Spørretimenforklart',
-    handle: '@Spørretimenforklart',
-    lang: 'no',
-  },
-  {
-    label: 'YouTube – Explained',
-    url: 'https://www.youtube.com/@SpørretimenExplained',
-    handle: '@SpørretimenExplained',
-    lang: 'en',
-  },
-  { label: 'Spotify – Forklart', url: 'https://open.spotify.com/show/1MxYZUg9LqXJxyZnFUkIIz' },
   {
     label: 'Apple Podcasts',
     url: 'https://podcasts.apple.com/no/podcast/sp%C3%B8rretimen/id6795102836',
@@ -126,9 +110,8 @@ export const socials: {
 ];
 
 /**
- * Kanallenkene for ett språk. Kanaler merket med `lang` hører til ett språk –
- * Forklart-serien har én YouTube-kanal på norsk og én på engelsk – mens de
- * uten felt gjelder begge. Alle steder som viser eller lenker til kanaler,
+ * Kanallenkene for ett språk. Kanaler merket med `lang` hører til ett språk,
+ * mens de uten felt gjelder begge. Alle steder som viser eller lenker til kanaler,
  * skal gå gjennom denne, ellers sender engelske sider folk til norsk innhold.
  */
 export function socialsFor(lang: 'no' | 'en') {
@@ -148,53 +131,11 @@ export const formats = [
       'Lengre, personlige samtaler om gjestens bakgrunn, utdanning, arbeidsdag, vendepunkter og råd videre. Det skal føles som en naturlig prat – ikke et stivt jobbintervju.',
     icon: 'chat',
   },
-  {
-    id: 'laer-noe-nytt',
-    label: 'Lær noe nytt',
-    singular: 'Lær noe nytt',
-    tagline: 'Grundige forklaringer',
-    description:
-      'Lengre forklaringsepisoder der Jan Sindre går i dybden på et tema. Lærerike, praktiske og kildebaserte – forklart så vanlige lyttere kan henge med.',
-    icon: 'book',
-  },
-  {
-    id: 'kort-forklart',
-    label: 'Kort forklart',
-    singular: 'Kort forklart',
-    tagline: 'Cirka 5–10 minutter',
-    description:
-      'Korte episoder som oppsummerer ett konkret tema enkelt og oversiktlig. Lette å finne og lette å høre på når du har begrenset tid.',
-    icon: 'bolt',
-  },
 ] as const;
 
 export type FormatId = (typeof formats)[number]['id'];
 
-/**
- * Typer i ressursarkivet.
- */
-export const resourceTypes = [
-  { id: 'bok', label: 'Bok', plural: 'Bøker', icon: 'book' },
-  { id: 'husketeknikk', label: 'Husketeknikk', plural: 'Husketeknikker', icon: 'brain' },
-  { id: 'tips', label: 'Tips & triks', plural: 'Tips & triks', icon: 'bulb' },
-  { id: 'verktoy', label: 'Verktøy', plural: 'Verktøy', icon: 'tool' },
-  { id: 'artikkel', label: 'Artikkel', plural: 'Artikler', icon: 'doc' },
-  { id: 'podkast', label: 'Podkast', plural: 'Podkaster', icon: 'mic' },
-] as const;
 
-export type ResourceTypeId = (typeof resourceTypes)[number]['id'];
-
-export function resourceTypeById(id: string) {
-  return resourceTypes.find((t) => t.id === id);
-}
-
-/**
- * Alle typene en ressurs hører til (hovedtype først, så eventuelle
- * tilleggstyper). Brukes til merkelapper og filtrering.
- */
-export function allResourceTypes(data: { type: string; alsoTypes?: string[] }): string[] {
-  return [data.type, ...(data.alsoTypes ?? [])];
-}
 
 
 

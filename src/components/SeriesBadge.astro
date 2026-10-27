@@ -27,7 +27,7 @@ const seriesId = seriesOf(format);
 const series = seriesById(lang, seriesId)!;
 const fmt = formatById(lang, format);
 const topicName = topic ? topicLabel(lang, topic) : undefined;
-const href = routePath(lang, seriesId === 'sporretimen' ? 'conversations' : 'explained');
+const href = routePath(lang, 'conversations');
 ---
 
 <div class:list={['series-badge', { 'series-badge--compact': compact }]}>
@@ -79,13 +79,6 @@ const href = routePath(lang, seriesId === 'sporretimen' ? 'conversations' : 'exp
   /* Formatet får sin egen farge, samme som merkelappene ellers på siden. */
   .series-badge__format.fmt-samtale {
     color: var(--tag-samtale);
-  }
-  .series-badge__format.fmt-laer-noe-nytt,
-  .series-badge__format.fmt-boker-forklart {
-    color: var(--tag-laer);
-  }
-  .series-badge__format.fmt-kort-forklart {
-    color: var(--tag-kort);
   }
   .series-badge__sep,
   .series-badge__topic {

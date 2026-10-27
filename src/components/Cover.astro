@@ -179,20 +179,4 @@ const useImage = variant === 'bilde' && Boolean(src);
   }
 
   /* Hvert format får sin egen tone, så platene ikke blir like flater på rad */
-  .plate--laer-noe-nytt {
-    --plate-tone: #9aabd8;
-  }
-  .plate--kort-forklart {
-    --plate-tone: #dfa373;
-  }
-  .plate--laer-noe-nytt:not(:has(.plate__portrait)) {
-    background:
-      radial-gradient(110% 95% at 78% 4%, rgba(122, 141, 190, 0.15), transparent 62%),
-      #12141a;
-  }
-  .plate--kort-forklart:not(:has(.plate__portrait)) {
-    background:
-      radial-gradient(105% 100% at 50% 112%, rgba(198, 122, 70, 0.16), transparent 64%),
-      #171310;
-  }
 </style>
