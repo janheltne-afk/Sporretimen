@@ -9,12 +9,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import Avatar from '@/components/Avatar.astro';
-import { getEpisodes, getSeriesEpisodes, slugOf, } from '@/lib/content';
-import { popularEpisodes } from '@/lib/popularity';
+import { getEpisodes, slugOf } from '@/lib/content';
 import { site } from '@/data/site';
 import { yrkestall } from '@/data/yrker';
 import { entryPath, path as routePath, type Locale } from '@/i18n/config';
-import { seriesById } from '@/i18n/taxonomy';
 import { useTranslations } from '@/i18n/ui';
 
 interface Props {
@@ -26,29 +24,16 @@ const en = lang === 'en';
 
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
-const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
 const yrke = yrkestall();
-
-const sporretimen = seriesById(lang, 'sporretimen')!;
 
 // Kan være tom mens et språk ennå ikke har innhold – da skal siden fortsatt
 // bygge, bare uten knappen til «siste episode».
 const featuredEpisode = published.find((e) => e.data.featured) ?? published[0];
 
-// Nyeste på tvers av begge seriene. Seks kort, ikke tre – tre ble for lite.
+// Én liste, ikke tre. Forsiden hadde «Nyeste», «Populært» og «Samtaler» ved
+// siden av hverandre, og med et lite arkiv viste alle tre de samme kortene.
+// Seks er taket; blir det flere, ligger resten i arkivet.
 const latest = episodes.slice(0, 6);
-const popular = popularEpisodes(published, 3);
-
-// De to seksjonene under viser helst noe som ikke alt står i «Nyeste», men
-// faller tilbake når arkivet er lite.
-const notInLatest = (list: typeof episodes) => {
-  const shown = new Set(latest.map((e) => e.id));
-  const fresh = list.filter((e) => !shown.has(e.id));
-  return (fresh.length >= 3 ? fresh : list).slice(0, 3);
-};
-const pickedConversations = notInLatest(conversations);
-
-// Temaene på forsiden: de som har innhold, i registerets rekkefølge.
 
 ---
 
@@ -99,63 +84,22 @@ const pickedConversations = notInLatest(conversations);
     </div>
   </section>
 
-  <!-- Nyeste, på tvers av begge seriene -->
-  <section class="section" aria-labelledby="latest-heading">
-    <div class="container">
-      <div class="row-head">
-        <div>
-          <p class="eyebrow">{en ? 'Latest' : 'Nyeste'}</p>
-          <h2 id="latest-heading">{en ? 'New and upcoming' : 'Nytt og kommende'}</h2>
-        </div>
-        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'episodes')}>
-          {t('episode.allEpisodes')}
-        </a>
-      </div>
-      <div class="grid grid-3">
-        {latest.map((ep) => <EpisodeCard lang={lang} episode={ep} />)}
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Populært akkurat nå -->
+  <!-- Samtalene -->
   {
-    popular.length > 0 && (
-      <section class="section popular" aria-labelledby="popular-heading">
+    latest.length > 0 && (
+      <section class="section" aria-labelledby="latest-heading">
         <div class="container">
           <div class="row-head">
             <div>
-              <p class="eyebrow">{en ? 'Popular right now' : 'Populært akkurat nå'}</p>
-              <h2 id="popular-heading">{en ? 'What people are listening to' : 'Det folk hører på'}</h2>
-            </div>
-          </div>
-          <div class="grid grid-3">
-            {popular.map((ep) => (
-              <EpisodeCard lang={lang} episode={ep} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- Samtaler -->
-  {
-    pickedConversations.length > 0 && (
-      <section class="section" aria-labelledby="conv-heading">
-        <div class="container">
-          <div class="row-head">
-            <div>
-              <p class="eyebrow">{sporretimen.label}</p>
-              <h2 id="conv-heading">{en ? 'Conversations' : 'Samtaler'}</h2>
+              <p class="eyebrow">{en ? 'The conversations' : 'Samtalene'}</p>
+              <h2 id="latest-heading">{en ? 'New and upcoming' : 'Nytt og kommende'}</h2>
             </div>
             <a class="btn btn-secondary btn-sm" href={routePath(lang, 'conversations')}>
               {en ? 'All conversations' : 'Alle samtaler'}
             </a>
           </div>
           <div class="grid grid-3">
-            {pickedConversations.map((ep) => (
+            {latest.map((ep) => (
               <EpisodeCard lang={lang} episode={ep} />
             ))}
           </div>
@@ -163,7 +107,6 @@ const pickedConversations = notInLatest(conversations);
       </section>
     )
   }
-
 
   <!-- Yrkesjakten -->
   <section class="section yrkesjakt" aria-labelledby="yrker-heading">
@@ -186,7 +129,6 @@ const pickedConversations = notInLatest(conversations);
       </div>
     </div>
   </section>
-
 
   <!-- Jan Sindre -->
 
@@ -283,17 +225,14 @@ const pickedConversations = notInLatest(conversations);
 
   /* Temaer – en tolinjers liste, ikke enda en kortvegg. */
 
-  .popular {
-    background: var(--surface);
-    border-block: 1px solid var(--line);
-  }
-
   /* Hva vil du lære mer om? */
 
   /* Programlederen. Kort og saklig. */
 
   @media (max-width: 880px) {
-    .hero__inner,
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
     .hero__media {
       order: -1;
       justify-self: start;

@@ -166,13 +166,6 @@ const episodes = defineCollection({
       related: z.array(reference('episodes')).default([]),
       featured: z.boolean().default(false),
       /**
-       * Manuell vekt for «Populært akkurat nå» på forsiden, 0 = ikke med.
-       * Ligger i frontmatter fordi det ennå ikke finnes analytics å hente
-       * tallene fra. Se src/lib/popularity.ts for hvordan seksjonen kobles
-       * til reelle data senere.
-       */
-      popularityScore: z.number().default(0),
-      /**
        * Interaktivt verktøy i artikkelteksten. Selve skjemaet står i
        * Markdown-fila som vanlig HTML; dette feltet kobler på regnestykket
        * og utseendet. Utelates når episoden ikke har et slikt verktøy.

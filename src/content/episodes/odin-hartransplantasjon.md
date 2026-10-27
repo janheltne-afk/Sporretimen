@@ -61,7 +61,6 @@ description: >-
   foregikk, hva det kostet, hva som var vondt, og hvorfor han mener det er verdt
   det. En ærlig samtale om noe mange menn tenker på og få snakker om.
 featured: false
-popularityScore: 0
 advisory:
   - helse
 links:
