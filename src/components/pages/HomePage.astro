@@ -32,8 +32,10 @@ const featuredEpisode = published.find((e) => e.data.featured) ?? published[0];
 
 // Én liste, ikke tre. Forsiden hadde «Nyeste», «Populært» og «Samtaler» ved
 // siden av hverandre, og med et lite arkiv viste alle tre de samme kortene.
+// Bare publiserte: overskriften sier «Siste episoder», og da skal det ikke
+// ligge kommende episoder i lista. De står på /samtaler og /episoder.
 // Seks er taket; blir det flere, ligger resten i arkivet.
-const latest = episodes.slice(0, 6);
+const latest = published.slice(0, 6);
 
 ---
 
@@ -91,8 +93,8 @@ const latest = episodes.slice(0, 6);
         <div class="container">
           <div class="row-head">
             <div>
-              <p class="eyebrow">{en ? 'The conversations' : 'Samtalene'}</p>
-              <h2 id="latest-heading">{en ? 'New and upcoming' : 'Nytt og kommende'}</h2>
+              <p class="eyebrow">Samtalene</p>
+              <h2 id="latest-heading">Siste episoder</h2>
             </div>
             <a class="btn btn-secondary btn-sm" href={routePath(lang, 'conversations')}>
               {en ? 'All conversations' : 'Alle samtaler'}

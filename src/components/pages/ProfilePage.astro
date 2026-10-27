@@ -37,11 +37,9 @@ const person = {
   name: site.host,
   url: canonicalUrl(here),
   image: absoluteUrl(site.hostImage),
-  jobTitle: en ? 'Host, Spørretimen' : 'Programleder i Spørretimen',
-  description: en
-    ? 'Host of Spørretimen. Siviløkonom (MSc in Business) with a master’s in logistics, a background in ERP, and a day job in business analytics. Publishes long conversations with people about the work they do.'
-    : 'Programleder i Spørretimen. Siviløkonom med master i logistikk, bakgrunn fra ERP, og jobber til daglig med Business Analytics. Publiserer lange samtaler med folk om jobbene deres.',
-  knowsAbout: published.map((e) => e.data.title),
+  jobTitle: 'Programleder i Spørretimen',
+  description:
+    'Programleder i Spørretimen, en samtalepodkast om folk og jobbene deres. Siviløkonom med master i logistikk og bakgrunn fra ERP. Podkasten lages på fritiden.',
   hasCredential: [
     {
       '@type': 'EducationalOccupationalCredential',
@@ -84,9 +82,7 @@ const jsonLd = [
   <PageHeader
     eyebrow={en ? 'Profile' : 'Profil'}
     title={site.host}
-    lead={en
-      ? 'Host of Spørretimen. He uses the podcast to explore economics, technology, business, learning and how people make decisions.'
-      : 'Programleder i Spørretimen. Han bruker podkasten til å utforske økonomi, teknologi, næringsliv, læring og hvordan mennesker tar beslutninger.'}
+    lead="Programleder i Spørretimen. Han snakker med folk om jobbene deres – hvordan arbeidsdagen faktisk ser ut, hva som førte dem dit, og hva de har lært underveis."
   />
 
   <section class="section">
@@ -135,60 +131,31 @@ const jsonLd = [
       </aside>
 
       <div class="profile__main prose">
-        {
-          en ? (
-            <>
-              <p>
-                Jan Sindre Heltne started Spørretimen from a simple idea: a lot of people carry
-                stories, experience and knowledge that more of us ought to hear. The
-                conversations are about what it is really like to work in a profession, to
-                take an expedition, to build a career in music. The explainers are about the
-                subjects around them – sleep, memory, habits, money.
-              </p>
-              <p>
-                He is a siviløkonom – the Norwegian MSc in Business – with a master’s in
-                logistics, has a background in ERP systems, and works in business analytics
-                day to day. That background is why the podcast keeps returning to numbers and
-                how organisations actually decide things. That is where the curiosity comes
-                from. The podcast is a hobby, made in his spare time. Both theses he has
-                written are walked through in episodes of their own – the{' '}
-                bachelor thesis on RFID and stock counting and the{' '}
-                master’s thesis on ERP–WMS integrations.
-              </p>
-              <p>
-                He is not presented as an expert on every subject covered, and the site keeps
-                personal experience, professional explanation and documented fact clearly
-                apart. The explainers are sourced, and where a claim is disputed, the episode
-                says so. That is the whole approach: curious, not lecturing.
-              </p>
-            </>
-          ) : (
-            <>
-              <p>
-                Jan Sindre Heltne startet Spørretimen ut fra en enkel idé: mange mennesker
-                sitter på historier, erfaringer og kunnskap som flere burde få høre. Samtalene
-                handler om hvordan det egentlig er å jobbe i et yrke, å dra på ekspedisjon, å
-                bygge en karriere i musikken. Forklaringene handler om temaene rundt – søvn,
-                hukommelse, vaner, penger.
-              </p>
-              <p>
-                Han er siviløkonom med master i logistikk, har bakgrunn fra ERP, og jobber
-                til daglig med Business Analytics. Den bakgrunnen er grunnen til at podkasten
-                stadig vender tilbake til tall og hvordan virksomheter faktisk bestemmer
-                seg. Det er der nysgjerrigheten kommer fra. Podkasten er hobby, og lages på
-                fritiden. Begge oppgavene han har skrevet er gjennomgått i egne episoder –{' '}
-                bacheloroppgaven om RFID og varetelling og{' '}
-                masteroppgaven om ERP- og WMS-integrasjoner.
-              </p>
-              <p>
-                Han fremstilles ikke som ekspert på alle temaene som dekkes, og nettsiden
-                skiller tydelig mellom personlig erfaring, faglig forklaring og dokumenterte
-                fakta. Forklaringene er kildebaserte, og der en påstand er omdiskutert, sier
-                episoden det. Det er hele tilnærmingen: nysgjerrig, ikke belærende.
-              </p>
-            </>
-          )
-        }
+        <p>
+          Jan Sindre Heltne startet Spørretimen ut fra en enkel idé: mange mennesker
+          sitter på historier, erfaringer og kunnskap som flere burde få høre. Samtalene
+          handler om hvordan det egentlig er å ha en jobb – hva man gjør i løpet av en
+          dag, hva som førte en dit, hva som er vanskelig, og hva ingen fortalte på
+          forhånd.
+        </p>
+        <p>
+          Målet er å snakke med noen fra hvert eneste yrke som finnes. Det kommer til å
+          ta tid, og lista over yrker som står igjen er lang. Den ligger åpent på
+          nettstedet, så hvem som helst kan tipse om noen.
+        </p>
+        <p>
+          Han er siviløkonom med master i logistikk og har bakgrunn fra ERP. Bachelor- og
+          masteroppgaven handlet om RFID og varetelling, og om integrasjoner mellom ERP og
+          WMS. Til daglig jobber han med Business Analytics. Podkasten er hobby, og lages
+          på fritiden – den har ingen sammenheng med arbeidsgiveren hans. Skulle en episode
+          en gang ha det, blir det merket og forklart i episoden.
+        </p>
+        <p>
+          Han fremstilles ikke som ekspert på det gjestene jobber med. Det er gjestene som
+          kan faget; han stiller spørsmålene. Nettstedet skiller tydelig mellom personlig
+          erfaring og dokumenterte fakta, og der noe er usikkert, sier episoden det. Det er
+          hele tilnærmingen: nysgjerrig, ikke belærende.
+        </p>
       </div>
     </div>
   </section>
