@@ -176,35 +176,28 @@ export function formatById(id: string) {
  * skriv bare det du faktisk kommer til å gi.
  */
 export const finnerlonn = {
-  eyebrow: { no: 'Finnerlønn', en: 'Finder’s thanks' },
+  eyebrow: { no: 'Finnerlønn' },
   tittel: {
     no: 'Kjenner du noen med en jobb vi ikke har hørt om?',
-    en: 'Know someone with a job we have not covered?',
   },
   ingress: {
     no: 'De grå yrkene over er ledige. Tipser du om noen, og det blir en samtale av det, får du finnerlønn.',
-    en: 'The grey occupations above are open. Tip us about someone, and if it turns into a conversation, you get a finder’s thanks.',
   },
   trinn: [
     {
       no: 'Trykk på et grått yrke, eller skriv det selv i skjemaet.',
-      en: 'Press a grey occupation, or write it in the form yourself.',
     },
     {
       no: 'Fortell hvem det er og hvordan vi når deg.',
-      en: 'Tell us who it is and how to reach you.',
     },
     {
       no: 'Blir det en samtale av det, tar vi kontakt med deg først.',
-      en: 'If it turns into a conversation, we contact you first.',
     },
   ],
   belonning: {
     no: 'Finnerlønnen avtales direkte med deg, og du får en takk i episoden hvis du vil.',
-    en: 'The finder’s thanks is agreed with you directly, and you get a credit in the episode if you want one.',
   },
   vilkar: {
     no: 'Alle som tipser om noen det blir en samtale med, får finnerlønn – det er ingen trekning. Du må ha lov til å dele kontaktopplysningene du sender inn, og personen selv bestemmer om hen vil være med. Opplysningene brukes bare til å ta kontakt, og slettes om det ikke blir noe av.',
-    en: 'Everyone whose tip leads to a conversation gets the finder’s thanks – there is no draw. You must be allowed to share the contact details you send, and the person decides for themselves whether to take part. The details are used only to get in touch, and are deleted if nothing comes of it.',
   },
 } as const;

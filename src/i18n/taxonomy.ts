@@ -24,16 +24,15 @@ type Text = Record<Locale, string>;
 export const seriesList = [
   {
     id: 'sporretimen',
-    label: { no: 'Spørretimen', en: 'Spørretimen' } as Text,
+    label: { no: 'Spørretimen' } as Text,
     channels: {
       youtube: 'https://www.youtube.com/@Spørretimen',
       spotify: 'https://open.spotify.com/show/033Mnzddmlaiq3gU9FWDDa',
       apple: 'https://podcasts.apple.com/no/podcast/sp%C3%B8rretimen/id6795102836',
     },
-    kicker: { no: 'Samtalene', en: 'The conversations' } as Text,
+    kicker: { no: 'Samtalene' } as Text,
     blurb: {
       no: 'Lange samtaler med mennesker med interessante erfaringer, historier, yrker og kunnskap.',
-      en: 'Long conversations with people who carry interesting experience, stories, professions and knowledge. Recorded in Norwegian.',
     } as Text,
   },
 ] as const;
@@ -59,12 +58,11 @@ export const formats = [
   {
     id: 'samtale',
     icon: 'chat',
-    label: { no: 'Samtaler', en: 'Conversations' } as Text,
-    singular: { no: 'Samtale', en: 'Conversation' } as Text,
-    tagline: { no: 'Personlige dybdeintervjuer', en: 'Personal, in-depth interviews' } as Text,
+    label: { no: 'Samtaler' } as Text,
+    singular: { no: 'Samtale' } as Text,
+    tagline: { no: 'Personlige dybdeintervjuer' } as Text,
     description: {
       no: 'Lengre, personlige samtaler om gjestens bakgrunn, utdanning, arbeidsdag, vendepunkter og råd videre. Det skal føles som en naturlig prat – ikke et stivt jobbintervju.',
-      en: 'Longer, personal conversations about a guest’s background, education, working day, turning points and advice. It should feel like a real conversation – not a stiff job interview.',
     } as Text,
   },
 ] as const;

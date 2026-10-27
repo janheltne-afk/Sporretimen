@@ -1,60 +1,48 @@
 /**
  * Språkoppsett for Spørretimen.
  *
- * Nettsiden finnes på norsk (uten prefiks) og engelsk (under /en/). Det er
- * bevisst to sett med ferdig bygde sider, ikke en knapp som bytter tekst i
- * nettleseren: søkemotorer og AI-søk indekserer bare HTML som faktisk ligger
- * på en egen adresse.
- *
- * Norske adresser er uendret, slik at det som allerede er indeksert består.
+ * Nettstedet er på norsk. Oppsettet står igjen fordi rutetabellen og
+ * `path()` bygger på det, og fordi et nytt språk da kan legges til uten å
+ * skrive om hver eneste komponent: legg språket i `locales`, gi hver rute
+ * en adresse, og legg til et strengsett i ui.ts.
  */
 
-/**
- * Skrus på når de engelske sidene faktisk finnes. Så lenge den er av, vises
- * ingen språkknapp – en knapp som fører til en side som ikke er bygget ennå
- * er verre enn ingen knapp, både for besøkende og for søkemotorer.
- *
- * Enkeltsider uten motstykke på det andre språket (manusene) setter
- * `noAlternate` på BaseLayout i stedet, og står da uten knapp og uten hreflang.
- */
-export const englishReady = true;
-
-export const locales = ['no', 'en'] as const;
+export const locales = ['no'] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = 'no';
 
 /** Språkkoder brukt i <html lang>, hreflang og Open Graph. */
-export const htmlLang: Record<Locale, string> = { no: 'nb', en: 'en' };
-export const ogLocale: Record<Locale, string> = { no: 'nb_NO', en: 'en_US' };
+export const htmlLang: Record<Locale, string> = { no: 'nb' };
+export const ogLocale: Record<Locale, string> = { no: 'nb_NO' };
 
 /** Navnet på språket, skrevet på språket selv. */
-export const localeName: Record<Locale, string> = { no: 'Norsk', en: 'English' };
+export const localeName: Record<Locale, string> = { no: 'Norsk' };
 
 /**
  * Stien til hver seksjon, per språk. Engelske adresser bruker engelske ord –
  * det leser bedre og gir et lite løft i søk.
  */
 const routes = {
-  home: { no: '/', en: '/en' },
+  home: { no: '/' },
   // Samtalesporet. Hele nettstedet er nå podkastsamtalene.
-  conversations: { no: '/samtaler', en: '/en/conversations' },
-  foredrag: { no: '/foredrag', en: '/en/talks' },
-  profile: { no: '/jan-sindre-heltne', en: '/en/jan-sindre-heltne' },
+  conversations: { no: '/samtaler' },
+  foredrag: { no: '/foredrag' },
+  profile: { no: '/jan-sindre-heltne' },
   // Hele arkivet, på tvers av seriene. Adressen er uendret fra før.
-  episodes: { no: '/episoder', en: '/en/episodes' },
-  guests: { no: '/gjester', en: '/en/guests' },
-  occupations: { no: '/yrker', en: '/en/occupations' },
-  about: { no: '/om', en: '/en/about' },
-  contact: { no: '/kontakt', en: '/en/contact' },
-  ethics: { no: '/var-varsom', en: '/en/editorial-standards' },
-  principles: { no: '/redaksjonelle-prinsipper', en: '/en/editorial-principles' },
-  suggestGuest: { no: '/foresla-gjest', en: '/en/suggest-a-guest' },
-  beGuest: { no: '/bli-gjest', en: '/en/be-a-guest' },
-  partner: { no: '/samarbeid', en: '/en/collaborate' },
-  privacy: { no: '/personvern', en: '/en/privacy' },
-  terms: { no: '/vilkar', en: '/en/terms' },
-  search: { no: '/sok', en: '/en/search' },
+  episodes: { no: '/episoder' },
+  guests: { no: '/gjester' },
+  occupations: { no: '/yrker' },
+  about: { no: '/om' },
+  contact: { no: '/kontakt' },
+  ethics: { no: '/var-varsom' },
+  principles: { no: '/redaksjonelle-prinsipper' },
+  suggestGuest: { no: '/foresla-gjest' },
+  beGuest: { no: '/bli-gjest' },
+  partner: { no: '/samarbeid' },
+  privacy: { no: '/personvern' },
+  terms: { no: '/vilkar' },
+  search: { no: '/sok' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -154,44 +142,3 @@ export function localeFromUrl(url: URL): Locale {
   return url.pathname === '/en' || url.pathname.startsWith('/en/') ? 'en' : 'no';
 }
 
-/**
- * Samme side på det andre språket. Brukes av språkknappen og av hreflang.
- *
- * Oversettelsen av selve adressen gjøres ved å slå opp seksjonen i tabellen
- * over, slik at /episoder/sturla/ blir /en/episodes/sturla/ – og ikke bare får
- * et /en/ foran seg.
- */
-export function alternatePath(lang: Locale, current: string): string {
-  const other: Locale = lang === 'no' ? 'en' : 'no';
-  const clean = current.replace(/\/+$/, '') || '/';
-
-  // Lengst treff først, ellers ville /om matchet før /om-noe-annet
-  const keys = (Object.keys(routes) as RouteKey[])
-    .filter((k) => k !== 'home')
-    .sort((a, b) => routes[b][lang].length - routes[a][lang].length);
-
-  for (const key of keys) {
-    const base = routes[key][lang];
-    if (clean === base || clean.startsWith(`${base}/`)) {
-      let rest = clean.slice(base.length);
-      // Oversett også det siste leddet for manus/transkripsjon
-      const from = transcriptSegment[lang];
-      const to = transcriptSegment[other];
-      if (rest.endsWith(`/${from}`)) rest = `${rest.slice(0, -from.length)}${to}`;
-      // ... og for presentasjonen, som har sitt eget ord på hvert språk
-      const presFrom = presentationSegment[lang];
-      if (rest.endsWith(`/${presFrom}`)) {
-        rest = `${rest.slice(0, -presFrom.length)}${presentationSegment[other]}`;
-      }
-      // ... og filnavnet på PDF-en, som er en fil og ikke skal ha skråstrek
-      const pdfFrom = pdfSegment[lang];
-      if (rest.endsWith(`/${pdfFrom}`)) {
-        return `${routes[key][other]}${rest.slice(0, -pdfFrom.length)}${pdfSegment[other]}`;
-      }
-      const target = `${routes[key][other]}${rest}`;
-      return target.endsWith('/') ? target : `${target}/`;
-    }
-  }
-
-  return path(other, 'home');
-}

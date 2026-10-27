@@ -1,17 +1,14 @@
 ---
 import Logo from './Logo.astro';
 import { site } from '@/data/site';
-import { alternatePath, englishReady, localeName, path as routePath, type Locale } from '@/i18n/config';
+import { path as routePath, type Locale } from '@/i18n/config';
 import { navItems, useTranslations } from '@/i18n/ui';
 
 interface Props {
   lang: Locale;
-  /** Skjuler språkknappen på sider som ikke finnes på det andre språket. */
-  noAlternate?: boolean;
 }
-const { lang, noAlternate = false } = Astro.props;
+const { lang } = Astro.props;
 const t = useTranslations(lang);
-const other: Locale = lang === 'no' ? 'en' : 'no';
 
 const nav = navItems.map((item) => ({ label: item.label[lang], href: routePath(lang, item.key) }));
 
@@ -27,9 +24,6 @@ const isActive = (href: string) => {
   return here === target || (target !== '/' && here.startsWith(`${target}/`));
 };
 
-// Språkknappen peker til samme side på det andre språket – en ekte lenke, slik
-// at søkemotorer følger den og finner den andre versjonen.
-const otherHref = alternatePath(lang, Astro.url.pathname);
 ---
 
 <header class="site-header">
@@ -52,18 +46,6 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
         </svg>
       </a>
 
-      {englishReady && !noAlternate && (
-      <a
-        class="lang-toggle"
-        href={otherHref}
-        hreflang={other === 'en' ? 'en' : 'nb'}
-        lang={other === 'en' ? 'en' : 'nb'}
-        aria-label={t('header.language')}
-        title={localeName[other]}
-      >
-        {t('header.languageShort')}
-      </a>
-      )}
 
       <button
         type="button"
@@ -159,26 +141,6 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
   }
   /* Språkknappen står ved siden av temaknappen og er en ekte lenke, ikke en
      bryter – den fører til den engelske versjonen av siden du står på. */
-  .lang-toggle {
-    display: grid;
-    place-items: center;
-    height: 36px;
-    padding-inline: 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    color: var(--ink-faint);
-    font-family: var(--font-sans);
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: color 0.2s ease, border-color 0.2s ease;
-  }
-  .lang-toggle:hover {
-    color: var(--ink);
-    border-color: var(--line-strong);
-  }
 
   .search-toggle {
     display: grid;
@@ -371,11 +333,6 @@ const otherHref = alternatePath(lang, Astro.url.pathname);
     .site-header__actions {
       flex: none;
       gap: 0.1rem;
-    }
-    .lang-toggle {
-      padding-inline: 0.4rem;
-      letter-spacing: 0.08em;
-      margin-right: -0.08em;
     }
     .search-toggle,
     .theme-toggle,

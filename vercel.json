@@ -11,16 +11,6 @@
       "permanent": false
     },
     {
-      "source": "/en/talks",
-      "destination": "/en/",
-      "permanent": false
-    },
-    {
-      "source": "/en/talks/",
-      "destination": "/en/",
-      "permanent": false
-    },
-    {
       "source": "/kurs",
       "destination": "/samtaler/",
       "permanent": false
@@ -41,16 +31,6 @@
       "permanent": false
     },
     {
-      "source": "/en/courses",
-      "destination": "/en/conversations/",
-      "permanent": false
-    },
-    {
-      "source": "/en/courses/",
-      "destination": "/en/conversations/",
-      "permanent": false
-    },
-    {
       "source": "/episoder/:slug/manus",
       "destination": "/episoder/:slug/#manus",
       "permanent": true
@@ -58,16 +38,6 @@
     {
       "source": "/episoder/:slug/manus/",
       "destination": "/episoder/:slug/#manus",
-      "permanent": true
-    },
-    {
-      "source": "/en/episodes/:slug/transcript",
-      "destination": "/en/episodes/:slug/#transcript",
-      "permanent": true
-    },
-    {
-      "source": "/en/episodes/:slug/transcript/",
-      "destination": "/en/episodes/:slug/#transcript",
       "permanent": true
     }
   ]

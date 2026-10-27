@@ -17,7 +17,7 @@ import { join, relative, sep, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /** Hvor indeksen havner, per språk. Må stemme med sokIndeksUrl i src/lib/sok.ts. */
-const UTFIL = { no: 'sok-indeks.json', en: join('en', 'search-index.json') };
+const UTFIL = { no: 'sok-indeks.json' };
 
 /** Sider som aldri skal kunne søkes opp, uansett hva de inneholder. */
 const UTELATT = [/^404\//, /^en\/404\//];
@@ -123,7 +123,7 @@ export default function sokIndeks() {
       'astro:build:done': async ({ dir, logger }) => {
         const rot = fileURLToPath(dir);
         const sider = await finnSider(rot);
-        const treff = { no: [], en: [] };
+        const treff = { no: [] };
         let hoppet = 0;
 
         for (const fil of sider) {
@@ -144,7 +144,7 @@ export default function sokIndeks() {
           const kind = /<main\b[^>]*\bdata-search-kind="([a-z]+)"/i.exec(html)?.[1];
           if (!kind || UTELATTE_SEKSJONER.has(kind)) continue;
 
-          const lang = /<html[^>]*\blang="en"/i.test(html) ? 'en' : 'no';
+          const lang = 'no';
           const url = '/' + rel.replace(/index\.html$/, '');
           const tittel = avkod(taggInnhold(main, 'h1').replace(/<[^>]+>/g, ' '))
             .replace(/\s+/g, ' ')

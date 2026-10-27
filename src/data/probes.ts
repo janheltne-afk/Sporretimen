@@ -18,50 +18,44 @@ export interface Probe {
 export const probes: Probe[] = [
   {
     subtopic: 'fremtidens-arbeidsliv',
-    label: { no: 'AI i arbeidslivet', en: 'AI at work' },
+    label: { no: 'AI i arbeidslivet' },
     blurb: {
       no: 'Hva som faktisk endrer seg i jobbene, og hva som bare høres ut som det.',
-      en: 'What is actually changing in the jobs, and what only sounds like it.',
     },
   },
   {
     subtopic: 'makrookonomi',
-    label: { no: 'Hvordan forstå økonomien', en: 'Making sense of the economy' },
+    label: { no: 'Hvordan forstå økonomien' },
     blurb: {
       no: 'Renter, inflasjon og styringsrenten – forklart uten forkunnskaper.',
-      en: 'Interest rates, inflation and the policy rate – explained with no prior knowledge.',
     },
   },
   {
     subtopic: 'tenkning-og-bias',
-    label: { no: 'Psykologien bak gode beslutninger', en: 'The psychology of good decisions' },
+    label: { no: 'Psykologien bak gode beslutninger' },
     blurb: {
       no: 'Hvorfor vi tar feil på samme måte hver gang, og hva som faktisk hjelper.',
-      en: 'Why we get things wrong the same way every time, and what actually helps.',
     },
   },
   {
     subtopic: 'krypto-og-blockchain',
-    label: { no: 'Bitcoin og blockchain', en: 'Bitcoin and blockchain' },
+    label: { no: 'Bitcoin og blockchain' },
     blurb: {
       no: 'Hva teknologien faktisk gjør, forklart uten hype og uten forakt.',
-      en: 'What the technology actually does, explained without hype and without contempt.',
     },
   },
   {
     subtopic: 'hukommelse',
-    label: { no: 'Hukommelse og læring', en: 'Memory and learning' },
+    label: { no: 'Hukommelse og læring' },
     blurb: {
       no: 'Teknikkene som virker, og hvorfor hjernen husker bilder bedre enn tall.',
-      en: 'The techniques that work, and why the brain remembers images better than numbers.',
     },
   },
   {
     subtopic: 'data-og-beslutninger',
-    label: { no: 'Data og beslutninger', en: 'Data and decisions' },
+    label: { no: 'Data og beslutninger' },
     blurb: {
       no: 'Hvordan tall brukes – og misbrukes – når noe skal bestemmes.',
-      en: 'How numbers are used – and misused – when something has to be decided.',
     },
   },
 ];

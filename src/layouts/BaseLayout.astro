@@ -20,11 +20,6 @@ interface Props {
    * samme, bare rammen rundt er borte.
    */
   bare?: boolean;
-  /**
-   * Settes på sider som ikke finnes på det andre språket (foreløpig manusene).
-   * Da vises verken språkknapp eller hreflang, siden begge ville pekt på 404.
-   */
-  noAlternate?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 const props = Astro.props;
@@ -94,7 +89,7 @@ const searchKind = props.noindex ? undefined : searchKindOf(lang, Astro.url.path
           <a class="skip-link" href="#main">
             {lang === 'en' ? 'Skip to content' : 'Hopp til innhold'}
           </a>
-          <Header lang={lang} noAlternate={props.noAlternate} />
+          <Header lang={lang} />
           <main id="main" data-search-kind={searchKind}>
             <slot />
           </main>

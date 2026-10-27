@@ -17,9 +17,9 @@ const { lang, commercial } = Astro.props;
 const en = lang === 'en';
 
 const labels = {
-  annonse: { no: 'Annonse', en: 'Advertisement' },
-  sponset: { no: 'Sponset innhold', en: 'Sponsored content' },
-  samarbeid: { no: 'Kommersielt samarbeid', en: 'Commercial partnership' },
+  annonse: { no: 'Annonse' },
+  sponset: { no: 'Sponset innhold' },
+  samarbeid: { no: 'Kommersielt samarbeid' },
 };
 const label = labels[commercial.kind][en ? 'en' : 'no'];
 ---

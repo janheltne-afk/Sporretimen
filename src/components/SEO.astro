@@ -1,6 +1,6 @@
 ---
 import { site, socialsFor, canonicalUrl, absoluteUrl } from '@/data/site';
-import { alternatePath, englishReady, htmlLang, ogLocale, path, type Locale } from '@/i18n/config';
+import { ogLocale, path, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 
 interface Props {
@@ -14,8 +14,6 @@ interface Props {
   /** 'website' | 'article' */
   type?: string;
   noindex?: boolean;
-  /** Sider uten motstykke på det andre språket får ingen hreflang. */
-  noAlternate?: boolean;
   /** Ekstra JSON-LD-objekt(er) som legges inn i <head>. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -26,7 +24,6 @@ const {
   imageAlt,
   type = 'website',
   noindex = false,
-  noAlternate = false,
   jsonLd,
 } = Astro.props;
 
@@ -38,10 +35,6 @@ const pageTitle = title ? `${title} · ${site.name}` : `${site.name} – ${tagli
 const canonical = canonicalUrl(Astro.url.pathname);
 const ogImage = absoluteUrl(image ?? site.ogImage);
 const ogImageAlt = imageAlt ?? title ?? `${site.name} – ${tagline}`;
-
-// Samme side på det andre språket. Uten hreflang vet ikke søkemotorene at de
-// to versjonene hører sammen, og risikoen er at de leses som duplikater.
-const alternate = canonicalUrl(alternatePath(lang, Astro.url.pathname));
 
 // Lenker til offisielle profiler (sameAs).
 const sameAs = socialsFor(lang).map((s) => s.url!) ;
@@ -85,17 +78,6 @@ const structured = jsonLd ? [...base, ...(Array.isArray(jsonLd) ? jsonLd : [json
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
-{
-  /* hreflang skal bare peke på sider som faktisk finnes. Peker den på en
-     adresse som gir 404, er den verre enn ingen hreflang. */
-  englishReady && !noAlternate && (
-    <>
-      <link rel="alternate" hreflang={htmlLang.no} href={canonicalUrl(lang === 'no' ? Astro.url.pathname : alternate)} />
-      <link rel="alternate" hreflang={htmlLang.en} href={canonicalUrl(lang === 'en' ? Astro.url.pathname : alternate)} />
-      <link rel="alternate" hreflang="x-default" href={canonicalUrl(lang === 'no' ? Astro.url.pathname : alternate)} />
-    </>
-  )
-}
 {
   noindex ? (
     <meta name="robots" content="noindex, nofollow" />
