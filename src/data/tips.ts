@@ -28,6 +28,24 @@ export const tipsKort = {
 };
 
 /**
+ * Hvordan utbetalingen skjer.
+ *
+ * Beløpsgrensen står med vilje uten tall. Skatteetatens egen side oppgir
+ * 1 000 kroner i året for arbeid utenfor hjemmet, mens enkelte andre kilder
+ * oppgir 2 000. Så lenge det spriker, sier teksten hva praksisen er – at
+ * utbetalingen holdes innenfor grensen – og ikke hva grensen er.
+ *
+ * Ingenting her skal si at belønningen er skattefri, og ingenting her er
+ * skatteråd. Den som mottar en utbetaling, svarer selv for sin egen skatt.
+ */
+export const utbetaling = [
+  'Belønningen utbetales over Vipps.',
+  'Samlet utbetaling til samme person holdes innenfor beløpsgrensen som gjelder for utbetaling mellom privatpersoner.',
+  'Jeg fører oversikt over hvem som har fått hva, slik at det kan dokumenteres hvis noen spør i ettertid.',
+  'Spørretimen er et privat hobbyprosjekt og drives ikke kommersielt.',
+] as const;
+
+/**
  * Emnefeltet i e-posten. Tipses det fra et bestemt yrke, står yrket i emnet,
  * slik at henvendelsen er lett å kjenne igjen.
  */
