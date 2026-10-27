@@ -46,6 +46,7 @@ const routes = {
   // Hele arkivet, på tvers av seriene. Adressen er uendret fra før.
   episodes: { no: '/episoder', en: '/en/episodes' },
   guests: { no: '/gjester', en: '/en/guests' },
+  occupations: { no: '/yrker', en: '/en/occupations' },
   about: { no: '/om', en: '/en/about' },
   contact: { no: '/kontakt', en: '/en/contact' },
   ethics: { no: '/var-varsom', en: '/en/editorial-standards' },
@@ -125,6 +126,7 @@ const indexKeys = [
   'episodes',
   'conversations',
   'guests',
+  'occupations',
   'topics',
 ] as const satisfies readonly RouteKey[];
 

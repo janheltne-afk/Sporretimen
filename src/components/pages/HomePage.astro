@@ -15,6 +15,7 @@ import { getEpisodes, getSeriesEpisodes, slugOf, topicCounts } from '@/lib/conte
 import { popularEpisodes } from '@/lib/popularity';
 import { site } from '@/data/site';
 import { topics } from '@/data/topics';
+import { yrkestall } from '@/data/yrker';
 import { probes } from '@/data/probes';
 import { entryPath, path as routePath, topicPath, type Locale } from '@/i18n/config';
 import { seriesById } from '@/i18n/taxonomy';
@@ -31,6 +32,7 @@ const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
 const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
 const counts = await topicCounts(lang);
+const yrke = yrkestall();
 
 const sporretimen = seriesById(lang, 'sporretimen')!;
 
@@ -196,6 +198,28 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
   }
 
 
+  <!-- Yrkesjakten -->
+  <section class="section yrkesjakt" aria-labelledby="yrker-heading">
+    <div class="container">
+      <div class="row-head">
+        <div>
+          <p class="eyebrow">{en ? 'Occupations' : 'Yrker'}</p>
+          <h2 id="yrker-heading">
+            {en ? 'Someone from every job there is' : 'Noen fra hvert eneste yrke'}
+          </h2>
+          <p class="lead">
+            {en
+              ? `${yrke.dekket} of ${yrke.totalt} occupations are done. The rest are open – and we are looking for them.`
+              : `${yrke.dekket} av ${yrke.totalt} yrker er gjort. Resten er ledige – og vi leter etter dem.`}
+          </p>
+        </div>
+        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'occupations')}>
+          {en ? 'See every occupation' : 'Se alle yrkene'}
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Hva vil du lære mer om? -->
   <section class="section probes" aria-labelledby="probes-heading">
     <div class="container">
@@ -246,6 +270,15 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 </BaseLayout>
 
 <style>
+  .yrkesjakt {
+    background: var(--surface-2);
+    border-block: 1px solid var(--line);
+  }
+  .yrkesjakt .lead {
+    margin-top: 0.6rem;
+    max-width: 34rem;
+  }
+
   /* Hero – rolig og redaksjonell. Ingen gradienter, ingen skjeve kort. */
   .hero {
     padding-block: clamp(3rem, 8vw, 6.5rem);

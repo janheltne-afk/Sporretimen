@@ -17,6 +17,7 @@ export const navItems: { key: RouteKey; label: Record<Locale, string> }[] = [
   { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
   { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
   { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
+  { key: 'occupations', label: { no: 'Yrker', en: 'Occupations' } },
   { key: 'about', label: { no: 'Om', en: 'About' } },
 ];
 
@@ -32,6 +33,7 @@ export const footerNav: {
           { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
       { key: 'episodes', label: { no: 'Alle episoder', en: 'All episodes' } },
       { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
+      { key: 'occupations', label: { no: 'Yrker', en: 'Occupations' } },
     ],
   },
   {
@@ -59,7 +61,7 @@ const strings = {
     // Nettstedet
     'site.tagline': 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
     'site.description':
-      'Spørretimen utforsker mennesker, ideer og temaer det er verdt å forstå bedre. Gjennom lange samtaler og korte, kildebaserte forklaringer gjør vi kompliserte ting lettere å forstå.',
+      'Spørretimen er en samtalepodkast om folk og jobbene deres. Lange, personlige samtaler med mennesker i alle slags yrker – om hvordan arbeidsdagen faktisk ser ut, hva som førte dem dit, og hva de har lært underveis.',
     'site.subtitle': 'Podkast med',
 
     // Toppen
@@ -229,7 +231,7 @@ const strings = {
   en: {
     'site.tagline': 'Good questions. Interesting people. New perspectives.',
     'site.description':
-      'Spørretimen explores people, ideas and subjects worth understanding better. Through long conversations and short, sourced explainers, we make complicated things easier to grasp.',
+      'Spørretimen is a conversation podcast about people and the work they do. Long, personal conversations with people in every kind of occupation – what the working day actually looks like, what led them there, and what they have learnt along the way.',
     'site.subtitle': 'Podcast with',
 
     'header.home': 'to the front page',

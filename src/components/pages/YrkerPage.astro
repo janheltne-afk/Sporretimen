@@ -1,0 +1,517 @@
+---
+/**
+ * /yrker og /en/occupations – oversikten over yrker.
+ *
+ * Hele lista står oppe. De yrkene det finnes en samtale om, står i farger med
+ * bilde av gjesten og lenker til episoden. Resten står grå. Trykker du på et
+ * grått, fylles tipsskjemaet nederst ut med det yrket.
+ *
+ * Fargeforskjellen er hele poenget, så den er ikke bare farge: de ledige
+ * kortene har stiplet kant og en egen merkelapp, slik at forskjellen også
+ * leses av den som ikke ser farger.
+ *
+ * Yrkene redigeres i src/data/yrker.ts. Denne fila skal ikke endres for å
+ * legge til et yrke eller markere et som dekket.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import Form from '@/components/Form.astro';
+import { getEpisodes, getGuests, slugOf } from '@/lib/content';
+import { yrker, yrkeskategorier, yrkestall } from '@/data/yrker';
+import { finnerlonn } from '@/data/site';
+import { canonicalUrl, breadcrumbList } from '@/data/site';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const en = lang === 'en';
+
+const episoder = await getEpisodes(lang);
+const gjester = await getGuests(lang);
+const epBySlug = new Map(episoder.map((e) => [slugOf(e.id), e]));
+const gjestById = new Map(gjester.map((g) => [slugOf(g.id), g]));
+
+/** Et yrke regnes som dekket bare når episoden faktisk finnes. */
+const beriket = yrker.map((y) => {
+  const ep = y.episode ? epBySlug.get(y.episode) : undefined;
+  const gj = y.gjest ? gjestById.get(y.gjest) : undefined;
+  return { ...y, ep, gj, dekket: Boolean(ep) };
+});
+const tall = { dekket: beriket.filter((y) => y.dekket).length, totalt: beriket.length };
+const andel = Math.round((tall.dekket / tall.totalt) * 100);
+
+const t = {
+  tittel: en ? 'Every job there is' : 'Alle yrker som finnes',
+  eyebrow: en ? 'Occupations' : 'Yrker',
+  lead: en
+    ? 'Spørretimen wants to talk to someone from every occupation there is. The ones in colour have been done. The grey ones are open – and that is where you come in.'
+    : 'Spørretimen skal snakke med noen fra hvert eneste yrke som finnes. De i farger er gjort. De grå er ledige – og det er der du kommer inn.',
+  teller: en ? `${tall.dekket} of ${tall.totalt} occupations done` : `${tall.dekket} av ${tall.totalt} yrker gjort`,
+  alle: en ? 'All' : 'Alle',
+  gjort: en ? 'Done' : 'Snakket med',
+  ledige: en ? 'Open' : 'Ledige',
+  ledig: en ? 'Open' : 'Ledig',
+  kjennerDu: en ? 'Know someone?' : 'Kjenner du en?',
+  seSamtalen: en ? 'See the conversation' : 'Se samtalen',
+  ingen: en ? 'Nothing here with that filter.' : 'Ingenting her med det filteret.',
+  skjemaTittel: en ? 'Put me in touch' : 'Sett meg i kontakt',
+  valgtYrke: en ? 'Occupation' : 'Yrke',
+  valgtIngen: en ? 'Pick one above, or write it yourself' : 'Velg et over, eller skriv det selv',
+};
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t.tittel,
+    description: t.lead,
+    url: canonicalUrl(routePath(lang, 'occupations')),
+  },
+  breadcrumbList([
+    { name: en ? 'Home' : 'Forsiden', path: routePath(lang, 'home') },
+    { name: t.eyebrow, path: routePath(lang, 'occupations') },
+  ]),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={t.tittel}
+  description={t.lead}
+  jsonLd={jsonLd}
+>
+  <PageHeader wide eyebrow={t.eyebrow} title={t.tittel} lead={t.lead} />
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="yr__status">
+        <p class="yr__teller">
+          <strong>{tall.dekket}</strong>
+          <span>{en ? `of ${tall.totalt} occupations done` : `av ${tall.totalt} yrker gjort`}</span>
+        </p>
+        <div class="yr__linje" role="img" aria-label={t.teller}>
+          <span class="yr__fyll" style={`width:${Math.max(andel, 1)}%`}></span>
+        </div>
+      </div>
+
+      <div class="yr__filtre" role="group" aria-label={en ? 'Filter occupations' : 'Filtrer yrker'}>
+        <button type="button" class="yr__filter" data-filter="alle" aria-pressed="true">{t.alle}</button>
+        <button type="button" class="yr__filter" data-filter="gjort" aria-pressed="false">{t.gjort}</button>
+        <button type="button" class="yr__filter" data-filter="ledig" aria-pressed="false">{t.ledige}</button>
+      </div>
+    </div>
+  </section>
+
+  {
+    yrkeskategorier.map((kat) => {
+      const liste = beriket.filter((y) => y.kategori === kat.id);
+      if (liste.length === 0) return null;
+      return (
+        <section class="section-tight yr__bolk" data-bolk aria-labelledby={`kat-${kat.id}`}>
+          <div class="container">
+            <h2 class="yr__kat" id={`kat-${kat.id}`}>{kat.label[lang]}</h2>
+            <ul class="yr__rutenett">
+              {liste.map((y) => (
+                <li class="yr__celle" data-kort data-tilstand={y.dekket ? 'gjort' : 'ledig'}>
+                  {y.dekket && y.ep ? (
+                    <a class="yr__kort yr__kort--gjort" href={entryPath(lang, 'episodes', slugOf(y.ep.id))}>
+                      <span class="yr__flate">
+                        {y.gj?.data.image ? (
+                          <img
+                            class="yr__bilde"
+                            src={y.gj.data.image}
+                            alt=""
+                            width="300"
+                            height="400"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <span class="yr__ingen-bilde" aria-hidden="true">{y.label[lang].slice(0, 1)}</span>
+                        )}
+                        <span class="yr__slor" aria-hidden="true" />
+                      </span>
+                      <span class="yr__tekst">
+                        <span class="yr__navn">{y.label[lang]}</span>
+                        {y.gj && <span class="yr__gjest">{y.gj.data.name}</span>}
+                        <span class="yr__handling">{t.seSamtalen} &rarr;</span>
+                      </span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      class="yr__kort yr__kort--ledig"
+                      data-velg={y.label[lang]}
+                      aria-label={`${y.label[lang]} – ${t.kjennerDu}`}
+                    >
+                      <span class="yr__flate yr__flate--tom">
+                        <span class="yr__merke">{t.ledig}</span>
+                      </span>
+                      <span class="yr__tekst">
+                        <span class="yr__navn">{y.label[lang]}</span>
+                        <span class="yr__handling">{t.kjennerDu}</span>
+                      </span>
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <p class="container yr__tomt" data-tomt hidden>{t.ingen}</p>
+
+  <!-- Finnerlønnen og tipsskjemaet -->
+  <section class="section yr__tips" id="tips" aria-labelledby="tips-heading">
+    <div class="container">
+      <div class="yr__tips-inn">
+        <div class="yr__tips-tekst">
+          <p class="eyebrow">{finnerlonn.eyebrow[lang]}</p>
+          <h2 id="tips-heading">{finnerlonn.tittel[lang]}</h2>
+          <p class="lead">{finnerlonn.ingress[lang]}</p>
+          <ol class="yr__trinn">
+            {finnerlonn.trinn.map((trinn) => <li>{trinn[lang]}</li>)}
+          </ol>
+          <p class="yr__belonning">{finnerlonn.belonning[lang]}</p>
+          <p class="yr__finstilt">
+            {finnerlonn.vilkar[lang]}
+          </p>
+        </div>
+
+        <div class="yr__tips-skjema">
+          <Form
+            lang={lang}
+            formName="yrkestips"
+            subject={en ? 'Occupation tip – Spørretimen' : 'Yrkestips – Spørretimen'}
+            submitLabel={en ? 'Send the tip' : 'Send tipset'}
+            successMessage={en
+              ? 'Thank you. If the conversation happens, we will get back to you about the finder’s thanks.'
+              : 'Takk! Blir det en samtale av det, tar vi kontakt om finnerlønnen.'}
+          >
+            <div class="field">
+              <label for="tips-yrke">{t.valgtYrke} <span class="req">*</span></label>
+              <input
+                id="tips-yrke"
+                name={en ? 'Occupation' : 'Yrke'}
+                type="text"
+                required
+                autocomplete="off"
+                data-yrkefelt
+                placeholder={t.valgtIngen}
+              />
+            </div>
+            <div class="field">
+              <label for="tips-hvem">{en ? 'Who is it?' : 'Hvem er det?'} <span class="req">*</span></label>
+              <input id="tips-hvem" name={en ? 'Who' : 'Hvem'} type="text" required autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="tips-hvorfor">{en ? 'Why them?' : 'Hvorfor akkurat dem?'}</label>
+              <textarea id="tips-hvorfor" name={en ? 'Why' : 'Hvorfor'} rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label for="tips-kontakt">{en ? 'How do we reach you?' : 'Hvordan når vi deg?'} <span class="req">*</span></label>
+              <input id="tips-kontakt" name={en ? 'Your contact' : 'Din kontakt'} type="text" required autocomplete="off" />
+            </div>
+          </Form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Teller ─────────────────────────────────────────────────────── */
+  .yr__status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .yr__teller {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+  }
+  .yr__teller strong {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    margin-right: 0.4rem;
+  }
+  .yr__linje {
+    flex: 1 1 14rem;
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .yr__fyll {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+  }
+
+  /* ── Filtre ─────────────────────────────────────────────────────── */
+  .yr__filtre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .yr__filter {
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .yr__filter:hover {
+    color: var(--ink);
+    border-color: var(--ink-faint);
+  }
+  .yr__filter[aria-pressed='true'] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ── Rutenettet ─────────────────────────────────────────────────── */
+  .yr__bolk[hidden] {
+    display: none;
+  }
+  .yr__kat {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+  }
+  .yr__rutenett {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  .yr__celle[hidden] {
+    display: none;
+  }
+
+  .yr__kort {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: inherit;
+    text-align: left;
+    text-decoration: none;
+    overflow: hidden;
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .yr__kort:hover {
+    border-color: var(--line-strong);
+  }
+  .yr__kort:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .yr__flate {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 4;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .yr__bilde {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) contrast(0.98);
+  }
+  .yr__slor {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(22, 19, 15, 0) 55%, rgba(22, 19, 15, 0.3) 100%);
+  }
+  .yr__ingen-bilde {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--ink-faint);
+  }
+
+  /* Ledige yrker: grå, stiplet kant og en merkelapp. Forskjellen skal
+     kunne leses uten å se farger. */
+  .yr__flate--tom {
+    display: grid;
+    place-items: center;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--surface-2) 0 10px,
+      transparent 10px 20px
+    );
+  }
+  .yr__kort--ledig {
+    border-style: dashed;
+    background: transparent;
+  }
+  .yr__kort--ledig .yr__navn {
+    color: var(--ink-soft);
+  }
+  .yr__merke {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.5rem;
+    background: var(--paper);
+  }
+
+  .yr__tekst {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 0.8rem 0.8rem;
+  }
+  .yr__navn {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .yr__gjest {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+  .yr__handling {
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .yr__kort:hover .yr__handling,
+  .yr__kort:focus-visible .yr__handling {
+    opacity: 1;
+  }
+  @media (hover: none) {
+    .yr__handling {
+      opacity: 1;
+    }
+  }
+
+  .yr__tomt {
+    color: var(--ink-faint);
+    padding-block: 2rem;
+  }
+
+  /* ── Finnerlønn og skjema ───────────────────────────────────────── */
+  .yr__tips {
+    background: var(--surface-2);
+    border-top: 1px solid var(--line);
+  }
+  .yr__tips-inn {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .yr__tips-inn {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .yr__trinn {
+    margin: 1.5rem 0 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.6rem;
+    color: var(--ink-soft);
+  }
+  .yr__belonning {
+    margin-top: 1.5rem;
+    padding: 0.9rem 1.1rem;
+    border-left: 2px solid var(--accent);
+    background: var(--surface);
+    color: var(--ink-soft);
+  }
+  .yr__finstilt {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--ink-faint);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .yr__kort,
+    .yr__handling {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  /** Filtrering og «kjenner du en?» – ingen avhengigheter. */
+  const rot = document.querySelector('.yr__filtre')?.closest('main') ?? document;
+  const filtre = Array.from(rot.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const kort = Array.from(rot.querySelectorAll<HTMLElement>('[data-kort]'));
+  const bolker = Array.from(rot.querySelectorAll<HTMLElement>('[data-bolk]'));
+  const tomt = rot.querySelector<HTMLElement>('[data-tomt]');
+
+  function filtrer(valgt: string) {
+    for (const c of kort) {
+      c.hidden = valgt !== 'alle' && c.dataset.tilstand !== valgt;
+    }
+    /* En kategori uten synlige kort skal ikke stå igjen med bare overskriften. */
+    let synlige = 0;
+    for (const b of bolker) {
+      const n = Array.from(b.querySelectorAll<HTMLElement>('[data-kort]')).filter((c) => !c.hidden).length;
+      b.hidden = n === 0;
+      synlige += n;
+    }
+    for (const f of filtre) f.setAttribute('aria-pressed', String(f.dataset.filter === valgt));
+    if (tomt) tomt.hidden = synlige > 0;
+  }
+
+  for (const f of filtre) {
+    f.addEventListener('click', () => filtrer(f.dataset.filter ?? 'alle'));
+  }
+
+  /* Trykk på et ledig yrke fyller skjemaet og hopper ned til det. */
+  const felt = rot.querySelector<HTMLInputElement>('[data-yrkefelt]');
+  for (const knapp of rot.querySelectorAll<HTMLButtonElement>('[data-velg]')) {
+    knapp.addEventListener('click', () => {
+      if (!felt) return;
+      felt.value = knapp.dataset.velg ?? '';
+      const mål = document.getElementById('tips');
+      mål?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      felt.focus({ preventScroll: true });
+    });
+  }
+</script>

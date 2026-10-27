@@ -10,7 +10,7 @@ export const site = {
   name: 'Spørretimen',
   tagline: 'Gode spørsmål. Interessante mennesker. Nye perspektiver.',
   description:
-    'Spørretimen utforsker mennesker, ideer og temaer det er verdt å forstå bedre. Gjennom lange samtaler og korte, kildebaserte forklaringer gjør vi kompliserte ting lettere å forstå.',
+    'Spørretimen er en samtalepodkast om folk og jobbene deres. Lange, personlige samtaler med mennesker i alle slags yrker – om hvordan arbeidsdagen faktisk ser ut, hva som førte dem dit, og hva de har lært underveis.',
   url: 'https://www.sporretimen.no',
   host: 'Jan Sindre Heltne',
   locale: 'nb_NO',
@@ -162,3 +162,49 @@ export type Category = (typeof categories)[number];
 export function formatById(id: string) {
   return formats.find((f) => f.id === id);
 }
+
+/**
+ * Finnerlønnen på yrkessiden.
+ *
+ * Dette er en finnerlønn, ikke en konkurranse: alle som tipser om noen det
+ * faktisk blir en samtale med, får den samme takken. Det er med vilje. En
+ * trekning blant innsenderne ville vært en markedsføringskonkurranse med
+ * egne regler om vilkår, trekningstidspunkt og hvem som kan delta.
+ *
+ * `belonning` er det eneste du trenger å endre om du vil love noe konkret.
+ * Står det et beløp eller en gjenstand her, er det et løfte til publikum –
+ * skriv bare det du faktisk kommer til å gi.
+ */
+export const finnerlonn = {
+  eyebrow: { no: 'Finnerlønn', en: 'Finder’s thanks' },
+  tittel: {
+    no: 'Kjenner du noen med en jobb vi ikke har hørt om?',
+    en: 'Know someone with a job we have not covered?',
+  },
+  ingress: {
+    no: 'De grå yrkene over er ledige. Tipser du om noen, og det blir en samtale av det, får du finnerlønn.',
+    en: 'The grey occupations above are open. Tip us about someone, and if it turns into a conversation, you get a finder’s thanks.',
+  },
+  trinn: [
+    {
+      no: 'Trykk på et grått yrke, eller skriv det selv i skjemaet.',
+      en: 'Press a grey occupation, or write it in the form yourself.',
+    },
+    {
+      no: 'Fortell hvem det er og hvordan vi når deg.',
+      en: 'Tell us who it is and how to reach you.',
+    },
+    {
+      no: 'Blir det en samtale av det, tar vi kontakt med deg først.',
+      en: 'If it turns into a conversation, we contact you first.',
+    },
+  ],
+  belonning: {
+    no: 'Finnerlønnen avtales direkte med deg, og du får en takk i episoden hvis du vil.',
+    en: 'The finder’s thanks is agreed with you directly, and you get a credit in the episode if you want one.',
+  },
+  vilkar: {
+    no: 'Alle som tipser om noen det blir en samtale med, får finnerlønn – det er ingen trekning. Du må ha lov til å dele kontaktopplysningene du sender inn, og personen selv bestemmer om hen vil være med. Opplysningene brukes bare til å ta kontakt, og slettes om det ikke blir noe av.',
+    en: 'Everyone whose tip leads to a conversation gets the finder’s thanks – there is no draw. You must be allowed to share the contact details you send, and the person decides for themselves whether to take part. The details are used only to get in touch, and are deleted if nothing comes of it.',
+  },
+} as const;
