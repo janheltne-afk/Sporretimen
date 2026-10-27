@@ -37,7 +37,6 @@ export const footerNav: {
   {
     heading: { no: 'Delta', en: 'Take part' },
     items: [
-      { key: 'suggestGuest', label: { no: 'Foreslå en gjest', en: 'Suggest a guest' } },
       { key: 'tipGuest', label: { no: 'Tips inn en gjest' } },
       { key: 'beGuest', label: { no: 'Bli gjest', en: 'Be a guest' } },
           { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },

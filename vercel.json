@@ -39,6 +39,16 @@
       "source": "/episoder/:slug/manus/",
       "destination": "/episoder/:slug/#manus",
       "permanent": true
+    },
+    {
+      "source": "/foresla-gjest",
+      "destination": "/tips-inn-en-gjest/",
+      "permanent": true
+    },
+    {
+      "source": "/foresla-gjest/",
+      "destination": "/tips-inn-en-gjest/",
+      "permanent": true
     }
   ]
 }

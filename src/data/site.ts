@@ -81,7 +81,7 @@ export const nav: { label: string; href: string }[] = [
   { label: 'Ressurser', href: '/ressurser/' },
   { label: 'Om', href: '/om/' },
   { label: 'Vær Varsom', href: '/var-varsom/' },
-  { label: 'Foreslå en gjest', href: '/foresla-gjest/' },
+  { label: 'Tips inn en gjest', href: '/tips-inn-en-gjest/' },
   { label: 'Bli gjest', href: '/bli-gjest/' },
   { label: 'Kontakt', href: '/kontakt/' },
 ];
@@ -166,41 +166,3 @@ export function formatById(id: string) {
   return formats.find((f) => f.id === id);
 }
 
-/**
- * Finnerlønnen på yrkessiden.
- *
- * Dette er en finnerlønn, ikke en konkurranse: alle som tipser om noen det
- * faktisk blir en samtale med, får den samme takken. Det er med vilje. En
- * trekning blant innsenderne ville vært en markedsføringskonkurranse med
- * egne regler om vilkår, trekningstidspunkt og hvem som kan delta.
- *
- * `belonning` er det eneste du trenger å endre om du vil love noe konkret.
- * Står det et beløp eller en gjenstand her, er det et løfte til publikum –
- * skriv bare det du faktisk kommer til å gi.
- */
-export const finnerlonn = {
-  eyebrow: { no: 'Finnerlønn' },
-  tittel: {
-    no: 'Kjenner du noen med en jobb vi ikke har hørt om?',
-  },
-  ingress: {
-    no: 'De grå yrkene over er ledige. Tipser du om noen, og det blir en samtale av det, får du finnerlønn.',
-  },
-  trinn: [
-    {
-      no: 'Trykk på et grått yrke, eller skriv det selv i skjemaet.',
-    },
-    {
-      no: 'Fortell hvem det er og hvordan vi når deg.',
-    },
-    {
-      no: 'Blir det en samtale av det, tar vi kontakt med deg først.',
-    },
-  ],
-  belonning: {
-    no: 'Finnerlønnen avtales direkte med deg, og du får en takk i episoden hvis du vil.',
-  },
-  vilkar: {
-    no: 'Alle som tipser om noen det blir en samtale med, får finnerlønn – det er ingen trekning. Du må ha lov til å dele kontaktopplysningene du sender inn, og personen selv bestemmer om hen vil være med. Opplysningene brukes bare til å ta kontakt, og slettes om det ikke blir noe av.',
-  },
-} as const;
