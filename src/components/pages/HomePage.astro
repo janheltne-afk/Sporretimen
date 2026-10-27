@@ -212,29 +212,6 @@ const pickedConversations = notInLatest(conversations);
   </section>
 
   <!-- Jan Sindre -->
-  <section class="section host" aria-labelledby="host-heading">
-    <div class="container host__inner">
-      <div class="host__portrait">
-        <Avatar
-          name={site.host}
-          src={site.hostImage}
-          alt={en ? `${site.host}, host of Spørretimen` : `${site.host}, programleder i Spørretimen`}
-          ratio="1 / 1"
-        />
-      </div>
-      <div>
-        <p class="eyebrow">{en ? 'Host' : 'Programleder'}</p>
-        <h2 id="host-heading">{site.host}</h2>
-        <p class="host__role">{en ? 'Host, Spørretimen' : 'Programleder i Spørretimen'}</p>
-        <p class="lead">
-          {en
-            ? 'He uses Spørretimen to explore economics, technology, business, learning and how people make decisions – through the guests, and through the explainers he writes and records himself.'
-            : 'Han bruker Spørretimen til å utforske økonomi, teknologi, næringsliv, læring og menneskelig beslutningstaking – gjennom gjestene, og gjennom forklaringene han skriver og spiller inn selv.'}
-        </p>
-        <a class="btn btn-secondary" href={routePath(lang, 'profile')}>{en ? 'Read more' : 'Les mer'}</a>
-      </div>
-    </div>
-  </section>
 
 </BaseLayout>
 
@@ -368,41 +345,9 @@ const pickedConversations = notInLatest(conversations);
   }
 
   /* Programlederen. Kort og saklig. */
-  .host {
-    background: var(--surface);
-    border-block: 1px solid var(--line);
-  }
-  .host__inner {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-  .host__portrait {
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .host h2 {
-    margin-bottom: 0.3rem;
-  }
-  .host__role {
-    margin: 0 0 1.1rem;
-    color: var(--ink-faint);
-    font-size: 0.78rem;
-    letter-spacing: 0.11em;
-    text-transform: uppercase;
-  }
-  .host .lead {
-    max-width: 52ch;
-    margin-bottom: 1.6rem;
-  }
 
   @media (max-width: 880px) {
     .hero__inner,
-    .host__inner {
-      grid-template-columns: 1fr;
-    }
     .hero__media {
       order: -1;
       justify-self: start;
@@ -410,9 +355,6 @@ const pickedConversations = notInLatest(conversations);
     }
     .hero__title {
       max-width: none;
-    }
-    .host__portrait {
-      width: min(200px, 60%);
     }
   }
 
