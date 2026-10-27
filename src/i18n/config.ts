@@ -39,7 +39,6 @@ const routes = {
   principles: { no: '/redaksjonelle-prinsipper' },
   suggestGuest: { no: '/foresla-gjest' },
   beGuest: { no: '/bli-gjest' },
-  partner: { no: '/samarbeid' },
   privacy: { no: '/personvern' },
   terms: { no: '/vilkar' },
   search: { no: '/sok' },

@@ -39,7 +39,6 @@ export const footerNav: {
     items: [
       { key: 'suggestGuest', label: { no: 'Foreslå en gjest', en: 'Suggest a guest' } },
       { key: 'beGuest', label: { no: 'Bli gjest', en: 'Be a guest' } },
-      { key: 'partner', label: { no: 'Samarbeid', en: 'Collaborate' } },
           { key: 'contact', label: { no: 'Kontakt', en: 'Contact' } },
     ],
   },

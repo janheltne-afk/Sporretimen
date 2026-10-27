@@ -79,7 +79,6 @@ export const nav: { label: string; href: string }[] = [
   { label: 'Vær Varsom', href: '/var-varsom/' },
   { label: 'Foreslå en gjest', href: '/foresla-gjest/' },
   { label: 'Bli gjest', href: '/bli-gjest/' },
-  { label: 'Samarbeid', href: '/samarbeid/' },
   { label: 'Kontakt', href: '/kontakt/' },
 ];
 

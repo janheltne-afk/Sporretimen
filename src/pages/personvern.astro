@@ -7,7 +7,7 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
-}).format(new Date('2026-09-15'));
+}).format(new Date('2026-10-27'));
 ---
 
 <BaseLayout
@@ -31,9 +31,13 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
           er Jan Sindre Heltne.
         </li>
         <li>
-          Skjemaene for kontakt, gjesteforslag og «bli gjest» sender meldingen direkte fra
-          din egen e-postklient til {site.email}. Vi lagrer ikke disse skjemaene på
-          nettsiden.
+          Skjemaene for kontakt, gjesteforslag, «bli gjest» og yrkestips sender meldingen
+          direkte fra din egen e-postklient til {site.email}. Vi lagrer ikke disse
+          skjemaene på nettsiden.
+        </li>
+        <li>
+          Tipser du om en annen person, behandler vi opplysningene bare for å ta kontakt,
+          og sletter dem hvis det ikke blir noen samtale.
         </li>
         <li>
           Interessemarkeringer lagres i en database (Supabase) som anonyme
@@ -63,13 +67,31 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
         lages først.
       </p>
 
-      <h2>Kontaktskjemaer</h2>
+      <h2>Skjemaer</h2>
       <p>
-        Skjemaene under Kontakt, Foreslå en gjest og Bli gjest åpner en ferdig utfylt
-        e-post i din egen e-postklient når du sender inn. Innholdet går rett til{' '}
-        {site.email} som en vanlig e-post – det lagres ikke i noen database på
-        sporretimen.no. Behandlingen av selve e-posten følger de samme reglene som annen
-        e-post til {site.email}.
+        Skjemaene under Kontakt, Foreslå en gjest, Bli gjest og yrkestipset på Yrker
+        åpner en ferdig utfylt e-post i din egen e-postklient når du sender inn.
+        Innholdet går rett til {site.email} som en vanlig e-post – det lagres ikke i
+        noen database på sporretimen.no. Behandlingen av selve e-posten følger de samme
+        reglene som annen e-post til {site.email}.
+      </p>
+
+      <h2>Når du tipser om en annen person</h2>
+      <p>
+        På Yrker kan du tipse om noen du mener vi bør snakke med, og på Foreslå en gjest
+        kan du gjøre det samme. Da sender du opplysninger om en tredjeperson – gjerne et
+        navn og hvordan vi kan nå vedkommende.
+      </p>
+      <p>
+        Du må ha lov til å dele det du sender inn. Vi bruker opplysningene utelukkende til
+        å ta kontakt med personen det gjelder, og til ingenting annet. Personen bestemmer
+        selv om hen vil være med, og får vite hvem som tipset hvis hen spør. Blir det
+        ingen samtale av det, sletter vi opplysningene.
+      </p>
+      <p>
+        Er du tipset om, og vil at vi skal slette opplysningene om deg uten å ta stilling
+        til noe annet, holder det å si fra på{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
 
       <h2>Nettlagring (localStorage)</h2>
