@@ -22,32 +22,32 @@
     },
     {
       "source": "/kurs",
-      "destination": "/temaer/",
+      "destination": "/samtaler/",
       "permanent": false
     },
     {
       "source": "/kurs/",
-      "destination": "/temaer/",
+      "destination": "/samtaler/",
       "permanent": false
     },
     {
       "source": "/kurs/:slug",
-      "destination": "/temaer/",
+      "destination": "/samtaler/",
       "permanent": false
     },
     {
       "source": "/kurs/:slug/",
-      "destination": "/temaer/",
+      "destination": "/samtaler/",
       "permanent": false
     },
     {
       "source": "/en/courses",
-      "destination": "/en/topics/",
+      "destination": "/en/conversations/",
       "permanent": false
     },
     {
       "source": "/en/courses/",
-      "destination": "/en/topics/",
+      "destination": "/en/conversations/",
       "permanent": false
     },
     {

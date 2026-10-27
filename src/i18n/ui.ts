@@ -15,7 +15,6 @@ import type { Locale, RouteKey } from './config';
  */
 export const navItems: { key: RouteKey; label: Record<Locale, string> }[] = [
   { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
-  { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
   { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
   { key: 'occupations', label: { no: 'Yrker', en: 'Occupations' } },
   { key: 'about', label: { no: 'Om', en: 'About' } },
@@ -30,8 +29,7 @@ export const footerNav: {
     heading: { no: 'Innhold', en: 'Content' },
     items: [
       { key: 'conversations', label: { no: 'Samtaler', en: 'Conversations' } },
-          { key: 'topics', label: { no: 'Temaer', en: 'Topics' } },
-      { key: 'episodes', label: { no: 'Alle episoder', en: 'All episodes' } },
+              { key: 'episodes', label: { no: 'Alle episoder', en: 'All episodes' } },
       { key: 'guests', label: { no: 'Gjester', en: 'Guests' } },
       { key: 'occupations', label: { no: 'Yrker', en: 'Occupations' } },
     ],
@@ -164,9 +162,9 @@ const strings = {
     'search.eyebrow': 'Søk',
     'search.title': 'Søk i alt innhold',
     'search.lead':
-      'Søk på tvers av episoder, transkripsjoner, ressurser, temaer og sidene ellers. Du får se hvor i teksten ordet står.',
+      'Søk på tvers av episoder, transkripsjoner, gjester og sidene ellers. Du får se hvor i teksten ordet står.',
     'search.metaDescription':
-      'Søk i hele Spørretimen – episoder, transkripsjoner, ressurser, gjester og temaer.',
+      'Søk i hele Spørretimen – episoder, transkripsjoner, gjester og yrker.',
     'search.submit': 'Søk',
     'search.hint':
       'Søket dekker hele teksten, også transkripsjonene. Sett anførselstegn rundt en frase for å søke på den samlet.',
@@ -176,12 +174,10 @@ const strings = {
     'search.oneResult': 'Ett treff på «{q}».',
     'search.manyResults': '{n} treff på «{q}».',
     'search.noscript':
-      'Søket kjører i nettleseren og trenger JavaScript. Uten det kan du bla i arkivet under Episoder, Ressurser og Temaer.',
+      'Søket kjører i nettleseren og trenger JavaScript. Uten det kan du bla i arkivet under Samtaler og Yrker.',
     'search.kind.episode': 'Episode',
     'search.kind.transcript': 'Transkripsjon',
-    'search.kind.resource': 'Ressurs',
     'search.kind.guest': 'Gjest',
-    'search.kind.topic': 'Tema',
     'search.kind.page': 'Side',
 
     // Interesse og temaer
@@ -207,7 +203,6 @@ const strings = {
     'topic.resources': 'Ressurser om temaet',
     'nav.conversations': 'Samtaler',
     'nav.explained': 'Forklart',
-    'nav.topics': 'Temaer',
     // Kommentarer
     'comments.heading': 'Kommentarer',
     'comments.intro':
@@ -325,9 +320,9 @@ const strings = {
     'search.eyebrow': 'Search',
     'search.title': 'Search everything',
     'search.lead':
-      'Search across episodes, transcripts, resources, topics and the rest of the site. You will see where in the text the word appears.',
+      'Search across episodes, transcripts, guests and the rest of the site. You will see where in the text the word appears.',
     'search.metaDescription':
-      'Search all of Spørretimen – episodes, transcripts, resources, guests and topics.',
+      'Search all of Spørretimen – episodes, transcripts, guests and occupations.',
     'search.submit': 'Search',
     'search.hint':
       'The search covers the full text, transcripts included. Put quotation marks around a phrase to search for it as a whole.',
@@ -337,12 +332,10 @@ const strings = {
     'search.oneResult': 'One result for “{q}”.',
     'search.manyResults': '{n} results for “{q}”.',
     'search.noscript':
-      'The search runs in the browser and needs JavaScript. Without it you can browse the archive under Episodes, Resources and Topics.',
+      'The search runs in the browser and needs JavaScript. Without it you can browse the archive under Conversations and Occupations.',
     'search.kind.episode': 'Episode',
     'search.kind.transcript': 'Transcript',
-    'search.kind.resource': 'Resource',
     'search.kind.guest': 'Guest',
-    'search.kind.topic': 'Topic',
     'search.kind.page': 'Page',
 
     // Interest and topics
@@ -368,7 +361,6 @@ const strings = {
     'topic.resources': 'Resources on this topic',
     'nav.conversations': 'Conversations',
     'nav.explained': 'Explained',
-    'nav.topics': 'Topics',
     'comments.heading': 'Comments',
     'comments.intro':
       'Any thoughts on the episode? Feel free to leave a comment. We ask that you use your name and keep a civil tone.',

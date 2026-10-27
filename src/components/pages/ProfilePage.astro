@@ -10,11 +10,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHeader from '@/components/PageHeader.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
-import TopicIcon from '@/components/TopicIcon.astro';
-import { getEpisodes, getSeriesEpisodes, topicCounts } from '@/lib/content';
-import { topics } from '@/data/topics';
+import { getEpisodes, getSeriesEpisodes } from '@/lib/content';
 import { site, socialsFor, canonicalUrl, absoluteUrl, breadcrumbList } from '@/data/site';
-import { entryPath, path as routePath, topicPath, type Locale } from '@/i18n/config';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 import { seriesById } from '@/i18n/taxonomy';
 
@@ -28,8 +26,6 @@ const en = lang === 'en';
 
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
-const counts = await topicCounts(lang);
-const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 const profilLenker = socialsFor(lang);
 const sameAs = profilLenker.map((s) => s.url!);
 
@@ -45,7 +41,7 @@ const person = {
   description: en
     ? 'Host of Spørretimen. Siviløkonom (MSc in Business) with a master’s in logistics, a background in ERP, and a day job in business analytics. Publishes long conversations with people about the work they do.'
     : 'Programleder i Spørretimen. Siviløkonom med master i logistikk, bakgrunn fra ERP, og jobber til daglig med Business Analytics. Publiserer lange samtaler med folk om jobbene deres.',
-  knowsAbout: shownTopics.map((topic) => topic.label[lang]),
+  knowsAbout: published.map((e) => e.data.title),
   hasCredential: [
     {
       '@type': 'EducationalOccupationalCredential',
@@ -198,30 +194,6 @@ const jsonLd = [
   </section>
 
 
-  <section class="section" aria-labelledby="ptopics-heading">
-    <div class="container">
-      <div class="row-head">
-        <div>
-          <p class="eyebrow">{en ? 'Topics' : 'Temaer'}</p>
-          <h2 id="ptopics-heading">{en ? 'What he publishes about' : 'Det han publiserer om'}</h2>
-        </div>
-        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'topics')}>{t('topic.all')}</a>
-      </div>
-      <ul class="profile__topics">
-        {
-          shownTopics.map((topic) => (
-            <li>
-              <a href={topicPath(lang, topic.id)}>
-                <TopicIcon name={topic.icon} size={16} />
-                {topic.label[lang]}
-                <span class="muted">· {counts.get(topic.id)}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
 
   <section class="section cta">
     <div class="container container-narrow text-center">
@@ -305,30 +277,6 @@ const jsonLd = [
   }
   .row-head .eyebrow {
     margin-bottom: 0.55rem;
-  }
-  .profile__topics {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .profile__topics a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 0.95rem;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.92rem;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-  .profile__topics a:hover {
-    border-color: var(--accent);
-    color: var(--accent-strong);
   }
   .cta {
     background: var(--surface);

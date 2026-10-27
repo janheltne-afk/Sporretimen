@@ -39,8 +39,6 @@ const routes = {
   home: { no: '/', en: '/en' },
   // Samtalesporet. Hele nettstedet er nå podkastsamtalene.
   conversations: { no: '/samtaler', en: '/en/conversations' },
-  // Temabiblioteket. Undersidene ligger under, se topicPath().
-  topics: { no: '/temaer', en: '/en/topics' },
   foredrag: { no: '/foredrag', en: '/en/talks' },
   profile: { no: '/jan-sindre-heltne', en: '/en/jan-sindre-heltne' },
   // Hele arkivet, på tvers av seriene. Adressen er uendret fra før.
@@ -85,10 +83,6 @@ export function entryPath(lang: Locale, key: RouteKey, slug: string): string {
  * Stien til en temaside, eventuelt til et undertema under den.
  * /temaer/okonomi/ og /temaer/okonomi/makrookonomi/
  */
-export function topicPath(lang: Locale, topicId: string, subtopicId?: string): string {
-  const base = entryPath(lang, 'topics', topicId);
-  return subtopicId ? `${base}${subtopicId}/` : base;
-}
 
 /**
  * Stien til manuset/transkripsjonen for en episode.
@@ -117,7 +111,6 @@ export type SearchKind =
   | 'episode'
   | 'transcript'
   | 'guest'
-  | 'topic'
   | 'index'
   | 'page';
 
@@ -127,7 +120,6 @@ const indexKeys = [
   'conversations',
   'guests',
   'occupations',
-  'topics',
 ] as const satisfies readonly RouteKey[];
 
 export function searchKindOf(lang: Locale, pathname: string): SearchKind {
@@ -142,7 +134,6 @@ export function searchKindOf(lang: Locale, pathname: string): SearchKind {
     return clean.endsWith(`/${transcriptSegment[lang]}`) ? 'transcript' : 'episode';
   }
   if (under('guests')) return 'guest';
-  if (under('topics')) return 'topic';
   return 'page';
 }
 

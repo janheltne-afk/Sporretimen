@@ -9,15 +9,13 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import Avatar from '@/components/Avatar.astro';
-import TopicIcon from '@/components/TopicIcon.astro';
 import Interest from '@/components/Interest.astro';
-import { getEpisodes, getSeriesEpisodes, slugOf, topicCounts } from '@/lib/content';
+import { getEpisodes, getSeriesEpisodes, slugOf, } from '@/lib/content';
 import { popularEpisodes } from '@/lib/popularity';
 import { site } from '@/data/site';
-import { topics } from '@/data/topics';
 import { yrkestall } from '@/data/yrker';
 import { probes } from '@/data/probes';
-import { entryPath, path as routePath, topicPath, type Locale } from '@/i18n/config';
+import { entryPath, path as routePath, type Locale } from '@/i18n/config';
 import { seriesById } from '@/i18n/taxonomy';
 import { useTranslations } from '@/i18n/ui';
 
@@ -31,7 +29,6 @@ const en = lang === 'en';
 const episodes = await getEpisodes(lang);
 const published = episodes.filter((e) => e.data.status === 'publisert');
 const conversations = await getSeriesEpisodes(lang, 'sporretimen', episodes);
-const counts = await topicCounts(lang);
 const yrke = yrkestall();
 
 const sporretimen = seriesById(lang, 'sporretimen')!;
@@ -54,7 +51,6 @@ const notInLatest = (list: typeof episodes) => {
 const pickedConversations = notInLatest(conversations);
 
 // Temaene på forsiden: de som har innhold, i registerets rekkefølge.
-const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
 
 ---
 
@@ -124,33 +120,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
   </section>
 
 
-  <!-- Utforsk temaer -->
-  <section class="section" aria-labelledby="topics-heading">
-    <div class="container">
-      <div class="row-head">
-        <div>
-          <p class="eyebrow">{en ? 'Topics' : 'Temaer'}</p>
-          <h2 id="topics-heading">{t('topic.explore')}</h2>
-        </div>
-        <a class="btn btn-secondary btn-sm" href={routePath(lang, 'topics')}>{t('topic.all')}</a>
-      </div>
-      <ul class="topics">
-        {
-          shownTopics.map((topic) => (
-            <li>
-              <a class="topics__item" href={topicPath(lang, topic.id)}>
-                <span class="topics__icon"><TopicIcon name={topic.icon} size={20} /></span>
-                <span class="topics__text">
-                  <span class="topics__name">{topic.label[lang]}</span>
-                  <span class="topics__blurb">{topic.blurb[lang]}</span>
-                </span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
 
   <!-- Populært akkurat nå -->
   {
@@ -359,63 +328,6 @@ const shownTopics = topics.filter((topic) => (counts.get(topic.id) ?? 0) > 0);
      bare en tynn markering i kanten så de leses som to. */
 
   /* Temaer – en tolinjers liste, ikke enda en kortvegg. */
-  .topics {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-    gap: 0;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-  }
-  .topics li {
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .topics__item {
-    display: flex;
-    gap: 0.95rem;
-    align-items: flex-start;
-    height: 100%;
-    padding: 1.35rem 1.4rem;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s ease;
-  }
-  .topics__item:hover {
-    background: var(--surface);
-  }
-  .topics__icon {
-    display: grid;
-    place-items: center;
-    width: 36px;
-    height: 36px;
-    flex: none;
-    color: var(--ink-soft);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    transition: color 0.2s ease, border-color 0.2s ease;
-  }
-  .topics__item:hover .topics__icon {
-    color: var(--accent-strong);
-    border-color: var(--accent);
-  }
-  .topics__text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  .topics__name {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    color: var(--ink);
-  }
-  .topics__blurb {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-  }
 
   .popular {
     background: var(--surface);

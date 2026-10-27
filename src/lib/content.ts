@@ -85,7 +85,6 @@ export async function episodesForGuest(
 /* ------------------------------------------------- serier, temaer, relatert */
 
 import { seriesOf, type SeriesId } from '@/i18n/taxonomy';
-import { topicById, topics, type Topic } from '@/data/topics';
 
 type Episode = CollectionEntry<'episodes'>;
 
@@ -99,72 +98,12 @@ export async function getSeriesEpisodes(
   return list.filter((e) => seriesOf(e.data.format) === series);
 }
 
-/**
- * Hører innholdet til et hovedtema?
- *
- * Enten fordi det er hovedtemaet, eller fordi ett av undertemaene ligger under
- * det. Det andre er poenget: en samtale om paramedisineryrket har karriere som
- * hovedspor, men hører like fullt hjemme under Helse.
- */
-function inTopic(data: { topic: string; subtopics: string[] }, topic: Topic): boolean {
-  if (data.topic === topic.id) return true;
-  const own = new Set(topic.subtopics.map((s) => s.id));
-  return data.subtopics.some((s) => own.has(s));
-}
-
-/** Episodene under et hovedtema, inkludert dem som bare har et undertema der. */
-export async function episodesForTopic(
-  lang: Locale,
-  topicId: string,
-  episodes?: Episode[]
-): Promise<Episode[]> {
-  const topic = topicById(topicId);
-  if (!topic) return [];
-  const list = episodes ?? (await getEpisodes(lang));
-  return list.filter((e) => inTopic(e.data, topic));
-}
-
-/** Episodene under ett undertema. */
-export async function episodesForSubtopic(
-  lang: Locale,
-  subtopicId: string,
-  episodes?: Episode[]
-): Promise<Episode[]> {
-  const list = episodes ?? (await getEpisodes(lang));
-  return list.filter((e) => e.data.subtopics.includes(subtopicId));
-}
 
 
 
-/**
- * Hvor mye innhold som finnes under hvert undertema.
- *
- * Brukes til å avgjøre om et undertema skal lenkes. Undertemasider bygges bare
- * når de har innhold, så et undertema uten oppføringer har ingen side å peke
- * på – og skal derfor stå som ren tekst, ikke som en død lenke.
- */
-export async function subtopicCounts(lang: Locale): Promise<Map<string, number>> {
-  const episodes = await getEpisodes(lang);
-  const counts = new Map<string, number>();
-  for (const topic of topics) {
-    for (const sub of topic.subtopics) {
-      const n = episodes.filter((e) => e.data.subtopics.includes(sub.id)).length;
-      counts.set(sub.id, n);
-    }
-  }
-  return counts;
-}
 
-/** Hvor mye innhold som finnes under hvert hovedtema. */
-export async function topicCounts(lang: Locale): Promise<Map<string, number>> {
-  const episodes = await getEpisodes(lang);
-  const counts = new Map<string, number>();
-  for (const topic of topics) {
-    const n = episodes.filter((e) => inTopic(e.data, topic)).length;
-    counts.set(topic.id, n);
-  }
-  return counts;
-}
+
+
 
 /**
  * Relatert innhold, rangert.
