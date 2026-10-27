@@ -38,6 +38,7 @@ const routes = {
   ethics: { no: '/var-varsom' },
   principles: { no: '/redaksjonelle-prinsipper' },
   suggestGuest: { no: '/foresla-gjest' },
+  tipGuest: { no: '/tips-inn-en-gjest' },
   beGuest: { no: '/bli-gjest' },
   privacy: { no: '/personvern' },
   terms: { no: '/vilkar' },

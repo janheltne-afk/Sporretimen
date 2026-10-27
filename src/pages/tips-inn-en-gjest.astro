@@ -1,0 +1,132 @@
+---
+/**
+ * Tips inn en gjest.
+ *
+ * Vilkårene for tipsbelønning. Ingen skjema, ingen innlogging, ingen
+ * sporing – tips kommer på e-post, og alt håndteres manuelt.
+ *
+ * Satsene står her i selve sida og ikke i et register, fordi de er en
+ * avtaletekst og ikke data andre deler av nettstedet leser.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/PageHeader.astro';
+import { site, canonicalUrl, breadcrumbList } from '@/data/site';
+import { path as routePath } from '@/i18n/config';
+
+const emne = encodeURIComponent('Tips om gjest – Spørretimen');
+const mailto = `mailto:${site.email}?subject=${emne}`;
+
+const satser = [
+  { belop: '200 kr', vilkar: 'for en godkjent fagperson, for eksempel en brannmann' },
+  { belop: '400 kr', vilkar: 'hvis gjesten har minst 50 000 følgere på én enkelt plattform' },
+  { belop: '1 000 kr', vilkar: 'hvis gjesten har minst 100 000 følgere på én enkelt plattform' },
+];
+
+const jsonLd = [
+  breadcrumbList([
+    { name: 'Forsiden', path: routePath('no', 'home') },
+    { name: 'Tips inn en gjest', path: '/tips-inn-en-gjest' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Tips inn en gjest"
+  description="Kjenner du noen som kunne vært en interessant gjest i Spørretimen? Slik tipser du, og hva belønningen er."
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow="Tips inn en gjest"
+    title="Kjenner du noen jeg burde snakke med?"
+    lead="Du kan tipse meg om folk som kunne vært interessante gjester. Blir det et opptak av det, får du en belønning."
+  />
+
+  <section class="section">
+    <div class="container container-narrow prose">
+      <h2>Slik tipser du</h2>
+      <p>
+        Du kan tipse meg ved å sette oss i kontakt på e-post, med personens samtykke,
+        eller ved å be personen kontakte meg direkte på e-post eller telefon. Et navn
+        alene er ikke nok, og ikke send meg andres kontaktopplysninger uten at de har
+        sagt ja.
+      </p>
+
+      <h2>Hva som skjer videre</h2>
+      <p>
+        Jeg bestemmer selv hvem jeg kontakter og inviterer. Et tips gir ingen garanti for
+        at personen blir gjest. Har flere tipset om samme person, spør jeg gjesten hvem
+        som satte oss i kontakt. Gjesten velger én tipser, og belønningen deles ikke.
+      </p>
+      <p>
+        Tips om personer jeg allerede er i kontakt med, kvalifiserer ikke.
+      </p>
+
+      <h2>Belønning</h2>
+      <p>
+        Belønningen går til deg som tipser, ikke til gjesten. Den utbetales når jeg har
+        godkjent gjesten og et opptak faktisk er gjennomført. Om episoden senere blir
+        publisert, er en egen avgjørelse som jeg tar for seg.
+      </p>
+      <ul class="satser">
+        {
+          satser.map((s) => (
+            <li>
+              <strong>{s.belop}</strong> {s.vilkar}
+            </li>
+          ))
+        }
+      </ul>
+      <p>
+        Satsene legges ikke sammen. Den høyeste satsen gjesten kvalifiserer til, er den
+        som gjelder. Følgertall fra ulike plattformer summeres heller ikke: 10 000 på
+        TikTok og 45 000 på Instagram gir ikke 50 000-satsen. Følgertallet vurderes på én
+        plattform om gangen, og sjekkes når jeg vurderer tipset.
+      </p>
+      <p>Samme gjest kan bare gi én belønning.</p>
+
+      <h2>Send tipset</h2>
+      <p>
+        Sett oss i kontakt på e-post, eller be personen ta kontakt direkte.
+      </p>
+      <p class="tips__handling">
+        <a class="btn" href={mailto}>Send tips på e-post</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone}`}>Ring {site.phoneDisplay}</a>
+      </p>
+      <p class="tips__adresse">
+        E-post: <a href={`mailto:${site.email}`}>{site.email}</a> &middot; Telefon:{' '}
+        <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .satser {
+    list-style: none;
+    margin: 1.25rem 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .satser li {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .satser strong {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-right: 0.3rem;
+  }
+  .tips__handling {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .tips__adresse {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+  }
+</style>

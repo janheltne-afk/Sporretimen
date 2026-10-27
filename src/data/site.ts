@@ -17,6 +17,10 @@ export const site = {
   lang: 'no',
   // Standard e-post for henvendelser. Endre til ønsket adresse.
   email: 'post@sporretimen.no',
+  // Telefon. `phone` er i internasjonalt format og brukes i tel:-lenker,
+  // `phoneDisplay` er slik nummeret skrives for folk.
+  phone: '+4799338406',
+  phoneDisplay: '993 38 406',
   // Portrett av programlederen, brukt på forsiden og Om-siden.
   hostImage: '/images/jan-sindre-heltne.jpg',
   // Standard delingsbilde for sosiale medier (Open Graph).
