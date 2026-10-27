@@ -12,7 +12,7 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
 
 <BaseLayout
   title="Personvern"
-  description="Personvernerklæring for Spørretimen: hvilke opplysninger som behandles i kommentarfelt, terningkast og skjemaer, hvorfor, og hvilke rettigheter du har."
+  description="Personvernerklæring for Spørretimen: hvilke opplysninger som behandles i skjemaer og interessemarkeringer, hvorfor, og hvilke rettigheter du har."
 >
   <PageHeader
     eyebrow="Personvern"
@@ -36,9 +36,8 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
           nettsiden.
         </li>
         <li>
-          Kommentarer, terningkast og interessemarkeringer lagres i en database
-          (Supabase). Kommentarer og terningkast vises åpent på episodesiden;
-          interessemarkeringer er anonyme tellinger.
+          Interessemarkeringer lagres i en database (Supabase) som anonyme
+          tellinger. Ingen navn, e-post eller IP-adresse lagres.
         </li>
         <li>Vi bruker ingen analyseverktøy, annonsenettverk eller sporingsinformasjonskapsler.</li>
       </ul>
@@ -54,36 +53,14 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
         </a>.
       </p>
 
-      <h2>Kommentarfeltet</h2>
-      <p>
-        Når du legger igjen en kommentar på en episode, lagres navnet du skriver inn og
-        selve kommentarteksten i en database, sammen med tidspunktet. Kommentarer vises
-        offentlig under episoden med det navnet du selv har oppgitt – skriv derfor ikke
-        inn mer enn du er komfortabel med at alle kan se.
-      </p>
-      <p>
-        Rettslig grunnlag er samtykke: du velger selv å skrive og sende inn kommentaren.
-        Er en kommentar støtende, sjikanerende eller på annen måte upassende, fjerner vi
-        den. Vil du at en kommentar med navnet ditt skal slettes, ta kontakt på{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a>, så ordner vi det.
-      </p>
-
-      <h2>Terningkast</h2>
-      <p>
-        Når du gir en episode terningkast, lagres selve vurderingen (1–6) sammen med
-        hvilken episode den gjelder. For å hindre at samme person stemmer flere ganger på
-        samme episode, lagrer nettleseren din en tilfeldig, anonym kode lokalt (se
-        «Nettlagring» under). Koden er ikke koblet til navn, e-postadresse eller
-        IP-adresse, og kan ikke brukes til å identifisere deg.
-      </p>
-
       <h2>Interessemarkeringer</h2>
       <p>
-        På kommende episoder og temasider kan du trykke «Jeg vil høre
-        mer» eller lignende. Da lagres hvilken episode eller hvilket tema det gjaldt,
-        sammen med den samme anonyme koden som terningkastene bruker – slik at samme
-        nettleser ikke kan stemme flere ganger på samme sak. Ingen navn, e-post eller
-        IP-adresse lagres. Tellingene brukes til å avgjøre hva som skal lages mer av.
+        På kommende episoder kan du trykke «Jeg vil høre denne». Da lagres hvilken
+        episode det gjaldt, sammen med en tilfeldig, anonym kode som nettleseren din
+        lagrer lokalt – slik at samme nettleser ikke kan stemme flere ganger på samme
+        sak. Koden er ikke koblet til navn, e-postadresse eller IP-adresse, og kan ikke
+        brukes til å identifisere deg. Tellingene brukes til å avgjøre hva som skal
+        lages først.
       </p>
 
       <h2>Kontaktskjemaer</h2>
@@ -103,7 +80,7 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
       <ul>
         <li><strong>Temavalg:</strong> om du har valgt lyst eller mørkt utseende.</li>
         <li>
-          <strong>Terningkast-kode:</strong> den anonyme koden nevnt over, som hindrer
+          <strong>Stemmekode:</strong> den anonyme koden nevnt over, som hindrer
           dobbeltstemming.
         </li>
       </ul>
@@ -136,11 +113,10 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
 
       <h2>Databehandler</h2>
       <p>
-        Kommentarer, terningkast og interessemarkeringer lagres hos
-        <strong>Supabase</strong>, som er databaseleverandøren vår. Tilgangen er
-        begrenset med regler i databasen (Row Level Security): besøkende kan lese og
-        legge til, men ikke endre eller slette andres innlegg. Fjerning og moderering gjøres av
-        Jan Sindre.
+        Interessemarkeringene lagres hos <strong>Supabase</strong>, som er
+        databaseleverandøren vår. Tilgangen er begrenset med regler i databasen
+        (Row Level Security): besøkende kan legge til en stemme, men ikke lese,
+        endre eller slette andres.
       </p>
 
       <h2>Dine rettigheter</h2>
@@ -148,13 +124,12 @@ const updated = new Intl.DateTimeFormat('nb-NO', {
       <ul>
         <li>få vite hvilke opplysninger som er lagret om deg,</li>
         <li>få rettet feilaktige opplysninger,</li>
-        <li>få slettet opplysninger, som en kommentar du har skrevet,</li>
+        <li>få slettet opplysninger som er lagret om deg,</li>
         <li>klage til <a href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a> hvis du mener behandlingen er i strid med regelverket.</li>
       </ul>
       <p>
-        For kommentarer og terningkast er den enkleste veien å ta kontakt direkte på{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a> – oppgi hvilken episode og
-        omtrent når kommentaren ble lagt inn, så finner vi den.
+        Den enkleste veien er å ta kontakt direkte på{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
 
       <h2>Endringer</h2>

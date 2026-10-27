@@ -1,10 +1,9 @@
 /**
- * Tilkobling til Supabase (terningkast og kommentarer).
+ * Tilkobling til Supabase (interessemarkeringer).
  *
  * Nøkkelen under er en *publiserbar* nøkkel som er laget for å ligge åpent i
  * nettleseren. Sikkerheten ligger i databasens Row Level Security:
- * publikum kan lese og skrive kommentarer/terningkast, men ikke endre eller
- * slette noe. Moderering gjøres av deg i Supabase-dashboardet.
+ * publikum kan legge til en stemme, men ikke endre eller slette noe.
  *
  * Verdiene kan overstyres med miljøvariabler i Vercel:
  *   PUBLIC_SUPABASE_URL

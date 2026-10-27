@@ -6,8 +6,6 @@ import EpisodePlayers from '@/components/EpisodePlayers.astro';
 import Avatar from '@/components/Avatar.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import PlatformLinks from '@/components/PlatformLinks.astro';
-import Terningkast from '@/components/Terningkast.astro';
-import Comments from '@/components/Comments.astro';
 import SeriesBadge from '@/components/SeriesBadge.astro';
 import Interest from '@/components/Interest.astro';
 import Advisory from '@/components/Advisory.astro';
@@ -465,16 +463,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
       )
     }
 
-    {
-      d.status === 'publisert' && (
-        <div class="container episode__wrap episode__feedback">
-          {/* Grunnslugen uten språkprefiks: begge språkutgavene av en episode
-              deler terningkast og kommentarfelt, siden det er samme episode. */}
-          <Terningkast lang={lang} slug={slug} />
-          <Comments lang={lang} slug={slug} />
-        </div>
-      )
-    }
 
     {
       related.length > 0 && (
@@ -633,9 +621,6 @@ const jsonLd = [episodeJsonLd, ...(videoJsonLd ? [videoJsonLd] : []), breadcrumb
      linjelengden innenfor det lesbare. */
   .episode__content > :global(.manus-blokk) {
     max-width: 54rem;
-  }
-  .episode__feedback > * {
-    max-width: 44rem;
   }
   /* De to utgavene av innholdet. Lavmælt med vilje – de skal ligge der for
      den som vil ha dem, ikke konkurrere med selve innholdet. */

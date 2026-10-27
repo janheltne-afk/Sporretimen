@@ -182,8 +182,6 @@ const strings = {
 
     // Interesse og temaer
     'interest.wantThis': 'Jeg vil høre denne',
-    'interest.wantMore': 'Jeg vil høre mer',
-    'interest.wantLecture': 'Dette er interessant',
     'interest.voted': 'Notert',
     'interest.failed': 'Klarte ikke å notere det. Prøv igjen senere.',
     'interest.oneVote': '1 vil høre denne',
@@ -191,9 +189,6 @@ const strings = {
     'interest.episodeHeading': 'Vil du høre denne?',
     'interest.episodeIntro':
       'Denne episoden er ikke spilt inn ennå. Si fra om du vil høre den, så vet vi hva som bør komme først.',
-    'interest.moreHeading': 'Vil du høre mer om dette?',
-    'interest.moreIntro':
-      'Det er flere temaer enn det er episoder. Si fra hva du vil høre om, så vet vi hvor vi bør begynne.',
     'topic.all': 'Alle temaer',
     'topic.explore': 'Utforsk temaer',
     'topic.subtopics': 'Undertemaer',
@@ -204,23 +199,6 @@ const strings = {
     'nav.conversations': 'Samtaler',
     'nav.explained': 'Forklart',
     // Kommentarer
-    'comments.heading': 'Kommentarer',
-    'comments.intro':
-      'Har du tanker om episoden? Skriv gjerne en kommentar. Vi ber om at du bruker navnet ditt og holder en god tone.',
-    'comments.name': 'Navn',
-    'comments.body': 'Kommentar',
-    'comments.send': 'Send kommentar',
-    'comments.loading': 'Laster kommentarer …',
-    'comments.empty': 'Ingen kommentarer ennå. Bli den første til å si noe!',
-    'comments.loadFailed': 'Klarte ikke å laste kommentarer akkurat nå.',
-    'comments.sendFailed': 'Klarte ikke å sende kommentaren. Prøv igjen senere.',
-    'comments.thanks': 'Takk for kommentaren!',
-    'comments.invalid': 'Fyll inn navn og kommentar (minst to tegn).',
-    'comments.consent':
-      'Navn og kommentar vises åpent under episoden og lagres slik det er beskrevet i',
-    'comments.consentLink': 'personvernerklæringen',
-    'comments.moderation':
-      'Spørretimen forbeholder seg retten til å fjerne kommentarer som er sjikanerende, krenkende eller på annen måte i strid med god skikk.',
   },
 
 } as const;

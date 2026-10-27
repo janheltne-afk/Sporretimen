@@ -4,24 +4,21 @@ import { supabase } from '@/data/supabase';
 /**
  * Interessemarkering – «jeg vil høre mer om dette».
  *
- * Brukes tre steder, skilt med `kind`:
- *   episode – en kommende episode, for å vise hva folk vil ha først
- *   topic   – et tema eller undertema, for å måle hva som er verdt å lage mer av
- *   lecture – et foredragstema
+ * Brukes ett sted: på en kommende episode, for å vise hva folk vil ha først.
+ * `kind` ligger igjen fordi raden i Supabase har kolonnen, og fordi et nytt
+ * bruksområde da kan legges til uten å endre tabellen.
  *
  * Tellingene lagres i `interest` i Supabase og leses fra visningen
  * `interest_stats`. Én stemme per nettleser per sak, hindret av en anonym,
- * tilfeldig kode i localStorage – samme kode som terningkastene bruker.
+ * tilfeldig kode i localStorage.
  *
- * Slugen skal være uten språkprefiks, slik at den norske og den engelske
- * utgaven av samme sak teller sammen.
  */
 import { type Locale } from '@/i18n/config';
 import { useTranslations } from '@/i18n/ui';
 
 interface Props {
   lang: Locale;
-  kind: 'episode' | 'topic' | 'lecture';
+  kind: 'episode';
   slug: string;
   /** Teksten på knappen. Faller tilbake til en standard per `kind`. */
   label?: string;
@@ -32,11 +29,7 @@ interface Props {
 const { lang, kind, slug, label, compact = false, class: className = '' } = Astro.props;
 const t = useTranslations(lang);
 
-const fallback = {
-  episode: t('interest.wantThis'),
-  topic: t('interest.wantMore'),
-  lecture: t('interest.wantLecture'),
-}[kind];
+const fallback = t('interest.wantThis');
 
 const event = kind === 'topic' ? 'topic_interest' : kind === 'lecture' ? 'lecture_interest' : 'episode_interest';
 ---
@@ -128,7 +121,7 @@ const event = kind === 'topic' ? 'topic_interest' : kind === 'lecture' ? 'lectur
 <script>
   import { bindTrackedElements } from '@/lib/analytics';
 
-  /** Stabil, anonym kode per nettleser. Samme nøkkel som terningkastene. */
+  /** Stabil, anonym kode per nettleser. */
   function voterKey(): string {
     try {
       let k = localStorage.getItem('sporretimen-voter') ?? '';

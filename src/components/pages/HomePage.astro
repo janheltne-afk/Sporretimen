@@ -9,12 +9,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import EpisodeCard from '@/components/EpisodeCard.astro';
 import Avatar from '@/components/Avatar.astro';
-import Interest from '@/components/Interest.astro';
 import { getEpisodes, getSeriesEpisodes, slugOf, } from '@/lib/content';
 import { popularEpisodes } from '@/lib/popularity';
 import { site } from '@/data/site';
 import { yrkestall } from '@/data/yrker';
-import { probes } from '@/data/probes';
 import { entryPath, path as routePath, type Locale } from '@/i18n/config';
 import { seriesById } from '@/i18n/taxonomy';
 import { useTranslations } from '@/i18n/ui';
@@ -189,27 +187,6 @@ const pickedConversations = notInLatest(conversations);
     </div>
   </section>
 
-  <!-- Hva vil du lære mer om? -->
-  <section class="section probes" aria-labelledby="probes-heading">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">{en ? 'Help us choose' : 'Hjelp oss å velge'}</p>
-        <h2 id="probes-heading">{en ? 'What do you want to learn more about?' : 'Hva vil du lære mer om?'}</h2>
-        <p class="lead">{t('interest.moreIntro')}</p>
-      </div>
-      <ul class="probes__grid">
-        {
-          probes.map((probe) => (
-            <li class="probes__card card">
-              <h3 class="probes__title">{probe.label[lang]}</h3>
-              <p class="probes__blurb">{probe.blurb[lang]}</p>
-              <Interest lang={lang} kind="topic" slug={probe.subtopic} label={t('interest.wantMore')} compact />
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
 
   <!-- Jan Sindre -->
 
@@ -312,37 +289,6 @@ const pickedConversations = notInLatest(conversations);
   }
 
   /* Hva vil du lære mer om? */
-  .probes {
-    border-top: 1px solid var(--line);
-  }
-  .probes .section-head .lead {
-    max-width: 56ch;
-  }
-  .probes__grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
-  }
-  .probes__card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem 1.5rem 1.6rem;
-  }
-  .probes__title {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  .probes__blurb {
-    margin: 0 0 0.9rem;
-    color: var(--ink-soft);
-    font-size: 0.92rem;
-    line-height: 1.55;
-    flex: 1;
-  }
 
   /* Programlederen. Kort og saklig. */
 
